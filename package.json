@@ -1,0 +1,51 @@
+{
+  "name": "yyc3-component-library",
+  "version": "1.0.0",
+  "private": true,
+  "description": "YYC³ 统一组件库 - 企业级 React 组件集合",
+  "scripts": {
+    "dev": "pnpm --filter storybook dev",
+    "build": "pnpm -r build",
+    "build:ui": "pnpm --filter @yyc3/ui build",
+    "build:theme": "pnpm --filter @yyc3/theme build",
+    "lint": "pnpm -r lint",
+    "type-check": "pnpm -r type-check",
+    "clean": "pnpm -r clean && rm -rf node_modules",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5.9",
+    "prettier": "^3",
+    "eslint": "^9",
+    "@changesets/cli": "^2.27.1",
+    "turbo": "^2.0.0",
+    "storybook": "^10.5.4",
+    "@storybook/react-vite": "^10.5.4",
+    "@chromatic-com/storybook": "^5.2.1",
+    "@storybook/addon-vitest": "^10.5.4",
+    "@storybook/addon-a11y": "^10.5.4",
+    "@storybook/addon-docs": "^10.5.4",
+    "@storybook/addon-mcp": "^0.7.0",
+    "eslint-plugin-storybook": "^10.5.4",
+    "vitest": "^4.1.10",
+    "playwright": "^1.61.1",
+    "@vitest/browser-playwright": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.10"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
+}

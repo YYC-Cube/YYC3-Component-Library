@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --deep-space-blue: #0a1a2f;
+}
+
+@layer base {
+  body {
+    @apply bg-deep-space-blue text-white;
+  }
+}
+
+@layer utilities {
+  .bg-deep-space-blue {
+    background-color: var(--deep-space-blue);
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px theme("colors.blue.400"), 0 0 10px theme("colors.blue.300");
+  }
+  50% {
+    box-shadow: 0 0 20px theme("colors.blue.400"), 0 0 30px theme("colors.blue.300");
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Dynamic color engine styles */
+.color-transition {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* 3D element styles */
+.layer-space {
+  z-index: 10;
+  filter: drop-shadow(0 0 20px rgba(100, 255, 255, 0.3));
+}
+
+.hologram-layer {
+  z-index: 5;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+}
+
+/* Glow effect */
+.dynamic-glow {
+  --glow-alpha: 0.3;
+  --glow-spread: 5px;
+  box-shadow: 0 0 var(--glow-spread) rgba(var(--glow-color), var(--glow-alpha));
+}
+
+/* AI energy flow effect */
+.ai-energy-flow {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-energy-flow::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: energy-flow 2s linear infinite;
+}
+
+@keyframes energy-flow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .grid-cols-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .text-4xl {
+    font-size: 2rem;
+  }
+
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+}
+
+/* Performance optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Low-end device fallback */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .pulse-glow,
+  .ai-energy-flow::before {
+    animation: none;
+  }
+}

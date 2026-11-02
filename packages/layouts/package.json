@@ -1,0 +1,31 @@
+{
+  "name": "@yyc3/layouts",
+  "version": "1.0.0",
+  "description": "YYC³ 布局组件库 - Sidebar, Header, Navigation 等布局组件",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "@yyc3/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "tsup": "^8.3.0",
+    "typescript": "^5.9"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  }
+}

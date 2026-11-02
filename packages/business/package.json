@@ -1,0 +1,27 @@
+{
+  "name": "@yyc3/business",
+  "version": "1.0.0",
+  "description": "YYC³ 业务组件库 - 医疗、AI、管理等业务域组件",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src/",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@yyc3/ui": "workspace:*",
+    "@yyc3/theme": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "tsup": "^8.3.0",
+    "typescript": "^5.9"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  }
+}

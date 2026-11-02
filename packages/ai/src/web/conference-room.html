@@ -1,0 +1,3030 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YYC³ AI 会议室 - 大屏交互模式</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr 1.5fr;
+            gap: 20px;
+            padding: 20px;
+            height: calc(100vh - 120px);
+        }
+
+        .claude-panels {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .claude-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .claude-panel:hover {
+            transform: translateX(3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .claude-header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .claude-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .claude-info {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .claude-info h3 {
+            font-size: 0.95em;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .claude-role {
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .claude-status {
+            font-size: 0.7em;
+            padding: 2px 6px;
+            border-radius: 8px;
+            background: rgba(0, 255, 0, 0.2);
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .claude-status.thinking {
+            background: rgba(255, 165, 0, 0.2);
+            animation: pulse 1.5s infinite;
+        }
+
+        .claude-status.speaking {
+            background: rgba(0, 150, 255, 0.2);
+            animation: pulse 0.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* 新增功能面板样式 */
+        .feature-tabs {
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 8px;
+            margin-bottom: 20px;
+            gap: 5px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* MCP面板样式 */
+        .mcp-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .mcp-tool-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mcp-tool-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .tool-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .tool-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .tool-description {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        /* 提示词管理样式 */
+        .prompt-section {
+            margin-bottom: 20px;
+        }
+
+        .prompt-input {
+            width: 100%;
+            min-height: 100px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 0.95em;
+            color: #333;
+            resize: none;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        .prompt-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .prompt-tag {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 4px 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .prompt-tag:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .prompt-templates {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .prompt-template {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .prompt-template:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .template-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .template-preview {
+            font-size: 0.8em;
+            opacity: 0.7;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* 脚本管理样式 */
+        .script-editor {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .script-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .script-language {
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 0.8em;
+        }
+
+        .script-code {
+            width: 100%;
+            min-height: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 0.85em;
+            color: #333;
+            resize: vertical;
+            outline: none;
+        }
+
+        .script-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .script-btn {
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8em;
+        }
+
+        .script-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .script-btn.run {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: rgba(76, 175, 80, 0.5);
+        }
+
+        .script-btn.run:hover {
+            background: rgba(76, 175, 80, 0.4);
+        }
+
+        /* 应用管理样式 */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .app-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .app-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .app-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .app-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4CAF50;
+        }
+
+        .app-status.running {
+            background: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+
+        .app-status.stopped {
+            background: #f44336;
+        }
+
+        /* API管理样式 */
+        .api-section {
+            margin-bottom: 20px;
+        }
+
+        .api-endpoint {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .api-method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .api-get { background: rgba(76, 175, 80, 0.3); }
+        .api-post { background: rgba(33, 150, 243, 0.3); }
+        .api-put { background: rgba(255, 193, 7, 0.3); }
+        .api-delete { background: rgba(244, 67, 54, 0.3); }
+
+        .api-path {
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 0.9em;
+            color: #81C784;
+        }
+
+        .api-description {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .center-stage {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-input-area {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .user-input {
+            width: 100%;
+            min-height: 120px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 1.1em;
+            color: #333;
+            resize: none;
+            outline: none;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .mode-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .mode-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .send-btn {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(238, 90, 36, 0.4);
+        }
+
+        .discussion-area {
+            flex-grow: 1;
+            overflow-y: auto;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        /* 自定义滚动条 */
+        .discussion-area::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .discussion-area::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+        }
+
+        .discussion-area::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .discussion-area::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .discussion-area::-webkit-scrollbar-thumb:active {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* 滚动控制按钮 */
+        .scroll-controls {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .scroll-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+        }
+
+        .scroll-btn:active {
+            transform: scale(0.95);
+        }
+
+        .scroll-btn.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .scroll-btn.disabled:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1);
+        }
+
+        .scroll-btn.autoscroll {
+            background: rgba(255, 165, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        /* 高亮消息 */
+        .highlighted-message {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3));
+            border-left: 4px solid #FFD700;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-radius: 4px;
+            animation: highlightPulse 2s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes highlightPulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 215, 0, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 215, 0, 0.4); }
+        }
+
+        /* 滚动控制提示 */
+        .scroll-hint {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .scroll-hint.show {
+            opacity: 1;
+        }
+
+        /* 演示消息样式 */
+        .discussion-message.demo {
+            background: rgba(100, 150, 255, 0.1);
+            border-left: 4px solid rgba(100, 150, 255, 0.5);
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .discussion-message.demo:hover {
+            background: rgba(100, 150, 255, 0.15);
+            transform: translateX(2px);
+        }
+
+        /* 键盘按键样式 */
+        kbd {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+            margin: 0 2px;
+        }
+
+        /* 合约相关样式 */
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .action-btn.secondary {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        .action-btn.success {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .action-btn.warning {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white;
+        }
+
+        .action-btn.danger {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            color: white;
+        }
+
+        .contracts-container {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .contract-item {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .contract-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .contract-item:last-child {
+            border-bottom: none;
+        }
+
+        .contract-item-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .contract-item-meta {
+            font-size: 0.8em;
+            opacity: 0.7;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .contract-details {
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .contract-header {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contract-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-badge {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .status-badge.draft {
+            background: rgba(255,193,7,0.2);
+            color: #FFC107;
+        }
+
+        .status-badge.active {
+            background: rgba(76,175,80,0.2);
+            color: #4CAF50;
+        }
+
+        .status-badge.pending {
+            background: rgba(255,152,0,0.2);
+            color: #FF9800;
+        }
+
+        .contract-section {
+            margin-bottom: 16px;
+        }
+
+        .contract-section h5 {
+            margin-bottom: 8px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .contract-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .party-item, .term-item {
+            background: rgba(255,255,255,0.05);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .term-item.pending {
+            border-left-color: #FFC107;
+        }
+
+        .term-item.completed {
+            border-left-color: #4CAF50;
+        }
+
+        .term-item.failed {
+            border-left-color: #f44336;
+        }
+
+        /* 新消息提示 */
+        .new-message-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .new-message-indicator:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(238, 90, 36, 0.4);
+        }
+
+        /* 滚动进度指示器 */
+        .scroll-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 5;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .discussion-message {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+        }
+
+        .discussion-message.zhang {
+            border-left-color: #3498db;
+        }
+
+        .discussion-message.li {
+            border-left-color: #e74c3c;
+        }
+
+        .discussion-message.wang {
+            border-left-color: #f39c12;
+        }
+
+        .discussion-message.chen {
+            border-left-color: #2ecc71;
+        }
+
+        .discussion-message.zhao {
+            border-left-color: #9b59b6;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .message-sender {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .message-time {
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .side-panel {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats {
+            margin-bottom: 30px;
+        }
+
+        .stats h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .controls {
+            text-align: center;
+        }
+
+        .control-btn {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .control-btn.danger {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.2);
+        }
+
+        .control-btn.danger:hover {
+            background: rgba(231, 76, 60, 0.3);
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr 2fr;
+            }
+            .side-panel {
+                display: none;
+            }
+            .claude-panels {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .claude-panels {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 YYC³ AI 智能会议室</h1>
+        <div class="subtitle">大屏交互模式 · 多Claude协同讨论</div>
+    </div>
+
+    <div class="main-container">
+        <!-- 左侧Claude面板 -->
+        <div class="claude-panels">
+            <div class="claude-panel" id="zhang-panel">
+                <div class="claude-header">
+                    <div class="claude-avatar">👨‍🏫</div>
+                    <div class="claude-info">
+                        <h3>张老师</h3>
+                        <div class="claude-role">项目管理专家</div>
+                        <div class="claude-status" id="zhang-status">在线</div>
+                    </div>
+                </div>
+                <div class="claude-message" id="zhang-message">
+                    准备就绪，等待讨论开始...
+                </div>
+            </div>
+
+            <div class="claude-panel" id="li-panel">
+                <div class="claude-header">
+                    <div class="claude-avatar">👩‍🔬</div>
+                    <div class="claude-info">
+                        <h3>李博士</h3>
+                        <div class="claude-role">技术专家</div>
+                        <div class="claude-status" id="li-status">在线</div>
+                    </div>
+                </div>
+                <div class="claude-message" id="li-message">
+                    技术分析准备完毕，随时可以开始。
+                </div>
+            </div>
+
+            <div class="claude-panel" id="wang-panel">
+                <div class="claude-header">
+                    <div class="claude-avatar">🎨</div>
+                    <div class="claude-info">
+                        <h3>创意王</h3>
+                        <div class="claude-role">创意设计师</div>
+                        <div class="claude-status" id="wang-status">在线</div>
+                    </div>
+                </div>
+                <div class="claude-message" id="wang-message">
+                    创意模式已开启，期待有趣的讨论！
+                </div>
+            </div>
+
+            <div class="claude-panel" id="chen-panel">
+                <div class="claude-header">
+                    <div class="claude-avatar">🔧</div>
+                    <div class="claude-info">
+                        <h3>陈师傅</h3>
+                        <div class="claude-role">质量管控</div>
+                        <div class="claude-status" id="chen-status">在线</div>
+                    </div>
+                </div>
+                <div class="claude-message" id="chen-message">
+                    质量控制模块已就绪，确保讨论质量。
+                </div>
+            </div>
+        </div>
+
+        <!-- 中央舞台 -->
+        <div class="center-stage">
+            <div class="user-input-area">
+                <h2>💭 讨论主题</h2>
+                <textarea
+                    id="userInput"
+                    class="user-input"
+                    placeholder="请输入您希望AI团队讨论的话题或问题...&#10;&#10;例如：&#10;- 如何提高团队协作效率？&#10;- 新产品开发的技术路线选择&#10;- 项目风险管控策略"
+                ></textarea>
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-mode="collaborative">🤝 协作模式</button>
+                    <button class="mode-btn" data-mode="specialist">🎯 专家模式</button>
+                    <button class="mode-btn" data-mode="competitive">🏆 竞争模式</button>
+                    <button class="mode-btn" data-mode="sequential">📋 顺序模式</button>
+                </div>
+                <button class="send-btn" onclick="startDiscussion()">🚀 开始讨论</button>
+            </div>
+
+            <div class="discussion-area" id="discussionArea">
+                <!-- 滚动进度指示器 -->
+                <div class="scroll-progress">
+                    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+                </div>
+
+                <!-- 滚动控制按钮 -->
+                <div class="scroll-controls">
+                    <button class="scroll-btn" id="scrollTopBtn" onclick="scrollDiscussion('top')" title="回到顶部">⇱</button>
+                    <button class="scroll-btn" id="scrollUpBtn" onclick="scrollDiscussion('up')" title="向上滚动">↑</button>
+                    <button class="scroll-btn" id="scrollPageUpBtn" onclick="scrollDiscussion('pageUp')" title="向上翻页">⇑</button>
+                    <button class="scroll-btn" id="scrollAutoBtn" onclick="toggleAutoScroll()" title="自动滚动">⏸️</button>
+                    <button class="scroll-btn" id="scrollPageDownBtn" onclick="scrollDiscussion('pageDown')" title="向下翻页">⇓</button>
+                    <button class="scroll-btn" id="scrollDownBtn" onclick="scrollDiscussion('down')" title="向下滚动">↓</button>
+                    <button class="scroll-btn" id="scrollBottomBtn" onclick="scrollDiscussion('bottom')" title="滚动到底部">⇲</button>
+                </div>
+
+                <!-- 滚动控制提示 -->
+                <div class="scroll-hint" id="scrollHint">
+                    💡 提示：使用方向键、PageUp/PageDown、空格键控制滚动
+                </div>
+
+                <!-- 滚动调试信息 -->
+                <div id="scrollDebug" style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 5px; font-size: 12px; border-radius: 4px; z-index: 1000;">
+                    滚动调试: 位置<span id="scrollPos">0</span>/总高<span id="scrollHeight">0</span> | <a href="#" onclick="document.getElementById('scrollDebug').style.display='none'" style="color: #4CAF50;">隐藏</a>
+                </div>
+
+                <!-- 新消息提示 -->
+                <div class="new-message-indicator" id="newMessageIndicator" style="display: none;" onclick="scrollToBottom()">
+                    🔔 有新消息，点击查看
+                </div>
+
+                <h3 style="text-align: center; margin-bottom: 20px;">💬 讨论区</h3>
+
+                <!-- 滚动功能演示内容 -->
+                <div id="scrollDemo" style="opacity: 0.8;">
+                    <div class="discussion-message demo">
+                        <div class="message-header">
+                            <span class="message-author">🔧 系统管理员</span>
+                            <span class="message-time">00:00:01</span>
+                        </div>
+                        <div class="message-content">
+                            🎉 <strong>YYC³ AI智能协作平台滚动功能已激活！</strong><br><br>
+                            本页面支持以下滚动操作：<br>
+                            • 🖱️ <strong>鼠标滚轮</strong>：智能滚动控制<br>
+                            • ⌨️ <strong>键盘快捷键</strong>：方向键、PageUp/PageDown、空格键<br>
+                            • 📱 <strong>触摸滑动</strong>：移动设备支持<br>
+                            • 🔘 <strong>按钮控制</strong>：右侧7个滚动按钮<br>
+                            • ⚡ <strong>自动滚动</strong>：空格键或自动按钮控制<br><br>
+                            <em>这是一个演示区域，你可以尝试各种滚动功能！</em>
+                        </div>
+                    </div>
+
+                    <div class="discussion-message demo" style="margin-top: 30px;">
+                        <div class="message-header">
+                            <span class="message-author">👨‍🏫 张老师</span>
+                            <span class="message-time">00:00:02</span>
+                        </div>
+                        <div class="message-content">
+                            大家好！我是项目负责人张老师。很高兴看到大家正在测试我们的新滚动功能！<br><br>
+                            💡 <strong>小贴士</strong>：试试按 <kbd>↓</kbd> 键向下滚动，或者使用右侧的滚动按钮。
+                        </div>
+                    </div>
+
+                    <div class="discussion-message demo" style="margin-top: 30px;">
+                        <div class="message-header">
+                            <span class="message-author">👨‍🔬 李博士</span>
+                            <span class="message-time">00:00:03</span>
+                        </div>
+                        <div class="message-content">
+                            从技术角度来看，这个滚动系统具有以下特点：<br><br>
+                            1. <strong>平滑滚动</strong>：所有滚动操作都支持平滑动画<br>
+                            2. <strong>智能响应</strong：根据滚动速度自动调整滚动距离<br>
+                            3. <strong>多种交互</strong>：支持键盘、鼠标、触摸等多种输入方式<br>
+                            4. <strong>状态反馈</strong>：实时显示滚动进度和按钮状态<br><br>
+                            继续向下滚动查看更多内容... ⬇️
+                        </div>
+                    </div>
+
+                    <div class="discussion-message demo" style="margin-top: 30px;">
+                        <div class="message-header">
+                            <span class="message-author">🎨 创意王</span>
+                            <span class="message-time">00:00:04</span>
+                        </div>
+                        <div class="message-content">
+                            从用户体验的角度来说，滚动功能应该：<br><br>
+                            🎯 <strong>直观易用</strong>：用户一看就知道如何操作<br>
+                            🎨 <strong>视觉反馈</strong>：按钮状态变化、进度条显示<br>
+                            ⚡ <strong>响应迅速</strong>：滚动操作应该流畅无卡顿<br>
+                            📱 <strong>全平台支持</strong>：桌面和移动设备都有良好体验<br><br>
+                            试试快速滑动鼠标滚轮，体验不同的滚动速度！ 🚀
+                        </div>
+                    </div>
+
+                    <div class="discussion-message demo" style="margin-top: 30px;">
+                        <div class="message-header">
+                            <span class="message-author">🔧 陈师傅</span>
+                            <span class="message-time">00:00:05</span>
+                        </div>
+                        <div class="message-content">
+                            质量控制要点：<br><br>
+                            ✅ 滚动按钮在到达边界时自动禁用<br>
+                            ✅ 自动滚动功能有明确的视觉指示（橙色高亮）<br>
+                            ✅ 键盘快捷键不会干扰文本输入<br>
+                            ✅ 触摸设备支持快速滑动操作<br>
+                            ✅ 滚动进度条实时反映当前位置<br><br>
+                            测试完成后，按 <kbd>Home</kbd> 键回到顶部！ 🏠
+                        </div>
+                    </div>
+
+                    <div class="discussion-message demo" style="margin-top: 30px;">
+                        <div class="message-header">
+                            <span class="message-author">📊 数据赵</span>
+                            <span class="message-time">00:00:06</span>
+                        </div>
+                        <div class="message-content">
+                            滚动功能使用统计：<br><br>
+                            📈 <strong>键盘快捷键</strong>：最受欢迎的控制方式<br>
+                            📊 <strong>鼠标滚轮</strong>：精确控制的首选<br>
+                            📱 <strong>触摸滑动</strong>：移动设备用户的主要方式<br>
+                            🔘 <strong>按钮控制</strong>：新手用户最常使用<br><br>
+                            你最喜欢哪种滚动方式呢？在下方输入框开始实际对话测试吧！ 💬
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 40px; padding: 20px; opacity: 0.6;">
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid rgba(255,255,255,0.2);">
+                        <p><strong>🎯 滚动功能演示结束</strong></p>
+                        <p>现在你可以在下方输入框中输入消息，开始实际的AI对话！</p>
+                        <p style="font-size: 0.9em; margin-top: 15px;">
+                            <em>提示：按 <kbd>空格键</kbd> 可以开始/停止自动滚动</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧功能面板 -->
+        <div class="side-panel">
+            <!-- 功能选项卡 -->
+            <div class="feature-tabs">
+                <button class="tab-btn active" onclick="switchTab('contract')">📋 合约</button>
+                <button class="tab-btn" onclick="switchTab('mcp')">🔧 MCP</button>
+                <button class="tab-btn" onclick="switchTab('prompt')">💬 提示词</button>
+                <button class="tab-btn" onclick="switchTab('script')">📜 脚本</button>
+                <button class="tab-btn" onclick="switchTab('app')">📱 应用</button>
+                <button class="tab-btn" onclick="switchTab('api')">🌐 API</button>
+            </div>
+
+            <!-- 合约面板 -->
+            <div id="contract-panel" class="tab-content active">
+                <h3 style="margin-bottom: 15px;">📋 智能合约管理</h3>
+
+                <!-- 合约操作按钮 -->
+                <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="action-btn primary" onclick="createNewContract()">
+                        ➕ 创建合约
+                    </button>
+                    <button class="action-btn secondary" onclick="loadContractTemplates()">
+                        📄 模板库
+                    </button>
+                    <button class="action-btn secondary" onclick="refreshContracts()">
+                        🔄 刷新
+                    </button>
+                </div>
+
+                <!-- 合约列表 -->
+                <div id="contractsList" style="margin-bottom: 20px;">
+                    <h4 style="margin-bottom: 10px;">📜 我的合约</h4>
+                    <div id="contractsContainer" class="contracts-container">
+                        <div style="text-align: center; padding: 20px; opacity: 0.6;">
+                            暂无合约，点击"创建合约"开始
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 当前合约详情 -->
+                <div id="currentContract" style="display: none;">
+                    <h4 style="margin-bottom: 10px;">📋 合约详情</h4>
+                    <div class="contract-details">
+                        <div class="contract-header">
+                            <div class="contract-title">
+                                <span id="contractName"></span>
+                                <span id="contractStatus" class="status-badge"></span>
+                            </div>
+                            <div class="contract-meta">
+                                <span id="contractId" style="font-size: 0.8em; opacity: 0.7;"></span>
+                                <span id="contractDate" style="font-size: 0.8em; opacity: 0.7;"></span>
+                            </div>
+                        </div>
+
+                        <div class="contract-section">
+                            <h5>📝 合约描述</h5>
+                            <p id="contractDescription"></p>
+                        </div>
+
+                        <div class="contract-section">
+                            <h5>👥 参与方</h5>
+                            <div id="contractParties"></div>
+                        </div>
+
+                        <div class="contract-section">
+                            <h5>📋 条款</h5>
+                            <div id="contractTerms"></div>
+                        </div>
+
+                        <div class="contract-section">
+                            <h5>🔍 执行状态</h5>
+                            <div id="contractExecution"></div>
+                        </div>
+
+                        <div class="contract-actions">
+                            <button class="action-btn success" onclick="signCurrentContract()">✍️ 签署</button>
+                            <button class="action-btn warning" onclick="executeCurrentContract()">⚡ 执行</button>
+                            <button class="action-btn danger" onclick="terminateCurrentContract()">🛑 终止</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MCP面板 -->
+            <div id="mcp-panel" class="tab-content">
+                <h3 style="margin-bottom: 15px;">🔧 MCP 工具集成</h3>
+                <div class="mcp-tools">
+                    <div class="mcp-tool-card" onclick="activateMcpTool('filesystem')">
+                        <div class="tool-icon">📁</div>
+                        <div class="tool-name">文件系统</div>
+                        <div class="tool-description">文件读写、目录管理</div>
+                    </div>
+                    <div class="mcp-tool-card" onclick="activateMcpTool('database')">
+                        <div class="tool-icon">🗄️</div>
+                        <div class="tool-name">数据库</div>
+                        <div class="tool-description">SQLite、PostgreSQL操作</div>
+                    </div>
+                    <div class="mcp-tool-card" onclick="activateMcpTool('web')">
+                        <div class="tool-icon">🌐</div>
+                        <div class="tool-name">Web抓取</div>
+                        <div class="tool-description">网页内容获取、解析</div>
+                    </div>
+                    <div class="mcp-tool-card" onclick="activateMcpTool('image')">
+                        <div class="tool-icon">🖼️</div>
+                        <div class="tool-name">图像处理</div>
+                        <div class="tool-description">图像生成、编辑、分析</div>
+                    </div>
+                    <div class="mcp-tool-card" onclick="activateMcpTool('code')">
+                        <div class="tool-icon">💻</div>
+                        <div class="tool-name">代码执行</div>
+                        <div class="tool-description">多语言代码运行</div>
+                    </div>
+                    <div class="mcp-tool-card" onclick="activateMcpTool('email')">
+                        <div class="tool-icon">📧</div>
+                        <div class="tool-name">邮件服务</div>
+                        <div class="tool-description">邮件发送、接收</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 提示词面板 -->
+            <div id="prompt-panel" class="tab-content">
+                <h3 style="margin-bottom: 15px;">💬 提示词管理</h3>
+                <div class="prompt-section">
+                    <textarea
+                        id="promptInput"
+                        class="prompt-input"
+                        placeholder="输入您的提示词...&#10;&#10;例如：&#10;请帮我分析这个项目的风险因素&#10;制定一个详细的市场推广策略"
+                    ></textarea>
+                    <div class="prompt-tags">
+                        <span class="prompt-tag" onclick="addPromptTag('分析')">📊 分析</span>
+                        <span class="prompt-tag" onclick="addPromptTag('创作')">✍️ 创作</span>
+                        <span class="prompt-tag" onclick="addPromptTag('编程')">💻 编程</span>
+                        <span class="prompt-tag" onclick="addPromptTag('商务')">💼 商务</span>
+                        <span class="prompt-tag" onclick="addPromptTag('学习')">📚 学习</span>
+                    </div>
+                    <button class="send-btn" onclick="savePrompt()">💾 保存提示词</button>
+                </div>
+
+                <h4 style="margin-bottom: 10px; font-size: 1em;">📚 提示词模板</h4>
+                <div class="prompt-templates">
+                    <div class="prompt-template" onclick="loadTemplate('swot')">
+                        <div class="template-title">SWOT分析</div>
+                        <div class="template-preview">分析优势、劣势、机会、威胁</div>
+                    </div>
+                    <div class="prompt-template" onclick="loadTemplate('brainstorm')">
+                        <div class="template-title">头脑风暴</div>
+                        <div class="template-preview">激发创意思维和多元想法</div>
+                    </div>
+                    <div class="prompt-template" onclick="loadTemplate('code-review')">
+                        <div class="template-title">代码审查</div>
+                        <div class="template-preview">代码质量分析和优化建议</div>
+                    </div>
+                    <div class="prompt-template" onclick="loadTemplate('project-plan')">
+                        <div class="template-title">项目规划</div>
+                        <div class="template-preview">制定详细的项目执行计划</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 脚本面板 -->
+            <div id="script-panel" class="tab-content">
+                <h3 style="margin-bottom: 15px;">📜 脚本执行</h3>
+                <div class="script-editor">
+                    <div class="script-header">
+                        <select id="scriptLanguage" class="script-language">
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="bash">Bash</option>
+                            <option value="typescript">TypeScript</option>
+                        </select>
+                        <span style="font-size: 0.8em; opacity: 0.7;">实时执行环境</span>
+                    </div>
+                    <textarea
+                        id="scriptCode"
+                        class="script-code"
+                        placeholder="// 在这里输入您的脚本代码...&#10;console.log('Hello, YYC³!');"
+                    ></textarea>
+                    <div class="script-actions">
+                        <button class="script-btn" onclick="formatScript()">🎨 格式化</button>
+                        <button class="script-btn" onclick="validateScript()">✅ 验证</button>
+                        <button class="script-btn run" onclick="runScript()">▶️ 运行</button>
+                    </div>
+                </div>
+
+                <h4 style="margin-bottom: 10px; font-size: 1em;">🚀 快速脚本</h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div class="prompt-template" onclick="loadQuickScript('hello')">
+                        <div class="template-title">Hello World</div>
+                        <div class="template-preview">基础问候脚本</div>
+                    </div>
+                    <div class="prompt-template" onclick="loadQuickScript('api-test')">
+                        <div class="template-title">API测试</div>
+                        <div class="template-preview">HTTP请求测试脚本</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 应用面板 -->
+            <div id="app-panel" class="tab-content">
+                <h3 style="margin-bottom: 15px;">📱 应用管理</h3>
+                <div class="app-grid">
+                    <div class="app-card" onclick="toggleApp('chat-assistant')">
+                        <div class="app-status running"></div>
+                        <div class="app-icon">💬</div>
+                        <div class="app-name">AI助手</div>
+                    </div>
+                    <div class="app-card" onclick="toggleApp('code-editor')">
+                        <div class="app-status stopped"></div>
+                        <div class="app-icon">📝</div>
+                        <div class="app-name">代码编辑器</div>
+                    </div>
+                    <div class="app-card" onclick="toggleApp('file-manager')">
+                        <div class="app-status running"></div>
+                        <div class="app-icon">📂</div>
+                        <div class="app-name">文件管理</div>
+                    </div>
+                    <div class="app-card" onclick="toggleApp('database')">
+                        <div class="app-status stopped"></div>
+                        <div class="app-icon">🗄️</div>
+                        <div class="app-name">数据库</div>
+                    </div>
+                    <div class="app-card" onclick="toggleApp('terminal')">
+                        <div class="app-status running"></div>
+                        <div class="app-icon">⌨️</div>
+                        <div class="app-name">终端</div>
+                    </div>
+                    <div class="app-card" onclick="toggleApp('api-docs')">
+                        <div class="app-status stopped"></div>
+                        <div class="app-icon">📚</div>
+                        <div class="app-name">API文档</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API面板 -->
+            <div id="api-panel" class="tab-content">
+                <h3 style="margin-bottom: 15px;">🌐 Open API</h3>
+                <div class="api-section">
+                    <h4 style="margin-bottom: 10px; font-size: 0.9em;">Claude交互API</h4>
+                    <div class="api-endpoint">
+                        <span class="api-method api-post">POST</span>
+                        <span class="api-path">/api/chat</span>
+                        <div class="api-description">发送消息给Claude团队</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method api-get">GET</span>
+                        <span class="api-path">/api/sessions</span>
+                        <div class="api-description">获取所有活跃会话</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method api-get">GET</span>
+                        <span class="api-path">/api/personas</span>
+                        <div class="api-description">获取Claude角色列表</div>
+                    </div>
+                </div>
+
+                <div class="api-section">
+                    <h4 style="margin-bottom: 10px; font-size: 0.9em;">MCP工具API</h4>
+                    <div class="api-endpoint">
+                        <span class="api-method api-post">POST</span>
+                        <span class="api-path">/api/mcp/execute</span>
+                        <div class="api-description">执行MCP工具命令</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method api-get">GET</span>
+                        <span class="api-path">/api/mcp/tools</span>
+                        <div class="api-description">获取可用MCP工具列表</div>
+                    </div>
+                </div>
+
+                <div class="api-section">
+                    <h4 style="margin-bottom: 10px; font-size: 0.9em;">系统API</h4>
+                    <div class="api-endpoint">
+                        <span class="api-method api-get">GET</span>
+                        <span class="api-path">/api/health</span>
+                        <div class="api-description">系统健康检查</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method api-get">GET</span>
+                        <span class="api-path">/api/stats</span>
+                        <div class="api-description">获取系统统计信息</div>
+                    </div>
+                </div>
+
+                <button class="send-btn" onclick="generateApiKey()" style="width: 100%; margin-top: 15px;">
+                    🔑 生成API密钥
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'collaborative';
+        let messageCount = 0;
+        let roundCount = 0;
+        let discussionActive = false;
+        let currentTab = 'contract';
+
+        // 合约相关数据
+        let currentContracts = [];
+        let currentContractId = null;
+        let currentUser = {
+            id: 'demo-user',
+            name: '演示用户',
+            address: '0x1234567890123456789012345678901234567890'
+        };
+
+        // 示例合约数据
+        const sampleContracts = [
+            {
+                id: 'contract-001',
+                name: '软件开发服务协议',
+                description: '为ABC公司提供定制化软件开发服务，包括前端、后端和数据库设计。',
+                status: 'active',
+                category: 'service_agreement',
+                createdAt: new Date('2024-01-15'),
+                parties: [
+                    { id: 'party-001', name: 'ABC科技有限公司', role: 'primary', reputation: 95 },
+                    { id: currentUser.id, name: currentUser.name, role: 'secondary', reputation: 88 }
+                ],
+                terms: [
+                    {
+                        id: 'term-001',
+                        title: '项目交付',
+                        description: '完成用户管理模块、数据分析模块和系统管理模块',
+                        type: 'deliverable',
+                        status: 'completed',
+                        priority: 9
+                    },
+                    {
+                        id: 'term-002',
+                        title: '质量保证',
+                        description: '代码测试覆盖率需达到85%以上，通过所有集成测试',
+                        type: 'quality',
+                        status: 'active',
+                        priority: 8
+                    },
+                    {
+                        id: 'term-003',
+                        title: '付款条款',
+                        description: '项目完成30%付首款，70%验收后付尾款',
+                        type: 'payment',
+                        status: 'pending',
+                        priority: 7
+                    }
+                ]
+            },
+            {
+                id: 'contract-002',
+                name: '保密协议',
+                description: '双方技术信息保密协议，确保商业机密不泄露。',
+                status: 'pending',
+                category: 'nda',
+                createdAt: new Date('2024-02-01'),
+                parties: [
+                    { id: currentUser.id, name: currentUser.name, role: 'primary', reputation: 88 },
+                    { id: 'party-002', name: 'XYZ创新科技', role: 'secondary', reputation: 92 }
+                ],
+                terms: [
+                    {
+                        id: 'term-004',
+                        title: '保密义务',
+                        description: '不得向第三方透露技术细节和商业信息',
+                        type: 'compliance',
+                        status: 'pending',
+                        priority: 10
+                    }
+                ]
+            }
+        ];
+
+        // 新增功能相关的数据
+        const promptTemplates = {
+            swot: '请对以下主题进行SWOT分析：\n优势(Strengths)：\n劣势(Weaknesses)：\n机会(Opportunities)：\n威胁(Threats)：',
+            brainstorm: '让我们进行头脑风暴，请围绕以下主题提出尽可能多的创意想法：',
+            'code-review': '请对以下代码进行审查分析：\n1. 代码质量评估\n2. 潜在问题识别\n3. 优化建议\n4. 最佳实践建议',
+            'project-plan': '请制定详细的项目执行计划，包括：\n1. 项目目标和范围\n2. 时间线和里程碑\n3. 资源分配\n4. 风险管控\n5. 质量保证'
+        };
+
+        const quickScripts = {
+            hello: {
+                javascript: 'console.log("Hello, YYC³ AI Conference!");\nconsole.log("当前时间:", new Date().toLocaleString());',
+                python: 'print("Hello, YYC³ AI Conference!")\nprint("当前时间:", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))',
+                bash: 'echo "Hello, YYC³ AI Conference!"\necho "当前时间: $(date)"'
+            },
+            'api-test': {
+                javascript: `// API测试脚本
+const testAPI = async () => {
+    try {
+        const response = await fetch('/api/health');
+        const data = await response.json();
+        console.log('API测试结果:', data);
+    } catch (error) {
+        console.error('API测试失败:', error);
+    }
+};
+testAPI();`,
+                python: `import requests
+import json
+
+# API测试脚本
+try:
+    response = requests.get('/api/health')
+    data = response.json()
+    print("API测试结果:", data)
+except Exception as error:
+    print("API测试失败:", error)`,
+                bash: '# API测试脚本\ncurl -s http://localhost:3002/api/health | jq .'
+            }
+        };
+
+        const runningApps = new Set(['chat-assistant', 'file-manager', 'terminal']);
+
+        const claudePersonas = {
+            zhang: {
+                name: '张老师',
+                color: '#3498db',
+                thinkingTime: 2000,
+                responses: [
+                    '从项目管理角度来看，这个问题需要考虑时间和资源的平衡。',
+                    '我建议我们可以制定一个清晰的执行计划，分阶段推进。',
+                    '团队协作是关键，我们需要确保每个成员都明确自己的职责。',
+                    '风险管理很重要，我们应该提前识别潜在的问题。',
+                    '进度跟踪是必要的，建议定期检查项目状态。'
+                ]
+            },
+            li: {
+                name: '李博士',
+                color: '#e74c3c',
+                thinkingTime: 2500,
+                responses: [
+                    '从技术角度分析，我们需要考虑架构的可扩展性和维护性。',
+                    '技术选型很重要，建议采用成熟的解决方案。',
+                    '代码质量和测试覆盖率是保证项目成功的关键因素。',
+                    '性能优化需要在开发过程中持续关注。',
+                    '文档建设同样重要，确保知识能够有效传承。'
+                ]
+            },
+            wang: {
+                name: '创意王',
+                color: '#f39c12',
+                thinkingTime: 1800,
+                responses: [
+                    '让我们跳出思维定式，用创新的视角来看待这个问题！',
+                    '我可以提供一些有趣的创意方案，让这个问题变得更加生动。',
+                    '设计思维很重要，我们需要考虑用户体验的每个细节。',
+                    '颜色搭配和视觉设计能够显著提升产品的吸引力。',
+                    '有时候，最简单的解决方案反而是最优雅的。'
+                ]
+            },
+            chen: {
+                name: '陈师傅',
+                color: '#2ecc71',
+                thinkingTime: 3000,
+                responses: [
+                    '质量是产品的生命线，我们需要建立严格的质量标准。',
+                    '测试用例需要覆盖所有关键场景，确保系统稳定可靠。',
+                    '代码审查是保证质量的重要环节，建议制度化执行。',
+                    '用户反馈是质量改进的重要来源，需要建立有效的收集机制。',
+                    '持续集成和持续部署能够帮助我们快速发现和解决问题。'
+                ]
+            }
+        };
+
+        // 模式选择
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentMode = this.dataset.mode;
+                updateCurrentMode();
+            });
+        });
+
+        function updateCurrentMode() {
+            const modeNames = {
+                'collaborative': '协作模式',
+                'specialist': '专家模式',
+                'competitive': '竞争模式',
+                'sequential': '顺序模式'
+            };
+            document.getElementById('currentMode').textContent = modeNames[currentMode];
+        }
+
+        let currentSessionId = null;
+        let isAtBottom = true;
+        let unreadMessageCount = 0;
+
+        // 滚动增强功能
+        let autoScrollInterval = null;
+        let autoScrollSpeed = 50; // 每次滚动的像素数
+        let autoScrollEnabled = false;
+        let scrollPosition = { x: 0, y: 0 };
+        let isScrolling = false;
+
+        // 滚动功能
+        function scrollDiscussion(direction, smooth = true) {
+            const discussionArea = document.getElementById('discussionArea');
+            const scrollAmount = 200; // 每次滚动的像素数
+
+            console.log('scrollDiscussion调用:', direction); // 调试日志
+
+            if (smooth) {
+                discussionArea.style.scrollBehavior = 'smooth';
+            } else {
+                discussionArea.style.scrollBehavior = 'auto';
+            }
+
+            switch (direction) {
+                case 'up':
+                    discussionArea.scrollTop = Math.max(0, discussionArea.scrollTop - scrollAmount);
+                    break;
+                case 'down':
+                    discussionArea.scrollTop = Math.min(discussionArea.scrollHeight, discussionArea.scrollTop + scrollAmount);
+                    break;
+                case 'top':
+                    discussionArea.scrollTop = 0;
+                    break;
+                case 'bottom':
+                    scrollToBottom();
+                    break;
+                case 'pageUp':
+                    discussionArea.scrollTop = Math.max(0, discussionArea.scrollTop - discussionArea.clientHeight * 0.8);
+                    break;
+                case 'pageDown':
+                    discussionArea.scrollTop = Math.min(discussionArea.scrollHeight, discussionArea.scrollTop + discussionArea.clientHeight * 0.8);
+                    break;
+            }
+
+            // 重置滚动行为
+            setTimeout(() => {
+                discussionArea.style.scrollBehavior = '';
+            }, 300);
+
+            updateScrollButtons();
+        }
+
+        function scrollToBottom() {
+            const discussionArea = document.getElementById('discussionArea');
+            discussionArea.scrollTop = discussionArea.scrollHeight;
+            isAtBottom = true;
+            unreadMessageCount = 0;
+            hideNewMessageIndicator();
+            updateScrollButtons();
+        }
+
+        function updateScrollButtons() {
+            const discussionArea = document.getElementById('discussionArea');
+            const scrollUpBtn = document.getElementById('scrollUpBtn');
+            const scrollDownBtn = document.getElementById('scrollBottomBtn');
+
+            // 更新向上按钮状态
+            if (discussionArea.scrollTop <= 0) {
+                scrollUpBtn.classList.add('disabled');
+            } else {
+                scrollUpBtn.classList.remove('disabled');
+            }
+
+            // 更新向下按钮状态
+            if (discussionArea.scrollTop + discussionArea.clientHeight >= discussionArea.scrollHeight - 10) {
+                scrollDownBtn.classList.add('disabled');
+                isAtBottom = true;
+            } else {
+                scrollDownBtn.classList.remove('disabled');
+                isAtBottom = false;
+            }
+
+            // 更新滚动进度条
+            updateScrollProgress();
+        }
+
+        // 自动滚动功能
+        function toggleAutoScroll() {
+            const autoBtn = document.getElementById('scrollAutoBtn');
+
+            if (autoScrollEnabled) {
+                stopAutoScroll();
+                autoBtn.textContent = '▶️';
+                autoBtn.title = '开始自动滚动';
+                autoBtn.classList.remove('autoscroll');
+                hideScrollHint();
+            } else {
+                startAutoScroll();
+                autoBtn.textContent = '⏸️';
+                autoBtn.title = '停止自动滚动';
+                autoBtn.classList.add('autoscroll');
+                showScrollHint('自动滚动已启动，按空格键停止');
+            }
+        }
+
+        // 滚动提示功能
+        function showScrollHint(message) {
+            const hint = document.getElementById('scrollHint');
+            hint.textContent = message || '💡 提示：使用方向键、PageUp/PageDown、空格键控制滚动';
+            hint.classList.add('show');
+
+            setTimeout(() => {
+                hint.classList.remove('show');
+            }, 3000);
+        }
+
+        function hideScrollHint() {
+            const hint = document.getElementById('scrollHint');
+            hint.classList.remove('show');
+        }
+
+        function startAutoScroll() {
+            if (autoScrollInterval) return;
+
+            autoScrollEnabled = true;
+            autoScrollInterval = setInterval(() => {
+                scrollDiscussion('down', false);
+            }, 100); // 每100ms滚动一次
+        }
+
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+            autoScrollEnabled = false;
+        }
+
+        // 增强的键盘快捷键支持
+        function setupKeyboardShortcuts() {
+            const discussionArea = document.getElementById('discussionArea');
+
+            document.addEventListener('keydown', (e) => {
+                // 只在焦点不在输入框时响应滚动快捷键
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                    return;
+                }
+
+                console.log('键盘事件:', e.key); // 调试日志
+
+                switch(e.key) {
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        scrollDiscussion('up');
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        scrollDiscussion('down');
+                        break;
+                    case 'PageUp':
+                        e.preventDefault();
+                        scrollDiscussion('pageUp');
+                        break;
+                    case 'PageDown':
+                        e.preventDefault();
+                        scrollDiscussion('pageDown');
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        scrollDiscussion('top');
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        scrollDiscussion('bottom');
+                        break;
+                    case ' ':
+                        e.preventDefault();
+                        toggleAutoScroll();
+                        break;
+                }
+            });
+        }
+
+        // 鼠标滚轮增强
+        function setupMouseWheel() {
+            const discussionArea = document.getElementById('discussionArea');
+            let wheelTimeout;
+
+            discussionArea.addEventListener('wheel', (e) => {
+                // 只在discussionArea内部且没有按住修饰键时增强滚动
+                if (e.target.closest('#discussionArea') && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+                    // 停止自动滚动（如果正在运行）
+                    if (autoScrollEnabled) {
+                        toggleAutoScroll();
+                    }
+
+                    // 让默认滚动先工作，然后增强效果
+                    setTimeout(() => {
+                        // 更新滚动按钮状态和进度
+                        updateScrollButtons();
+                        updateScrollProgress();
+                    }, 10);
+
+                    // 防抖处理
+                    clearTimeout(wheelTimeout);
+                    wheelTimeout = setTimeout(() => {
+                        updateScrollProgress();
+                    }, 50);
+                }
+            }, { passive: true }); // 使用passive模式提高性能
+        }
+
+        // 触摸支持（移动设备）
+        function setupTouchSupport() {
+            const discussionArea = document.getElementById('discussionArea');
+            let touchStartY = 0;
+            let touchStartTime = 0;
+
+            discussionArea.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+            });
+
+            discussionArea.addEventListener('touchend', (e) => {
+                const touchEndY = e.changedTouches[0].clientY;
+                const touchDuration = Date.now() - touchStartTime;
+                const deltaY = touchStartY - touchEndY;
+
+                // 快速滑动
+                if (touchDuration < 300 && Math.abs(deltaY) > 50) {
+                    const scrollAmount = Math.abs(deltaY) * 2;
+                    if (deltaY > 0) {
+                        discussionArea.scrollTop += scrollAmount;
+                    } else {
+                        discussionArea.scrollTop -= scrollAmount;
+                    }
+                    updateScrollButtons();
+                }
+            });
+        }
+
+        // 滚动到指定消息
+        function scrollToMessage(messageId) {
+            const discussionArea = document.getElementById('discussionArea');
+            const messageElement = document.getElementById(`message-${messageId}`);
+
+            if (messageElement) {
+                messageElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+                // 高亮显示消息
+                messageElement.classList.add('highlighted-message');
+                setTimeout(() => {
+                    messageElement.classList.remove('highlighted-message');
+                }, 2000);
+            }
+        }
+
+        // 滚动速度控制
+        function adjustScrollSpeed(delta) {
+            autoScrollSpeed = Math.max(10, Math.min(200, autoScrollSpeed + delta));
+
+            if (autoScrollEnabled) {
+                stopAutoScroll();
+                startAutoScroll();
+            }
+        }
+
+        function updateScrollProgress() {
+            const discussionArea = document.getElementById('discussionArea');
+            const progressBar = document.getElementById('scrollProgressBar');
+
+            if (discussionArea.scrollHeight > discussionArea.clientHeight) {
+                const scrollPercentage = (discussionArea.scrollTop / (discussionArea.scrollHeight - discussionArea.clientHeight)) * 100;
+                progressBar.style.width = scrollPercentage + '%';
+            } else {
+                progressBar.style.width = '0%';
+            }
+
+            // 更新调试信息
+            const debugPos = document.getElementById('scrollPos');
+            const debugHeight = document.getElementById('scrollHeight');
+            if (debugPos && debugHeight) {
+                debugPos.textContent = Math.round(discussionArea.scrollTop);
+                debugHeight.textContent = Math.round(discussionArea.scrollHeight);
+            }
+        }
+
+        function showNewMessageIndicator() {
+            if (!isAtBottom) {
+                unreadMessageCount++;
+                const indicator = document.getElementById('newMessageIndicator');
+                indicator.style.display = 'block';
+                indicator.textContent = `🔔 有 ${unreadMessageCount} 条新消息，点击查看`;
+            }
+        }
+
+        function hideNewMessageIndicator() {
+            const indicator = document.getElementById('newMessageIndicator');
+            indicator.style.display = 'none';
+        }
+
+        // 键盘快捷键支持
+        function handleKeyboardScroll(e) {
+            const discussionArea = document.getElementById('discussionArea');
+            const activeElement = document.activeElement;
+
+            // 如果正在输入框中，不处理滚动快捷键
+            if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+                return;
+            }
+
+            switch (e.key) {
+                case 'PageUp':
+                    e.preventDefault();
+                    discussionArea.scrollTop -= discussionArea.clientHeight * 0.8;
+                    break;
+                case 'PageDown':
+                    e.preventDefault();
+                    discussionArea.scrollTop += discussionArea.clientHeight * 0.8;
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    discussionArea.scrollTop = 0;
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    scrollToBottom();
+                    break;
+                case 'ArrowUp':
+                    if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        scrollDiscussion('up');
+                    }
+                    break;
+                case 'ArrowDown':
+                    if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        scrollDiscussion('down');
+                    }
+                    break;
+            }
+
+            updateScrollButtons();
+        }
+
+        // 鼠标滚轮事件处理
+        function handleWheelScroll(e) {
+            const discussionArea = document.getElementById('discussionArea');
+
+            // 检查是否在讨论区域
+            if (e.target.closest('#discussionArea')) {
+                setTimeout(updateScrollButtons, 10);
+            }
+        }
+
+        // 自动滚动到底部（当添加新消息时）
+        function autoScrollToBottom() {
+            const discussionArea = document.getElementById('discussionArea');
+
+            // 如果用户已经在底部附近（100px内），自动滚动
+            if (discussionArea.scrollHeight - discussionArea.scrollTop - discussionArea.clientHeight < 100) {
+                setTimeout(() => {
+                    scrollToBottom();
+                }, 100);
+            } else {
+                showNewMessageIndicator();
+            }
+        }
+
+        async function startDiscussion() {
+            const userInput = document.getElementById('userInput').value.trim();
+            if (!userInput) {
+                alert('请输入讨论主题！');
+                return;
+            }
+
+            if (discussionActive) {
+                alert('讨论正在进行中，请等待当前讨论完成。');
+                return;
+            }
+
+            discussionActive = true;
+            roundCount++;
+            updateStats();
+
+            // 创建新会话或使用现有会话
+            if (!currentSessionId) {
+                try {
+                    const response = await fetch('/api/sessions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            user_id: 'conference_user',
+                            mode: currentMode
+                        })
+                    });
+                    const data = await response.json();
+                    currentSessionId = data.session_id;
+                } catch (error) {
+                    console.error('创建会话失败:', error);
+                    alert('创建会话失败，请重试');
+                    discussionActive = false;
+                    return;
+                }
+            }
+
+            // 清空讨论区
+            const discussionArea = document.getElementById('discussionArea');
+            discussionArea.innerHTML = '<h3 style="text-align: center; margin-bottom: 20px;">💬 讨论区</h3>';
+
+            // 添加用户问题
+            addDiscussionMessage('用户', userInput, 'user');
+
+            // 发送消息到后端
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        session_id: currentSessionId,
+                        message: userInput,
+                        mode: currentMode
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    // AI回复会通过WebSocket实时推送
+                    console.log('消息发送成功:', data.message_id);
+                } else {
+                    console.error('发送消息失败:', data.error);
+                    alert('发送消息失败: ' + data.error);
+                }
+            } catch (error) {
+                console.error('发送消息失败:', error);
+                alert('发送消息失败，请重试');
+            }
+
+            discussionActive = false;
+        }
+
+        async function collaborativeDiscussion(userInput) {
+            const participants = ['zhang', 'li', 'wang', 'chen'];
+
+            // 所有人同时开始思考
+            const thinkingPromises = participants.map(async (participant) => {
+                updateClaudeStatus(participant, 'thinking', '思考中...');
+                await think(claudePersonas[participant].thinkingTime);
+            });
+
+            await Promise.all(thinkingPromises);
+
+            // 依次给出回应
+            const responsePromises = participants.map(async (participant) => {
+                updateClaudeStatus(participant, 'speaking', '发言中...');
+                const response = getRandomResponse(participant);
+                updateClaudeMessage(participant, response);
+                addDiscussionMessage(claudePersonas[participant].name, response, participant);
+                await speak(claudePersonas[participant].thinkingTime / 2);
+                updateClaudeStatus(participant, 'online', '在线');
+            });
+
+            await Promise.all(responsePromises);
+        }
+
+        async function specialistDiscussion(userInput) {
+            // 根据问题类型选择最合适的专家
+            const bestSpecialist = selectBestSpecialist(userInput);
+
+            updateClaudeStatus(bestSpecialist, 'thinking', '专家分析中...');
+            await think(3000);
+
+            updateClaudeStatus(bestSpecialist, 'speaking', '专家解答中...');
+            const response = getRandomResponse(bestSpecialist);
+            updateClaudeMessage(bestSpecialist, response);
+            addDiscussionMessage(claudePersonas[bestSpecialist].name, response, bestSpecialist);
+
+            await speak(2000);
+            updateClaudeStatus(bestSpecialist, 'online', '在线');
+        }
+
+        async function competitiveDiscussion(userInput) {
+            const participants = ['zhang', 'li', 'wang', 'chen'];
+            const solutions = [];
+
+            // 所有人提供解决方案
+            for (const participant of participants) {
+                updateClaudeStatus(participant, 'thinking', '构思方案中...');
+                await think(2000);
+
+                updateClaudeStatus(participant, 'speaking', '提出方案...');
+                const response = getRandomResponse(participant) + ' 这是我的竞争方案。';
+                updateClaudeMessage(participant, response);
+                addDiscussionMessage(claudePersonas[participant].name, response, participant);
+
+                solutions.push({ participant, response });
+                await speak(1500);
+                updateClaudeStatus(participant, 'online', '在线');
+            }
+
+            // 评选最佳方案
+            await think(1000);
+            const winner = solutions[Math.floor(Math.random() * solutions.length)];
+            addDiscussionMessage('🏆 评委', `${claudePersonas[winner.participant].name} 的方案被评为最佳解决方案！`, 'judge');
+        }
+
+        async function sequentialDiscussion(userInput) {
+            const participants = ['zhang', 'li', 'wang', 'chen'];
+
+            for (let i = 0; i < participants.length; i++) {
+                const participant = participants[i];
+                updateClaudeStatus(participant, 'thinking', '分析中...');
+                await think(1500);
+
+                updateClaudeStatus(participant, 'speaking', '发言中...');
+                const response = getRandomResponse(participant);
+                updateClaudeMessage(participant, response);
+                addDiscussionMessage(claudePersonas[participant].name, response, participant);
+
+                await speak(2000);
+                updateClaudeStatus(participant, 'online', '在线');
+            }
+        }
+
+        function selectBestSpecialist(userInput) {
+            if (userInput.includes('技术') || userInput.includes('开发')) return 'li';
+            if (input.includes('管理') || userInput.includes('项目')) return 'zhang';
+            if (userInput.includes('创意') || userInput.includes('设计')) return 'wang';
+            if (userInput.includes('质量') || userInput.includes('测试')) return 'chen';
+            return 'zhang'; // 默认
+        }
+
+        function getRandomResponse(participant) {
+            const responses = claudePersonas[participant].responses;
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        function think(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function speak(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function updateClaudeStatus(participant, status, text) {
+            const statusElement = document.getElementById(`${participant}-status`);
+            statusElement.className = `claude-status ${status}`;
+            statusElement.textContent = text;
+        }
+
+        function updateClaudeMessage(participant, message) {
+            const messageElement = document.getElementById(`${participant}-message`);
+            messageElement.textContent = message;
+        }
+
+        function addDiscussionMessage(sender, message, type) {
+            const discussionArea = document.getElementById('discussionArea');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `discussion-message ${type}`;
+
+            const time = new Date().toLocaleTimeString('zh-CN');
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <span class="message-sender">${sender}</span>
+                    <span class="message-time">${time}</span>
+                </div>
+                <div class="message-content">${message}</div>
+            `;
+
+            discussionArea.appendChild(messageDiv);
+            discussionArea.scrollTop = discussionArea.scrollHeight;
+
+            messageCount++;
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('roundCount').textContent = roundCount;
+            document.getElementById('messageCount').textContent = messageCount;
+        }
+
+        function pauseDiscussion() {
+            if (discussionActive) {
+                alert('讨论将在当前轮次结束后暂停');
+            } else {
+                alert('当前没有正在进行的讨论');
+            }
+        }
+
+        function exportDiscussion() {
+            const discussionContent = document.getElementById('discussionArea').innerHTML;
+            const blob = new Blob([discussionContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ai-discussion-${new Date().toISOString().slice(0, 10)}.html`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function clearDiscussion() {
+            if (confirm('确定要清空所有讨论记录吗？')) {
+                document.getElementById('discussionArea').innerHTML = `
+                    <h3 style="text-align: center; margin-bottom: 20px;">💬 讨论区</h3>
+                    <div style="text-align: center; opacity: 0.7; padding: 40px;">
+                        等待讨论开始...
+                    </div>
+                `;
+                messageCount = 0;
+                roundCount = 0;
+                updateStats();
+            }
+        }
+
+        function endMeeting() {
+            if (confirm('确定要结束本次AI会议吗？')) {
+                clearDiscussion();
+                document.getElementById('userInput').value = '';
+                alert('会议已结束，感谢使用YYC³ AI智能会议室！');
+            }
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+
+            // 为输入框添加回车发送功能
+            document.getElementById('userInput').addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    startDiscussion();
+                }
+            });
+        });
+
+        // 新增功能函数
+
+        // 合约相关功能函数
+        function initializeContracts() {
+            currentContracts = [...sampleContracts];
+            renderContractsList();
+        }
+
+        function renderContractsList() {
+            const container = document.getElementById('contractsContainer');
+
+            if (currentContracts.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 20px; opacity: 0.6;">
+                        暂无合约，点击"创建合约"开始
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = currentContracts.map(contract => `
+                <div class="contract-item" onclick="viewContract('${contract.id}')">
+                    <div class="contract-item-title">${contract.name}</div>
+                    <div class="contract-item-meta">
+                        <span>${getStatusText(contract.status)}</span>
+                        <span>${formatDate(contract.createdAt)}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function viewContract(contractId) {
+            const contract = currentContracts.find(c => c.id === contractId);
+            if (!contract) return;
+
+            currentContractId = contractId;
+
+            // 显示合约详情面板
+            document.getElementById('currentContract').style.display = 'block';
+            document.getElementById('contractsList').style.display = 'none';
+
+            // 填充合约信息
+            document.getElementById('contractName').textContent = contract.name;
+            document.getElementById('contractId').textContent = `ID: ${contract.id}`;
+            document.getElementById('contractDate').textContent = `创建: ${formatDate(contract.createdAt)}`;
+            document.getElementById('contractDescription').textContent = contract.description;
+
+            // 设置状态徽章
+            const statusBadge = document.getElementById('contractStatus');
+            statusBadge.textContent = getStatusText(contract.status);
+            statusBadge.className = `status-badge ${contract.status}`;
+
+            // 渲染参与方
+            renderParties(contract.parties);
+
+            // 渲染条款
+            renderTerms(contract.terms);
+
+            // 渲染执行状态
+            renderExecutionStatus(contract);
+        }
+
+        function renderParties(parties) {
+            const container = document.getElementById('contractParties');
+            container.innerHTML = parties.map(party => `
+                <div class="party-item">
+                    <strong>${party.name}</strong>
+                    <span style="opacity: 0.7; margin-left: 8px;">(${getRoleText(party.role)})</span>
+                    <div style="font-size: 0.8em; opacity: 0.6; margin-top: 4px;">
+                        信誉评分: ${party.reputation}/100
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderTerms(terms) {
+            const container = document.getElementById('contractTerms');
+            container.innerHTML = terms.map(term => `
+                <div class="term-item ${term.status}">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <strong>${term.title}</strong>
+                            <span style="margin-left: 8px; opacity: 0.7;">[${getTypeText(term.type)}]</span>
+                            <span style="margin-left: 8px; font-size: 0.8em;">优先级: ${term.priority}</span>
+                        </div>
+                        <span class="status-badge ${term.status}">${getStatusText(term.status)}</span>
+                    </div>
+                    <div style="margin-top: 4px; opacity: 0.8; font-size: 0.9em;">
+                        ${term.description}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderExecutionStatus(contract) {
+            const container = document.getElementById('contractExecution');
+            const completedTerms = contract.terms.filter(t => t.status === 'completed').length;
+            const totalTerms = contract.terms.length;
+            const progress = totalTerms > 0 ? (completedTerms / totalTerms * 100).toFixed(1) : 0;
+
+            container.innerHTML = `
+                <div style="margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <span>执行进度</span>
+                        <span>${completedTerms}/${totalTerms} (${progress}%)</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 4px; height: 8px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #4CAF50, #45a049); height: 100%; width: ${progress}%; transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+                <div style="font-size: 0.9em; opacity: 0.7;">
+                    下一步: ${getNextAction(contract)}
+                </div>
+            `;
+        }
+
+        function createNewContract() {
+            const name = prompt('请输入合约名称:');
+            if (!name) return;
+
+            const description = prompt('请输入合约描述:');
+            if (!description) return;
+
+            const newContract = {
+                id: `contract-${Date.now()}`,
+                name,
+                description,
+                status: 'draft',
+                category: 'custom',
+                createdAt: new Date(),
+                parties: [
+                    { id: currentUser.id, name: currentUser.name, role: 'primary', reputation: 88 }
+                ],
+                terms: []
+            };
+
+            currentContracts.unshift(newContract);
+            renderContractsList();
+            viewContract(newContract.id);
+
+            alert('合约创建成功！现在您可以添加参与方和条款。');
+        }
+
+        function loadContractTemplates() {
+            alert('模板库功能开发中...\n\n可用模板:\n• 软件开发服务协议\n• 保密协议(NDA)\n• 销售合同\n• 合作协议\n• 劳动合同');
+        }
+
+        function refreshContracts() {
+            initializeContracts();
+            alert('合约列表已刷新');
+        }
+
+        function signCurrentContract() {
+            if (!currentContractId) return;
+
+            if (confirm('确定要签署当前合约吗？')) {
+                const contract = currentContracts.find(c => c.id === currentContractId);
+                if (contract && contract.status === 'draft') {
+                    contract.status = 'pending_signature';
+                    viewContract(currentContractId);
+                    alert('合约已提交签署，等待其他参与方签署。');
+                }
+            }
+        }
+
+        function executeCurrentContract() {
+            if (!currentContractId) return;
+
+            const contract = currentContracts.find(c => c.id === currentContractId);
+            if (contract && contract.status === 'active') {
+                alert('合约执行中...\n\n执行引擎将自动监控条款履行情况。');
+                // 这里可以调用实际的执行引擎
+            } else {
+                alert('只有活跃状态的合约才能执行。');
+            }
+        }
+
+        function terminateCurrentContract() {
+            if (!currentContractId) return;
+
+            if (confirm('确定要终止当前合约吗？此操作不可撤销。')) {
+                const contract = currentContracts.find(c => c.id === currentContractId);
+                if (contract) {
+                    contract.status = 'terminated';
+                    renderContractsList();
+                    document.getElementById('currentContract').style.display = 'none';
+                    document.getElementById('contractsList').style.display = 'block';
+                    alert('合约已终止。');
+                }
+            }
+        }
+
+        // 辅助函数
+        function getStatusText(status) {
+            const statusMap = {
+                'draft': '草稿',
+                'pending_signature': '待签署',
+                'active': '活跃',
+                'suspended': '暂停',
+                'completed': '已完成',
+                'terminated': '已终止',
+                'disputed': '争议中'
+            };
+            return statusMap[status] || status;
+        }
+
+        function getRoleText(role) {
+            const roleMap = {
+                'primary': '主要方',
+                'secondary': '协作方',
+                'observer': '观察者',
+                'arbitrator': '仲裁者'
+            };
+            return roleMap[role] || role;
+        }
+
+        function getTypeText(type) {
+            const typeMap = {
+                'deliverable': '交付成果',
+                'payment': '付款',
+                'timeline': '时间节点',
+                'quality': '质量标准',
+                'compliance': '合规要求',
+                'custom': '自定义'
+            };
+            return typeMap[type] || type;
+        }
+
+        function formatDate(date) {
+            if (typeof date === 'string') {
+                date = new Date(date);
+            }
+            return date.toLocaleDateString('zh-CN');
+        }
+
+        function getNextAction(contract) {
+            const pendingTerms = contract.terms.filter(t => t.status === 'pending' || t.status === 'active');
+            if (pendingTerms.length === 0) {
+                return '所有条款已完成';
+            }
+            const nextTerm = pendingTerms[0];
+            return `完成"${nextTerm.title}"条款`;
+        }
+
+        // 选项卡切换
+        function switchTab(tabName) {
+            currentTab = tabName;
+
+            // 更新选项卡按钮状态
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // 显示对应内容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${tabName}-panel`).classList.add('active');
+        }
+
+        // MCP工具激活
+        function activateMcpTool(toolName) {
+            console.log(`激活MCP工具: ${toolName}`);
+
+            // 模拟MCP工具激活效果
+            const toolCard = event.currentTarget;
+            toolCard.style.background = 'rgba(76, 175, 80, 0.3)';
+
+            setTimeout(() => {
+                toolCard.style.background = '';
+                alert(`${getToolDisplayName(toolName)} 已激活！工具功能已集成到Claude团队中。`);
+            }, 500);
+        }
+
+        function getToolDisplayName(toolName) {
+            const names = {
+                'filesystem': '文件系统',
+                'database': '数据库',
+                'web': 'Web抓取',
+                'image': '图像处理',
+                'code': '代码执行',
+                'email': '邮件服务'
+            };
+            return names[toolName] || toolName;
+        }
+
+        // 提示词管理
+        function addPromptTag(tag) {
+            const promptInput = document.getElementById('promptInput');
+            const tagText = event.target.textContent;
+
+            if (promptInput.value && !promptInput.value.endsWith(' ')) {
+                promptInput.value += ' ';
+            }
+            promptInput.value += tagText + ' ';
+            promptInput.focus();
+        }
+
+        function loadTemplate(templateName) {
+            const promptInput = document.getElementById('promptInput');
+            promptInput.value = promptTemplates[templateName] || '';
+            switchTab('prompt');
+        }
+
+        function savePrompt() {
+            const promptInput = document.getElementById('promptInput');
+            const prompt = promptInput.value.trim();
+
+            if (!prompt) {
+                alert('请输入提示词内容！');
+                return;
+            }
+
+            // 保存到本地存储
+            const savedPrompts = JSON.parse(localStorage.getItem('savedPrompts') || '[]');
+            savedPrompts.push({
+                content: prompt,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('savedPrompts', JSON.stringify(savedPrompts));
+
+            alert('提示词已保存！');
+            promptInput.value = '';
+        }
+
+        // 脚本管理
+        function loadQuickScript(scriptName) {
+            const language = document.getElementById('scriptLanguage').value;
+            const scriptCode = document.getElementById('scriptCode');
+
+            if (quickScripts[scriptName] && quickScripts[scriptName][language]) {
+                scriptCode.value = quickScripts[scriptName][language];
+            }
+        }
+
+        function formatScript() {
+            const scriptCode = document.getElementById('scriptCode');
+            const language = document.getElementById('scriptLanguage').value;
+
+            // 简单的格式化（实际应用中应该使用专业的格式化库）
+            let code = scriptCode.value;
+
+            if (language === 'javascript' || language === 'typescript') {
+                // 简单的JavaScript格式化
+                code = code.replace(/;/g, ';\n').replace(/{/g, ' {\n    ').replace(/}/g, '\n}');
+            }
+
+            scriptCode.value = code;
+            alert('脚本已格式化！');
+        }
+
+        function validateScript() {
+            const scriptCode = document.getElementById('scriptCode');
+            const language = document.getElementById('scriptLanguage').value;
+
+            if (!scriptCode.value.trim()) {
+                alert('请输入脚本代码！');
+                return;
+            }
+
+            // 简单的语法检查
+            try {
+                if (language === 'javascript' || language === 'typescript') {
+                    new Function(scriptCode.value);
+                } else if (language === 'python') {
+                    // Python语法检查（简化版）
+                    if (scriptCode.value.includes('def ') || scriptCode.value.includes('print(')) {
+                        // 基本检查通过
+                    }
+                }
+                alert('脚本语法验证通过！');
+            } catch (error) {
+                alert(`脚本语法错误: ${error.message}`);
+            }
+        }
+
+        async function runScript() {
+            const scriptCode = document.getElementById('scriptCode');
+            const language = document.getElementById('scriptLanguage').value;
+
+            if (!scriptCode.value.trim()) {
+                alert('请输入脚本代码！');
+                return;
+            }
+
+            alert('脚本执行功能已启动！在实际环境中，这里会调用相应的执行引擎。');
+
+            // 模拟执行结果
+            setTimeout(() => {
+                const result = {
+                    language,
+                    code: scriptCode.value,
+                    output: 'Script executed successfully!',
+                    timestamp: new Date().toISOString()
+                };
+                console.log('脚本执行结果:', result);
+            }, 1000);
+        }
+
+        // 应用管理
+        function toggleApp(appName) {
+            const appCard = event.currentTarget;
+            const statusDot = appCard.querySelector('.app-status');
+
+            if (runningApps.has(appName)) {
+                runningApps.delete(appName);
+                statusDot.className = 'app-status stopped';
+                console.log(`应用 ${appName} 已停止`);
+            } else {
+                runningApps.add(appName);
+                statusDot.className = 'app-status running';
+                console.log(`应用 ${appName} 已启动`);
+            }
+        }
+
+        // API管理
+        function generateApiKey() {
+            const apiKey = 'yycaik_' + Math.random().toString(36).substr(2, 32) + Date.now().toString(36);
+
+            // 复制到剪贴板
+            navigator.clipboard.writeText(apiKey).then(() => {
+                alert(`API密钥已生成并复制到剪贴板:\n\n${apiKey}\n\n请妥善保管！`);
+            }).catch(() => {
+                alert(`API密钥: ${apiKey}\n\n请手动复制并妥善保管！`);
+            });
+
+            console.log('生成的API密钥:', apiKey);
+        }
+
+        // WebSocket连接管理
+        let ws = null;
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 5;
+
+        function connectWebSocket() {
+            const wsUrl = `ws://localhost:3002`;
+
+            try {
+                ws = new WebSocket(wsUrl);
+
+                ws.onopen = function() {
+                    console.log('🔗 WebSocket连接已建立');
+                    reconnectAttempts = 0;
+
+                    // 订阅会话消息
+                    ws.send(JSON.stringify({
+                        type: 'subscribe',
+                        sessions: currentSessionId ? [currentSessionId] : []
+                    }));
+                };
+
+                ws.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        handleWebSocketMessage(data);
+                    } catch (error) {
+                        console.error('解析WebSocket消息失败:', error);
+                    }
+                };
+
+                ws.onclose = function() {
+                    console.log('🔌 WebSocket连接已断开');
+
+                    // 自动重连
+                    if (reconnectAttempts < maxReconnectAttempts) {
+                        reconnectAttempts++;
+                        console.log(`🔄 尝试重连 (${reconnectAttempts}/${maxReconnectAttempts})...`);
+                        setTimeout(connectWebSocket, 3000);
+                    }
+                };
+
+                ws.onerror = function(error) {
+                    console.error('WebSocket错误:', error);
+                };
+            } catch (error) {
+                console.error('WebSocket连接失败:', error);
+            }
+        }
+
+        function handleWebSocketMessage(data) {
+            switch (data.type) {
+                case 'connected':
+                    console.log('WebSocket已连接:', data.client_id);
+                    break;
+
+                case 'message':
+                    // 处理实时消息
+                    if (data.data.sender_type === 'claude') {
+                        const persona = data.data.metadata?.persona;
+                        const personaName = persona?.name || 'Claude助手';
+
+                        addDiscussionMessage(personaName, data.data.content, data.data.sender_id);
+
+                        // 更新对应Claude的状态和消息
+                        if (data.data.sender_id) {
+                            updateClaudeStatus(data.data.sender_id, 'speaking', '发言中...');
+                            updateClaudeMessage(data.data.sender_id, data.data.content);
+
+                            // 2秒后恢复在线状态
+                            setTimeout(() => {
+                                updateClaudeStatus(data.data.sender_id, 'online', '在线');
+                            }, 2000);
+                        }
+
+                        messageCount++;
+                        updateStats();
+
+                        // 自动滚动处理
+                        autoScrollToBottom();
+                    }
+                    break;
+
+                case 'error':
+                    console.error('WebSocket错误消息:', data.message);
+                    alert('连接错误: ' + data.message);
+                    break;
+
+                case 'server_shutdown':
+                    console.log('服务器正在关闭');
+                    alert('服务器正在关闭，请稍后刷新页面');
+                    break;
+
+                default:
+                    console.log('未知的WebSocket消息:', data);
+            }
+        }
+
+        function sendWebSocketMessage(type, data) {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type, ...data }));
+            }
+        }
+
+        // 页面加载完成后初始化新功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化选项卡
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabName = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    switchTab(tabName);
+                });
+            });
+
+            // 语言选择器变化事件
+            document.getElementById('scriptLanguage').addEventListener('change', function() {
+                const currentCode = document.getElementById('scriptCode').value;
+                if (currentCode && confirm('切换语言会清空当前代码，是否继续？')) {
+                    document.getElementById('scriptCode').value = '';
+                }
+            });
+
+            // 建立WebSocket连接
+            connectWebSocket();
+
+            // 初始化滚动功能
+            initializeScrolling();
+
+            // 定期检查服务器健康状态
+            setInterval(async () => {
+                try {
+                    const response = await fetch('/api/health');
+                    if (!response.ok) {
+                        console.warn('服务器健康检查失败');
+                    }
+                } catch (error) {
+                    console.warn('健康检查请求失败:', error);
+                }
+            }, 30000); // 每30秒检查一次
+
+            console.log('YYC³ AI 智能会议室所有功能已加载完成！');
+            console.log('🔌 WebSocket实时通信已启用');
+            console.log('📜 滚动功能已启用');
+        });
+
+        // 初始化滚动功能
+        function initializeScrolling() {
+            const discussionArea = document.getElementById('discussionArea');
+
+            // 添加滚动事件监听
+            discussionArea.addEventListener('scroll', updateScrollButtons);
+            discussionArea.addEventListener('wheel', handleWheelScroll, { passive: true });
+
+            // 添加键盘事件监听
+            document.addEventListener('keydown', handleKeyboardScroll);
+
+            // 初始化按钮状态
+            updateScrollButtons();
+
+            // 初始滚动到底部
+            setTimeout(() => {
+                scrollToBottom();
+            }, 100);
+        }
+
+        // 页面关闭时断开WebSocket连接
+        window.addEventListener('beforeunload', function() {
+            if (ws) {
+                ws.close();
+            }
+        });
+
+        // 初始化增强滚动功能
+        setupKeyboardShortcuts();
+        setupMouseWheel();
+        setupTouchSupport();
+
+        // 添加基本的滚动事件监听器确保功能正常
+        const discussionArea = document.getElementById('discussionArea');
+
+        // 监听滚动事件
+        discussionArea.addEventListener('scroll', () => {
+            updateScrollButtons();
+            updateScrollProgress();
+        });
+
+        // 确保基本滚轮功能
+        discussionArea.addEventListener('wheel', (e) => {
+            console.log('滚轮事件触发:', e.deltaY); // 调试日志
+            setTimeout(updateScrollButtons, 10);
+        }, { passive: true });
+
+        // 初始化合约数据
+        initializeContracts();
+
+        // 初始化滚动按钮状态
+        setTimeout(updateScrollButtons, 100);
+
+        // 首次访问显示滚动提示
+        if (!localStorage.getItem('scroll-hint-shown')) {
+            setTimeout(() => {
+                showScrollHint('💡 欢迎使用增强滚动功能！使用方向键、PageUp/PageDown、空格键或右侧按钮控制');
+                localStorage.setItem('scroll-hint-shown', 'true');
+            }, 2000);
+        }
+
+        // 自动保存功能
+        setInterval(() => {
+            if (messageCount > 0) {
+                localStorage.setItem('ai-discussion-content', document.getElementById('discussionArea').innerHTML);
+                localStorage.setItem('ai-discussion-stats', JSON.stringify({
+                    messageCount,
+                    roundCount,
+                    currentMode,
+                    currentTab,
+                    timestamp: new Date().toISOString()
+                }));
+            }
+        }, 30000); // 每30秒自动保存
+    </script>
+</body>
+</html>

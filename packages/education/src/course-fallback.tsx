@@ -1,0 +1,18 @@
+/**
+ * @fileoverview UI组件 · course-fallback.tsx
+ * @author YYC³ <admin@0379.email>
+ * @version 1.0.0
+ * @license MIT
+ */
+interface CourseFallbackProps {
+  title: string
+  color: string
+}
+
+export function CourseFallback({ title, color }: CourseFallbackProps) {
+  return (
+    <div className={`w-20 h-20 rounded-lg flex items-center justify-center bg-gradient-to-r ${color}`}>
+      <div className="text-white text-xs font-bold text-center px-2">{title.split(" ")[0]}</div>
+    </div>
+  )
+}

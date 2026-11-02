@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude多人对话室</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .claude-status {
+            background: #4CAF50;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            max-width: 1400px;
+            margin: 2rem auto;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .claude-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 600px;
+        }
+
+        .claude-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .claude-avatar {
+            font-size: 2rem;
+        }
+
+        .claude-info h3 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .claude-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .claude-status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4CAF50;
+            margin-left: auto;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            background: white;
+            border-left: 4px solid #4CAF50;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message.thinking {
+            background: #f0f0f0;
+            border-left-color: #ff9800;
+            font-style: italic;
+        }
+
+        .message-content {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .message-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .confidence {
+            background: #4CAF50;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+        }
+
+        .chat-input-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            margin: 0 2rem 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mode-btn:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .mode-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 60px;
+            transition: border-color 0.3s;
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .send-btn {
+            padding: 1rem 2rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .send-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .send-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .claude-panel {
+                max-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🤖 Claude多人对话室</h1>
+        <span class="claude-status">系统运行中</span>
+    </header>
+
+    <div class="main-container">
+        <!-- 张老师 - 项目领导者 -->
+        <div class="claude-panel">
+            <div class="claude-header">
+                <span class="claude-avatar">👨‍🏫</span>
+                <div class="claude-info">
+                    <h3>张老师</h3>
+                    <p>项目领导者，擅长协调和决策</p>
+                </div>
+                <div class="claude-status-indicator"></div>
+            </div>
+            <div class="messages-container" id="zhang-messages">
+                <div class="message">
+                    <div class="message-content">大家好，我是张老师！很高兴为大家提供项目管理和协调方面的建议。请随时向我提问项目管理相关的问题。</div>
+                    <div class="message-meta">
+                        <span>准备就绪</span>
+                        <span class="confidence">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 李博士 - 技术专家 -->
+        <div class="claude-panel">
+            <div class="claude-header">
+                <span class="claude-avatar">👨‍🔬</span>
+                <div class="claude-info">
+                    <h3>李博士</h3>
+                    <p>技术专家，精通AI和算法</p>
+                </div>
+                <div class="claude-status-indicator"></div>
+            </div>
+            <div class="messages-container" id="li-messages">
+                <div class="message">
+                    <div class="message-content">我是李博士，专注于人工智能和算法领域。有任何技术问题，尤其是AI架构和算法设计方面，我都很乐意提供专业建议。</div>
+                    <div class="message-meta">
+                        <span>准备就绪</span>
+                        <span class="confidence">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 创意王 - 设计师 -->
+        <div class="claude-panel">
+            <div class="claude-header">
+                <span class="claude-avatar">🎨</span>
+                <div class="claude-info">
+                    <h3>创意王</h3>
+                    <p>创意设计师，擅长用户体验</p>
+                </div>
+                <div class="claude-status-indicator"></div>
+            </div>
+            <div class="messages-container" id="creative-messages">
+                <div class="message">
+                    <div class="message-content">嗨！我是创意王，让我们一起创造精彩！我擅长用户体验设计和创新思维，为项目注入活力和创意。</div>
+                    <div class="message-meta">
+                        <span>准备就绪</span>
+                        <span class="confidence">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 陈师傅 - 质量专家 -->
+        <div class="claude-panel">
+            <div class="claude-header">
+                <span class="claude-avatar">🔍</span>
+                <div class="claude-info">
+                    <h3>陈师傅</h3>
+                    <p>质量专家，注重细节把控</p>
+                </div>
+                <div class="claude-status-indicator"></div>
+            </div>
+            <div class="messages-container" id="chen-messages">
+                <div class="message">
+                    <div class="message-content">我是陈师傅，质量是我的第一原则。我专注于质量控制和流程优化，确保每个细节都达到最高标准。</div>
+                    <div class="message-meta">
+                        <span>准备就绪</span>
+                        <span class="confidence">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据赵 - 数据分析师 -->
+        <div class="claude-panel">
+            <div class="claude-header">
+                <span class="claude-avatar">📊</span>
+                <div class="claude-info">
+                    <h3>数据赵</h3>
+                    <p>数据分析师，用数据说话</p>
+                </div>
+                <div class="claude-status-indicator"></div>
+            </div>
+            <div class="messages-container" id="zhao-messages">
+                <div class="message">
+                    <div class="message-content">我是赵分析师，让我们用数据找到答案！我擅长数据分析和商业智能，为决策提供数据支撑。</div>
+                    <div class="message-meta">
+                        <span>准备就绪</span>
+                        <span class="confidence">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 聊天输入区域 -->
+    <div class="chat-input-panel">
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="collaborative">🤝 协作模式</button>
+            <button class="mode-btn" data-mode="specialist">🎯 专家模式</button>
+            <button class="mode-btn" data-mode="competitive">🏆 竞争模式</button>
+            <button class="mode-btn" data-mode="sequential">📋 顺序模式</button>
+        </div>
+
+        <div class="input-container">
+            <textarea
+                class="message-input"
+                id="messageInput"
+                placeholder="输入您的问题，让Claude团队为您解答..."
+            ></textarea>
+            <button class="send-btn" id="sendBtn">发送消息</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="messageCount">0</div>
+                <div class="stat-label">总消息数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="activeClaudes">5</div>
+                <div class="stat-label">活跃Claude</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="avgResponseTime">0s</div>
+                <div class="stat-label">平均响应</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="successRate">100%</div>
+                <div class="stat-label">成功率</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Claude拟人化回复数据库
+        const claudeResponses = {
+            zhang: {
+                greeting: "大家好，我是张老师！",
+                style: "根据我的项目管理经验，我建议采用结构化的分析方法来处理这个问题。",
+                expertise: ["项目管理", "团队协调", "决策分析", "流程优化"],
+                closing: "——张老师"
+            },
+            li: {
+                greeting: "我是李博士，很高兴为大家提供技术支持。",
+                style: "经过专业分析，从技术角度来看，这个问题的解决方案需要考虑多个技术层面。",
+                expertise: ["人工智能", "算法设计", "系统架构", "技术选型"],
+                closing: "——李博士"
+            },
+            creative: {
+                greeting: "嗨！我是创意王，让我们一起创造精彩！",
+                style: "让我用一个有趣的方式来解释：让我们跳出思维定式，用创新的视角来看待这个问题！",
+                expertise: ["用户体验", "创意设计", "界面优化", "创新思维"],
+                closing: "——创意王"
+            },
+            chen: {
+                greeting: "我是陈师傅，质量是我的第一原则。",
+                style: "让我详细说明：我将从质量控制和流程优化的角度来分析这个问题。",
+                expertise: ["质量控制", "测试管理", "流程优化", "标准制定"],
+                closing: "——陈师傅"
+            },
+            zhao: {
+                greeting: "我是赵分析师，让我们用数据找到答案。",
+                style: "基于相关数据分析，我们可以得出以下结论和建议：",
+                expertise: ["数据分析", "商业智能", "统计建模", "报告生成"],
+                closing: "——数据赵"
+            }
+        };
+
+        // 全局变量
+        let currentMode = 'collaborative';
+        let messageStats = {
+            total: 0,
+            responseTimes: [],
+            responses: 0
+        };
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEventListeners();
+            updateStats();
+        });
+
+        function initializeEventListeners() {
+            // 发送按钮事件
+            document.getElementById('sendBtn').addEventListener('click', sendMessage);
+
+            // 回车键发送
+            document.getElementById('messageInput').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // 模式选择按钮
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentMode = this.dataset.mode;
+                    showModeNotification(currentMode);
+                });
+            });
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            const sendBtn = document.getElementById('sendBtn');
+            sendBtn.disabled = true;
+            sendBtn.textContent = '发送中...';
+
+            // 清空输入框
+            input.value = '';
+
+            // 更新统计
+            messageStats.total++;
+            updateStats();
+
+            // 根据模式处理消息
+            await processMessage(message, currentMode);
+
+            sendBtn.disabled = false;
+            sendBtn.textContent = '发送消息';
+        }
+
+        async function processMessage(message, mode) {
+            const startTime = Date.now();
+
+            switch(mode) {
+                case 'collaborative':
+                    await processCollaborativeMessage(message);
+                    break;
+                case 'specialist':
+                    await processSpecialistMessage(message);
+                    break;
+                case 'competitive':
+                    await processCompetitiveMessage(message);
+                    break;
+                case 'sequential':
+                    await processSequentialMessage(message);
+                    break;
+            }
+
+            // 更新响应时间统计
+            const responseTime = Date.now() - startTime;
+            messageStats.responseTimes.push(responseTime);
+            messageStats.responses++;
+            updateStats();
+        }
+
+        async function processCollaborativeMessage(message) {
+            // 所有Claude协同回复
+            const claudeIds = ['zhang', 'li', 'creative', 'chen', 'zhao'];
+
+            for (const id of claudeIds) {
+                addThinkingMessage(id, "正在分析问题...");
+
+                // 模拟思考时间
+                await delay(500 + Math.random() * 1500);
+
+                const response = generateResponse(id, message, {
+                    collaborative: true,
+                    context: getOtherResponses(claudeIds, id)
+                });
+
+                addMessage(id, response);
+
+                // 短暂延迟
+                await delay(300);
+            }
+
+            // 添加协作总结
+            await delay(1000);
+            addMessage('zhang', generateSummary(claudeIds));
+        }
+
+        async function processSpecialistMessage(message) {
+            // 分析问题类型，选择最合适的专家
+            const specialist = selectBestSpecialist(message);
+
+            addThinkingMessage(specialist, "正在分析专业问题...");
+            await delay(800 + Math.random() * 1200);
+
+            const response = generateResponse(specialist, message, {
+                specialist: true,
+                detailed: true
+            });
+
+            addMessage(specialist, response);
+
+            // 其他Claude提供补充意见
+            const others = ['zhang', 'li', 'creative', 'chen', 'zhao'].filter(id => id !== specialist);
+            for (const other of others.slice(0, 2)) {
+                await delay(500);
+                const supplement = generateResponse(other, message, {
+                    supplementary: true,
+                    mainExpert: specialist
+                });
+                addMessage(other, supplement);
+            }
+        }
+
+        async function processCompetitiveMessage(message) {
+            const competitors = ['li', 'creative', 'zhao'];
+            const solutions = [];
+
+            for (const id of competitors) {
+                addThinkingMessage(id, "正在设计解决方案...");
+                await delay(600 + Math.random() * 1000);
+
+                const solution = generateResponse(id, message, {
+                    competitive: true,
+                    innovation: Math.random() > 0.5
+                });
+
+                solutions.push({ id, solution, score: 70 + Math.random() * 30 });
+                addMessage(id, solution);
+            }
+
+            // 排序并公布结果
+            await delay(1000);
+            addCompetitionResults(solutions.sort((a, b) => b.score - a.score));
+        }
+
+        async function processSequentialMessage(message) {
+            const sequence = ['zhang', 'li', 'creative', 'chen', 'zhao'];
+
+            for (let i = 0; i < sequence.length; i++) {
+                const id = sequence[i];
+
+                addThinkingMessage(id, `正在按顺序处理 (${i + 1}/${sequence.length})...`);
+                await delay(500 + Math.random() * 1000);
+
+                const context = i > 0 ? `基于前面的分析，` : '';
+                const response = generateResponse(id, message, {
+                    sequential: true,
+                    position: i + 1,
+                    context: context
+                });
+
+                addMessage(id, response);
+
+                // 短暂延迟
+                await delay(400);
+            }
+        }
+
+        function generateResponse(claudeId, message, options = {}) {
+            const claude = claudeResponses[claudeId];
+            let content = claude.greeting + '\n\n';
+
+            // 基于问题内容生成专业回复
+            if (message.includes('技术') || message.includes('开发')) {
+                if (claudeId === 'li') {
+                    content += '从技术架构角度分析，建议采用现代化的技术栈，考虑可扩展性、性能和维护性。' +
+                               '微服务架构、容器化部署、CI/CD流水线都是值得考虑的方案。';
+                } else if (claudeId === 'chen') {
+                    content += '在技术开发过程中，质量控制至关重要。建议建立完善的测试体系，' +
+                               '包括单元测试、集成测试、性能测试和用户验收测试。';
+                }
+            } else if (message.includes('设计') || message.includes('创意')) {
+                if (claudeId === 'creative') {
+                    content += '设计应该以用户为中心，注重用户体验的每个细节。' +
+                               '建议采用设计思维方法论，通过用户研究、原型设计和迭代优化来提升产品体验。';
+                } else if (claudeId === 'zhang') {
+                    content += '创意项目需要良好的项目管理来确保按时交付。' +
+                               '建议采用敏捷开发方法，建立跨职能团队，定期进行项目回顾和调整。';
+                }
+            } else if (message.includes('数据') || message.includes('分析')) {
+                if (claudeId === 'zhao') {
+                    content += '数据分析应该基于明确的业务目标。建议建立数据治理体系，' +
+                               '确保数据质量，选择合适的分析工具和算法，将洞察转化为实际行动。';
+                } else if (claudeId === 'li') {
+                    content += '从技术角度，需要考虑数据存储、处理和分析的效率。' +
+                               '大数据平台、数据仓库、实时流处理等技术选型都很重要。';
+                }
+            } else {
+                // 通用回复
+                content += claude.style + ' ' +
+                           '我建议从多个维度来全面分析这个问题，综合考虑各种可能性和解决方案。';
+            }
+
+            if (options.detailed) {
+                content += '\n\n详细分析：\n1. 问题定义和范围\n2. 可能的解决方案\n3. 风险评估和缓解策略\n4. 实施建议和时间规划';
+            }
+
+            if (options.competitive) {
+                content += '\n\n💡 创新方案：基于最新技术趋势和最佳实践，我提出一个具有竞争力的解决方案。';
+            }
+
+            content += '\n\n' + claude.closing;
+
+            return content;
+        }
+
+        function addMessage(claudeId, content) {
+            const container = document.getElementById(`${claudeId}-messages`);
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.innerHTML = `
+                <div class="message-content">${content}</div>
+                <div class="message-meta">
+                    <span>${new Date().toLocaleTimeString()}</span>
+                    <span class="confidence">${(85 + Math.random() * 14).toFixed(1)}%</span>
+                </div>
+            `;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function addThinkingMessage(claudeId, content) {
+            const container = document.getElementById(`${claudeId}-messages`);
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message thinking';
+            messageDiv.innerHTML = `
+                <div class="message-content">${content}</div>
+                <div class="message-meta">
+                    <span>${new Date().toLocaleTimeString()}</span>
+                    <span>思考中...</span>
+                </div>
+            `;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+
+            // 3秒后自动移除思考消息
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.parentNode.removeChild(messageDiv);
+                }
+            }, 3000);
+        }
+
+        function addCompetitionResults(results) {
+            const container = document.getElementById('li-messages');
+            const resultsDiv = document.createElement('div');
+            resultsDiv.className = 'message';
+            resultsDiv.style.background = '#fff3cd';
+            resultsDiv.style.borderLeftColor = '#ff9800';
+
+            let resultsHTML = '🏆 <strong>竞争方案评选结果：</strong><br><br>';
+            results.forEach((result, index) => {
+                const claude = claudeResponses[result.id];
+                resultsHTML += `${index + 1}. ${claude.closing.replace('——', '').trim()} - 评分: ${result.score.toFixed(1)}分<br>`;
+            });
+
+            resultsDiv.innerHTML = `
+                <div class="message-content">${resultsHTML}</div>
+                <div class="message-meta">
+                    <span>${new Date().toLocaleTimeString()}</span>
+                    <span class="confidence">评选完成</span>
+                </div>
+            `;
+
+            container.appendChild(resultsDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function generateSummary(claudeIds) {
+            return '💡 <strong>协作总结：</strong><br><br>' +
+                   '经过各位专家的深入讨论，我们从不同角度全面分析了这个问题。' +
+                   '综合大家的意见，建议采取系统性的方法，结合技术可行性、' +
+                   '创新性、质量要求和数据支撑来制定最佳解决方案。';
+        }
+
+        function selectBestSpecialist(message) {
+            if (message.includes('技术') || message.includes('开发') || message.includes('架构')) {
+                return 'li';
+            } else if (message.includes('设计') || message.includes('创意') || message.includes('用户体验')) {
+                return 'creative';
+            } else if (message.includes('数据') || message.includes('分析') || message.includes('统计')) {
+                return 'zhao';
+            } else if (message.includes('质量') || message.includes('测试') || message.includes('标准')) {
+                return 'chen';
+            } else {
+                return 'zhang';
+            }
+        }
+
+        function getOtherResponses(allIds, currentId) {
+            // 简化实现，返回其他Claude的响应模拟
+            return allIds.filter(id => id !== currentId).map(id => claudeResponses[id].style);
+        }
+
+        function showModeNotification(mode) {
+            const modeNames = {
+                'collaborative': '协作模式 - 多Claude协同讨论',
+                'specialist': '专家模式 - 选择最合适的专家回答',
+                'competitive': '竞争模式 - 多Claude竞争最佳方案',
+                'sequential': '顺序模式 - 按专业顺序依次回答'
+            };
+
+            // 在状态栏显示当前模式
+            const statusElement = document.querySelector('.claude-status');
+            statusElement.textContent = modeNames[mode];
+        }
+
+        function updateStats() {
+            document.getElementById('messageCount').textContent = messageStats.total;
+            document.getElementById('activeClaudes').textContent = '5';
+
+            if (messageStats.responseTimes.length > 0) {
+                const avgTime = messageStats.responseTimes.reduce((a, b) => a + b, 0) / messageStats.responseTimes.length;
+                document.getElementById('avgResponseTime').textContent = `${(avgTime/1000).toFixed(1)}s`;
+            }
+
+            if (messageStats.responses > 0) {
+                const successRate = Math.min(100, 85 + Math.random() * 15);
+                document.getElementById('successRate').textContent = `${successRate.toFixed(0)}%`;
+            }
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "@yyc3/theme",
+  "version": "2.0.0",
+  "description": "YYC³ 主题系统 - 22 套主题 + OKLCH 色彩空间",
+  "main": "./dist/index.css",
+  "exports": {
+    ".": "./dist/index.css",
+    "./variables": "./dist/variables.css"
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "postcss src/index.css -o dist/index.css",
+    "dev": "postcss src/index.css -o dist/index.css --watch",
+    "lint": "stylelint 'src/**/*.css'"
+  },
+  "devDependencies": {
+    "postcss": "^8.5",
+    "postcss-cli": "^11.0.0",
+    "stylelint": "^16.0.0",
+    "tailwindcss": "^4.1.9"
+  }
+}

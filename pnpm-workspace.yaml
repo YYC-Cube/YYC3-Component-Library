@@ -1,0 +1,5 @@
+# YYC³ 组件库 Monorepo 配置
+packages:
+  - 'packages/*'
+  - 'templates/*'
+  - 'apps/*'

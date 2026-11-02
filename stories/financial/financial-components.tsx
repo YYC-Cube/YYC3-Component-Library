@@ -1,0 +1,19 @@
+export const medical = 'Medical';
+export const ai = 'AI';
+export const admin = 'Admin';
+export const music = 'Music';
+export const design = 'Design';
+export const cloud = 'Cloud';
+export const education = 'Education';
+export const city = 'City';
+export const financial = 'Financial';
+
+export const Medical = '医疗健康';
+export const AI = 'AI智能';
+export const Admin = '管理商务';
+export const Music = '音乐娱乐';
+export const Design = '设计系统';
+export const Cloud = '云平台';
+export const Education = '教育学习';
+export const City = '智慧城市';
+export const Financial = '金融量化';
