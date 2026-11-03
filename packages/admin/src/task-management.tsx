@@ -19,7 +19,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
 import { Progress } from "@yyc3/ui/progress"
 import { CheckSquare, Plus, Search, Calendar, Clock, AlertCircle, CheckCircle } from "lucide-react"
-import { getProgressColor } from "@yyc3/lib/design-system"
+import { getProgressColor } from "../lib/design-system"
 
 interface Task {
   id: string

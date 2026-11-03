@@ -43,9 +43,10 @@ describe("analyzeProgrammingDepth", () => {
 
     it("AI 相关主题应获得更高分", () => {
       const result = analyzeProgrammingDepth([
-        { content: "我需要训练一个深度学习模型", role: "user" },
+        { content: "我需要用机器学习训练一个深度学习模型", role: "user" },
       ]);
-      // "深度学习"(3) + "模型"(3) + "训练"(3) = 9 → deep
+      // API 对齐（Phase 1 速修）：deep 阈值 ≥10；
+      // "机器学习"(3) + "训练"(3) + "深度学习"(3) + "模型"(3) = 12 → deep
       expect(result.depth).toBe("deep");
     });
 

@@ -105,10 +105,13 @@ describe("notificationStore", () => {
           message: "消息",
         });
       }
-      expect(useNotificationStore.getState().unreadCount).toBe(3);
+      // API 对齐（Phase 1 速修）：unreadCount 非状态字段 → 以 notifications 计算未读
+      const countUnread = () =>
+        useNotificationStore.getState().notifications.filter((n) => !n.isRead).length;
+      expect(countUnread()).toBe(3);
       const id = useNotificationStore.getState().notifications[0].id;
       useNotificationStore.getState().markAsRead(id);
-      expect(useNotificationStore.getState().unreadCount).toBe(2);
+      expect(countUnread()).toBe(2);
     });
   });
 
@@ -121,7 +124,8 @@ describe("notificationStore", () => {
         message: "消息",
       });
       const id = useNotificationStore.getState().notifications[0].id;
-      useNotificationStore.getState().dismiss(id);
+      // API 对齐（Phase 1 速修）：dismiss → dismissNotification
+      useNotificationStore.getState().dismissNotification(id);
       const notification = useNotificationStore.getState().notifications.find((n) => n.id === id);
       expect(notification?.isDismissed).toBe(true);
     });

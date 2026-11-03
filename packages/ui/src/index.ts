@@ -174,3 +174,6 @@ export { DynamicLoading } from "./dynamic-loading"
 export { LazyComponent, createLazyComponent } from "./lazy-load"
 export { PageTransition } from "./page-transition"
 export { BarChart, LineChart, ChartContainer, ChartTooltip, ChartTooltipContent } from "./chart"
+
+// 工具函数（Phase 1：随冒烟测试补导出——shadcn 惯例 cn 随桶导出；utils 位于包根 lib/）
+export { cn, formatDate } from "../lib/utils"
