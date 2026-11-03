@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { city,  } from './city-components';
 
 const meta: Meta<typeof city> = {
-  title: 'Business/',
+  title: 'Domains/City',
   parameters: {
     layout: 'centered',
   },

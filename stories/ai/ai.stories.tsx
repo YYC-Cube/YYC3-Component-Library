@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { ai,  } from './ai-components';
 
 const meta: Meta<typeof ai> = {
-  title: 'Business/',
+  title: 'Domains/AI',
   parameters: {
     layout: 'centered',
   },

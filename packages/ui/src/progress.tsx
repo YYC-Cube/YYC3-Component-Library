@@ -9,7 +9,7 @@ const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
 >(({ className, value, max = 100, ...props }, ref) => {
-  const percentage = value !== undefined ? (value / max) * 100 : 0
+  const percentage = value != null ? (value / max) * 100 : 0
 
   return (
     <ProgressPrimitive.Root

@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { education,  } from './education-components';
 
 const meta: Meta<typeof education> = {
-  title: 'Business/',
+  title: 'Domains/Education',
   parameters: {
     layout: 'centered',
   },

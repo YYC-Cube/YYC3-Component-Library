@@ -25,15 +25,15 @@ describe("themeStore", () => {
   /* ─── 基础状态 ─── */
   describe("基础状态", () => {
     it("默认主题变体应为 aurora", () => {
-      expect(useThemeStore.getState().variant).toBe("aurora");
+      expect(useThemeStore.getState().config.variant).toBe("aurora");
     });
 
     it("默认主题模式应为 dark", () => {
-      expect(useThemeStore.getState().mode).toBe("dark");
+      expect(useThemeStore.getState().config.mode).toBe("dark");
     });
 
     it("默认强调色应为 green", () => {
-      expect(useThemeStore.getState().accentColor).toBe("green");
+      expect(useThemeStore.getState().config.accentColor).toBe("green");
     });
 
     it("应有 colors 对象", () => {
@@ -52,7 +52,7 @@ describe("themeStore", () => {
     variants.forEach((variant) => {
       it(`setVariant("${variant}") 应切换主题变体`, () => {
         useThemeStore.getState().setVariant(variant);
-        expect(useThemeStore.getState().variant).toBe(variant);
+        expect(useThemeStore.getState().config.variant).toBe(variant);
       });
     });
 
@@ -69,13 +69,13 @@ describe("themeStore", () => {
   describe("亮/暗模式", () => {
     it("setMode 应切换到 light 模式", () => {
       useThemeStore.getState().setMode("light");
-      expect(useThemeStore.getState().mode).toBe("light");
+      expect(useThemeStore.getState().config.mode).toBe("light");
     });
 
     it("setMode 应切换回 dark 模式", () => {
       useThemeStore.getState().setMode("light");
       useThemeStore.getState().setMode("dark");
-      expect(useThemeStore.getState().mode).toBe("dark");
+      expect(useThemeStore.getState().config.mode).toBe("dark");
     });
 
     it("切换模式应更新背景色", () => {
@@ -93,7 +93,7 @@ describe("themeStore", () => {
     accentColors.forEach((color) => {
       it(`setAccentColor("${color}") 应更新强调色`, () => {
         useThemeStore.getState().setAccentColor(color);
-        expect(useThemeStore.getState().accentColor).toBe(color);
+        expect(useThemeStore.getState().config.accentColor).toBe(color);
       });
     });
 

@@ -2,8 +2,7 @@
 
 import { Component, type ReactNode } from "react"
 import { AlertTriangle, RefreshCw } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui"
 
 interface Props {
   children: ReactNode

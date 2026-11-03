@@ -1,29 +1,17 @@
-// YYC³ 音乐娱乐组件
-// Music & Entertainment Components
-
-// 播放器组件
+// ============================================================
+// YYC³（YanYuCloudCube™ · 注册商标）
+// 言启象限 | 语枢未来 · Words Initiate Quadrants, Language Serves as Core for Future
+// ============================================================
+// Copyright (c) 2026 YanYuCloudCube™（YYC³）| admin@0379.email
+// ============================================================
+// @yyc3/music 桶文件 — Phase 1 导出面收敛（MIGRATION_PLAN v2.1）
+//
+// 【技术债登记】
+// 1. 17 个子目录（api/audio/auth/.../icp-verify）搬运时未建 barrel，待滚动抽取批次重建；
+// 2. 顶层组件断链摘除：CoverFlow、AlbumCoverAdmin、App（引用包根不存在的
+//    ../hooks/../types/../data/../services/ 与 ./components/*，源项目根目录文件未随迁）；
+// 3. 保留导出 = 链路完整：Player（含 SimpleBackgroundVideo）、BackgroundVideo、SearchBar、error-boundary。
 export * from './Player';
-export * from './CoverFlow';
-export * from './AlbumCoverAdmin';
 export * from './BackgroundVideo';
 export * from './SearchBar';
-
-// 应用组件
-export * from './App';
 export * from './error-boundary';
-
-// 模块导出
-export * from './api';
-export * from './dashboard';
-export * from './dialogs';
-export * from './forms';
-export * from './auth';
-
-// 功能目录
-export * from './audio';
-export * from './community';
-export * from './entertainment';
-export * from './player';
-export * from './playlist';
-export * from './visualizer';
-export * from './library';
