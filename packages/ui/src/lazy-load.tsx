@@ -58,13 +58,14 @@ export function LazyComponent({
  * @param importFunc 组件导入函数
  * @param fallback 加载中显示的内容
  */
-export function createLazyComponent<T>(
+export function createLazyComponent<T extends object>(
   importFunc: () => Promise<{ default: ComponentType<T> }>,
   fallback?: React.ReactNode,
 ) {
   const LazyLoadedComponent = lazy(importFunc)
 
   return function LazyWrapper(props: T) {
+    const Component = LazyLoadedComponent as ComponentType<T>
     return (
       <Suspense
         fallback={
@@ -75,7 +76,7 @@ export function createLazyComponent<T>(
           )
         }
       >
-        <LazyLoadedComponent {...props} />
+        <Component {...props} />
       </Suspense>
     )
   }

@@ -4,7 +4,12 @@ import type * as React from "react"
 import { motion } from "framer-motion"
 import { cn } from "../lib/utils"
 
-interface PageTransitionProps extends React.HTMLAttributes<HTMLDivElement> {
+// Omit 排除与 framer-motion 事件签名冲突的 React 属性键
+interface PageTransitionProps
+  extends Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    "onAnimationStart" | "onAnimationEnd" | "onDrag" | "onDragStart" | "onDragEnd" | "onDragUpdate"
+  > {
   children: React.ReactNode
   animation?: "fade" | "slide-up" | "slide-down" | "slide-left" | "slide-right" | "scale" | "rotate"
   duration?: number

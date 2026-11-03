@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { admin,  } from './admin-components';
 
 const meta: Meta<typeof admin> = {
-  title: 'Business/',
+  title: 'Domains/Admin',
   parameters: {
     layout: 'centered',
   },

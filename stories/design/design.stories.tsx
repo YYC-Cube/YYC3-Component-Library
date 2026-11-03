@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { design,  } from './design-components';
 
 const meta: Meta<typeof design> = {
-  title: 'Business/',
+  title: 'Domains/Design',
   parameters: {
     layout: 'centered',
   },

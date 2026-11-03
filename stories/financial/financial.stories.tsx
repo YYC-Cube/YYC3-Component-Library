@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { financial,  } from './financial-components';
 
 const meta: Meta<typeof financial> = {
-  title: 'Business/',
+  title: 'Domains/Financial',
   parameters: {
     layout: 'centered',
   },

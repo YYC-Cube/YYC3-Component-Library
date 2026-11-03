@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { music,  } from './music-components';
 
 const meta: Meta<typeof music> = {
-  title: 'Business/',
+  title: 'Domains/Music',
   parameters: {
     layout: 'centered',
   },

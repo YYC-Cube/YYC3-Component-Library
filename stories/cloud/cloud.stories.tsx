@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { cloud,  } from './cloud-components';
 
 const meta: Meta<typeof cloud> = {
-  title: 'Business/',
+  title: 'Domains/Cloud',
   parameters: {
     layout: 'centered',
   },

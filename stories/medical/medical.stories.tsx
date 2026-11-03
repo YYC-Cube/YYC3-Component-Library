@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { medical,  } from './medical-components';
 
 const meta: Meta<typeof medical> = {
-  title: 'Business/',
+  title: 'Domains/Medical',
   parameters: {
     layout: 'centered',
   },
