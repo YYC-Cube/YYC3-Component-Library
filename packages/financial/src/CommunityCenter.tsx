@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Progress } from './ui/progress';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
+import { Button } from '@yyc3/ui';
+import { Input } from '@yyc3/ui';
+import { Progress } from '@yyc3/ui';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@yyc3/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@yyc3/ui';
 import { 
   User, 
   Crown, 

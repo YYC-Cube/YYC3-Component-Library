@@ -1,7 +1,7 @@
 'use client';
 
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
+import { Badge } from '@yyc3/ui';
+import { Button } from '@yyc3/ui';
 import { Github, Twitter, Linkedin, Mail, Globe, MessageCircle } from 'lucide-react';
 
 interface FooterProps {

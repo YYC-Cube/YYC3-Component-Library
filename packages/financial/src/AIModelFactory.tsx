@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Textarea } from './ui/textarea';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
+import { Button } from '@yyc3/ui';
+import { Input } from '@yyc3/ui';
+import { Label } from '@yyc3/ui';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@yyc3/ui';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@yyc3/ui';
+import { Textarea } from '@yyc3/ui';
 import { 
   TrendingUp, 
   MessageSquare, 

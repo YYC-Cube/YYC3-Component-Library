@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
+import { Button } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
 import { ArrowRight, Sparkles, Shield, Zap } from 'lucide-react';
 
 interface HeroSectionProps {

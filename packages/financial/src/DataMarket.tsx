@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
+import { Button } from '@yyc3/ui';
+import { Input } from '@yyc3/ui';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@yyc3/ui';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@yyc3/ui';
 import { 
   Database, 
   Clock, 
@@ -66,6 +66,7 @@ export function DataMarket({ language }: DataMarketProps) {
       },
       realtime: {
         title: '实时数据流',
+        provider: '数据提供商',
         subscribe: '订阅',
         unsubscribe: '取消订阅',
         latency: '延迟',
@@ -122,6 +123,7 @@ export function DataMarket({ language }: DataMarketProps) {
       },
       realtime: {
         title: 'Real-time Data Streams',
+        provider: 'Provider',
         subscribe: 'Subscribe',
         unsubscribe: 'Unsubscribe',
         latency: 'Latency',

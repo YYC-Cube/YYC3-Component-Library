@@ -1,7 +1,7 @@
 'use client';
 
-import { Card, CardContent } from './ui/card';
-import { Badge } from './ui/badge';
+import { Card, CardContent } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
 
 interface PartnersProps {
   language: 'zh' | 'en';

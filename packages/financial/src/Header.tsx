@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
+import { Button } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
 import { Globe, Menu, X } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@yyc3/ui';
 
 interface HeaderProps {
   language: 'zh' | 'en';
