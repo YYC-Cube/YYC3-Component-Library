@@ -4,9 +4,28 @@
 // ============================================================
 // Copyright (c) 2026 YanYuCloudCube™（YYC³）| admin@0379.email
 // ============================================================
-// @yyc3/theme 占位桶文件 — Phase 1 固化处置
-// 现有资产：src/index.css（全局样式）；theme-tokens（赛博朋克/液态玻璃双主题）
-// 于 Phase 3 随 Claw UI 迁入（见 MIGRATION_PLAN v2.1 S1）。
+// @yyc3/theme 桶文件 — Phase 3 起：Claw 设计令牌真身（双主题）
+// 源（S1）：personal 副本 YYC3-UI-用户界面/Button/components/yyc3/theme-tokens.ts
 import './index.css'
 
 export const THEME_PLACEHOLDER = true
+
+// ── Claw 设计令牌（Phase 3 · S1 迁入，真身）──
+export type {
+  YYC3Theme,
+  BaseComponentProps,
+  ThemeProps,
+  SizeProps,
+  StatusProps,
+  ThemeVariables,
+  Breakpoint,
+} from './claw-tokens'
+export {
+  breakpoints,
+  mq,
+  getThemeTokens,
+  injectThemeCSSVars,
+  cx,
+  mergeStyles,
+  isCyberpunk,
+} from './claw-tokens'
