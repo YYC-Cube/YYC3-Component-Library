@@ -42,7 +42,7 @@ related_docs: [MIGRATION_PLAN.md, CONTRIBUTING.md, docs/YYC3-组件拆分-执行
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square" alt="PRs Welcome">
 </p>
 
-> **YYC³ 统一组件库 — 企业级 React 组件集合** · pnpm + Turborepo Monorepo · 双源迁移（知识库主库按需抽取 + 精准素材）· 16 包（15 业务域 + 共享功能库 `@yyc3/lib`）
+> **YYC³ 统一组件库 — 企业级 React 组件集合** · pnpm + Turborepo Monorepo · 双源迁移与逐项拆分闭环推进 · **16 包**（基础/共享/域/职能四层，各包定位见包下 POSITIONING.md）
 
 **言启象限 | 语枢未来** · *Words Initiate Quadrants, Language Serves as Core for Future*
 
@@ -73,7 +73,7 @@ related_docs: [MIGRATION_PLAN.md, CONTRIBUTING.md, docs/YYC3-组件拆分-执行
 | [`@yyc3/theme`](./packages/theme) | 2 | ✅ | ✅ 冒烟 | 占位桶（待 Claw UI 双主题） |
 | [`@yyc3/business`](./packages/business) | 1 | ✅ | ✅ 冒烟 | 空壳占位（Phase 7 裁决） |
 | [`@yyc3/effects`](./packages/effects) | 1 | ✅ | ✅ 冒烟 | 空壳占位（Phase 7 裁决） |
-| `@yyc3/icons` | — | — | — | 空槽位（Phase 7 裁决：建/删/占位） |
+| [`@yyc3/icons`](./packages/icons) | 1 | ✅ | — | 占位包（Phase 7 终裁：保留；SVG 源待补） |
 
 > 「占位桶」= src 内组件因搬运断链暂不导出，随[滚动抽取批次](./docs/YYC3-项目组件-拆分规范/YYC3-权威副本-映射表.md)恢复——各包 README 有来源溯源与技术债登记。
 

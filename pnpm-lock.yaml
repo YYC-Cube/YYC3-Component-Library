@@ -396,6 +396,15 @@ importers:
         specifier: ^5.9
         version: 5.9.3
 
+  packages/icons:
+    devDependencies:
+      tsup:
+        specifier: ^8.3.0
+        version: 8.5.1(postcss@8.5.23)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.9
+        version: 5.9.3
+
   packages/layouts:
     dependencies:
       '@yyc3/ui':
