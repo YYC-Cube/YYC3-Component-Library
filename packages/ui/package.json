@@ -68,7 +68,7 @@
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.2.0",
     "react-hook-form": "^7.60.0",
-    "zod": "^3.25.67",
+    "zod": "^4.6.6",
     "@hookform/resolvers": "^3.10.0"
   },
   "devDependencies": {
