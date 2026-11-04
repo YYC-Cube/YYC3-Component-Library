@@ -3,7 +3,7 @@ file: README.md
 title: "@yyc3/lib — YYC³ 共享功能库（hooks / i18n / 工具 / 类型）"
 description: 零依赖工具函数与通用 Hooks 共享库——date/string/validation/data/i18n 翻译器/7 Hooks/通用类型，B1+B2a 两批滚动抽取，覆盖率过四门
 author: YYC³ Team <admin@0379.email>
-version: v0.2.0
+version: v0.3.0
 created: 2026-11-04
 updated: 2026-11-04
 status: published
@@ -24,9 +24,9 @@ complexity: basic
 
 ---
 
-## 状态（2026-11-04 · B2a 收口）
+## 状态（2026-11-04 · B2b 收口）
 
-- 构建 ✅ tsup（CJS+ESM+**DTS**）· 测试 ✅ **47 用例全绿** · **覆盖率四门达标**（语句 89.77 / 分支 75 / 函数 89.16 / 行 93.67，门 80/75/85/80）
+- 构建 ✅ tsup（CJS+ESM+**DTS**）· 测试 ✅ **61 用例全绿** · **覆盖率四门达标**（语句 90.08 / 分支 79.25 / 函数 85.98 / 行 92.64，门 80/75/85/80）
 - React peer `^18 || ^19`；工具部分零依赖
 
 ## API 总览
@@ -40,6 +40,7 @@ complexity: basic
 | `hooks` | useToggle / useClickOutside（含语义修复注）/ useMediaQuery(+5 预设) / useLocalStorage / useDebounce / useDebouncedCallback / useWindowSize(+W/H) / useI18n + I18nProvider |
 | `i18n` | createTranslator / mergeMessages / validateMessages / extractKeys / checkConsistency |
 | `types` | 错误（AppError/ErrorStats…）/ 用户（AppUser/AppSession…）/ i18n（Locale/I18nMessages…）/ 组件状态（AsyncState/LoadingState…） |
+| `error-handling` | **ErrorHandler**（分类矩阵/统计/trySafe±Sync）/ LocalStorageErrorStorage / getErrorHandler 单例 / captureError / getErrorLog / getErrorStats / clearErrorLog / **PlatformErrorFilter**（四类规则）/ createFigmaErrorFilter / isPlatformError |
 
 ```ts
 import { useLocalStorage, createTranslator, deepMerge, formatDate } from '@yyc3/lib'
@@ -52,8 +53,8 @@ import { useLocalStorage, createTranslator, deepMerge, formatDate } from '@yyc3/
 ## 变更历史与遗留
 
 - B1（v0.1.0）：utils 四模块；color 因 Mimosa 误报暂缓
-- **B2a（v0.2.0）**：hooks(7 文件)+types(节选)+i18n；`useClickOutside` 修复源级语义反转 bug（点外触发，留注）
-- **B2b 待做**：error-handling（error-handler 428 行 + platform-error-filter 156 行）
+- **B2a（v0.2.0）**：hooks(7)+types(节选)+i18n；修复 `useClickOutside` 源级语义反转 bug
+- **B2b（v0.3.0）**：error-handling 全量（ErrorHandler + PlatformErrorFilter）
 
 ---
 
@@ -61,6 +62,7 @@ import { useLocalStorage, createTranslator, deepMerge, formatDate } from '@yyc3/
 
 | 版本 | 日期 | 变更内容 | 作者 |
 | ---- | ---- | -------- | ---- |
+| v0.3.0 | 2026-11-04 | B2b：error-handling 并入（61 用例，覆盖率 90.08/79.25/85.98/92.64）；checklist #2/#3 全部闭环 | YYC³ Team |
 | v0.2.0 | 2026-11-04 | B2a：hooks/types/i18n 并入；47 用例；覆盖率四门达标；README 对齐标规 | YYC³ Team |
 | v0.1.0 | 2026-11-04 | B1：utils 四模块首发（30+ 导出/18 用例） | YYC³ Team |
 
