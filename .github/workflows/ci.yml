@@ -1,0 +1,78 @@
+# ============================================================
+# YYC³（YanYuCloudCube™ · 注册商标）· YYC3-Component-Library CI
+# 言启象限 | 语枢未来 · Words Initiate Quadrants, Language Serves as Core for Future
+# ============================================================
+# Copyright (c) 2026 YanYuCloudCube™（YYC³）| admin@0379.email
+# ============================================================
+# 门禁设计（2026-11-04）：
+#   build（必过）—— 全量构建，任何回归阻断合并
+#   audit-prod（必过）—— 生产依赖零漏洞（--prod 口径，发包供应链红线）
+#   test（暂非必过）—— 已知 8 文件在册测试债（MIGRATION_PLAN §五A），
+#                      债清零后加入 required contexts 转正
+#   gitleaks —— 凭据防再入（对齐家族 KB 仓实践）
+# ============================================================
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build (turbo 全量)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+  audit-prod:
+    name: Audit (生产链零漏洞)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm audit --prod --audit-level high
+
+  test:
+    name: Test (vitest unit)
+    runs-on: ubuntu-latest
+    continue-on-error: true # 在册 8 文件债清零前非阻断（见文件头注）
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+
+  gitleaks:
+    name: Secret Scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
