@@ -4,8 +4,9 @@
 // 主题上下文统一来源：./layout（button 已修复为 re-export）
 //
 // 【3a 已入】Button / Layout(+Header/Sider/Content/Footer) / Container / theme-tokens 壳
-// 【3b 待入】Input / Card / Modal / Header / Sidebar / Footer（源文件已甄别，下一批）
-// 【showcase】4 个展示页转 Storybook stories 于 3b 一并处理
+// 【3b-1 已入】Input
+// 【3b-2 待入】Card / Modal / Header / Sidebar / Footer（源文件已甄别）
+// 【showcase】4 个展示页转 Storybook stories 于 3b-2 一并处理
 // ============================================================
 
 // 主题系统（统一自 layout）
@@ -18,6 +19,15 @@ export {
 
 // 基础交互组件
 export { Button, type ButtonProps, type ButtonVariant, type ButtonSize } from './button';
+export {
+  Input,
+  type InputProps,
+  type TextareaProps,
+  type CombinedInputProps,
+  type InputSize,
+  type InputStatus,
+  type InputType,
+} from './input';
 
 // 布局组件系统
 export { Layout, type LayoutProps } from './layout';
