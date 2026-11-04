@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/admin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 管理商务组件 - 企业管理与商务应用组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/icons",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "YYC³ 图标库（占位包）— Phase 7 终裁：保留。方案：lucide-react 统一封装 + YYC3 自有品牌图标（SVG 源待补，现为 public/ 多端 PNG 集）",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -12,7 +12,10 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "tsup",
     "type-check": "tsc --noEmit"
@@ -21,7 +24,11 @@
     "tsup": "^8.3.0",
     "typescript": "^5.9"
   },
-  "keywords": ["yyc3", "icons", "placeholder"],
+  "keywords": [
+    "yyc3",
+    "icons",
+    "placeholder"
+  ],
   "author": "YYC³ Team <admin@0379.email>",
   "license": "MIT"
 }

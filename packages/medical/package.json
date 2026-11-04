@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/medical",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 医疗健康组件 - 医疗专用组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

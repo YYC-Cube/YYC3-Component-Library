@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/design",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 设计系统组件 - 设计规范与可视化组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

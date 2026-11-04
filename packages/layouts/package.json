@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/layouts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 布局组件库 - Sidebar, Header, Navigation 等布局组件",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -11,7 +11,10 @@
       "require": "./dist/index.js"
     }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch"

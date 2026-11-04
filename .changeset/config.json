@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [],
+  "___comment": "Phase 7 发包演练配置（对齐《存放利用》模板）。发布目标待定（npm 公网 / GitHub Packages / 私有 registry）——publish 演练挂起，仅执行 version 消费"
+}

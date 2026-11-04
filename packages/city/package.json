@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/city",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 智慧城市组件 - 城市管理与服务组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

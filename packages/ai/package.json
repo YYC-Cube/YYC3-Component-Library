@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ AI智能组件 - AI与智能应用组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/web-ui",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "YYC³ Web UI — Agent 平台组件（Chat/Agent/Skill）+ 特效组件（GlitchText/NeonCard）",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -12,7 +12,10 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -32,7 +35,12 @@
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19"
   },
-  "keywords": ["yyc3", "web-ui", "agent", "chat"],
+  "keywords": [
+    "yyc3",
+    "web-ui",
+    "agent",
+    "chat"
+  ],
   "author": "YYC³ Team <admin@0379.email>",
   "license": "MIT"
 }

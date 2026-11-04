@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/cloud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 云平台组件 - 云服务与基础设施组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
