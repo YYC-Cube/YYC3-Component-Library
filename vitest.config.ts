@@ -3,9 +3,6 @@ import { fileURLToPath } from 'node:url';
 
 import { defineConfig, type Plugin } from 'vitest/config';
 
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-
-import { playwright } from '@vitest/browser-playwright';
 import react from '@vitejs/plugin-react';
 
 const dirname =
@@ -27,39 +24,19 @@ function atAliasPerPackage(): Plugin {
   };
 }
 
-// More info: https://storybook.js.org/docs/writing-tests/integrations/vitest-addon
+// Vitest 5 兼容（2026-11-04）：本文件仅含 unit 工程；
+// storybook 浏览器工程拆至 vitest.storybook.config.ts（`pnpm test:storybook`），
+// 避免 storybookTest 插件在默认测试启动时扫描 stories/**/*.mdx 失败而拖垮全部工程
 export default defineConfig({
-  plugins: [atAliasPerPackage()],
+  plugins: [react(), atAliasPerPackage()],
+  resolve: {
+    // 依赖升级（2026-11-04 dependabot）后出现双 React 实例（useState of null），
+    // 强制去重保证组件与 RTL 共享同一 React
+    dedupe: ['react', 'react-dom'],
+  },
   test: {
-    projects: [
-      {
-        // Phase 1 固化：包级单元测试工程（jsdom）
-        plugins: [react(), atAliasPerPackage()],
-        test: {
-          name: 'unit',
-          environment: 'jsdom',
-          include: ['packages/*/src/**/*.{test,spec}.{ts,tsx}'],
-          setupFiles: ['./vitest.setup.ts'],
-        },
-      },
-      {
-        // Storybook 浏览器交互测试（需 playwright chromium，暂不纳入默认 test 通道）
-        extends: true,
-        plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/writing-tests/integrations/vitest-addon#storybooktest
-          storybookTest({ configDir: path.join(dirname, '.storybook') }),
-        ],
-        test: {
-          name: 'storybook',
-          browser: {
-            enabled: true,
-            headless: true,
-            provider: playwright({}),
-            instances: [{ browser: 'chromium' }],
-          },
-        },
-      },
-    ],
+    environment: 'jsdom',
+    include: ['packages/*/src/**/*.{test,spec}.{ts,tsx}'],
+    setupFiles: ['./vitest.setup.ts'],
   },
 });
