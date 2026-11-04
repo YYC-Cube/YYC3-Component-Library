@@ -4,9 +4,9 @@
 // 主题上下文统一来源：./layout（button 已修复为 re-export）
 //
 // 【3a 已入】Button / Layout(+Header/Sider/Content/Footer) / Container / theme-tokens 壳
-// 【3b-1 已入】Input
-// 【3b-2 待入】Card / Modal / Header / Sidebar / Footer（源文件已甄别）
-// 【showcase】4 个展示页转 Storybook stories 于 3b-2 一并处理
+// 【3b-1 已入】Input · 【3b-2 已入】Card · 【3b-3 已入】Modal / Footer
+// 【3b-4 待入】Header / Sidebar（源文件已甄别，均引 layout Provider 无需修复）
+// 【showcase】4 个展示页转 Storybook stories 于 3b-4 一并处理
 // ============================================================
 
 // 主题系统（统一自 layout）
@@ -37,6 +37,18 @@ export {
   type CardFooterProps,
   type CardImageProps,
 } from './card';
+export {
+  Modal,
+  type ModalProps,
+  type ModalAnimation,
+  type ModalPreset,
+} from './modal';
+export {
+  Footer,
+  type FooterProps,
+  type FooterLink,
+  type FooterColumn,
+} from './footer';
 
 // 布局组件系统
 export { Layout, type LayoutProps } from './layout';

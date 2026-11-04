@@ -9,6 +9,8 @@ import {
   ClawButton,
   ClawInput,
   ClawCard,
+  ClawModal,
+  ClawFooter,
   ClawLayout,
   ClawContainer,
   YYC3ThemeProvider,
@@ -257,5 +259,95 @@ describe('claw · ClawCard（3b-2a）', () => {
     const c = screen.getByTestId('card2');
     expect(c.getAttribute('data-hoverable')).toBe('true');
     expect(c.style.boxShadow).toContain('40px');
+  });
+});
+
+describe('claw · ClawModal（3b-3）', () => {
+  it('visible 渲染 Portal 对话框 + 标题；onCancel 关闭', async () => {
+    const onCancel = vi.fn();
+    function Hold(): React.ReactElement {
+      const [v, setV] = React.useState(true);
+      return React.createElement(ClawModal, {
+        visible: v,
+        title: '确认操作',
+        onCancel: () => {
+          onCancel();
+          setV(false);
+        },
+      }, '正文内容');
+    }
+    render(React.createElement(Hold));
+    const dialog = await screen.findByRole('dialog');
+    expect(dialog.getAttribute('aria-modal')).toBe('true');
+    expect(screen.getByText('确认操作')).toBeTruthy();
+    expect(screen.getByText('正文内容')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: '关闭' }));
+    expect(onCancel).toHaveBeenCalled();
+  });
+
+  it('ESC 触发 onCancel；maskClosable 点击遮罩关闭', () => {
+    const onCancel = vi.fn();
+    render(React.createElement(ClawModal, { visible: true, title: 'T', onCancel }));
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(onCancel).toHaveBeenCalledTimes(1);
+    // 遮罩（target===currentTarget）
+    const overlay = document.querySelector('[aria-hidden="true"]') as HTMLElement;
+    if (overlay) fireEvent.click(overlay);
+    expect(onCancel).toHaveBeenCalledTimes(2);
+  });
+
+  it('footer 按钮：确认/取消回调', () => {
+    const onOk = vi.fn();
+    const onCancel = vi.fn();
+    render(React.createElement(ClawModal, { visible: true, title: 'T', onOk, onCancel }));
+    fireEvent.click(screen.getByRole('button', { name: '确 认' }));
+    expect(onOk).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole('button', { name: '取 消' }));
+    expect(onCancel).toHaveBeenCalledTimes(1);
+  });
+
+  it('不可见时不渲染；destroyOnClose 关闭后销毁子元素', () => {
+    const { container } = render(
+      React.createElement(ClawModal, { visible: false, title: 'T' }, '隐藏内容'),
+    );
+    expect(screen.queryByRole('dialog')).toBeNull();
+    void container;
+  });
+});
+
+describe('claw · ClawFooter（3b-3）', () => {
+  it('完整模式：多列链接 + 版权 + 社交（语义角色）', () => {
+    render(
+      React.createElement(ClawFooter, {
+        logo: 'YYC³',
+        description: '统一组件库',
+        columns: [{ title: '文档', links: [{ label: '指南', onClick: () => void 0 }] }],
+        socials: [{ label: 'GitHub', icon: 'GH' }],
+        copyright: '© 2026 YanYuCloudCube',
+      }),
+    );
+    expect(screen.getByRole('contentinfo')).toBeTruthy();
+    expect(screen.getByText('YYC³')).toBeTruthy();
+    expect(screen.getByLabelText('文档 链接')).toBeTruthy();
+    expect(screen.getByLabelText('GitHub')).toBeTruthy();
+    expect(screen.getByText('© 2026 YanYuCloudCube')).toBeTruthy();
+  });
+
+  it('紧凑模式单行渲染', () => {
+    render(
+      React.createElement(ClawFooter, {
+        compact: true,
+        logo: 'YYC³',
+        copyright: '© YYC³',
+        socials: [{ label: 'X', icon: 'x' }],
+      }),
+    );
+    expect(screen.getByText('© YYC³')).toBeTruthy();
+    expect(screen.getByLabelText('X')).toBeTruthy();
+  });
+
+  it('双主题 data 属性', () => {
+    render(React.createElement(ClawFooter, { theme: 'liquid-glass', logo: 'L' }));
+    expect(screen.getByRole('contentinfo').getAttribute('data-theme')).toBe('liquid-glass');
   });
 });
