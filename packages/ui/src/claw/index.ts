@@ -5,8 +5,8 @@
 //
 // 【3a 已入】Button / Layout(+Header/Sider/Content/Footer) / Container / theme-tokens 壳
 // 【3b-1 已入】Input · 【3b-2 已入】Card · 【3b-3 已入】Modal / Footer
-// 【3b-4 待入】Header / Sidebar（源文件已甄别，均引 layout Provider 无需修复）
-// 【showcase】4 个展示页转 Storybook stories 于 3b-4 一并处理
+// 【3b-4 已入】Header / Sidebar —— Claw 主体九件全部闭环（2026-11-04）
+// 【showcase】源 4 个展示页以「Claw 组件总览」交互 Story 重制替代
 // ============================================================
 
 // 主题系统（统一自 layout）
@@ -49,6 +49,14 @@ export {
   type FooterLink,
   type FooterColumn,
 } from './footer';
+export { Header, type HeaderProps, type NavItem } from './header';
+export {
+  Sidebar,
+  type SidebarProps,
+  type SidebarItem,
+  type SidebarSection,
+  type SidebarPlacement,
+} from './sidebar';
 
 // 布局组件系统
 export { Layout, type LayoutProps } from './layout';

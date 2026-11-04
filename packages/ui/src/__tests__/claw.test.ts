@@ -11,6 +11,8 @@ import {
   ClawCard,
   ClawModal,
   ClawFooter,
+  ClawHeader,
+  ClawSidebar,
   ClawLayout,
   ClawContainer,
   YYC3ThemeProvider,
@@ -349,5 +351,101 @@ describe('claw · ClawFooter（3b-3）', () => {
   it('双主题 data 属性', () => {
     render(React.createElement(ClawFooter, { theme: 'liquid-glass', logo: 'L' }));
     expect(screen.getByRole('contentinfo').getAttribute('data-theme')).toBe('liquid-glass');
+  });
+});
+
+describe('claw · ClawHeader（3b-4）', () => {
+  it('banner 语义 + 导航渲染与 activeKey 高亮 + 点击回调', () => {
+    const onNavClick = vi.fn();
+    const nav = [
+      { key: 'home', label: '首页' },
+      { key: 'docs', label: '文档' },
+    ];
+    render(
+      React.createElement(ClawHeader, {
+        logo: 'YYC³',
+        nav,
+        activeKey: 'docs',
+        onNavClick,
+      }),
+    );
+    expect(screen.getByRole('banner')).toBeTruthy();
+    expect(screen.getByLabelText('主导航')).toBeTruthy();
+    const activeBtn = screen.getByRole('button', { name: '文档' });
+    expect(activeBtn.getAttribute('aria-current')).toBe('page');
+    fireEvent.click(screen.getByRole('button', { name: '首页' }));
+    expect(onNavClick).toHaveBeenCalledWith('home', nav[0]);
+  });
+
+  it('actions 工具栏与双主题', () => {
+    render(
+      React.createElement(
+        ClawHeader,
+        { theme: 'liquid-glass', logo: 'L', actions: React.createElement('button', null, '登录') },
+      ),
+    );
+    expect(screen.getByRole('toolbar', { name: '操作区' })).toBeTruthy();
+    expect(screen.getByRole('banner').getAttribute('data-theme')).toBe('liquid-glass');
+  });
+});
+
+describe('claw · ClawSidebar（3b-4 · Claw 主体收官）', () => {
+  const items = [
+    { key: 'dash', label: '仪表盘' },
+    { key: 'sys', label: '系统', children: [{ key: 'user', label: '用户管理' }] },
+    { key: '-', divider: true },
+    { key: 'dis', label: '禁用项', disabled: true },
+  ];
+
+  it('tree 语义 + 点击回调 + 子菜单展开', () => {
+    const onItemClick = vi.fn();
+    render(
+      React.createElement(ClawSidebar, {
+        items,
+        activeKey: 'dash',
+        defaultOpenKeys: ['sys'],
+        onItemClick,
+        logo: 'YYC³',
+      }),
+    );
+    expect(screen.getByRole('tree')).toBeTruthy();
+    const dash = screen.getByRole('treeitem', { name: '仪表盘' });
+    expect(dash.getAttribute('aria-selected')).toBe('true');
+    fireEvent.click(dash);
+    expect(onItemClick).toHaveBeenCalledWith('dash', items[0]);
+    // 子菜单可见
+    expect(screen.getByText('用户管理')).toBeTruthy();
+    // 分割线
+    expect(document.querySelector('[aria-hidden="true"][style*="height: 1px"]')).toBeTruthy();
+  });
+
+  it('折叠切换（aria-expanded）+ 折叠宽度', () => {
+    function Hold(): React.ReactElement {
+      const [c, setC] = React.useState(false);
+      return React.createElement(ClawSidebar, {
+        items: [{ key: 'a', label: 'A' }],
+        collapsed: c,
+        onCollapsedChange: setC,
+        'data-testid': 'sb',
+      });
+    }
+    render(React.createElement(Hold));
+    const sb = screen.getByTestId('sb') as HTMLElement;
+    expect(sb.style.width).toBe('240px');
+    fireEvent.click(screen.getByRole('button', { name: '折叠侧边栏' }));
+    expect(sb.getAttribute('data-collapsed')).toBe('true');
+    expect(sb.style.width).toBe('60px');
+    expect(screen.getByRole('button', { name: '展开侧边栏' })).toBeTruthy();
+  });
+
+  it('disabled 项 aria-disabled；分组 sections 渲染', () => {
+    render(
+      React.createElement(ClawSidebar, {
+        sections: [{ title: '管理', items: [{ key: 'x', label: '禁用', disabled: true }] }],
+      }),
+    );
+    const item = screen.getByRole('treeitem', { name: '禁用' });
+    expect(item.getAttribute('aria-disabled')).toBe('true');
+    expect(screen.getByText('管理')).toBeTruthy();
   });
 });
