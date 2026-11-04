@@ -28,6 +28,15 @@ export {
   type InputStatus,
   type InputType,
 } from './input';
+export {
+  Card,
+  type CardProps,
+  type CardShadow,
+  type CardHeaderProps,
+  type CardBodyProps,
+  type CardFooterProps,
+  type CardImageProps,
+} from './card';
 
 // 布局组件系统
 export { Layout, type LayoutProps } from './layout';
