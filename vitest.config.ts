@@ -29,6 +29,11 @@ function atAliasPerPackage(): Plugin {
 // 避免 storybookTest 插件在默认测试启动时扫描 stories/**/*.mdx 失败而拖垮全部工程
 export default defineConfig({
   plugins: [react(), atAliasPerPackage()],
+  resolve: {
+    // 依赖升级（2026-11-04 dependabot）后出现双 React 实例（useState of null），
+    // 强制去重保证组件与 RTL 共享同一 React
+    dedupe: ['react', 'react-dom'],
+  },
   test: {
     environment: 'jsdom',
     include: ['packages/*/src/**/*.{test,spec}.{ts,tsx}'],

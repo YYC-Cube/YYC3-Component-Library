@@ -27,8 +27,8 @@
     "@reduxjs/toolkit": "^2.14.0",
     "@yyc3/theme": "workspace:*",
     "@yyc3/ui": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-redux": "^9.3.1",
     "zustand": "^5.0.16"
   },

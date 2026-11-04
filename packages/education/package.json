@@ -28,8 +28,8 @@
     "@yyc3/theme": "workspace:*",
     "@yyc3/ui": "workspace:*",
     "lucide-react": "^0.454.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@types/react": "^19",
