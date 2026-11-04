@@ -38,7 +38,7 @@ const stats = [
   },
 ]
 
-function YYStatCard({ stat, delay = 0 }: { stat: any; delay?: number }) {
+export function YYStatCard({ stat, delay = 0 }: { stat: any; delay?: number }) {
   const [count, setCount] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const elementRef = useRef<HTMLDivElement>(null)

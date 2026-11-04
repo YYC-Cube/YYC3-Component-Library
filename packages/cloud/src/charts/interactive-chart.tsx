@@ -24,10 +24,10 @@ import {
   Pie,
   Cell,
 } from "recharts"
-import { chartThemes } from "@/config/chart-themes"
-import { colors } from "@/config/colors"
+import { chartThemes } from "../config/chart-themes"
+import { colors } from "../config/colors"
 import { useTheme } from "next-themes"
-import { useDebounce } from "@yyc3/lib/hooks/use-debounce"
+import { useDebounce } from "@yyc3/lib"
 import { chartVoiceControlManager, type ChartVoiceControlService } from "@yyc3/lib/services/chart-voice-control"
 
 export type ChartType = "line" | "bar" | "area" | "pie" | "donut" | "scatter"
