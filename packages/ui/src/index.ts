@@ -190,6 +190,13 @@ export {
   type ButtonVariant as ClawButtonVariant,
   type ButtonSize as ClawButtonSize,
 } from "./claw"
+export {
+  Input as ClawInput,
+  type InputProps as ClawInputProps,
+  type TextareaProps as ClawTextareaProps,
+  type InputStatus as ClawInputStatus,
+  type InputType as ClawInputType,
+} from "./claw"
 export { Layout as ClawLayout, Container as ClawContainer } from "./claw"
 export type {
   LayoutProps as ClawLayoutProps,

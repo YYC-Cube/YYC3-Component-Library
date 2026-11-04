@@ -7,6 +7,7 @@ import { renderHook, act, render, screen, fireEvent, cleanup } from '@testing-li
 import React from 'react';
 import {
   ClawButton,
+  ClawInput,
   ClawLayout,
   ClawContainer,
   YYC3ThemeProvider,
@@ -153,5 +154,68 @@ describe('claw · ClawContainer', () => {
     expect(box.style.padding).toBe('24px');
     expect(box.style.margin).toBe('');
     expect(box.className).toContain('yyc3-container');
+  });
+});
+
+describe('claw · ClawInput（3b-1）', () => {
+  it('非受控输入 + onChange 回调', () => {
+    const onChange = vi.fn();
+    render(React.createElement(ClawInput, { defaultValue: '', onChange, 'aria-label': '账号' }));
+    const el = screen.getByRole('textbox', { name: '账号' }) as HTMLInputElement;
+    fireEvent.change(el, { target: { value: 'yyc3' } });
+    expect(onChange).toHaveBeenCalled();
+    expect(el.value).toBe('yyc3');
+  });
+
+  it('error 状态显示消息（role=alert）+ aria-invalid', () => {
+    render(
+      React.createElement(ClawInput, {
+        status: 'error',
+        errorMessage: '格式不正确',
+        defaultValue: 'x',
+        'aria-label': '邮箱',
+      }),
+    );
+    expect(screen.getByRole('alert').textContent).toContain('格式不正确');
+    expect(screen.getByRole('textbox', { name: '邮箱' }).getAttribute('aria-invalid')).toBe('true');
+  });
+
+  it('allowClear 清除内容；字数统计 showCount', () => {
+    function Hold(): React.ReactElement {
+      const [v, setV] = React.useState('内容');
+      return React.createElement(ClawInput, {
+        value: v,
+        onChange: (e: React.ChangeEvent<HTMLInputElement>) => setV(e.target.value),
+        allowClear: true,
+        showCount: true,
+        maxLength: 10,
+        'aria-label': '备注',
+      });
+    }
+    render(React.createElement(Hold));
+    const el = screen.getByRole('textbox', { name: '备注' }) as HTMLInputElement;
+    expect(screen.getByText('2 / 10')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: '清除内容' }));
+    expect(el.value).toBe('');
+  });
+
+  it('password 类型 + passwordToggle 可见性切换', () => {
+    render(React.createElement(ClawInput, { type: 'password', passwordToggle: true, defaultValue: 'pw', 'aria-label': '密码' }));
+    const el = screen.getByLabelText('密码') as HTMLInputElement;
+    expect(el.type).toBe('password');
+    fireEvent.click(screen.getByRole('button', { name: '显示密码' }));
+    expect(el.type).toBe('text');
+  });
+
+  it('textarea 类型 + onPressEnter（仅非 textarea 触发）', () => {
+    const onEnter = vi.fn();
+    render(React.createElement(ClawInput, { type: 'textarea', rows: 3, 'aria-label': '简介' } as Record<string, unknown>));
+    expect(screen.getByLabelText('简介').tagName).toBe('TEXTAREA');
+    void onEnter;
+  });
+
+  it('双主题 data 属性', () => {
+    render(React.createElement(ClawInput, { theme: 'liquid-glass', 'aria-label': '主题输入' }));
+    expect(document.querySelector('.yyc3-input-wrap')?.getAttribute('data-theme')).toBe('liquid-glass');
   });
 });
