@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/music",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 音乐娱乐组件 - 音乐与娱乐应用组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

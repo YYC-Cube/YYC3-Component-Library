@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/financial",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 金融量化组件 - 金融交易与量化分析组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/effects",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 特效组件库 - 3D、动画、视觉特效",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

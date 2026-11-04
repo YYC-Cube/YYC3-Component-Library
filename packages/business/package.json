@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/business",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 业务组件库 - 医疗、AI、管理等业务域组件",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

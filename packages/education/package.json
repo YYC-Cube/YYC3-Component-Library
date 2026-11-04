@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/education",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YYC³ 教育学习组件 - 在线教育与学习平台组件集合",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
