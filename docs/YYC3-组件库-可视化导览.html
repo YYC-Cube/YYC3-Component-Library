@@ -74,11 +74,15 @@
 
 <aside id="detail"></aside>
 
+<h3 style="max-width:1180px;margin:22px auto 10px;color:var(--muted);font-size:13px">🎨 图标与品牌资产（YYC-Cube/public · 470 文件 / 45MB · 详见设计说明文档）</h3>
+<div class="phases" id="assets"></div>
+
 <footer>YYC³（YanYuCloudCube™ · 注册商标）· 万象归元于云枢 | 深栈智启新纪元 · 数据源：MIGRATION_PLAN §1.1 / 权威副本映射表 v1.0</footer>
 
 <script>
 const D = [
  {p:'ui',n:'基础 UI',src:66,cls:'t-full',st:'全量导出',test:'冒烟 ✅',dts:'✅ 55KB',exp:'170+（Button/Card/…/cn）',srcNote:'主库 UI 池 shadcn 体系',debt:'Phase 3 并入 Claw UI（S1）+ Phase 4 shadcn 拷贝去重（S2）'},
+ {p:'lib',n:'共享功能库',src:6,cls:'t-full',st:'全量导出',test:'18 用例 ✅',dts:'✅',exp:'30+ 零依赖工具函数（date/string/validation/data）',srcNote:'UI-8 yyc3-reusable-components/packages/utils（D0 权威副本）',debt:'批次 2 候选：hooks/types/error-handling/i18n；color 因扫描误报暂缓'},
  {p:'ai',n:'AI 智能',src:1512,cls:'t-part',st:'占位桶',test:'19 文件（部分 API 债）',dts:'✅',exp:'断链随批次恢复',srcNote:'AI-Digital-Consulting-Website 等（特征文件溯源）',debt:'app-store 代差 + autonomous 断链 → ai 批次'},
  {p:'music',n:'音乐娱乐',src:417,cls:'t-part',st:'4 组件收敛',test:'2 文件',dts:'✅',exp:'Player/BackgroundVideo/SearchBar/error-boundary',srcNote:'YYC3-Music / D-Music-e / Music-Vynora',debt:'17 子目录无 barrel → music 批次'},
  {p:'admin',n:'管理商务',src:279,cls:'t-part',st:'占位桶',test:'3 文件（代差债）',dts:'✅',exp:'—',srcNote:'双导管理 / yyc3-management',debt:'UI 代差（言语云版）→ admin 批次；lib/design-system 已随迁 ✅'},
@@ -115,6 +119,25 @@ function show(x){
   <tr><td>来源（溯源）</td><td>${x.srcNote}</td></tr><tr><td>技术债 / 下一步</td><td>${x.debt}</td></tr></table>`;
 }
 render();
+
+// 图标与品牌资产区（源：/Users/yanyu/YYC-Cube/public，旧存货 · 与 Figma 无关）
+const ASSETS = [
+ {n:'logo ×4 色',c:'57×4 PNG',d:'yyc3-logo-blue/cyan/white/royalblue — 全平台 iconset（Android/iOS/macOS/tvOS/watchOS/Windows）'},
+ {n:'metallic',c:'60 文件',d:'金属质感 logo 变体 iconset'},
+ {n:'cloud',c:'54 文件',d:'云标变体（android/favicon/ios/pwa/webp）— web 向'},
+ {n:'D-Music',c:'58 文件',d:'D-Music 项目应用图标'},
+ {n:'yyc3-blue',c:'36 PNG',d:'蓝色 logo 旧集'},
+ {n:'yyc3-dist',c:'favicon 集',d:'yanyu_cloud 16~512px（web 产物）'},
+ {n:'背景图片',c:'YYC3-00~07',d:'系列背景图'},
+ {n:'家族顶图',c:'yyc3-family.png',d:'README 顶图（已入仓 public/）'},
+];
+const aw = document.getElementById('assets');
+ASSETS.forEach(a=>{
+  const el=document.createElement('div');el.className='ph';
+  el.innerHTML='<b style="color:var(--cyan)">'+a.n+'</b><span>'+a.c+'</span>';
+  el.style.cursor='pointer';el.onclick=()=>{det.className='show';det.innerHTML='<h3>🎨 '+a.n+'</h3><table><tr><td>规模</td><td>'+a.c+'</td></tr><tr><td>说明</td><td>'+a.d+'</td></tr><tr><td>位置</td><td>/Users/yanyu/YYC-Cube/public/（组件库内仅入 family.png）</td></tr></table>';};
+  aw.appendChild(el);
+});
 </script>
 </body>
 </html>

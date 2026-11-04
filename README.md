@@ -15,10 +15,14 @@
   <img src="https://img.shields.io/badge/pnpm-workspace-F69220?style=flat-square&logo=pnpm" alt="pnpm">
   <img src="https://img.shields.io/badge/Turborepo-monorepo-00b181?style=flat-square" alt="Turborepo">
   <img src="https://img.shields.io/badge/Storybook-10-FF4785?style=flat-square&logo=storybook" alt="Storybook 10">
-  <img src="https://img.shields.io/badge/tests-364%20passing-2d5a3d?style=flat-square" alt="Tests">
+  <img src="https://img.shields.io/badge/tests-382%20passing-2d5a3d?style=flat-square" alt="Tests">
+  <img src="https://img.shields.io/badge/packages-16-00d4ff?style=flat-square" alt="Packages 16">
+  <img src="https://img.shields.io/github/issues/YYC-Cube/YYC3-Component-Library?style=flat-square" alt="Issues">
+  <img src="https://img.shields.io/github/repo-size/YYC-Cube/YYC3-Component-Library?style=flat-square" alt="Repo Size">
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square" alt="PRs Welcome">
 </p>
 
-> **YYC³ 统一组件库 — 企业级 React 组件集合** · pnpm + Turborepo Monorepo · 双源迁移（知识库主库按需抽取 + 精准素材）· 15 业务域分包
+> **YYC³ 统一组件库 — 企业级 React 组件集合** · pnpm + Turborepo Monorepo · 双源迁移（知识库主库按需抽取 + 精准素材）· 16 包（15 业务域 + 共享功能库 `@yyc3/lib`）
 
 **言启象限 | 语枢未来** · *Words Initiate Quadrants, Language Serves as Core for Future*
 
@@ -30,11 +34,12 @@
 - 📖 **组件目录**：Storybook 10 十域 stories + autodocs
 - 🔐 **治理**：main 分支保护、changesets 版本管线、Mimosa 深度安全扫描与发布前清零硬门
 
-## 📦 包结构（15 域 · 实况 2026-11-04）
+## 📦 包结构（16 包 · 实况 2026-11-04）
 
 | 包名 | src | 构建 | 测试 | 导出面 |
 |------|-----|------|------|--------|
 | [`@yyc3/ui`](./packages/ui) | 66 | ✅ +DTS | ✅ 冒烟 | **全量真实导出**（170+，含 `cn`） |
+| [`@yyc3/lib`](./packages/lib) | 6 | ✅ +DTS | ✅ **18 用例** | **30+ 零依赖工具函数**（date/string/validation/data） |
 | [`@yyc3/ai`](./packages/ai) | 1,512 | ✅ | 19 文件 | 占位桶（断链随批次恢复） |
 | [`@yyc3/music`](./packages/music) | 417 | ✅ | 2 文件 | **4 组件收敛导出** |
 | [`@yyc3/admin`](./packages/admin) | 279 | ✅ | 3 文件 | 占位桶（lib/design-system 已随迁） |
