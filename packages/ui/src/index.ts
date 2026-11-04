@@ -213,6 +213,17 @@ export {
   type FooterProps as ClawFooterProps,
   type FooterColumn as ClawFooterColumn,
 } from "./claw"
+export {
+  Header as ClawHeader,
+  type HeaderProps as ClawHeaderProps,
+  type NavItem as ClawNavItem,
+} from "./claw"
+export {
+  Sidebar as ClawSidebar,
+  type SidebarProps as ClawSidebarProps,
+  type SidebarItem as ClawSidebarItem,
+  type SidebarSection as ClawSidebarSection,
+} from "./claw"
 export { Layout as ClawLayout, Container as ClawContainer } from "./claw"
 export type {
   LayoutProps as ClawLayoutProps,
