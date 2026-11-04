@@ -3,7 +3,7 @@ file: MIGRATION_PLAN.md
 title: YYC³ 组件库拆分迁移计划 v2.1 — 双源重定界 · 存量定版 · 七阶段推进
 description: 基于 2026-11-03 真实主库勘误修订：双源结构（主库十池按需抽取 + personal 副本五块精准迁移）、权威副本策略、Phase 0~7 七阶段推进计划与验收标准
 author: YYC³ Team <admin@0379.email>
-version: v2.1.1
+version: v2.1.2
 created: 2026-07-25
 updated: 2026-11-03
 status: active
@@ -183,6 +183,24 @@ review_status: reviewed
 
 ---
 
+## 五A、Q1 质量门修订与测试债登记簿（v2.1.2，2026-11-04）
+
+**门定义修订**：Q1（E1 放行条件）= `pnpm build` 全绿 **且** 可运行测试全绿 **且** 结构性阻断文件清单入册并绑定抽取批次。修订理由：剩余失败的修复方式与滚动抽取是同一件事（以权威副本对齐组件/测试代差），坚持绝对全绿将自我死锁。
+
+**基线（2026-11-04，速修后）**：build ✅ EXIT=0；test **364✅ / 50❌**（37 文件：29 全绿 / 8 文件在册）。
+
+**测试债登记簿（8 文件 → 绑定批次）**：
+
+| 文件 | 根因 | 绑定批次（权威副本源） |
+| --- | --- | --- |
+| admin `__tests__`×3 | 组件代差：测试断言「言语云」版 UI 文本，现 header 为另一版本；lib/design-system 已恢复（← UI-9/YYC3-JINLAN-Admin/lib）解锁加载 | admin 批次（UI-9/YYC3-JINLAN-Admin） |
+| ai `store/app-store.test.ts` | 版本代差：现 store 无 activeModule/module-system 架构 | ai 批次（UI-9 对应项目配套测试版） |
+| education intelligent-ai-widget×4 | `autonomous-engine` 兄弟子系统未随迁（3 加载阻断）+ virtualized-list 组件缺 null 守卫（21 断言） | education 批次（autonomous-engine 定位随批次 D0） |
+
+**Phase 0 扫描归档**：Mimosa deep scan `scan-2026-11-03T22-24-54.273Z-5fcae1f1b9da`（seal sha256:9893…c5aa）38 high。分诊（2026-11-04）：**真实凭据 1**（`packages/ai/src/api/admin/setup/route.ts:12` 管理员口令已入 git 历史 → 立即轮换 + 改环境变量注入）；占位/误报 23；SSRF/穿越/注入/弱加密 14 随批次修复；**Phase 7 publish 前 findings 清零为发布硬门**。
+
+---
+
 ## 变更历史
 
 | 版本 | 日期 | 变更内容 | 作者 |
@@ -191,6 +209,7 @@ review_status: reviewed
 | v2.0.0 | 2026-11-03 | 依（勘误前的）评估报告重写：迁移源误定界为 personal 副本五块素材；存量 12 域定版；六阶段计划 | YYC³ Team |
 | v2.1.0 | 2026-11-03 | 依评估报告 v2.0.0 勘误修订：确立双源结构（主库十池按需抽取 + personal 五块）；权威副本策略（UI-9＞UI-8＞…）；新增 Phase 2 普查甄别，原阶段顺延为 3~7；G9 绝对路径铁律 | YYC³ Team |
 | v2.1.1 | 2026-11-03 | §五挂接《YYC3-组件拆分-执行衔接手册》为操作级规程入口 | YYC³ Team |
+| v2.1.2 | 2026-11-04 | Phase 0/1 收口：Q1 门定义修订（可运行全绿+阻断清单绑定批次）；速修基线 364✅/50❌；测试债登记簿（8 文件→3 批次）；Mimosa 38 findings 分诊归档（真钥 1 待轮换） | YYC³ Team |
 
 ---
 

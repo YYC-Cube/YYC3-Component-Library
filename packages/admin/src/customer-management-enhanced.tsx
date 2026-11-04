@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { EnhancedCard } from "@yyc3/ui/enhanced-card"
 import { EnhancedButton } from "@yyc3/ui/enhanced-button"
 import { PageContainer } from "@/components/layout/page-container"
-import { commonStyles } from "@yyc3/lib/design-system"
+import { commonStyles } from "../lib/design-system"
 import {
   Search,
   Plus,

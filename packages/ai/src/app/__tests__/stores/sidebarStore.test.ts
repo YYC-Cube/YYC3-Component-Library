@@ -83,17 +83,34 @@ describe("sidebarStore", () => {
   });
 
   it("renameFileNode renames a node", () => {
-    getState().renameFileNode("root-readme", "CHANGELOG.md");
-    const node = getState().fileTree.find((n) => n.id === "root-readme");
+    // API 对齐（Phase 1 速修）：种子树无 root-readme，改用实际文件节点 app-tsx（App.tsx，深层需递归查找）
+    const findDeep = (
+      nodes: { id: string; children?: unknown[] }[],
+      id: string,
+    ): { id: string; name?: string } | undefined => {
+      for (const n of nodes) {
+        if (n.id === id) return n as { id: string; name?: string };
+        if (n.children) {
+          const r = findDeep(n.children as { id: string; children?: unknown[] }[], id);
+          if (r) return r;
+        }
+      }
+      return undefined;
+    };
+    getState().renameFileNode("app-tsx", "CHANGELOG.md");
+    const node = findDeep(getState().fileTree, "app-tsx");
     expect(node?.name).toBe("CHANGELOG.md");
+    // 还原，避免影响后续用例
+    getState().renameFileNode("app-tsx", "App.tsx");
   });
 
   /* ─── Search ─── */
 
   it("performSearch returns matching files", () => {
+    // API 对齐（Phase 1 速修）：模糊搜索小写匹配会先命中文件夹 "app"，改为断言结果集含 App.tsx
     getState().performSearch("App");
     expect(getState().searchResults.length).toBeGreaterThan(0);
-    expect(getState().searchResults[0].title).toContain("App");
+    expect(getState().searchResults.some((r) => r.title === "App.tsx")).toBe(true);
   });
 
   it("clearSearch resets results", () => {

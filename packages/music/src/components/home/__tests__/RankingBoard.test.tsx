@@ -1,3 +1,5 @@
+// API 对齐（Phase 1 速修）：jest 全局 → vitest 显式导入
+import { describe, it, expect } from "vitest"
 import { render, screen } from "@testing-library/react"
 import RankingBoard from "../RankingBoard"
 

@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from "@yyc3/ui/dialog"
 import { Label } from "@yyc3/ui/label"
-import { commonStyles, getStatusStyle } from "@yyc3/lib/design-system"
+import { commonStyles, getStatusStyle } from "../lib/design-system"
 import {
   FileText,
   Clock,

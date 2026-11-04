@@ -57,8 +57,9 @@ describe("previewStore", () => {
 
     it("setDevice 应切换当前设备", () => {
       const target = presetDevices.find((d) => d.type === "mobile")!;
-      usePreviewStore.getState().setDevice(target);
-      expect(usePreviewStore.getState().currentDevice.id).toBe(target.id);
+      // API 对齐（Phase 1 速修）：setDevice → setActiveDevice(deviceId)、currentDevice → activeDeviceId
+      usePreviewStore.getState().setActiveDevice(target.id);
+      expect(usePreviewStore.getState().activeDeviceId).toBe(target.id);
     });
   });
 
@@ -77,7 +78,7 @@ describe("previewStore", () => {
   /* ─── 控制台 ─── */
   describe("控制台", () => {
     it("addConsoleEntry 应添加控制台条目", () => {
-      usePreviewStore.getState().addConsoleEntry("log", "test message");
+      usePreviewStore.getState().addConsoleEntry({ level: "log", message: "test message" });
       const entries = usePreviewStore.getState().consoleEntries;
       expect(entries.length).toBe(1);
       expect(entries[0].message).toBe("test message");
@@ -85,8 +86,8 @@ describe("previewStore", () => {
     });
 
     it("clearConsole 应清空控制台", () => {
-      usePreviewStore.getState().addConsoleEntry("log", "msg1");
-      usePreviewStore.getState().addConsoleEntry("error", "msg2");
+      usePreviewStore.getState().addConsoleEntry({ level: "log", message: "msg1" });
+      usePreviewStore.getState().addConsoleEntry({ level: "error", message: "msg2" });
       usePreviewStore.getState().clearConsole();
       expect(usePreviewStore.getState().consoleEntries.length).toBe(0);
     });
@@ -94,7 +95,7 @@ describe("previewStore", () => {
     it("应支持不同级别的控制台消息", () => {
       const levels = ["log", "warn", "error", "info"] as const;
       levels.forEach((level) => {
-        usePreviewStore.getState().addConsoleEntry(level, `${level} message`);
+        usePreviewStore.getState().addConsoleEntry({ level, message: `${level} message` });
       });
       const entries = usePreviewStore.getState().consoleEntries;
       expect(entries.length).toBe(levels.length);

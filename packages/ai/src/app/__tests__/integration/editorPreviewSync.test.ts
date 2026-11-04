@@ -63,17 +63,17 @@ describe("编辑器↔预览同步集成测试", () => {
 
       // 切换到手机
       const mobile = presetDevices.find((d) => d.type === "mobile")!;
-      usePreviewStore.getState().setDevice(mobile);
+      usePreviewStore.getState().setActiveDevice(mobile.id);
       expect(usePreviewStore.getState().code).toBe(code);
 
       // 切换到平板
       const tablet = presetDevices.find((d) => d.type === "tablet")!;
-      usePreviewStore.getState().setDevice(tablet);
+      usePreviewStore.getState().setActiveDevice(tablet.id);
       expect(usePreviewStore.getState().code).toBe(code);
 
       // 切换回桌面
       const desktop = presetDevices.find((d) => d.type === "desktop")!;
-      usePreviewStore.getState().setDevice(desktop);
+      usePreviewStore.getState().setActiveDevice(desktop.id);
       expect(usePreviewStore.getState().code).toBe(code);
     });
 
@@ -105,7 +105,7 @@ describe("编辑器↔预览同步集成测试", () => {
     });
 
     it("控制台错误应被捕获", () => {
-      usePreviewStore.getState().addConsoleEntry("error", "Uncaught TypeError");
+      usePreviewStore.getState().addConsoleEntry({ level: "error", message: "Uncaught TypeError" });
       const entries = usePreviewStore.getState().consoleEntries;
       expect(entries.length).toBe(1);
       expect(entries[0].level).toBe("error");
@@ -125,8 +125,10 @@ describe("编辑器↔预览同步集成测试", () => {
   describe("工作区上下文", () => {
     it("光标位置更新应正确记录", () => {
       useWorkspaceContextStore.getState().updateCursor("/src/app/App.tsx", 10, 5);
+      // API 对齐（Phase 1 速修）：activeCursor → currentSession.openFiles 内的 cursor
       const ctx = useWorkspaceContextStore.getState();
-      expect(ctx.activeCursor).toBeDefined();
+      const f = ctx.currentSession.openFiles.find((x) => x.filePath === "/src/app/App.tsx");
+      expect(f?.cursor).toEqual({ line: 10, column: 5 });
     });
 
     it("滚动位置更新应正确记录", () => {
