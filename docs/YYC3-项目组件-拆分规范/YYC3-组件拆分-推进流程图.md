@@ -3,7 +3,7 @@ file: YYC3-组件拆分-推进流程图.md
 title: YYC³ 组件拆分推进流程图 — 总览流程 · 阶段子图 · 决策门 · 单组件 SOP
 description: YYC3-Component-Library 拆分迁移执行母版（v1.1.0 勘误版）：双源结构总览流程图、Phase 0~7 阶段子图、四大决策门（D0 权威副本甄别 / D1 shadcn 去重 / D2 core 处置 / D3 归档裁决）、单组件迁移 SOP 微流程与状态总览表
 author: YYC³ Team <admin@0379.email>
-version: v1.1.3
+version: v1.1.4
 created: 2026-11-03
 updated: 2026-11-03
 status: active
@@ -218,7 +218,7 @@ flowchart TD
 | Phase 3 | Claw UI + 设计文档迁移（源B S1/S5） | ⏳ 待开始 | `░░░░░░░░░░` 0% | 双主题 story 演示 |
 | Phase 4 | shadcn 拷贝去重（源B S2） | ⏳ 待开始 | `░░░░░░░░░░` 0% | 56 行 diff 清单留档 |
 | Phase 5 | web-ui + core 决策（源B S3） | ⏳ 待开始 | `░░░░░░░░░░` 0% | D2 裁决 + hooks 单测 |
-| Phase 6 | 归档裁决（源B S4） | ⏳ 待开始 | `░░░░░░░░░░` 0% | D3 结论留档 |
+| Phase 6 | 归档裁决（源B S4） | ✅ 完成 | `██████████` 100% | D3 弃迁·关闭（karbon=应用残件非布局件+三路断链，计划 v2.1.4 登记） |
 | Phase 7 | 应用落地与发包 | ⏳ 待开始 | `░░░░░░░░░░` 0% | changesets 演练成功 |
 | 滚动 | 主库抽取批次（源A，过 D0 + SOP） | 🔄 首批已入 | `██░░░░░░░░` 20% | 批次 1：@yyc3/lib v0.1.0 ✅（UI-8 utils，18 测试）；批次 2 候选：hooks/types/error-handling |
 | 终验 | 全链路闭环验收 | ⏳ 待开始 | `░░░░░░░░░░` 0% | 闭环提示词执行通过 |
