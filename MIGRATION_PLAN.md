@@ -3,7 +3,7 @@ file: MIGRATION_PLAN.md
 title: YYC³ 组件库拆分迁移计划 v2.1 — 双源重定界 · 存量定版 · 七阶段推进
 description: 基于 2026-11-03 真实主库勘误修订：双源结构（主库十池按需抽取 + personal 副本五块精准迁移）、权威副本策略、Phase 0~7 七阶段推进计划与验收标准
 author: YYC³ Team <admin@0379.email>
-version: v2.1.3
+version: v2.1.4
 created: 2026-07-25
 updated: 2026-11-03
 status: active
@@ -211,6 +211,7 @@ review_status: reviewed
 | v2.1.1 | 2026-11-03 | §五挂接《YYC3-组件拆分-执行衔接手册》为操作级规程入口 | YYC³ Team |
 | v2.1.2 | 2026-11-04 | Phase 0/1 收口：Q1 门定义修订（可运行全绿+阻断清单绑定批次）；速修基线 364✅/50❌；测试债登记簿（8 文件→3 批次）；Mimosa 38 findings 分诊归档（真钥 1 待轮换） | YYC³ Team |
 | v2.1.3 | 2026-11-04 | 分诊结论更新：Supabase 真钥经库主确认属废弃项目，风险关闭；route.ts 口令改环境变量注入（发布硬门对应项清零） | YYC³ Team |
+| v2.1.4 | 2026-11-04 | **D3 归档裁决：karbon-navigation 弃迁·关闭**——9 件（2,393 行）为 Karbon 应用页面残件（ClientApp/EnterpriseApp/三模式页）而非布局组件，与 layouts 域定位不符；内部引用三路断裂（./components/ ./ui/ ./nara/），修复成本＞价值；已下线归档件，权威副本仍在 personal 副本原位只读留存。Phase 6 就此完结（唯一议题即 D3） | YYC³ Team |
 
 ---
 
