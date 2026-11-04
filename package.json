@@ -51,6 +51,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.2.1",
     "@vitest/browser-playwright": "^4.1.10",
+    "@vitest/coverage-istanbul": "^5.1.0",
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^9",
     "eslint-plugin-storybook": "^10.5.4",
@@ -67,17 +68,6 @@
     "pnpm": ">=8.0.0"
   },
   "packageManager": "pnpm@8.15.0",
-  "pnpm": {
-    "overrides": {
-      "react": "19.3.1",
-      "react-dom": "19.3.1"
-    }
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
-  },
   "pnpm": {
     "overrides": {
       "esbuild@>=0.27.3 <0.28.1": ">=0.28.1",
@@ -112,5 +102,10 @@
       "minimatch@<11.0.1": ">=11.0.1",
       "glob@>=9.0.0 <=14.0.1": ">=14.0.2"
     }
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }

@@ -20,8 +20,14 @@
   },
   "devDependencies": {
     "@types/react": "^19",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "tsup": "^8.3.0",
     "typescript": "^5.9"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
   },
   "keywords": ["yyc3", "utils", "validation", "zero-dependency"],
   "author": "YYC³ Team <admin@0379.email>",
