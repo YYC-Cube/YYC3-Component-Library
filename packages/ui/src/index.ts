@@ -202,6 +202,17 @@ export {
   type CardProps as ClawCardProps,
   type CardShadow as ClawCardShadow,
 } from "./claw"
+export {
+  Modal as ClawModal,
+  type ModalProps as ClawModalProps,
+  type ModalAnimation as ClawModalAnimation,
+  type ModalPreset as ClawModalPreset,
+} from "./claw"
+export {
+  Footer as ClawFooter,
+  type FooterProps as ClawFooterProps,
+  type FooterColumn as ClawFooterColumn,
+} from "./claw"
 export { Layout as ClawLayout, Container as ClawContainer } from "./claw"
 export type {
   LayoutProps as ClawLayoutProps,
