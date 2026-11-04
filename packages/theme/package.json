@@ -1,22 +1,32 @@
 {
   "name": "@yyc3/theme",
-  "version": "2.0.0",
-  "description": "YYC³ 主题系统 - 22 套主题 + OKLCH 色彩空间",
-  "main": "./dist/index.css",
+  "version": "2.1.0",
+  "description": "YYC³ 主题系统 - 全局样式 + Claw 设计令牌（赛博朋克/液态玻璃双主题）",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.css",
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/index.css",
     "./variables": "./dist/variables.css"
   },
   "files": ["dist", "src"],
   "scripts": {
-    "build": "postcss src/index.css -o dist/index.css",
-    "dev": "postcss src/index.css -o dist/index.css --watch",
-    "lint": "stylelint 'src/**/*.css'"
+    "build": "tsup && postcss src/index.css -o dist/index.css",
+    "dev": "tsup --watch",
+    "lint": "stylelint 'src/**/*.css'",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "postcss": "^8.5",
     "postcss-cli": "^11.0.0",
     "stylelint": "^16.0.0",
-    "tailwindcss": "^4.1.9"
+    "tailwindcss": "^4.1.9",
+    "tsup": "^8.3.0",
+    "typescript": "^5.9"
   }
 }

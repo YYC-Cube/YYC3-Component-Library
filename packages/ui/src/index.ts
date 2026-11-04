@@ -177,3 +177,36 @@ export { BarChart, LineChart, ChartContainer, ChartTooltip, ChartTooltipContent 
 
 // 工具函数（Phase 1：随冒烟测试补导出——shadcn 惯例 cn 随桶导出；utils 位于包根 lib/）
 export { cn, formatDate } from "../lib/utils"
+
+// ============================================================
+// YYC³ Claw UI（Phase 3a · S1 迁入 · 2026-11-04）
+// 自研零依赖双主题组件系，与 shadcn 同名件以 Claw 前缀区分（D1 决策）
+// 3a：Button / Layout(+Header/Sider/Content/Footer) / Container / 主题上下文 / 设计令牌 re-export
+// 3b 待入：Input / Card / Modal / Header / Sidebar / Footer
+// ============================================================
+export {
+  Button as ClawButton,
+  type ButtonProps as ClawButtonProps,
+  type ButtonVariant as ClawButtonVariant,
+  type ButtonSize as ClawButtonSize,
+} from "./claw"
+export { Layout as ClawLayout, Container as ClawContainer } from "./claw"
+export type {
+  LayoutProps as ClawLayoutProps,
+  ContainerProps as ClawContainerProps,
+} from "./claw"
+export {
+  YYC3ThemeProvider,
+  useYYC3Theme,
+  type YYC3Theme,
+} from "./claw"
+// 设计令牌（真身 @yyc3/theme，经 claw 薄壳转发，方便 Claw 消费者单口进出）
+export {
+  getThemeTokens,
+  injectThemeCSSVars,
+  breakpoints as clawBreakpoints,
+  cx as clawCx,
+  mergeStyles as clawMergeStyles,
+  isCyberpunk,
+  type ThemeVariables as ClawThemeVariables,
+} from "./claw/theme-tokens"
