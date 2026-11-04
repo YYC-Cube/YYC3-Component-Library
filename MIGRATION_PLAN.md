@@ -3,7 +3,7 @@ file: MIGRATION_PLAN.md
 title: YYC³ 组件库拆分迁移计划 v2.1 — 双源重定界 · 存量定版 · 七阶段推进
 description: 基于 2026-11-03 真实主库勘误修订：双源结构（主库十池按需抽取 + personal 副本五块精准迁移）、权威副本策略、Phase 0~7 七阶段推进计划与验收标准
 author: YYC³ Team <admin@0379.email>
-version: v2.1.2
+version: v2.1.3
 created: 2026-07-25
 updated: 2026-11-03
 status: active
@@ -197,7 +197,7 @@ review_status: reviewed
 | ai `store/app-store.test.ts` | 版本代差：现 store 无 activeModule/module-system 架构 | ai 批次（UI-9 对应项目配套测试版） |
 | education intelligent-ai-widget×4 | `autonomous-engine` 兄弟子系统未随迁（3 加载阻断）+ virtualized-list 组件缺 null 守卫（21 断言） | education 批次（autonomous-engine 定位随批次 D0） |
 
-**Phase 0 扫描归档**：Mimosa deep scan `scan-2026-11-03T22-24-54.273Z-5fcae1f1b9da`（seal sha256:9893…c5aa）38 high。分诊（2026-11-04）：**真实凭据 1**（`packages/ai/src/api/admin/setup/route.ts:12` 管理员口令已入 git 历史 → 立即轮换 + 改环境变量注入）；占位/误报 23；SSRF/穿越/注入/弱加密 14 随批次修复；**Phase 7 publish 前 findings 清零为发布硬门**。
+**Phase 0 扫描归档**：Mimosa deep scan `scan-2026-11-03T22-24-54.273Z-5fcae1f1b9da`（seal sha256:9893…c5aa）38 high。分诊（2026-11-04）：真实凭据 1（`packages/ai/src/api/admin/setup/route.ts` 管理员口令）——**经库主确认该 Supabase 项目已废弃、账号停用，风险关闭、无需轮换**；代码侧已改环境变量注入（`ADMIN_SETUP_EMAIL/PASSWORD`，git 历史中的旧值随项目废弃失效）；占位/误报 23；SSRF/穿越/注入/弱加密 14 随批次修复；**Phase 7 publish 前 findings 清零为发布硬门**。
 
 ---
 
@@ -210,6 +210,7 @@ review_status: reviewed
 | v2.1.0 | 2026-11-03 | 依评估报告 v2.0.0 勘误修订：确立双源结构（主库十池按需抽取 + personal 五块）；权威副本策略（UI-9＞UI-8＞…）；新增 Phase 2 普查甄别，原阶段顺延为 3~7；G9 绝对路径铁律 | YYC³ Team |
 | v2.1.1 | 2026-11-03 | §五挂接《YYC3-组件拆分-执行衔接手册》为操作级规程入口 | YYC³ Team |
 | v2.1.2 | 2026-11-04 | Phase 0/1 收口：Q1 门定义修订（可运行全绿+阻断清单绑定批次）；速修基线 364✅/50❌；测试债登记簿（8 文件→3 批次）；Mimosa 38 findings 分诊归档（真钥 1 待轮换） | YYC³ Team |
+| v2.1.3 | 2026-11-04 | 分诊结论更新：Supabase 真钥经库主确认属废弃项目，风险关闭；route.ts 口令改环境变量注入（发布硬门对应项清零） | YYC³ Team |
 
 ---
 
