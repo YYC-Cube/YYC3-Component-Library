@@ -16,7 +16,7 @@ import {
 import { Label } from "@yyc3/ui/label"
 import { Progress } from "@yyc3/ui/progress"
 import { Camera, Upload, X, RotateCw, ZoomIn, ZoomOut } from "lucide-react"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from '@yyc3/ui'
 
 interface AvatarUploadProps {
   currentAvatar?: string

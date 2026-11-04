@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3
 import { Button } from "@yyc3/ui/button"
 import { Badge } from "@yyc3/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from "@yyc3/ui"
 import {
   Server,
   Database,

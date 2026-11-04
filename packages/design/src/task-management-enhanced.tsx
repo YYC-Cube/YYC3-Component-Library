@@ -5,10 +5,44 @@ import { Button } from "@yyc3/ui/button"
 import { Input } from "@yyc3/ui/input"
 import { Badge } from "@yyc3/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { EnhancedCard } from "@yyc3/ui/enhanced-card"
-import { EnhancedButton } from "@yyc3/ui/enhanced-button"
-import { PageContainer } from "@/components/layout/page-container"
-import { commonStyles } from "@yyc3/lib/design-system"
+// EnhancedCard/EnhancedButton 本地薄包装（原 @yyc3/ui/enhanced-* 源件待 ui 批次补建）
+import { Card as EnhancedCardBase, CardHeader, CardTitle, CardDescription, CardContent } from "@yyc3/ui/card"
+import type { LucideIcon } from "lucide-react"
+
+function EnhancedButton({
+  icon: Icon,
+  children,
+  ...props
+}: React.ComponentProps<typeof Button> & { icon?: LucideIcon }) {
+  return (
+    <Button {...props}>
+      {Icon && <Icon className="mr-1 h-4 w-4" />}
+      {children}
+    </Button>
+  )
+}
+
+function EnhancedCard({
+  title,
+  description,
+  children,
+  ...props
+}: React.ComponentProps<typeof EnhancedCardBase> & { title?: string; description?: string }) {
+  return (
+    <EnhancedCardBase {...props}>
+      {title && (
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          {description && <CardDescription>{description}</CardDescription>}
+        </CardHeader>
+      )}
+      <CardContent>{children}</CardContent>
+    </EnhancedCardBase>
+  )
+}
+
+import { PageContainer } from "./layout/page-container"
+import { commonStyles } from "../lib/design-system"
 import {
   Search,
   Plus,
@@ -27,7 +61,7 @@ import {
   Timer,
   BarChart3,
 } from "lucide-react"
-import { getProgressColor } from "@yyc3/lib/design-system"
+import { getProgressColor } from "../lib/design-system"
 
 const tasks = [
   {
@@ -128,7 +162,7 @@ export function TaskManagementEnhanced() {
         {taskStats.map((stat, index) => {
           const Icon = stat.icon
           return (
-            <EnhancedCard key={index} variant="glass">
+            <EnhancedCard key={index}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 mb-1">{stat.label}</p>
@@ -151,7 +185,7 @@ export function TaskManagementEnhanced() {
       </div>
 
       {/* 主要内容区域 */}
-      <EnhancedCard variant="gradient">
+      <EnhancedCard>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="flex items-center justify-between mb-6">
             <TabsList className="bg-sky-100/50 border border-sky-200">

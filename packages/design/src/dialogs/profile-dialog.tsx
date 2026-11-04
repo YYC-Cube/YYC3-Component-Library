@@ -18,7 +18,7 @@ import { Badge } from "@yyc3/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { Camera, Mail, Phone, MapPin, Calendar, Briefcase, Save, X } from "lucide-react"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from '@yyc3/ui'
 
 interface ProfileDialogProps {
   open: boolean

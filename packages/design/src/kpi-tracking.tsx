@@ -19,7 +19,7 @@ import {
   Cell,
 } from "recharts"
 import { TrendingUp, TrendingDown, Target, AlertTriangle, CheckCircle, Clock } from "lucide-react"
-import { getProgressColor } from "@yyc3/lib/design-system"
+import { getProgressColor } from '../lib/design-system'
 
 interface KPI {
   id: string

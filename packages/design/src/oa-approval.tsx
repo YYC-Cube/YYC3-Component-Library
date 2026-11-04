@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from "@yyc3/ui/dialog"
 import { Label } from "@yyc3/ui/label"
-import { commonStyles, getStatusStyle } from "@yyc3/lib/design-system"
+import { commonStyles, getStatusStyle } from '../lib/design-system'
 import {
   FileText,
   Clock,
@@ -281,7 +281,7 @@ export function OAApproval() {
       </div>
 
       {/* 主要内容区域 */}
-      <Card className={commonStyles.card}>
+      <Card className={commonStyles.card.base}>
         <CardHeader className="border-b border-sky-100 bg-gradient-to-r from-sky-50/50 to-blue-50/30">
           <div className="flex items-center justify-between">
             <div>

@@ -106,7 +106,7 @@ const separatorOptions = [
 ]
 
 // 示例翻译数据
-const sampleTranslations = {
+const sampleTranslations: Record<string, Record<string, string>> = {
   "zh-CN": {
     "app.title": "客户服务中心",
     "app.welcome": "欢迎使用我们的系统",

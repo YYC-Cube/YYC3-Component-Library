@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { Button } from "@yyc3/ui/button"
 import { Badge } from "@yyc3/ui/badge"
-import { EnhancedProgress } from "@yyc3/ui/enhanced-progress"
+import { Progress as EnhancedProgress } from "@yyc3/ui/progress"
 import { Star, ThumbsUp, ThumbsDown, MessageSquare, TrendingUp, Award, AlertCircle } from "lucide-react"
 
 interface SatisfactionSurvey {

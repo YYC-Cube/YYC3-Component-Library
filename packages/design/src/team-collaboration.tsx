@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
 import { Textarea } from "@yyc3/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from '@yyc3/ui'
 import {
   Users,
   MessageSquare,

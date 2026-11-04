@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3
 import { Button } from "@yyc3/ui/button"
 import { Badge } from "@yyc3/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { EnhancedProgress } from "@yyc3/ui/enhanced-progress"
+import { Progress as EnhancedProgress } from '@yyc3/ui/progress'
 import {
   DollarSign,
   TrendingUp,
@@ -248,12 +248,8 @@ export function FinanceModule() {
                           </div>
                         </div>
                       </div>
-                      <EnhancedProgress
-                        value={category.percentage}
-                        status={
-                          category.percentage > 90 ? "critical" : category.percentage > 80 ? "warning" : "excellent"
-                        }
-                      />
+                      {/* 原 EnhancedProgress 的 status 视觉语义降级（待 ui 批次补建增强件） */}
+                      <EnhancedProgress value={category.percentage} />
                     </div>
                   ))}
                 </div>

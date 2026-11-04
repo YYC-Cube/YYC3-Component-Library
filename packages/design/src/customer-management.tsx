@@ -34,7 +34,7 @@ import {
   MoreHorizontal,
 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { getProgressColor } from "@yyc3/lib/design-system"
+import { getProgressColor } from '../lib/design-system'
 
 interface Customer {
   id: string

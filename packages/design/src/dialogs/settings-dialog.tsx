@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { Slider } from "@yyc3/ui/slider"
 import { Settings, Palette, Bell, Shield, Monitor } from "lucide-react"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from '@yyc3/ui'
 
 interface SettingsDialogProps {
   open: boolean
