@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3
 import { Button } from "@yyc3/ui/button"
 import { Badge } from "@yyc3/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { EnhancedProgress } from "@yyc3/ui/enhanced-progress"
+import { Progress as EnhancedProgress } from '@yyc3/ui/progress'
 import { Target, TrendingUp, Users, Calendar, Plus, Edit, Eye, Award } from "lucide-react"
 
 interface OKR {
@@ -295,7 +295,7 @@ export function OKRManagement() {
                   <div className="text-right">
                     <div className="text-2xl font-bold text-slate-800">{okr.progress}%</div>
                     <div className="w-20 mt-1">
-                      <EnhancedProgress value={okr.progress} size="sm" />
+                      <EnhancedProgress value={okr.progress} />
                     </div>
                   </div>
                 </div>
@@ -324,7 +324,7 @@ export function OKRManagement() {
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-24">
-                            <EnhancedProgress value={kr.progress} status={kr.status} size="sm" />
+                            <EnhancedProgress value={kr.progress} />
                           </div>
                           <span className="text-sm font-medium text-slate-700">{kr.progress}%</span>
                         </div>

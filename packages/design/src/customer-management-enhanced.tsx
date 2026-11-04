@@ -1,13 +1,48 @@
 "use client"
 
 import { useState } from "react"
+import * as React from "react"
+import type { LucideIcon } from "lucide-react"
+import { Button } from "@yyc3/ui/button"
 import { Input } from "@yyc3/ui/input"
 import { Badge } from "@yyc3/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { EnhancedCard } from "@yyc3/ui/enhanced-card"
-import { EnhancedButton } from "@yyc3/ui/enhanced-button"
-import { PageContainer } from "@/components/layout/page-container"
-import { commonStyles } from "@yyc3/lib/design-system"
+// EnhancedCard 降级为 ui Card（原源件待 ui 批次补建），支持 title/description 快捷头
+import { Card as EnhancedCardBase, CardHeader, CardTitle, CardDescription, CardContent } from "@yyc3/ui/card"
+
+function EnhancedCard({
+  title,
+  description,
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { title?: string; description?: string }) {
+  return (
+    <EnhancedCardBase {...props}>
+      {title && (
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          {description && <CardDescription>{description}</CardDescription>}
+        </CardHeader>
+      )}
+      <CardContent>{children}</CardContent>
+    </EnhancedCardBase>
+  )
+}
+// EnhancedButton 本地薄包装（icon 扩展 prop，基于 ui Button）
+function EnhancedButton({
+  icon: Icon,
+  children,
+  ...props
+}: React.ComponentProps<typeof Button> & { icon?: LucideIcon }) {
+  return (
+    <Button {...props}>
+      {Icon && <Icon className="mr-1 h-4 w-4" />}
+      {children}
+    </Button>
+  )
+}
+import { PageContainer } from "./layout/page-container"
+import { commonStyles } from '../lib/design-system'
 import {
   Search,
   Plus,
@@ -103,7 +138,7 @@ export function CustomerManagementEnhanced() {
         {customerStats.map((stat, index) => {
           const Icon = stat.icon
           return (
-            <EnhancedCard key={index} variant="glass">
+            <EnhancedCard key={index}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600 mb-1">{stat.label}</p>
@@ -126,7 +161,7 @@ export function CustomerManagementEnhanced() {
       </div>
 
       {/* 主要内容区域 */}
-      <EnhancedCard variant="gradient">
+      <EnhancedCard>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="flex items-center justify-between mb-6">
             <TabsList className="bg-sky-100/50 border border-sky-200">
@@ -152,21 +187,21 @@ export function CustomerManagementEnhanced() {
                 />
               </div>
               <EnhancedButton
-                variant="primary"
+                variant="default"
                 icon={Filter}
                 className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
               >
                 筛选
               </EnhancedButton>
               <EnhancedButton
-                variant="primary"
+                variant="default"
                 icon={Download}
                 className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
               >
                 导出
               </EnhancedButton>
               <EnhancedButton
-                variant="primary"
+                variant="default"
                 icon={Plus}
                 className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
               >
@@ -241,7 +276,7 @@ export function CustomerManagementEnhanced() {
                       </div>
                       <div className="flex items-center space-x-2">
                         <EnhancedButton
-                          variant="primary"
+                          variant="default"
                           size="sm"
                           icon={Eye}
                           className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
@@ -249,7 +284,7 @@ export function CustomerManagementEnhanced() {
                           查看
                         </EnhancedButton>
                         <EnhancedButton
-                          variant="primary"
+                          variant="default"
                           size="sm"
                           icon={MessageCircle}
                           className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"
@@ -257,7 +292,7 @@ export function CustomerManagementEnhanced() {
                           沟通
                         </EnhancedButton>
                         <EnhancedButton
-                          variant="primary"
+                          variant="default"
                           size="sm"
                           icon={Edit}
                           className="bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white"

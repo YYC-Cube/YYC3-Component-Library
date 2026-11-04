@@ -1,7 +1,7 @@
 "use client"
 
 import type { ReactNode } from "react"
-import { commonStyles } from "@yyc3/lib/design-system"
+import { commonStyles } from '../../lib/design-system'
 
 interface PageContainerProps {
   title: string

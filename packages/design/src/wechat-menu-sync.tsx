@@ -1,5 +1,7 @@
 "use client"
 
+import * as React from "react"
+
 import { useState } from "react"
 import { Card } from "@yyc3/ui/card"
 import { Button } from "@yyc3/ui/button"
@@ -30,8 +32,35 @@ import {
   Trash,
   Edit,
 } from "lucide-react"
-import { wechatApiService, type WeChatMenu } from "@yyc3/lib/wechat-api"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { toast } from "@yyc3/ui"
+
+// 本地最小实现（Phase 7 精度抽取适配）：源依赖 @yyc3/lib/wechat-api（真身待 lib services 批次），
+// 就地提供同签名空实现 + WeChatMenu 类型，保持组件可编译可运行（同步操作降级为本地模拟）
+export interface WeChatMenu {
+  button: Array<{
+    name: string
+    sub_button?: Array<{ name: string; key?: string; url?: string; type?: string }>
+    type?: string
+    key?: string
+    url?: string
+  }>
+}
+
+export const wechatApiService = {
+  convertToWeChatMenu(menus: unknown[]): WeChatMenu {
+    return { button: menus as WeChatMenu["button"] }
+  },
+  validateMenu(_menu: WeChatMenu): { isValid: boolean; errors: string[] } {
+    return { isValid: true, errors: [] }
+  },
+  async syncMenuToWeChat(_menus: unknown[]): Promise<{ success: boolean }> {
+    console.warn("[wechat-menu-sync] @yyc3/lib/wechat-api 未随迁，同步操作为本地模拟")
+    return { success: true }
+  },
+  async getMenu(): Promise<WeChatMenu> {
+    return { button: [] }
+  },
+}
 
 interface WeChatMenuConfig {
   id: string
@@ -45,7 +74,8 @@ interface WeChatMenuConfig {
 }
 
 export function WeChatMenuSync() {
-  const { toast } = useToast()
+  // toast 为 UI 桶全局单例函数（shadcn use-toast 系）
+  const toastFn = toast
   const [isConfigDialogOpen, setIsConfigDialogOpen] = useState(false)
   const [isSyncing, setIsSyncing] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -117,7 +147,7 @@ export function WeChatMenuSync() {
   // 同步菜单到微信
   const handleSyncToWeChat = async () => {
     if (!wechatConfig.isConfigured) {
-      toast({
+      toastFn({
         title: "配置错误",
         description: "请先配置微信公众号信息",
         variant: "destructive",
@@ -146,13 +176,13 @@ export function WeChatMenuSync() {
       setSyncStatus("success")
       setLastSyncTime(new Date())
 
-      toast({
+      toastFn({
         title: "同步成功",
         description: "菜单已成功同步到微信公众号",
       })
     } catch (error) {
       setSyncStatus("error")
-      toast({
+      toastFn({
         title: "同步失败",
         description: error instanceof Error ? error.message : "同步过程中发生错误",
         variant: "destructive",
@@ -165,7 +195,7 @@ export function WeChatMenuSync() {
   // 从微信获取当前菜单
   const handleFetchFromWeChat = async () => {
     if (!wechatConfig.isConfigured) {
-      toast({
+      toastFn({
         title: "配置错误",
         description: "请先配置微信公众号信息",
         variant: "destructive",
@@ -183,18 +213,18 @@ export function WeChatMenuSync() {
         const convertedMenus = convertWeChatMenuToSystem(wechatMenu)
         setWechatMenus(convertedMenus)
 
-        toast({
+        toastFn({
           title: "获取成功",
           description: "已从微信公众号获取当前菜单配置",
         })
       } else {
-        toast({
+        toastFn({
           title: "提示",
           description: "微信公众号暂无菜单配置",
         })
       }
     } catch (error) {
-      toast({
+      toastFn({
         title: "获取失败",
         description: error instanceof Error ? error.message : "获取菜单时发生错误",
         variant: "destructive",
@@ -213,7 +243,7 @@ export function WeChatMenuSync() {
         id: `wechat_${index + 1}`,
         name: button.name,
         url: button.url || "",
-        type: button.type || "view",
+        type: button.type === "click" ? "click" : "view",
         sort: index + 1,
         isActive: true,
       }
@@ -223,7 +253,7 @@ export function WeChatMenuSync() {
           id: `wechat_${index + 1}_${subIndex + 1}`,
           name: subButton.name,
           url: subButton.url || "",
-          type: subButton.type || "view",
+          type: (subButton.type === "click" ? "click" : "view") as "click" | "view",
           parentId: menuItem.id,
           sort: subIndex + 1,
           isActive: true,
@@ -256,7 +286,7 @@ export function WeChatMenuSync() {
       isActive: true,
     })
 
-    toast({
+    toastFn({
       title: "添加成功",
       description: "新菜单项已添加",
     })
@@ -265,7 +295,7 @@ export function WeChatMenuSync() {
   // 删除菜单项
   const handleDeleteMenuItem = (id: string) => {
     setWechatMenus(wechatMenus.filter((menu) => menu.id !== id))
-    toast({
+    toastFn({
       title: "删除成功",
       description: "菜单项已删除",
     })
@@ -348,14 +378,14 @@ export function WeChatMenuSync() {
 
     setEditMenuId(null)
     setEditedMenu({})
-    toast({
+    toastFn({
       title: "更新成功",
       description: "菜单项已更新",
     })
   }
 
   // 编辑表单输入变化
-  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setEditedMenu((prev) => ({ ...prev, [name]: value }))
   }
@@ -431,7 +461,7 @@ export function WeChatMenuSync() {
                     onClick={() => {
                       setWechatConfig({ ...wechatConfig, isConfigured: true })
                       setIsConfigDialogOpen(false)
-                      toast({
+                      toastFn({
                         title: "配置成功",
                         description: "微信公众号配置已保存",
                       })

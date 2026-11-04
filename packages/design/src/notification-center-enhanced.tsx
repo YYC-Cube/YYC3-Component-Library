@@ -7,7 +7,7 @@ import { Badge } from "@yyc3/ui/badge"
 import { ScrollArea } from "@yyc3/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Bell, Check, X, AlertCircle, Info, CheckCircle, Clock, Trash2, Settings } from "lucide-react"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from '@yyc3/ui'
 
 interface Notification {
   id: string

@@ -38,8 +38,8 @@ interface ReportTemplate {
 }
 
 interface ChartData {
-  name: string
-  value: number
+  name?: string
+  value?: number
   [key: string]: any
 }
 

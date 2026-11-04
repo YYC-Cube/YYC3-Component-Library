@@ -15,7 +15,7 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from '@yyc3/ui'
 
 export function AiSmartForms() {
   const router = useRouter()

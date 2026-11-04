@@ -19,7 +19,19 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
 import { Progress } from "@yyc3/ui/progress"
 import { CheckSquare, Plus, Search, Calendar, Clock, AlertCircle, CheckCircle } from "lucide-react"
-import { getProgressColor } from "@yyc3/lib/design-system"
+
+// 本地实现（Phase 7 精度抽取适配）：源依赖 @yyc3/lib/design-system（admin 批次随迁件），
+// design 包独立使用，就地内联同款逻辑避免跨包耦合
+const getProgressColor = (progress: number, status?: string): string => {
+  if (status === "completed") return "bg-gradient-to-r from-emerald-400 to-emerald-500"
+  if (status === "cancelled") return "bg-gradient-to-r from-red-400 to-red-500"
+  if (status === "critical") return "bg-gradient-to-r from-red-400 to-red-500"
+  if (status === "warning") return "bg-gradient-to-r from-amber-400 to-amber-500"
+  if (progress >= 90) return "bg-gradient-to-r from-emerald-400 to-emerald-500"
+  if (progress >= 70) return "bg-gradient-to-r from-sky-400 to-sky-500"
+  if (progress >= 50) return "bg-gradient-to-r from-amber-400 to-amber-500"
+  return "bg-gradient-to-r from-red-400 to-red-500"
+}
 
 interface Task {
   id: string

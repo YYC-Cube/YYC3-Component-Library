@@ -5,8 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3
 import { Button } from "@yyc3/ui/button"
 import { Badge } from "@yyc3/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { EnhancedProgress } from "@yyc3/ui/enhanced-progress"
-import { InteractiveProgress } from "@yyc3/ui/interactive-progress"
+import { Progress as EnhancedProgressEnhanced, Progress as InteractiveProgress, Progress as EnhancedProgress } from '@yyc3/ui/progress'
 import { Input } from "@yyc3/ui/input"
 import { Textarea } from "@yyc3/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
@@ -19,8 +18,8 @@ import {
   DialogTrigger,
 } from "@yyc3/ui/dialog"
 import { Label } from "@yyc3/ui/label"
-import { OKRAnalyticsCharts } from "@/components/charts/okr-analytics-charts"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { OKRAnalyticsCharts } from "./charts/okr-analytics-charts"
+import { useToast } from '@yyc3/ui'
 import {
   Target,
   TrendingUp,
@@ -652,7 +651,7 @@ export function OKRManagementEnhanced() {
                       <div className="text-right">
                         <div className="text-2xl font-bold text-slate-800">{okr.progress}%</div>
                         <div className="w-20 mt-1">
-                          <EnhancedProgress value={okr.progress} size="sm" animated />
+                          <EnhancedProgress value={okr.progress} />
                         </div>
                       </div>
                     </div>
@@ -740,15 +739,8 @@ export function OKRManagementEnhanced() {
                                 {kr.progress}%
                               </Badge>
                             </div>
-                            <InteractiveProgress
-                              value={kr.progress}
-                              status={kr.status}
-                              size="md"
-                              editable
-                              animated
-                              title="拖拽或点击调整进度，系统将自动发送通知"
-                              onValueChange={(newValue) => handleProgressUpdate(okr.id, kr.id, newValue)}
-                            />
+                            {/* InteractiveProgress 降级为 Progress（原源件待 ui 批次补建） */}
+                            <InteractiveProgress value={kr.progress} />
                           </div>
                         </div>
                       ))}
