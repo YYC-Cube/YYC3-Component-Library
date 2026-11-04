@@ -79,3 +79,30 @@ export type { I18nProviderProps } from './hooks/useI18n';
 export {
   createTranslator, mergeMessages, validateMessages, extractKeys, checkConsistency,
 } from './i18n/translator';
+
+// ============================================================
+// B2b 批次（2026-11-04）：error-handling
+// 源（D0 权威副本）：UI-8/yyc3-reusable-components/packages/error-handling
+// ============================================================
+
+// 平台错误过滤器
+export {
+  PlatformErrorFilter,
+  createFigmaErrorFilter,
+  isPlatformError,
+} from './error-handling/platform-error-filter';
+export type { FilterRule, ErrorContext } from './error-handling/platform-error-filter';
+
+// 错误处理器
+export {
+  ErrorHandler,
+  LocalStorageErrorStorage,
+  getErrorHandler,
+  captureError,
+  getErrorLog,
+  getErrorStats,
+  clearErrorLog,
+  trySafe,
+  trySafeSync,
+} from './error-handling/error-handler';
+export type { ErrorStorage, ErrorHandlerConfig } from './error-handling/error-handler';
