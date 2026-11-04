@@ -1,3 +1,23 @@
+---
+file: README.md
+title: YYC³ Component Library — 统一组件库自述
+description: YYC³ 统一组件库：pnpm+Turborepo 十六包 monorepo，双源迁移与滚动抽取推进中
+author: YYC³ Team <admin@0379.email>
+version: v1.1.0
+created: 2026-11-03
+updated: 2026-11-04
+status: published
+tags: [readme, component-library, monorepo, oss]
+category: readme
+language: zh-CN
+audience: developers,managers,stakeholders
+complexity: basic
+checksum: 7ec0d553c8eeb1c2
+trace_id: TRC-20261104001
+parent_doc: MIGRATION_PLAN.md
+related_docs: [MIGRATION_PLAN.md, CONTRIBUTING.md, docs/YYC3-组件拆分-执行衔接手册.md, docs/YYC3-徽章与图标-可视化设计说明.md]
+---
+
 <p align="center">
   <img src="public/yyc3-family.png" alt="YYC³ Family" width="720">
 </p>
@@ -97,6 +117,27 @@ import { Button, Card, cn } from '@yyc3/ui'
 ## 📄 许可证
 
 [MIT](LICENSE) © 2026 YanYuCloudCube Team
+
+## 📋 变更日志
+
+### [v1.1.0] - 2026-11-04
+
+#### 新增
+- `@yyc3/lib` v0.1.0（首批滚动抽取：30+ 零依赖工具函数，18 用例）
+- 开发者文档五件套（LICENSE / CODE_OF_CONDUCT / CONTRIBUTING / SECURITY / README）+ GitHub topics ×15
+- 交互组件地图与徽章·图标设计说明文档
+
+#### 变更
+- 徽章组 11→14（+packages-16 / tests / Issues / Repo Size / PRs-welcome）
+- 包表 15→16 域实况；对齐《文档闭环 v2.1.0》（front-matter 追溯字段 + Keep-a-Changelog 变更日志）
+
+#### 修复
+- Vitest 5 兼容（storybook 工程拆分独立配置）；React 双实例统一 19.3.1
+- 依赖漏洞：生产链 `pnpm audit --prod` 清零（46→0，余 35 在 dev 工具链）
+
+### [v1.0.0] - 2026-11-03
+
+- 仓库 bootstrap（git/远程/底册）、迁移计划 v2.1、执行衔接手册、权威副本映射表、测试通道从零接通（382 用例）
 
 ---
 
