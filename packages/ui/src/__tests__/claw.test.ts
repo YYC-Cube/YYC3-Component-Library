@@ -23,6 +23,13 @@ import {
   clawCx,
   clawMergeStyles,
   isCyberpunk,
+  ButtonGroup,
+  Empty,
+  Field,
+  InputGroup,
+  Item,
+  Kbd,
+  Spinner,
 } from '../index';
 import type { YYC3Theme } from '../index';
 
@@ -447,5 +454,29 @@ describe('claw · ClawSidebar（3b-4 · Claw 主体收官）', () => {
     const item = screen.getByRole('treeitem', { name: '禁用' });
     expect(item.getAttribute('aria-disabled')).toBe('true');
     expect(screen.getByText('管理')).toBeTruthy();
+  });
+});
+
+describe('phase4 · S2 补入 7 件冒烟', () => {
+  it('导出齐全（ButtonGroup/Empty/Field/InputGroup/Item/Kbd/Spinner）', () => {
+    expect(ButtonGroup).toBeDefined();
+    expect(Empty).toBeDefined();
+    expect(Field).toBeDefined();
+    expect(InputGroup).toBeDefined();
+    expect(Item).toBeDefined();
+    expect(Kbd).toBeDefined();
+    expect(Spinner).toBeDefined();
+  });
+
+  it('Empty/Kbd 渲染 data-slot', () => {
+    render(React.createElement(Empty, { 'data-testid': 'empty' }, '暂无数据'));
+    expect(screen.getByTestId('empty').getAttribute('data-slot')).toBe('empty');
+    render(React.createElement(Kbd, null, 'Ctrl'));
+    expect(screen.getByText('Ctrl').getAttribute('data-slot')).toBe('kbd');
+  });
+
+  it('Spinner 可达性（role=status）', () => {
+    render(React.createElement(Spinner));
+    expect(screen.getByRole('status')).toBeTruthy();
   });
 });
