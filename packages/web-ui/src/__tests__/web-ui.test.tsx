@@ -12,7 +12,9 @@ import {
   useChat,
   useAgents,
   useSkills,
+  useAI,
   GlitchText,
+  NeonCard,
 } from '../index';
 import type { HubLike } from '../index';
 
@@ -99,5 +101,53 @@ describe('web-ui · GlitchText', () => {
   it('渲染文本 + aria-label + enabled=false 不动画', () => {
     render(React.createElement(GlitchText, { enabled: false }, '赛博文字'));
     expect(screen.getByLabelText('赛博文字').textContent).toContain('赛博文字');
+  });
+});
+
+describe('web-ui · 5b NeonCard / useAI', () => {
+  it('NeonCard 渲染 + 双主题 + 点击可达', () => {
+    render(
+      React.createElement(
+        React.Fragment,
+        null,
+        React.createElement(NeonCard, null, '赛博卡'),
+        React.createElement(NeonCard, { themeMode: 'liquidGlass' }, '玻璃卡'),
+        React.createElement(NeonCard, { onClick: () => void 0, ariaLabel: '可点卡' }, '按钮卡'),
+      ),
+    );
+    // 源组件无 rest 透传（技术债登记），以 data-neon-card 标记计数验证
+    expect(document.querySelectorAll('[data-neon-card]')).toHaveLength(3);
+    expect(screen.getByText('赛博卡')).toBeTruthy();
+    expect(screen.getByText('玻璃卡')).toBeTruthy();
+    expect(screen.getByRole('button', { name: '可点卡' })).toBeTruthy();
+  });
+
+  it('useAI：默认配置加载 + saveConfig 持久化', async () => {
+    const { result } = renderHook(() => useAI());
+    await waitFor(() => expect(result.current.loading).toBe(false));
+    expect(result.current.config.provider).toBe('ollama');
+    act(() =>
+      result.current.saveConfig({
+        provider: 'openai',
+        apiKey: 'sk-x',
+        baseUrl: 'https://api.example.com/v1',
+        model: 'gpt-x',
+        version: 1,
+      }),
+    );
+    expect(result.current.config.model).toBe('gpt-x');
+    expect(JSON.parse(localStorage.getItem('yyc3_ai_config') || '{}').model).toBe('gpt-x');
+    localStorage.removeItem('yyc3_ai_config');
+  });
+
+  it('useAI.chat：网络不可达走 fallback 模拟流', async () => {
+    const { result } = renderHook(() => useAI());
+    await waitFor(() => expect(result.current.loading).toBe(false));
+    const chunks: string[] = [];
+    await act(async () => {
+      await result.current.chat([{ role: 'user', content: 'hi' }], (c) => chunks.push(c));
+    });
+    expect(chunks.join('')).toContain('simulated response');
+    expect(result.current.isStreaming).toBe(false);
   });
 });
