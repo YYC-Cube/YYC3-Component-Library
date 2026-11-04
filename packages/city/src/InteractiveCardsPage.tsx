@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { ChevronDown, ChevronRight, Search } from "lucide-react"
-import { ModernInput } from "@/components/ModernInput"
-import { ModernButton } from "@/components/ModernButton"
-import { ModernCard, ModernCardContent, ModernCardHeader, ModernCardFooter } from "@/components/ModernCard"
-import { ModernTabs } from "@/components/ModernTabs"
+import { ModernInput } from "./ModernInput"
+import { ModernButton } from "./ModernButton"
+import { ModernCard, ModernCardContent, ModernCardHeader, ModernCardFooter } from "./ModernCard"
+import { ModernTabs } from "./ModernTabs"
 
 // 简化的数据结构
 interface DataItem {

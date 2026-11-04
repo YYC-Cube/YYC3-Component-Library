@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Bot, Mic, Send, X, Volume2, VolumeX, Settings } from "lucide-react"
-import { ModernCard, ModernCardHeader, ModernCardContent, ModernCardFooter } from "@/components/ModernCard"
-import { ModernButton } from "@/components/ModernButton"
-import { ModernInput } from "@/components/ModernInput"
+import { ModernCard, ModernCardHeader, ModernCardContent, ModernCardFooter } from "./ModernCard"
+import { ModernButton } from "./ModernButton"
+import { ModernInput } from "./ModernInput"
 
 interface Message {
   id: string
