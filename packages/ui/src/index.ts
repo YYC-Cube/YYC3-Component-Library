@@ -178,6 +178,26 @@ export { BarChart, LineChart, ChartContainer, ChartTooltip, ChartTooltipContent 
 // 工具函数（Phase 1：随冒烟测试补导出——shadcn 惯例 cn 随桶导出；utils 位于包根 lib/）
 export { cn, formatDate } from "../lib/utils"
 
+// Phase 4 · S2 补入（shadcn 新版件，2026-11-04，D1 清单见 docs/）
+export {
+  ButtonGroup, ButtonGroupSeparator, ButtonGroupText, buttonGroupVariants,
+} from "./button-group"
+export { Empty, EmptyHeader, EmptyTitle, EmptyDescription, EmptyContent, EmptyMedia } from "./empty"
+export {
+  Field, FieldLabel, FieldDescription, FieldError, FieldGroup,
+  FieldLegend, FieldSeparator, FieldSet, FieldContent, FieldTitle,
+} from "./field"
+export {
+  InputGroup, InputGroupAddon, InputGroupButton, InputGroupText,
+  InputGroupInput, InputGroupTextarea,
+} from "./input-group"
+export {
+  Item, ItemMedia, ItemContent, ItemActions, ItemGroup,
+  ItemSeparator, ItemTitle, ItemDescription, ItemHeader, ItemFooter,
+} from "./item"
+export { Kbd, KbdGroup } from "./kbd"
+export { Spinner } from "./spinner"
+
 // ============================================================
 // YYC³ Claw UI（Phase 3a · S1 迁入 · 2026-11-04）
 // 自研零依赖双主题组件系，与 shadcn 同名件以 Claw 前缀区分（D1 决策）
