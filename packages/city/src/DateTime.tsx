@@ -4,8 +4,8 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { Calendar, X, Gift, Star, Settings } from "lucide-react"
-import { ModernCard, ModernCardHeader, ModernCardContent } from "@/components/ModernCard"
-import { ModernButton } from "@/components/ModernButton"
+import { ModernCard, ModernCardHeader, ModernCardContent } from "./ModernCard"
+import { ModernButton } from "./ModernButton"
 
 // 在文件顶部添加类型定义
 type FestivalKey = keyof typeof festivals

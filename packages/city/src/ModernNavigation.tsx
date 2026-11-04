@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, Search, Bell, User, ChevronDown } from "lucide-react"
-import { Logo } from "@/components/Logo"
+import { Logo } from "./Logo"
 
 const navigationItems = [
   {
