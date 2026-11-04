@@ -1,0 +1,29 @@
+{
+  "name": "@yyc3/lib",
+  "version": "0.1.0",
+  "description": "YYC³ 共享功能库 — 零依赖工具函数（日期/字符串/验证/数据），首批滚动抽取自 UI-8 yyc3-reusable-components",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "tsup": "^8.3.0",
+    "typescript": "^5.9"
+  },
+  "keywords": ["yyc3", "utils", "validation", "zero-dependency"],
+  "author": "YYC³ Team <admin@0379.email>",
+  "license": "MIT"
+}
