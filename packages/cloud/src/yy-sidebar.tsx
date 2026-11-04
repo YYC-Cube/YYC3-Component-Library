@@ -1,6 +1,6 @@
 import { LayoutDashboard, ListChecks, MessageSquare, Settings, Bot } from "lucide-react"
 
-import type { MainNavItem, SidebarNavItem } from "@/types"
+import type { MainNavItem, SidebarNavItem } from "./types"
 
 interface DashboardConfig {
   mainNav: MainNavItem[]

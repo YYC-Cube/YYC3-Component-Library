@@ -66,13 +66,13 @@ const features = [
 ]
 
 function FeatureCard({ feature }: { feature: any }) {
-  const statusColors = {
+  const statusColors: Record<string, string> = {
     active: "bg-green-100 text-green-800",
     beta: "bg-yellow-100 text-yellow-800",
     "coming-soon": "bg-gray-100 text-gray-800",
   }
 
-  const statusLabels = {
+  const statusLabels: Record<string, string> = {
     active: "已发布",
     beta: "测试版",
     "coming-soon": "即将推出",

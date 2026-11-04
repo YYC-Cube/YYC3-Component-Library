@@ -30,7 +30,7 @@ import {
   type GeolocationData,
   type DeviceMotionData,
   type DeviceInfo,
-} from "@yyc3/lib/services/native-device-service"
+} from "./native-device-service"
 
 export function DeviceFeatures() {
   // 相机状态
@@ -347,7 +347,7 @@ export function DeviceFeatures() {
                     <strong>坐标:</strong> {formatLocation(currentLocation)}
                   </div>
                   <div>
-                    <strong>精度:</strong> {currentLocation.accuracy.toFixed(0)}米
+                    <strong>精度:</strong> {currentLocation.accuracy?.toFixed(0) ?? "—"}米
                   </div>
                   {currentLocation.altitude && (
                     <div>

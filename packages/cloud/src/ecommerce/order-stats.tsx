@@ -1,4 +1,4 @@
-import { YYStatCard } from "@yyc3/ui/yy-stat-card"
+import { YYStatCard } from "../yy-stats-section"
 import { ShoppingCart, TruckIcon, PackageCheck } from "lucide-react"
 
 export default function OrderStats() {

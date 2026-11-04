@@ -197,6 +197,7 @@ export {
 } from "./item"
 export { Kbd, KbdGroup } from "./kbd"
 export { Spinner } from "./spinner"
+export { YYCard, YYCardHeader, YYCardTitle, YYCardContent } from "./yy-card"
 
 // ============================================================
 // YYC³ Claw UI（Phase 3a · S1 迁入 · 2026-11-04）
