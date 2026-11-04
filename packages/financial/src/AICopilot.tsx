@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Progress } from './ui/progress';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
+import { Button } from '@yyc3/ui';
+import { Progress } from '@yyc3/ui';
+import { Input } from '@yyc3/ui';
+import { Textarea } from '@yyc3/ui';
 import { 
   Brain, 
   TrendingUp, 

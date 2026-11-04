@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Progress } from './ui/progress';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
+import { Button } from '@yyc3/ui';
+import { Input } from '@yyc3/ui';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@yyc3/ui';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@yyc3/ui';
+import { Progress } from '@yyc3/ui';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@yyc3/ui';
 import { 
   Database, 
   Upload, 

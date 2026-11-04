@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from './ui/sidebar';
+import { Button } from '@yyc3/ui';
+import { Badge } from '@yyc3/ui';
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from '@yyc3/ui';
 import { 
   BarChart3, 
   TrendingUp, 

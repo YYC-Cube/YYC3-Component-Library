@@ -199,6 +199,34 @@ export { Kbd, KbdGroup } from "./kbd"
 export { Spinner } from "./spinner"
 export { YYCard, YYCardHeader, YYCardTitle, YYCardContent } from "./yy-card"
 
+// shadcn Sidebar 全族（Phase 7 补导出——financial DashboardLayout 等消费）
+export {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInput,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  useSidebar,
+} from "./sidebar"
+
 // ============================================================
 // YYC³ Claw UI（Phase 3a · S1 迁入 · 2026-11-04）
 // 自研零依赖双主题组件系，与 shadcn 同名件以 Claw 前缀区分（D1 决策）

@@ -27,7 +27,10 @@
     "@yyc3/theme": "workspace:*",
     "@yyc3/ui": "workspace:*",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "lucide-react": "^0.550.0",
+    "recharts": "^2.15.0",
+    "framer-motion": "^12.0.0"
   },
   "devDependencies": {
     "@types/react": "^19",
