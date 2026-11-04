@@ -8,6 +8,7 @@ import React from 'react';
 import {
   ClawButton,
   ClawInput,
+  ClawCard,
   ClawLayout,
   ClawContainer,
   YYC3ThemeProvider,
@@ -217,5 +218,44 @@ describe('claw · ClawInput（3b-1）', () => {
   it('双主题 data 属性', () => {
     render(React.createElement(ClawInput, { theme: 'liquid-glass', 'aria-label': '主题输入' }));
     expect(document.querySelector('.yyc3-input-wrap')?.getAttribute('data-theme')).toBe('liquid-glass');
+  });
+});
+
+describe('claw · ClawCard（3b-2a）', () => {
+  it('title/extra 内置标题栏 + 主题 data 属性', () => {
+    render(
+      React.createElement(ClawCard, { title: '卡片标题', extra: '操作', 'data-testid': 'card1' }, '内容区'),
+    );
+    expect(screen.getByText('卡片标题')).toBeTruthy();
+    expect(screen.getByText('操作')).toBeTruthy();
+    const card = screen.getByTestId('card1');
+    expect(card.className).toContain('yyc3-card');
+    expect(card.getAttribute('data-theme')).toBe('cyberpunk');
+  });
+
+  it('loading 骨架屏（不渲染子内容）；复合子组件挂载', () => {
+    render(React.createElement(ClawCard, { loading: true }, '不应出现'));
+    expect(screen.queryByText('不应出现')).toBeNull();
+    expect(document.querySelector('.yyc3-skeleton-line')).toBeTruthy();
+
+    render(
+      React.createElement(
+        ClawCard,
+        null,
+        React.createElement(ClawCard.Header, null, '头部'),
+        React.createElement(ClawCard.Body, null, '正文'),
+        React.createElement(ClawCard.Footer, null, '脚部'),
+      ),
+    );
+    expect(screen.getByText('头部')).toBeTruthy();
+    expect(screen.getByText('正文')).toBeTruthy();
+    expect(screen.getByText('脚部')).toBeTruthy();
+  });
+
+  it('hoverable 标记与四级阴影', () => {
+    render(React.createElement(ClawCard, { hoverable: true, shadow: 'large', 'data-testid': 'card2' }));
+    const c = screen.getByTestId('card2');
+    expect(c.getAttribute('data-hoverable')).toBe('true');
+    expect(c.style.boxShadow).toContain('40px');
   });
 });

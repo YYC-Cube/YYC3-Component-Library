@@ -197,6 +197,11 @@ export {
   type InputStatus as ClawInputStatus,
   type InputType as ClawInputType,
 } from "./claw"
+export {
+  Card as ClawCard,
+  type CardProps as ClawCardProps,
+  type CardShadow as ClawCardShadow,
+} from "./claw"
 export { Layout as ClawLayout, Container as ClawContainer } from "./claw"
 export type {
   LayoutProps as ClawLayoutProps,
