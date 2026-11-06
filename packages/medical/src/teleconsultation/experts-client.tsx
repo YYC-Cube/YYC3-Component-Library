@@ -34,8 +34,31 @@ import {
   ExternalLink,
 } from "lucide-react"
 
+interface ExpertContact {
+  email: string
+  phone: string
+}
+
+interface ExpertItem {
+  id: number
+  name: string
+  avatar: string
+  title: string
+  department: string
+  hospital: string
+  city: string
+  rating: number
+  consultations: number
+  specialties: string[]
+  availability: string
+  bio: string
+  contact: ExpertContact
+  isVerified: boolean
+  isFeatured: boolean
+}
+
 // 模拟专家数据
-const experts = [
+const experts: ExpertItem[] = [
   {
     id: 1,
     name: "王建国",
@@ -216,7 +239,7 @@ export default function ExpertsClient() {
   const [selectedDepartment, setSelectedDepartment] = useState("all")
   const [selectedCity, setSelectedCity] = useState("all")
   const [showInviteDialog, setShowInviteDialog] = useState(false)
-  const [selectedExpert, setSelectedExpert] = useState(null)
+  const [selectedExpert, setSelectedExpert] = useState<ExpertItem | null>(null)
 
   // 过滤专家列表
   const filteredExperts = experts.filter((expert) => {
@@ -242,7 +265,7 @@ export default function ExpertsClient() {
   })
 
   // 打开专家详情
-  const openExpertDetails = (expert) => {
+  const openExpertDetails = (expert: ExpertItem) => {
     setSelectedExpert(expert)
   }
 

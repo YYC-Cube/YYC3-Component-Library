@@ -37,7 +37,19 @@ import {
 } from "lucide-react"
 
 // 模拟系统连接配置
-const systemConnections = [
+type SystemConnection = {
+  id: string
+  name: string
+  type: string
+  endpoint: string
+  status: string
+  autoSync: boolean
+  lastSync: string | null
+  nextSync: string | null
+  description: string
+}
+
+const systemConnections: SystemConnection[] = [
   {
     id: "conn-001",
     name: "中心医院HIS系统",
@@ -109,7 +121,7 @@ export default function EHRConnectionsClient() {
   const [testResult, setTestResult] = useState({ success: true, message: "连接测试成功！服务器响应时间: 230ms" })
 
   // 切换连接状态
-  const toggleConnectionStatus = (id) => {
+  const toggleConnectionStatus = (id: string) => {
     setConnections(
       connections.map((conn) => {
         if (conn.id === id) {
@@ -124,7 +136,7 @@ export default function EHRConnectionsClient() {
   }
 
   // 切换自动同步
-  const toggleAutoSync = (id) => {
+  const toggleAutoSync = (id: string) => {
     setConnections(
       connections.map((conn) => {
         if (conn.id === id) {

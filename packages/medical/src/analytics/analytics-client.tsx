@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
 
 // 动态导入大型组件并禁用SSR
-const Dashboard = dynamic(() => import("@/components/analytics/dashboard-component"), {
+const Dashboard = dynamic(() => import("../components/analytics/dashboard-component"), {
   loading: () => (
     <div className="h-[400px] flex items-center justify-center">
       <LoadingSpinner />
@@ -15,7 +15,7 @@ const Dashboard = dynamic(() => import("@/components/analytics/dashboard-compone
   ssr: false, // 禁用服务器端渲染以避免window错误
 })
 
-const TrendReports = dynamic(() => import("@/components/analytics/trend-reports"), {
+const TrendReports = dynamic(() => import("../components/analytics/trend-reports"), {
   loading: () => (
     <div className="h-[400px] flex items-center justify-center">
       <LoadingSpinner />
@@ -24,7 +24,19 @@ const TrendReports = dynamic(() => import("@/components/analytics/trend-reports"
   ssr: false,
 })
 
-const PredictionModels = dynamic(() => import("@/components/analytics/prediction-models"), {
+const PredictionModels = dynamic(
+  () => import("../components/analytics/prediction-models").then((mod) => ({ default: mod.PredictionModels })),
+  {
+  loading: () => (
+    <div className="h-[400px] flex items-center justify-center">
+      <LoadingSpinner />
+    </div>
+  ),
+  ssr: false,
+  },
+)
+
+const InteractiveCharts = dynamic(() => import("../components/analytics/interactive-charts"), {
   loading: () => (
     <div className="h-[400px] flex items-center justify-center">
       <LoadingSpinner />
@@ -33,7 +45,7 @@ const PredictionModels = dynamic(() => import("@/components/analytics/prediction
   ssr: false,
 })
 
-const InteractiveCharts = dynamic(() => import("@/components/analytics/interactive-charts"), {
+const AdvancedCharts = dynamic(() => import("../components/analytics/advanced-charts"), {
   loading: () => (
     <div className="h-[400px] flex items-center justify-center">
       <LoadingSpinner />
@@ -42,16 +54,7 @@ const InteractiveCharts = dynamic(() => import("@/components/analytics/interacti
   ssr: false,
 })
 
-const AdvancedCharts = dynamic(() => import("@/components/analytics/advanced-charts"), {
-  loading: () => (
-    <div className="h-[400px] flex items-center justify-center">
-      <LoadingSpinner />
-    </div>
-  ),
-  ssr: false,
-})
-
-const DataComparison = dynamic(() => import("@/components/analytics/data-comparison"), {
+const DataComparison = dynamic(() => import("../components/analytics/data-comparison"), {
   loading: () => (
     <div className="h-[400px] flex items-center justify-center">
       <LoadingSpinner />

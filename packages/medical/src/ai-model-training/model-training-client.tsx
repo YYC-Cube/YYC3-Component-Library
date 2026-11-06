@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { ModelTrainingDashboard } from "@/components/model-training-dashboard"
+import { ModelTrainingDashboard } from "../components/model-training-dashboard"
 import { ModelTrainingJobs } from "./model-training-jobs"
 import { ModelEvaluation } from "./model-evaluation"
 import { ModelDeployment } from "./model-deployment"

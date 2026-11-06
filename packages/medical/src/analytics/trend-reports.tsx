@@ -23,7 +23,13 @@ const trendData = [
   { date: "2023-12", 患者满意度: 96, 医生效率: 90, 治疗成功率: 91 },
 ]
 
-export function TrendReports() {
+interface TrendReportsProps {
+  category?: string
+  dateRange?: { from: Date; to: Date }
+  interval?: string
+}
+
+export function TrendReports({}: TrendReportsProps) {
   return (
     <Card className="w-full">
       <CardHeader>

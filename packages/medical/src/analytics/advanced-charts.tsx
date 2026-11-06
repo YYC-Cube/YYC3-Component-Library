@@ -310,7 +310,7 @@ export default function AdvancedCharts({ onBack }: AdvancedChartsProps) {
                   <Treemap
                     data={resourceAllocationData}
                     dataKey="size"
-                    ratio={4 / 3}
+                    aspectRatio={4 / 3}
                     stroke="#fff"
                     fill="#8884d8"
                     content={<CustomTreemapContent colors={COLORS} />}

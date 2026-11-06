@@ -2,7 +2,7 @@
 
 import { Slider } from "@yyc3/ui/slider"
 
-import { useState } from "react"
+import { useState, type ComponentProps } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui/card"
 import { Button } from "@yyc3/ui/button"
 import { Badge } from "@yyc3/ui/badge"
@@ -32,6 +32,10 @@ import {
   RotateCcw,
   Download,
 } from "lucide-react"
+
+// @yyc3/ui Badge 的 variant 联合类型暂不含 success/warning，运行时保持原值透传，仅补类型标注以通过 strict 检查
+type BadgeVariant = ComponentProps<typeof Badge>["variant"]
+const badgeVariant = (variant: string): BadgeVariant => variant as BadgeVariant
 
 // 模拟部署环境数据
 const deploymentEnvironments = [
@@ -185,13 +189,13 @@ export function ModelDeployment() {
     switch (status) {
       case "active":
         return (
-          <Badge variant="success" className="flex items-center gap-1">
+          <Badge variant={badgeVariant("success")} className="flex items-center gap-1">
             <CheckCircle className="h-3 w-3" /> 运行中
           </Badge>
         )
       case "updating":
         return (
-          <Badge variant="warning" className="flex items-center gap-1">
+          <Badge variant={badgeVariant("warning")} className="flex items-center gap-1">
             <RefreshCw className="h-3 w-3" /> 更新中
           </Badge>
         )
@@ -217,13 +221,13 @@ export function ModelDeployment() {
     switch (status) {
       case "production":
         return (
-          <Badge variant="success" className="flex items-center gap-1">
+          <Badge variant={badgeVariant("success")} className="flex items-center gap-1">
             <CheckCircle className="h-3 w-3" /> 生产中
           </Badge>
         )
       case "staging":
         return (
-          <Badge variant="warning" className="flex items-center gap-1">
+          <Badge variant={badgeVariant("warning")} className="flex items-center gap-1">
             <Clock className="h-3 w-3" /> 预发布
           </Badge>
         )
@@ -249,7 +253,7 @@ export function ModelDeployment() {
     switch (status) {
       case "success":
         return (
-          <Badge variant="success" className="flex items-center gap-1">
+          <Badge variant={badgeVariant("success")} className="flex items-center gap-1">
             <CheckCircle className="h-3 w-3" /> 成功
           </Badge>
         )
@@ -261,8 +265,8 @@ export function ModelDeployment() {
         )
       case "in_progress":
         return (
-          <Badge variant="warning" className="flex items-center gap-1">
-            <RefreshCw className="h-3 w-3" className="animate-spin" /> 进行中
+          <Badge variant={badgeVariant("warning")} className="flex items-center gap-1">
+            <RefreshCw className="h-3 w-3 animate-spin" /> 进行中
           </Badge>
         )
       default:
@@ -339,7 +343,7 @@ export function ModelDeployment() {
                 <div className="flex items-end justify-between">
                   <div className="text-3xl font-bold text-medical-700">{deploymentEnvironments.length}</div>
                   <div className="flex gap-1">
-                    <Badge variant="success" className="flex items-center gap-1">
+                    <Badge variant={badgeVariant("success")} className="flex items-center gap-1">
                       <CheckCircle className="h-3 w-3" /> 全部在线
                     </Badge>
                   </div>

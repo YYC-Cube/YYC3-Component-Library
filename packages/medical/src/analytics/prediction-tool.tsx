@@ -8,7 +8,7 @@ import { Label } from "@yyc3/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
-import { useTranslation } from "@yyc3/hooks/use-translation"
+import { useTranslation } from "../hooks/use-translation"
 
 // 模拟预测数据
 const generatePredictionData = (months: number, trend: "up" | "down" | "stable", volatility: number) => {
@@ -62,6 +62,8 @@ const historicalData = [
 
 interface PredictionToolProps {
   className?: string
+  category?: string
+  modelType?: string
 }
 
 export function PredictionTool({ className = "" }: PredictionToolProps) {
