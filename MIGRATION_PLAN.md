@@ -201,6 +201,8 @@ review_status: reviewed
 
 **Phase 0 扫描归档**：Mimosa deep scan `scan-2026-11-03T22-24-54.273Z-5fcae1f1b9da`（seal sha256:9893…c5aa）38 high。分诊（2026-11-04）：真实凭据 1（`packages/ai/src/api/admin/setup/route.ts` 管理员口令）——**经库主确认该 Supabase 项目已废弃、账号停用，风险关闭、无需轮换**；代码侧已改环境变量注入（`ADMIN_SETUP_EMAIL/PASSWORD`，git 历史中的旧值随项目废弃失效）；占位/误报 23；SSRF/穿越/注入/弱加密 14 随批次修复；**Phase 7 publish 前 findings 清零为发布硬门**。
 
+**扫描排除策略（2026-11-07）**：Mimosa 插件 payload 只读（scan-profiles 无项目级覆盖接口，MCP security_scan_start 无 exclude 参数），无法以配置文件形式维护排除清单——**等效实现：构建产物即扫即删**。`apps/storybook/storybook-static/`（Storybook 官方 bundle，L2 曾误报命令注入×3——浏览器产物无 Node 执行 API，第三方代码）与 `apps/playground/dist` 均为 .gitignore 覆盖的本地产物，验证完成后物理删除即可使扫描面消失；.storybook 源码配置保留。若后续再报产物类误报，同法处置，不修改第三方 bundle。
+
 **覆盖率债登记（2026-11-06，lib services 真身批次）**：真身 10 件 ~5,183 行落位后 lib+cloud istanbul 覆盖率 37.52%（services 49.38%）。未覆盖面：SpeechRecognition/speechSynthesis 真实调用链、useDataset fetch 拉取、exportData image/pdf 分支、ai-assistant-service 纯逻辑面、contexts Provider 树——登记于 `packages/lib/src/__tests__/services-real.test.ts` 文件头，绑定 lib services 深测批次或 medical 批次后的测试补强轮。
 
 ---
