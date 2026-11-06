@@ -3,7 +3,7 @@ file: MIGRATION_PLAN.md
 title: YYC³ 组件库拆分迁移计划 v2.1 — 双源重定界 · 存量定版 · 七阶段推进
 description: 基于 2026-11-03 真实主库勘误修订：双源结构（主库十池按需抽取 + personal 副本五块精准迁移）、权威副本策略、Phase 0~7 七阶段推进计划与验收标准
 author: YYC³ Team <admin@0379.email>
-version: v2.1.9
+version: v2.2.0
 created: 2026-07-25
 updated: 2026-11-03
 status: active
@@ -59,7 +59,7 @@ review_status: reviewed
 | city | 19 | 0 | ✅ 已迁入 | Phase 1 固化（补测试） |
 | layouts | 6 | 0 | ✅ 完成 | Phase 7 裁决 karbon 归属 |
 | theme | 1 | 0 | 🚧 起步 | Phase 4 承接 theme-tokens |
-| business / effects / icons | 0 | 0 | ⬜ 空壳 | Phase 7 评估去留 |
+| business / effects / icons | 0 | 0 | ⬜ 空壳（终裁**保留**，PR#27 用户指令） | icons 方案：lucide 封装+品牌 SVG 待补；随 publish 批次评估 |
 | **合计** | **2,629** | **28** | — | — |
 
 ### 1.2 配套资产
@@ -152,7 +152,7 @@ review_status: reviewed
 | Phase 4 | **shadcn 拷贝去重**（S2 ×56 逐件 diff，决策门 D1：补入/跳过/择优） | 0.5 天 | 56 行 diff 清单留档 |
 | Phase 5 | **web-ui 与 core 决策**（D2：a 迁入 packages/core【推荐】/ b 跨仓引用 / c 暂缓仅迁无依赖件；S3 15 源文件清洗迁入；5 hooks 补单测） | 1 天 | D2 裁决 + 构建绿 |
 | Phase 6 | **归档裁决**（D3：karbon-navigation vs layouts） | 0.5 天 | 裁决留档 |
-| Phase 7 | **应用落地与发包**（apps/storybook 门户 + playground；templates；changesets 演练；business/effects/icons 去留；终验） | 持续 | 闭环提示词通过 |
+| Phase 7 | **应用落地与发包**（~~apps/storybook 门户 + playground~~ ✅ #42；templates 终裁（Nexus-Portal 溯源）；changesets 演练 ✅；~~business/effects/icons 去留~~ ✅ 终裁保留（#27）；shadcn 升级专项 51 DIFF；13 阶段终验） | 持续 | 闭环提示词通过 |
 
 **主库抽取（Phase 2 映射表就绪后滚动进行，不计入上表固定工时）**：按业务域从权威副本抽取可复用组件，逐批走 §四 SOP；首批建议：UI-8 的 yyc3-reusable-components 与 YYC3-UI-Design-System。
 
@@ -220,7 +220,8 @@ review_status: reviewed
 | v2.1.6 | 2026-11-06 | **medical T0+T1 批次（medical 专项重启首战）**：D0 重评颠覆回滚结论——「strict 缺陷密度最高」实为断链（TS2307 类型塌缩）为主因（any 全量仅 31 处/120 文件）；D0 权威副本 UI-9/ai-medical-systemadvanced（映射表 L517）四目录全覆盖。占位桶 → **53 有效导出**（36 组件：health-data 12/teleconsultation 4/ehr 5/ai-model-training 4/analytics 11 + 前置件 17）；`@/components/ui/*` 58 处重映射 @yyc3/ui（零重复搬运）；i18n 同步轻桥 + renderDay 旧版 API 剥离 + strict 修复 ~100 处（T1 闭包 tsc 清零）；摘除登记 82 件绑定 T2/T3（前置：services 10 + types 3 + use-toast/useApi 真身迁入）。全仓 BUILD=0 · **555✅/50❌** | YYC³ Team |
 | v2.1.7 | 2026-11-06 | **medical T2/T3 批次（#39）：medical 域 118 组件全量恢复，摘除彻底清零**。前置件 30 落位（services 11 + types 5 + hooks 3 + lib/api 2 + components 9）；恢复 82 组件（medications 10/patients 8/research 11/ai-diagnosis 13/ai-model 11/clinical-decision 9/medical-records 20，同名件别名区分）；重映射 ~90 处 + 层级逃逸修正 21 处 + 源件自愈 ~75 处；**@react-three/fiber 8→9 升级**（reconciler 与 React 19 双实例冲突根因修复）；@yyc3/ui 桶补 DropdownMenuGroup。全仓 BUILD=0 · **555✅/50❌**（零新增失败）。悬留：client 鉴权轻桥（auth store 真身随应用层批次）、tsc 非阻断残余、medical 色板 token | YYC³ Team |
 | v2.1.8 | 2026-11-07 | **design 摘除件收尾批（#40）：design 域摘除彻底清零——滚动抽取主线六域全量收官**。AuthContext 真身（183 行零外部依赖，UI-9/yyc3-design-system）+ ai 双件真身（ai-models/ai-service 互闭包）落位包内；恢复 Header/ProtectedRoute/AIAssistant 3 摘除件（hasPermission 源件代差→admin 判定兜底自愈登记）；design 64 有效导出。全仓 BUILD=0 · **555✅/50❌**（零新增失败）。**六域摘除清零总账：city 17 / cloud 30 / financial 30 / design 64 / medical 118 全量**；剩余：Phase 7（apps/templates/终验）+ 8 债文件 | YYC³ Team |
-| v2.1.9 | 2026-11-07 | **8 债文件批次（#41）：测试债彻底清零——全仓 671✅/0❌，CI test 门禁解除（合并不再需 --admin），Q1 门达成完全体**。修复方向按 provenance 分流：education×4 = D0 权威配套测试版（与 UI-9/yyc3-learning-platform 逐字节一致）→ 组件对齐测试契约（autonomous-engine 轻量桩 + logger 真身 88 行 + 渲染细节对齐；附带修复 appReducer undefined / filteredTools 未定义 2 个真 bug）；admin×3 + ai×1 = bootstrap 存量测试（断言的「言语云」版/activeModule 架构全知识库无源——实测推翻登记）→ 测试对齐现基线（10 个无源用例诚实删除 + 8 项意图保留断言降级清单入档）。通用：vitest.setup 补 RTL 自动 cleanup（多 render 树残留通用根因）。悬留：autonomous-engine/model-adapter 真身（牵 openai SDK 逃逸链）绑 learning-platform 专项 | YYC³ Team |
+| v2.1.9 | 2026-11-07 | **8 债文件批次（#41）：测试债彻底清零——全仓 671✅/0❌，CI test 门禁解除（合并不再需 --admin），Q1 门达成完全体**。修复方向按 provenance 分流：education×4 = D0 权威配套测试版（与 UI-9/yyc3-learning-platform 逐字节一致）→ 组件对齐测试契约（autonomous-engine 轻量桩 + logger 真身 88 行 + 渲染细节对齐；附带修复 appReducer undefined / filteredTools 未定义 2 个真 bug）；admin×3 + ai×1 = bootstrap 存量测试（断言的「言语云」版/activeModule 架构全知识库无源——实测推翻登记）→ 测试对齐现基线（10 个无源用例诚实删除 + 8 项意图保留断言降级清单入档）。通用：vitest.setup 补 RTL 自动 cleanup（多 render 树残留通用根因）。**附带确诊 CI-only 测试失败根因**（vite exports→dist，CI test 无 build 无 dist 解析断，#37 起 14~15 files 存量被本地债遮蔽）→ `yyc3WorkspaceAlias` 插件修复 → **CI 四门仓史首次全绿**。悬留：autonomous-engine/model-adapter 真身（牵 openai SDK 逃逸链）绑 learning-platform 专项 | YYC³ Team |
+| v2.2.0 | 2026-11-07 | **Phase 7 apps 门户批次（#42）**：`apps/storybook` 门户落地（Storybook 10.6.2 + addon-docs/a11y；stories 双源：packages/ai atoms 3 件 + 六域门面 Overview 6 件——UI/City/Cloud/Medical/Design/Financial；viteFinal 注入 workspace 源码别名（含 theme styles CSS 特例）——与 vitest 同款根因防御）+ `apps/playground` 实验场落地（vite 壳 + 六域组件实时导入演示页，域标签切换）；两 app 均 build 验证通过（storybook-static 6,817 modules / playground 318ms）；远程遗留分支 docs/phase6-d3 清理（PR#26 已完全合并零独有）。全仓 BUILD=0 · 671✅/0❌ 保持。空壳三包终裁确认在案（#27 保留）。Phase 7 剩余：templates 终裁 / shadcn 升级专项 51 DIFF / 13 阶段终验 | YYC³ Team |
 
 ---
 
