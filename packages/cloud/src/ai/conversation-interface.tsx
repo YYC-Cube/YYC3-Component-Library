@@ -49,8 +49,8 @@ import {
   Copy,
   RotateCcw, // 替换缺失的 RefreshCw
 } from "lucide-react"
-import { useAIAssistant } from "@yyc3/lib/contexts/ai-assistant-context"
-import type { Message, Attachment } from "@yyc3/lib/services/ai-assistant-service"
+import { useAIAssistant } from "@yyc3/lib"
+import type { Message, Attachment } from "@yyc3/lib"
 
 export interface ConversationInterfaceProps {
   className?: string
@@ -59,7 +59,7 @@ export interface ConversationInterfaceProps {
   enableAttachments?: boolean
 }
 
-export function ConversationInterface({
+function ConversationInterface({
   className,
   showSidebar = true,
   enableVoice = true,

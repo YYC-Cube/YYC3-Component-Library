@@ -81,6 +81,26 @@ export {
 } from './i18n/translator';
 
 // ============================================================
+// services 轻量桩层（Phase 7 lib services 批次）
+// chart-voice-control / mobile-service / visualization-service / ai-platform
+// 桩语义：接口正确 + 浏览器降级 + 模拟响应
+// ============================================================
+export { chartVoiceControlManager, ChartVoiceControlService } from './services/chart-voice-control';
+export type { VoiceCommand, ChartVoiceControllerConfig, ChartVoiceController } from './services/chart-voice-control';
+export { useDeviceDetection, useGestures, useTouchDetection } from './services/mobile-service';
+export type { DeviceDetection } from './services/mobile-service';
+export type { DataPoint, DataSeries, ChartOptions, ChartType, ChartAnnotation } from './services/visualization-service';
+export {
+  multiLanguageSpeechManager, nlpProcessor, voiceCommandEngine,
+  OllamaContext, useOllama, AIAssistantContext, useAIAssistant,
+} from './services/ai-platform';
+export type {
+  SpeechRecognitionResult, NLPResult, CommandMatch,
+  OllamaModel, OllamaResponse, Message, Attachment, OllamaContextValue, AIAssistantMessage, AIAssistantContextValue,
+  RecognitionService, SynthesisService,
+} from './services/ai-platform';
+
+// ============================================================
 // B2b 批次（2026-11-04）：error-handling
 // 源（D0 权威副本）：UI-8/yyc3-reusable-components/packages/error-handling
 // ============================================================

@@ -3,8 +3,8 @@
 import type React from "react"
 import { useState, useRef, useEffect, useCallback } from "react"
 import { InteractiveChart } from "./interactive-chart"
-import { useDeviceDetection, useGestures, useTouchDetection } from "@yyc3/lib/services/mobile-service"
-import type { DataSeries, ChartOptions, ChartType } from "@yyc3/lib/services/visualization-service"
+import { useDeviceDetection, useGestures, useTouchDetection } from "@yyc3/lib"
+import type { DataSeries, ChartOptions, ChartType, ChartAnnotation } from "@yyc3/lib"
 import { Button } from "@yyc3/ui/button"
 import { Card, CardContent } from "@yyc3/ui/card"
 import { Badge } from "@yyc3/ui/badge"
@@ -228,9 +228,8 @@ export function MobileChart({
   }
 
   // 移动端优化的图表选项
-  const mobileOptimizedOptions: ChartOptions = {
+  const mobileOptimizedOptions = {
     ...options,
-    responsive: true,
     animation: !isMobile,
     interactions: isTouchDevice ? ["tooltip"] : options.interactions || ["tooltip", "zoom", "pan"],
     padding: isMobile ? { top: 10, right: 10, bottom: 30, left: 30 } : options.padding,
@@ -454,8 +453,7 @@ export function MobileChart({
         }}
       >
         <InteractiveChart
-          data={filteredData}
-          chartType={selectedChartType}
+          data={filteredData as unknown as Parameters<typeof InteractiveChart>[0]['data']}
           options={mobileOptimizedOptions}
           onDataPointClick={onDataPointClick}
         />

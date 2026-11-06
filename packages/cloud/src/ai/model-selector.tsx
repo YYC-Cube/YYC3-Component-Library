@@ -6,7 +6,7 @@
 "use client"
 
 import { useState } from "react"
-import { useOllama } from "@yyc3/lib/contexts/ollama-context"
+import { useOllama } from "@yyc3/lib"
 import { RefreshCw, Check, ChevronDown, AlertCircle, Loader2 } from "lucide-react"
 
 export function ModelSelector() {
@@ -52,7 +52,7 @@ export function ModelSelector() {
           {error && (
             <div className="flex items-center mt-1 text-sm text-red-500">
               <AlertCircle className="w-4 h-4 mr-1" />
-              <span>{error}</span>
+              <span>{String(error)}</span>
             </div>
           )}
         </div>
@@ -73,7 +73,7 @@ export function ModelSelector() {
           </div>
           <ul className="py-1">
             {models.map((model) => (
-              <li key={model.id}>
+              <li key={model.name}>
                 <button
                   type="button"
                   className={`
@@ -85,12 +85,12 @@ export function ModelSelector() {
                     setSelectedModel(model.name)
                     setIsOpen(false)
                   }}
-                  aria-label={`选择模型: ${model.name}`} // 修复无障碍问题
+                  aria-label={`选择模型: ${model}`} // 修复无障碍问题
                 >
                   <div className="flex flex-col">
                     <span className="font-medium">{model.name}</span>
                     <span className="text-xs text-gray-500">
-                      {formatSize(model.size)} • 修改于 {new Date(model.modified).toLocaleString("zh-CN")}
+                      {formatSize(model.size)} • 修改于 {new Date(model.size).toLocaleString("zh-CN")}
                     </span>
                   </div>
                   {selectedModel === model.name && <Check className="w-5 h-5 text-yy-cloud-standard" />}

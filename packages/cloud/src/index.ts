@@ -28,16 +28,18 @@ export { default as SalesChart } from './ecommerce/sales-chart'
 // ── native ──
 export { DeviceFeatures } from './native/device-features'
 
-// ── charts ──
-// InteractiveChart / MobileChart 待 lib services 批次（chart-voice-control /
-// mobile-service / visualization-service 依赖）后恢复导出
+// ── charts（lib services 桩层解锁恢复）──
+export { InteractiveChart } from './charts/interactive-chart'
+export { MobileChart } from './charts/mobile-chart'
 
 // ── speech ──
-// VoiceControlPanel / EnhancedVoiceControl 待 lib services 批次（speech-service 依赖）后恢复导出
+// VoiceControlPanel / EnhancedVoiceControl 摘除登记（消费链含 strict 隐式 any 连锁，
+// 待 lib services 真身 + medical 批次修复后恢复）
 
-// ── ai ──
-// ModelSelector / ChatInterface / ConversationInterface 待 lib services 批次
-// （ollama-context / ai-assistant-context / chart-voice-control / nlp-processor 等依赖）后恢复导出
+// ── ai（lib services 桩层解锁恢复）──
+export { ModelSelector } from './ai/model-selector'
+export { ChatInterface } from './ai/chat-interface'
+// ConversationInterface 摘除登记（消费完整 AI 助手服务面，待 lib services 真身批次）
 
 // ── 类型与配置 ──
 export type { MainNavItem, SidebarNavItem, DashboardConfig } from './types'
