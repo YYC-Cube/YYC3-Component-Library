@@ -8,7 +8,7 @@ import { Input } from "@yyc3/ui/input"
 import { Badge } from "@yyc3/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { medicationInteractionService } from "@/services/medication-interaction-service"
+import { medicationInteractionService } from "../services/medication-interaction-service"
 import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
 import { ScrollArea } from "@yyc3/ui/scroll-area"
 import { Separator } from "@yyc3/ui/separator"
@@ -66,8 +66,9 @@ export function MedicationInteractions() {
           </Badge>
         )
       case "中度":
+        // 自愈登记（T2/T3 批次）：源件 variant "warning" 不在 Badge 合法联合内，取最近语义 secondary
         return (
-          <Badge variant="warning" className="flex items-center gap-1">
+          <Badge variant="secondary" className="flex items-center gap-1">
             <Info className="h-3 w-3" /> 中度
           </Badge>
         )
@@ -218,9 +219,7 @@ export function MedicationInteractions() {
                             variant={
                               interaction.interaction.severity === "严重" || interaction.interaction.severity === "禁忌"
                                 ? "destructive"
-                                : interaction.interaction.severity === "中度"
-                                  ? "warning"
-                                  : "default"
+                                : "default" /* 自愈登记：源件中度分支 "warning" 非 Alert 合法联合，收敛 default */
                             }
                           >
                             <AlertCircle className="h-4 w-4" />

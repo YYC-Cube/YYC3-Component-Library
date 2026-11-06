@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "../hooks/use-toast"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
 import {

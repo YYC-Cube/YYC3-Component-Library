@@ -8,7 +8,7 @@ import { Select } from "@yyc3/ui/select"
 import { DatePicker } from "@yyc3/ui/date-picker"
 import { Calendar, Search, Phone, Mail, MessageSquare, CheckCircle, Clock, AlertCircle, User } from "lucide-react"
 import { MedicalButton } from "@yyc3/ui/medical-button"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "../utils/cn"
 
 // 模拟随访数据
 const followupData = [
@@ -173,7 +173,8 @@ export function FollowupClient({ status = "all" }) {
             </Select>
           </div>
 
-          <DatePicker date={selectedDate} setDate={setSelectedDate} placeholder="选择日期" />
+          {/* 自愈登记（T2/T3 批次）：DatePicker 契约为 value/onChange，消费方 date/setDate 对齐组件契约 */}
+          <DatePicker value={selectedDate} onChange={setSelectedDate} placeholder="选择日期" />
 
           <Button
             variant="outline"

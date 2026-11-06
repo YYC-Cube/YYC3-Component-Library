@@ -33,7 +33,7 @@ import {
   type DecisionRecommendation,
   type EvidenceLevel,
   type RecommendationStrength,
-} from "../../services/clinical-decision-service"
+} from "../services/clinical-decision-service"
 
 interface DecisionSupportPanelProps {
   caseId: string

@@ -7,7 +7,7 @@ import { Badge } from "@yyc3/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { AlertCircle, BookOpen, Download, FileText, Share2 } from "lucide-react"
 import { KnowledgeIntegration } from "./knowledge-integration"
-import type { ModalityAnalysisResult } from "../../types/medical-records"
+import type { ModalityAnalysisResult } from "../types/medical-records"
 
 interface ModalitySpecificAnalysisProps {
   result: ModalityAnalysisResult

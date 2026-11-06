@@ -8,7 +8,7 @@ import { Label } from "@yyc3/ui/label"
 import { DatePicker } from "@yyc3/ui/date-picker"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
 import { Download, FileText, FileSpreadsheet, FileIcon as FilePdf } from "lucide-react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "../hooks/use-toast"
 
 export function DiagnosisExport() {
   const { toast } = useToast()

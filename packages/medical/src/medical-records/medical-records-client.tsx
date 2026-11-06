@@ -126,7 +126,8 @@ export function MedicalRecordsClient() {
             </TabsList>
 
             <TabsContent value="imaging" className="mt-4">
-              <MedicalImagingUploader onImageSelect={handleImageSelect} selectedImage={selectedImage} />
+              {/* 自愈登记（T2/T3 批次）：MedicalImagingUploader 契约无 props，剥离 onImageSelect/selectedImage（运行时本被丢弃） */}
+              <MedicalImagingUploader />
 
               {selectedImage && (
                 <div className="mt-4 space-y-2">
@@ -155,10 +156,8 @@ export function MedicalRecordsClient() {
             </TabsContent>
 
             <TabsContent value="prescriptions" className="mt-4">
-              <PrescriptionUploader
-                onPrescriptionSelect={handlePrescriptionSelect}
-                selectedPrescription={selectedPrescription}
-              />
+              {/* 自愈登记（T2/T3 批次）：PrescriptionUploader 契约无 props，剥离 onPrescriptionSelect/selectedPrescription（运行时本被丢弃） */}
+              <PrescriptionUploader />
 
               {selectedPrescription && (
                 <div className="mt-4 space-y-2">
@@ -231,7 +230,8 @@ export function MedicalRecordsClient() {
                   />
                 </svg>
               </button>
-              <DicomViewer imagePath={selectedImage} patientId={patientId} />
+              {/* 自愈登记（T2/T3 批次）：DicomViewer 契约为 studyId/seriesId/className，imagePath/patientId 无语义映射，剥离（运行时本被丢弃） */}
+              <DicomViewer />
             </div>
           )}
 
@@ -254,7 +254,8 @@ export function MedicalRecordsClient() {
                   />
                 </svg>
               </button>
-              <AIDiagnosis selectedImage={selectedImage} patientId={patientId} />
+              {/* 自愈登记（T2/T3 批次）：AIDiagnosis 契约仅 patientId/recordId/className，剥离越界的 selectedImage，保留契约内 patientId */}
+              <AIDiagnosis patientId={patientId} />
             </div>
           )}
 
@@ -300,7 +301,8 @@ export function MedicalRecordsClient() {
                   />
                 </svg>
               </button>
-              <OCRService prescriptionPath={selectedPrescription} />
+              {/* 自愈登记（T2/T3 批次）：OcrService 契约为 imageUrl/onComplete/onCancel，prescriptionPath 对齐为 imageUrl（该分支已确保非空），必选回调以空实现补齐 */}
+              <OCRService imageUrl={selectedPrescription} onComplete={() => {}} onCancel={() => {}} />
             </div>
           )}
 
@@ -323,11 +325,8 @@ export function MedicalRecordsClient() {
                   />
                 </svg>
               </button>
-              <RecordAssociation
-                selectedImage={selectedImage}
-                selectedPrescription={selectedPrescription}
-                onPatientIdSelected={(id) => setPatientId(id)}
-              />
+              {/* 自愈登记（T2/T3 批次）：RecordAssociation 契约为 patientId/recordId/className，selectedImage/selectedPrescription/onPatientIdSelected 均越界且运行时本被丢弃，剥离 */}
+              <RecordAssociation />
             </div>
           )}
 

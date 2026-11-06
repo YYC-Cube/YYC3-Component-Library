@@ -50,7 +50,8 @@ export function AddPatientDialog() {
 
               <div className="space-y-2">
                 <Label htmlFor="gender">性别</Label>
-                <Select id="gender">
+                {/* 自愈登记（T2/T3 批次）：Select 不接受 id prop，剥离 */}
+                <Select>
                   <option value="">请选择</option>
                   <option value="male">男</option>
                   <option value="female">女</option>
@@ -74,7 +75,8 @@ export function AddPatientDialog() {
 
               <div className="space-y-2">
                 <Label htmlFor="id-type">证件类型</Label>
-                <Select id="id-type">
+                {/* 自愈登记（T2/T3 批次）：Select 不接受 id prop，剥离 */}
+                <Select>
                   <option value="">请选择</option>
                   <option value="id-card">身份证</option>
                   <option value="passport">护照</option>
@@ -89,7 +91,8 @@ export function AddPatientDialog() {
 
               <div className="space-y-2">
                 <Label htmlFor="blood-type">血型</Label>
-                <Select id="blood-type">
+                {/* 自愈登记（T2/T3 批次）：Select 不接受 id prop，剥离 */}
+                <Select>
                   <option value="">请选择</option>
                   <option value="A">A型</option>
                   <option value="B">B型</option>

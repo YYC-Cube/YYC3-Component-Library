@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Card, CardContent } from "@yyc3/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { availableModalities, availableAIModels } from "../../services/multi-modal-ai-service"
+import { availableModalities, availableAIModels } from "../services/multi-modal-ai-service"
 
 interface AIModelSelectorProps {
   selectedModalities: string[]

@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useApi } from "@yyc3/hooks/useApi"
-import { API_ENDPOINTS } from "@yyc3/lib/api/endpoints"
-import type { Patient } from "@/services/patientService"
+import { useApi } from "../hooks/useApi"
+import { API_ENDPOINTS } from "../lib/api/endpoints"
+import type { Patient } from "../services/patientService"
 import { Button } from "@yyc3/ui/button"
 import { Input } from "@yyc3/ui/input"
 import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
@@ -37,7 +37,8 @@ export function PatientList() {
   if (isLoading && !patients) {
     return (
       <div className="flex justify-center p-8">
-        <LoadingSpinner size="lg" />
+        {/* 自愈登记（T2/T3 批次）：ui LoadingSpinner 无 size prop，以 className 表达尺寸 */}
+        <LoadingSpinner className="h-8 w-8" />
       </div>
     )
   }
@@ -97,7 +98,7 @@ export function PatientList() {
               <TableCell colSpan={6} className="text-center py-8">
                 {isLoading ? (
                   <div className="flex justify-center">
-                    <LoadingSpinner size="sm" />
+                    <LoadingSpinner className="h-4 w-4" />
                     <span className="ml-2">加载中...</span>
                   </div>
                 ) : (

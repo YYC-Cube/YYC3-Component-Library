@@ -1155,12 +1155,14 @@ function VolumeRenderer({
   }, [bounds, renderMode])
 
   // 渲染切片模式
+  // 自愈登记（T2/T3 批次）：geometry useMemo 返回联合类型，渲染分支与其内部条件一致，按分支收窄（运行时等价）
   if (renderMode === "切片") {
+    const sliceGeometry = geometry as { xSlice: THREE.PlaneGeometry; ySlice: THREE.PlaneGeometry; zSlice: THREE.PlaneGeometry }
     return (
       <group>
-        <mesh geometry={geometry.xSlice} material={shaderMaterial} />
-        <mesh geometry={geometry.ySlice} material={shaderMaterial} />
-        <mesh geometry={geometry.zSlice} material={shaderMaterial} />
+        <mesh geometry={sliceGeometry.xSlice} material={shaderMaterial} />
+        <mesh geometry={sliceGeometry.ySlice} material={shaderMaterial} />
+        <mesh geometry={sliceGeometry.zSlice} material={shaderMaterial} />
 
         {showBoundingBox && <BoxHelper box={boundingBox} color="white" />}
       </group>
@@ -1170,7 +1172,7 @@ function VolumeRenderer({
   // 渲染其他模式
   return (
     <group>
-      <mesh geometry={geometry} material={shaderMaterial} />
+      <mesh geometry={geometry as THREE.BoxGeometry} material={shaderMaterial} />
 
       {showBoundingBox && <BoxHelper box={boundingBox} color="white" />}
     </group>

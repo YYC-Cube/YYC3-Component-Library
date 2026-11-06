@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Badge } from "@yyc3/ui/badge"
 import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
 import { Brain, FileText, ImageIcon, Activity, AlertCircle, CheckCircle, HelpCircle } from "lucide-react"
-import { useTranslation } from "@yyc3/hooks/use-translation"
+import { useTranslation } from "../hooks/use-translation"
 
 interface AIDiagnosisProps {
   patientId?: string

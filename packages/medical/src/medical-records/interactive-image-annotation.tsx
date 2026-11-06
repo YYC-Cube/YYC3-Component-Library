@@ -23,8 +23,8 @@ import {
   Layers,
   Info,
 } from "lucide-react"
-import { imagingFeatureService } from "../../services/imaging-feature-service"
-import type { ImagingFeature, ModalityType, AnatomicalRegion, ImageMarker } from "../../types/imaging-features"
+import { imagingFeatureService } from "../services/imaging-feature-service"
+import type { ImagingFeature, ModalityType, AnatomicalRegion, ImageMarker } from "../types/imaging-features"
 
 interface InteractiveImageAnnotationProps {
   selectedImage: string

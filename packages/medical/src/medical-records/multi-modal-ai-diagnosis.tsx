@@ -23,8 +23,8 @@ import {
 import { ModalitySpecificAnalysis } from "./modality-specific-analysis"
 import { CrossModalAnalysis } from "./cross-modal-analysis"
 import { AIModelSelector } from "./ai-model-selector"
-import { availableModalities, availableAIModels, multiModalAIService } from "../../services/multi-modal-ai-service"
-import type { ModalityAnalysisResult, CrossModalAnalysisResult } from "../../types/medical-records"
+import { availableModalities, availableAIModels, multiModalAIService } from "../services/multi-modal-ai-service"
+import type { ModalityAnalysisResult, CrossModalAnalysisResult } from "../types/medical-records"
 
 interface MultiModalAIDiagnosisProps {
   patientId?: string

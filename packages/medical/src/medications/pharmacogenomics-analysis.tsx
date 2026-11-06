@@ -7,7 +7,7 @@ import { Button } from "@yyc3/ui/button"
 import { Badge } from "@yyc3/ui/badge"
 import { Alert, AlertDescription } from "@yyc3/ui/alert"
 import { Dna, Pill, AlertTriangle, CheckCircle, XCircle, Info, TrendingUp, TrendingDown, Minus } from "lucide-react"
-import { pharmacogenomicsService, type PharmacogenomicsProfile } from "@/services/pharmacogenomics-service"
+import { pharmacogenomicsService, type PharmacogenomicsProfile } from "../services/pharmacogenomics-service"
 
 interface PharmacogenomicsAnalysisProps {
   patientId: string

@@ -7,7 +7,7 @@ import { Slider } from "@yyc3/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
 import { ZoomIn, ZoomOut, RotateCw, RotateCcw, Maximize, Contrast, Grid2X2 } from "lucide-react"
-import { useTranslation } from "@yyc3/hooks/use-translation"
+import { useTranslation } from "../hooks/use-translation"
 
 // 模拟DICOM图像数据
 const mockDicomImages = [

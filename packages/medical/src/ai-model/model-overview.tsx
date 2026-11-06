@@ -18,7 +18,8 @@ export function ModelOverview() {
           <CardContent>
             <div className="flex items-end justify-between">
               <div className="text-3xl font-bold text-medical-700">12</div>
-              <Badge variant="success" className="flex items-center gap-1">
+              {/* 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary */}
+              <Badge variant="secondary" className="flex items-center gap-1">
                 <CheckCircle className="h-3 w-3" />
                 全部在线
               </Badge>

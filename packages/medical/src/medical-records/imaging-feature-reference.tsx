@@ -26,7 +26,7 @@ import {
   PanelLeft,
   PanelRight,
 } from "lucide-react"
-import { imagingFeatureService } from "../../services/imaging-feature-service"
+import { imagingFeatureService } from "../services/imaging-feature-service"
 import type {
   ImagingFeature,
   ModalityType,
@@ -35,8 +35,8 @@ import type {
   MRIFeature,
   XRayFeature,
   UltrasoundFeature,
-} from "../../types/imaging-features"
-import type { DiagnosticFinding } from "../../types/medical-records"
+} from "../types/imaging-features"
+import type { DiagnosticFinding } from "../types/medical-records"
 
 interface ImagingFeatureReferenceProps {
   selectedImage?: string
@@ -581,7 +581,8 @@ export function ImagingFeatureReference({
                                   典型症状
                                 </h4>
                                 <ul className="list-disc pl-5 space-y-1">
-                                  {disease.symptoms.slice(0, 3).map((symptom, index) => (
+                                  {/* 自愈登记（T2/T3 批次）：disease 为宽松类型，map 回调参数补标注 */}
+                                  {disease.symptoms.slice(0, 3).map((symptom: string, index: number) => (
                                     <li key={index} className="text-gray-700">
                                       {symptom}
                                     </li>
@@ -598,7 +599,8 @@ export function ImagingFeatureReference({
                                   鉴别诊断
                                 </h4>
                                 <ul className="list-disc pl-5 space-y-1">
-                                  {disease.differentialDiagnosis.slice(0, 3).map((diagnosis, index) => (
+                                  {/* 自愈登记（T2/T3 批次）：disease 为宽松类型，map 回调参数补标注 */}
+                                  {disease.differentialDiagnosis.slice(0, 3).map((diagnosis: string, index: number) => (
                                     <li key={index} className="text-gray-700">
                                       {diagnosis}
                                     </li>

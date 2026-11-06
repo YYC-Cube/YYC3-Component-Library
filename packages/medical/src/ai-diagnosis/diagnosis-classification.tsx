@@ -19,7 +19,7 @@ import {
   DialogTrigger,
 } from "@yyc3/ui/dialog"
 import { Switch } from "@yyc3/ui/switch"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "../hooks/use-toast"
 
 // 模拟分类标签数据
 const mockTags = [
@@ -121,13 +121,15 @@ export function DiagnosisClassification() {
     switch (status) {
       case "confirmed":
         return (
-          <Badge variant="success" className="flex items-center gap-1">
+          // 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary
+          <Badge variant="secondary" className="flex items-center gap-1">
             <CheckCircle className="h-3 w-3" /> 已确认
           </Badge>
         )
       case "pending":
         return (
-          <Badge variant="warning" className="flex items-center gap-1">
+          // 自愈登记（T2/T3 批次）：Badge 无 warning variant，改最近语义合法值 secondary
+          <Badge variant="secondary" className="flex items-center gap-1">
             <Clock className="h-3 w-3" /> 待确认
           </Badge>
         )

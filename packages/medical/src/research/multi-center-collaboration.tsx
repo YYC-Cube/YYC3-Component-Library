@@ -26,7 +26,7 @@ import {
   multiCenterResearchService,
   type ResearchCenter,
   type MultiCenterStudy,
-} from "@/services/multi-center-research-service"
+} from "../services/multi-center-research-service"
 
 export function MultiCenterCollaboration() {
   const [centers, setCenters] = useState<ResearchCenter[]>([])
@@ -92,7 +92,8 @@ export function MultiCenterCollaboration() {
   }
 
   const getPhaseBadge = (phase: string) => {
-    const colors = {
+    // 自愈登记（T2/T3 批次）：colors 补 Record<string, string> 泛型，phase(string) 可索引
+    const colors: Record<string, string> = {
       I: "bg-purple-500",
       II: "bg-blue-500",
       III: "bg-green-500",
