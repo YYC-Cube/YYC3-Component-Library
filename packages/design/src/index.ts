@@ -1,9 +1,15 @@
 // ============================================================
 // YYC³ · @yyc3/design 桶文件（Phase 7 精度抽取·第四批恢复 2026-11-04）
-// 来源（D0）：主库设计类项目 + UI-8 Design-System 并入评估（67 src）
-// 摘除登记（待 lib contexts 批次）：ProtectedRoute / header（AuthContext 依赖）
-// 61 件恢复导出：根 52 + layout/charts/dialogs 子目录 9
+// 来源（D0）：主库设计类项目（UI-9/yyc3-design-system）+ UI-8 Design-System 并入评估
+// 摘除件恢复（design 收尾批 2026-11-07）：Header / ProtectedRoute + AuthContext 真身
+// —— design 域摘除彻底清零；63 件导出：根 54 + layout/charts/dialogs 子目录 9
 // ============================================================
+
+// ── 认证上下文（摘除件收尾批恢复）──
+export { AuthProvider, useAuth } from './contexts/AuthContext'
+export type { User } from './contexts/AuthContext'
+export { Header } from './header'
+export { ProtectedRoute } from './ProtectedRoute'
 
 // ── 管理域主件 ──
 export { StoreManagement } from './store-management'
@@ -48,7 +54,12 @@ export { AvatarUpload } from './avatar-upload'
 export { TaskManagementEnhanced } from './task-management-enhanced'
 export { SystemPerformanceMetrics } from './system-performance-metrics'
 export { TenantManagement } from './tenant-management'
-// AIAssistant 待 lib services 批次（ai-service / ai-models 依赖）后恢复导出
+// AIAssistant 摘除件收尾批恢复（ai-service/ai-models 真身已迁入包内 lib/）
+export { AIAssistant } from './ai-assistant'
+export { aiService, AIService } from './lib/ai-service'
+export type { ChatMessage, ChatRequest, ChatResponse } from './lib/ai-service'
+export { AI_MODELS, getModelById, getModelsByType, getModelsByProvider } from './lib/ai-models'
+export type { AIModel } from './lib/ai-models'
 export { TouchGestures } from './touch-gestures'
 export { OfflineIndicator } from './offline-indicator'
 export { FinanceModule } from './finance-module'
