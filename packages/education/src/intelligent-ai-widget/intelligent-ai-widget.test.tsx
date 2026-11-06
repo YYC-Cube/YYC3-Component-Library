@@ -11,6 +11,10 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { IntelligentAIWidget } from './intelligent-ai-widget';
 
+// jsdom 无布局计算：VirtualizedMessageList 依赖的 useVirtualizer 量不到视口 → 消息气泡恒空。
+// 按裁决挂测试替身（见 testing/jsdom-react-virtual-mock.ts），断言零改动。
+vi.mock('@tanstack/react-virtual', async () => await import('./testing/jsdom-react-virtual-mock'));
+
 describe('IntelligentAIWidget', () => {
   const mockUserId = 'test-user-123';
   const mockOnClose = vi.fn();
