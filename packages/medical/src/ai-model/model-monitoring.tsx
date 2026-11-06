@@ -11,7 +11,7 @@ import { Label } from "@yyc3/ui/label"
 import { Switch } from "@yyc3/ui/switch"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
 import { Slider } from "@yyc3/ui/slider"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "../hooks/use-toast"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 
 interface ModelData {
@@ -86,7 +86,8 @@ export function ModelMonitoring({ model, onClose }: ModelMonitoringProps) {
         )
       case "warning":
         return (
-          <Badge variant="warning" className="flex items-center gap-1">
+          // 自愈登记（T2/T3 批次）：Badge 无 warning variant，改最近语义合法值 secondary
+          <Badge variant="secondary" className="flex items-center gap-1">
             <AlertCircle className="h-3 w-3" /> 警告
           </Badge>
         )

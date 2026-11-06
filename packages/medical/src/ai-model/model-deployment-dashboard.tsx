@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@yyc3/ui/switch"
 import { Label } from "@yyc3/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "../hooks/use-toast"
 
 interface ModelData {
   id: string
@@ -76,13 +76,15 @@ export function ModelDeployment({ model = mockModelData, onClose = () => {} }: M
       case "active":
       case "success":
         return (
-          <Badge variant="success" className="flex items-center gap-1">
+          // 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary
+          <Badge variant="secondary" className="flex items-center gap-1">
             <CheckCircle className="h-3 w-3" /> {status === "active" ? "活跃" : "成功"}
           </Badge>
         )
       case "maintenance":
         return (
-          <Badge variant="warning" className="flex items-center gap-1">
+          // 自愈登记（T2/T3 批次）：Badge 无 warning variant，改最近语义合法值 secondary
+          <Badge variant="secondary" className="flex items-center gap-1">
             <Settings className="h-3 w-3" /> 维护中
           </Badge>
         )

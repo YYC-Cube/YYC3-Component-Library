@@ -360,7 +360,8 @@ export function PrescriptionManagement() {
                       ) : (
                         <>
                           {processingResult === "approved" ? (
-                            <Button variant="success" className="gap-1">
+                            // 自愈登记（T2/T3 批次）：源件 Button variant "success" 不在合法联合内，取最近语义 secondary
+                            <Button variant="secondary" className="gap-1">
                               <CheckCircle className="h-4 w-4" />
                               已批准
                             </Button>

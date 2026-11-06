@@ -122,7 +122,8 @@ export function MedicalRecordsClient({ recordType = "all" }) {
             </Select>
           </div>
 
-          <DatePicker date={selectedDate} setDate={setSelectedDate} placeholder="选择日期" />
+          {/* 自愈登记（T2/T3 批次）：DatePicker 契约为 value/onChange，消费方 date/setDate 对齐组件契约 */}
+          <DatePicker value={selectedDate} onChange={setSelectedDate} placeholder="选择日期" />
 
           <Button
             variant="outline"

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { PageHeader } from "@/components/page-header"
+import { PageHeader } from "../components/page-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { MedicalButton } from "@yyc3/ui/medical-button"
 import { Workflow, Search, AlertTriangle, Info, CheckCircle, X, Plus, Download } from "lucide-react"
@@ -27,9 +27,9 @@ export function MedicationInteractionsClient() {
   return (
     <div className="container mx-auto p-6 space-y-6">
       <PageHeader
-        heading="药物互作分析"
-        subheading="检查和分析药物之间的相互作用"
-        icon={<Workflow className="h-6 w-6 text-medical-600" />}
+        title="药物互作分析"
+        description="检查和分析药物之间的相互作用"
+        icon="pill"
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

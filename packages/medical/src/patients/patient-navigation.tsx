@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "../utils/cn"
 import { Users, FileText, Calendar, UserCheck } from "lucide-react"
 
 const navigationItems = [

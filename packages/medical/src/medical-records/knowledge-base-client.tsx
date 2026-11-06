@@ -6,9 +6,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Input } from "@yyc3/ui/input"
 import { Button } from "@yyc3/ui/button"
 import { BookOpen, Search, Database, BookMarked, Pill } from "lucide-react"
-import { medicalKnowledgeService, type DiseaseReference } from "../../services/medical-knowledge-service"
+import { medicalKnowledgeService, type DiseaseReference } from "../services/medical-knowledge-service"
 import { KnowledgeIntegration } from "./knowledge-integration"
-import type { DiagnosticFinding } from "../../types/medical-records"
+import type { DiagnosticFinding } from "../types/medical-records"
 
 export function KnowledgeBaseClient() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -34,6 +34,7 @@ export function KnowledgeBaseClient() {
     setSelectedDisease(disease)
 
     // 创建模拟的诊断发现，用于知识库集成组件
+    // 自愈登记（T2/T3 批次）：relatedDiseaseIds 不在 DiagnosticFinding 契约内且无消费方，剥离
     const mockFinding: DiagnosticFinding = {
       id: "search-result",
       modality: "search",
@@ -42,7 +43,6 @@ export function KnowledgeBaseClient() {
       confidence: 1.0,
       severity: "moderate",
       recommendation: "基于搜索结果",
-      relatedDiseaseIds: [disease.id],
     }
 
     setMockFindings([mockFinding])

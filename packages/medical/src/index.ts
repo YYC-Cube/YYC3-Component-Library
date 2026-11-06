@@ -1,11 +1,8 @@
 // ============================================================
-// YYC³ · @yyc3/medical 桶文件（medical T0+T1 批次 · 2026-11-06）
+// YYC³ · @yyc3/medical 桶文件（T0+T1 · 2026-11-06 / T2+T3 · 2026-11-06）
 // 源（D0 权威副本）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/ai-medical-systemadvanced/
-// 本批：36 组件有效导出（health-data 12 / teleconsultation 4 / ehr 5 /
-//       ai-model-training 4 / analytics 11）+ 前置件 17（components 15 + hooks 2 + utils 1）
-// 摘除登记：medications 10 / patients 8 / research 11 / ai-diagnosis 13 /
-//           ai-model 11 / clinical-decision 9 / medical-records 20（T2/T3 批次，前置：
-//           services 10 + types 3 + use-toast 等真身迁入）
+// 全量恢复：118 组件（T1 36 + T2/T3 82）+ 前置件 47（components 24 / services 11 /
+// types 5 / hooks 5 / lib/api 2 / utils 2）——medical 域摘除彻底清零
 // ============================================================
 
 // ── health-data（12，命名导出）──
@@ -72,3 +69,125 @@ export { default as DataComparisonPanel } from './components/analytics/data-comp
 export { InteractiveCharts as ComponentAnalyticsInteractiveCharts } from './components/analytics/interactive-charts'
 export { useRealTimeData } from './hooks/use-real-time-data'
 export { isClient } from './utils/client-utils'
+
+// ── medications（10，命名导出）──
+export { MedicationCatalog } from './medications/medication-catalog'
+export { MedicationCatalogClient } from './medications/medication-catalog-client'
+export { MedicationInteractions } from './medications/medication-interactions'
+export { MedicationInteractionsClient } from './medications/medication-interactions-client'
+export { MedicationInventory } from './medications/medication-inventory'
+export { MedicationInventoryClient } from './medications/medication-inventory-client'
+export { PharmacogenomicsAnalysis } from './medications/pharmacogenomics-analysis'
+export { PopularMedications } from './medications/popular-medications'
+export { PrescriptionManagement } from './medications/prescription-management'
+export { PrescriptionManagementClient } from './medications/prescription-management-client'
+
+// ── patients（8，命名导出；两组同名件别名区分）──
+export { PatientList } from './patients/PatientList'
+export { PatientList as PatientListView } from './patients/patient-list'
+export { AddPatientDialog } from './patients/add-patient-dialog'
+export { FollowupClient } from './patients/followup-client'
+export { MedicalRecordsClient as PatientRecordsClient } from './patients/medical-records-client'
+export { PatientDetails } from './patients/patient-details'
+export { PatientGroupsClient } from './patients/patient-groups-client'
+export { PatientNavigation } from './patients/patient-navigation'
+
+// ── research（11）──
+export { ActiveProjects } from './research/active-projects'
+export { DataAnalysisOverview } from './research/data-analysis-overview'
+export { ExperimentDesign } from './research/experiment-design'
+export { ExperimentDesignClient } from './research/experiment-design-client'
+export { MultiCenterCollaboration } from './research/multi-center-collaboration'
+export { ProjectDetails } from './research/project-details'
+export { ResearchProjectsDashboard } from './research/projects-dashboard'
+export { ResearchAnalysisClient } from './research/research-analysis-client'
+export { SampleManagement } from './research/sample-management'
+export { SampleManagementClient } from './research/sample-management-client'
+export { default as ResearchClient } from './research/research-client'
+
+// ── ai-diagnosis（13，命名导出）──
+export { AIDiagnosisClient } from './ai-diagnosis/ai-diagnosis-client'
+export { AIDiagnosisNavigation } from './ai-diagnosis/ai-diagnosis-navigation'
+export { DiagnosisBatch } from './ai-diagnosis/diagnosis-batch'
+export { DiagnosisClassification } from './ai-diagnosis/diagnosis-classification'
+export { DiagnosisComparison } from './ai-diagnosis/diagnosis-comparison'
+export { DiagnosisExplainer } from './ai-diagnosis/diagnosis-explainer'
+export { DiagnosisExport } from './ai-diagnosis/diagnosis-export'
+export { DiagnosisForm } from './ai-diagnosis/diagnosis-form'
+export { DiagnosisHistory } from './ai-diagnosis/diagnosis-history'
+export { DiagnosisModelIntegration } from './ai-diagnosis/diagnosis-model-integration'
+export { DiagnosisRecordsClient } from './ai-diagnosis/diagnosis-records-client'
+export { DiagnosisReview } from './ai-diagnosis/diagnosis-review'
+export { DiagnosisStatistics } from './ai-diagnosis/diagnosis-statistics'
+
+// ── ai-model（11；两组同名件别名区分）──
+export { AIModelClient } from './ai-model/ai-model-client'
+export { ModelDeployment as ModelDeploymentPanel } from './ai-model/model-deployment'
+export { ModelDeployment as ModelDeploymentDashboard } from './ai-model/model-deployment-dashboard'
+export { ModelIntegration } from './ai-model/model-integration'
+export { ModelManagement } from './ai-model/model-management'
+export { ModelMonitoring } from './ai-model/model-monitoring'
+export { ModelNavigation } from './ai-model/model-navigation'
+export { ModelOverview } from './ai-model/model-overview'
+export { ModelPerformance } from './ai-model/model-performance'
+export { ModelPerformanceClient } from './ai-model/model-performance-client'
+export { ModelVersionHistory } from './ai-model/model-version-history'
+
+// ── clinical-decision（9）──
+export { ClinicalDashboard } from './clinical-decision/dashboard'
+export { ClinicalGuidelinesClient } from './clinical-decision/clinical-guidelines-client'
+export { ClinicalPathwaysClient } from './clinical-decision/clinical-pathways-client'
+export { ClinicalTreatmentsClient } from './clinical-decision/clinical-treatments-client'
+export { DecisionSupportPanel } from './clinical-decision/decision-support-panel'
+export { DiagnosticToolsClient } from './clinical-decision/diagnostic-tools-client'
+export { DrugReferenceClient } from './clinical-decision/drug-reference-client'
+export { RecentCases } from './clinical-decision/recent-cases'
+export { TreatmentRecommendations } from './clinical-decision/treatment-recommendations'
+
+// ── medical-records（20，命名导出）──
+export { MedicalViewer3D } from './medical-records/3d-medical-viewer'
+export { AIAssistedAnnotation } from './medical-records/ai-assisted-annotation'
+export { AIDiagnosis } from './medical-records/ai-diagnosis'
+export { AIModelSelector } from './medical-records/ai-model-selector'
+export { BatchProcessor } from './medical-records/batch-processor'
+export { CrossModalAnalysis } from './medical-records/cross-modal-analysis'
+export { DicomViewer } from './medical-records/dicom-viewer'
+export { ImagingFeatureClient } from './medical-records/imaging-feature-client'
+export { ImagingFeatureReference } from './medical-records/imaging-feature-reference'
+export { InteractiveImageAnnotation } from './medical-records/interactive-image-annotation'
+export { KnowledgeBaseClient } from './medical-records/knowledge-base-client'
+export { KnowledgeButton } from './medical-records/knowledge-button'
+export { KnowledgeIntegration } from './medical-records/knowledge-integration'
+export { MedicalImagingUploader } from './medical-records/medical-imaging-uploader'
+export { MedicalRecordsClient } from './medical-records/medical-records-client'
+export { ModalitySpecificAnalysis } from './medical-records/modality-specific-analysis'
+export { MultiModalAIDiagnosis } from './medical-records/multi-modal-ai-diagnosis'
+export { OcrService } from './medical-records/ocr-service'
+export { PrescriptionUploader } from './medical-records/prescription-uploader'
+export { RecordAssociation } from './medical-records/record-association'
+
+// ── services 真身单例（T2/T3 前置件，供下游直接消费）──
+export { clinicalDecisionService } from './services/clinical-decision-service'
+export { caseLibraryService } from './services/case-library-service'
+export { medicalKnowledgeService } from './services/medical-knowledge-service'
+export { imagingFeatureService } from './services/imaging-feature-service'
+export { knowledgeGraphService } from './services/knowledge-graph-service'
+export { aiAnnotationService } from './services/ai-annotation-service'
+export { multiModalAIService } from './services/multi-modal-ai-service'
+export { medicationInteractionService } from './services/medication-interaction-service'
+export { multiCenterResearchService } from './services/multi-center-research-service'
+export { patientService } from './services/patientService'
+
+// ── hooks 真身（T2/T3 前置件）──
+export { useToast, toast } from './hooks/use-toast'
+export { useApi } from './hooks/useApi'
+export { useTranslation } from './hooks/use-translation'
+
+// ── T2 前置件（通用桥接组件）──
+export { PageHeader } from './components/page-header'
+export { ExperimentFilterDrawer } from './components/experiment-filter-drawer'
+export type { ExperimentFilters } from './components/experiment-filter-drawer'
+export { ExperimentFilterTags } from './components/experiment-filter-tags'
+export { ExperimentTemplateManager } from './components/experiment-template-manager'
+export { QuickFilterMenu } from './components/quick-filter-menu'
+export { SaveAsTemplateDialog } from './components/save-as-template-dialog'

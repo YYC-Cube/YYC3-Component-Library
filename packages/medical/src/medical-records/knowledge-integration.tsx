@@ -14,8 +14,8 @@ import {
   type DiseaseReference,
   type TreatmentGuideline,
   type MedicalReference,
-} from "../../services/medical-knowledge-service"
-import type { DiagnosticFinding } from "../../types/medical-records"
+} from "../services/medical-knowledge-service"
+import type { DiagnosticFinding } from "../types/medical-records"
 
 interface KnowledgeIntegrationProps {
   findings: DiagnosticFinding[]

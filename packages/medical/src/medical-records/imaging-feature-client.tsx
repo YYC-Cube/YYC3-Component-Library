@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Layers, Waves, Scan, Activity, Microscope, Search, ImageIcon, Crosshair } from "lucide-react"
 import { ImagingFeatureReference } from "./imaging-feature-reference"
 import { InteractiveImageAnnotation } from "./interactive-image-annotation"
-import type { ModalityType, AnatomicalRegion } from "../../types/imaging-features"
+import type { ModalityType, AnatomicalRegion } from "../types/imaging-features"
 
 export function ImagingFeatureClient() {
   const [selectedModality, setSelectedModality] = useState<ModalityType>("CT")

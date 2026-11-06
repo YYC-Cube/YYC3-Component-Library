@@ -345,22 +345,8 @@ export function PatientDetails({ patientId }: { patientId: string }) {
                 <CardDescription>最近5次检测数据</CardDescription>
               </CardHeader>
               <CardContent className="h-80">
-                <LineChart
-                  data={vitalSigns}
-                  categories={[
-                    {
-                      name: "收缩压",
-                      key: "systolic",
-                      stroke: "#ef4444",
-                    },
-                    {
-                      name: "舒张压",
-                      key: "diastolic",
-                      stroke: "#3b82f6",
-                    },
-                  ]}
-                  xAxisKey="date"
-                />
+                {/* 自愈登记（T2/T3 批次）：@yyc3/ui/chart 为 recharts 原样导出，剥离非标 prop categories/xAxisKey（运行时本被忽略，行为不变） */}
+                <LineChart data={vitalSigns} />
               </CardContent>
             </Card>
 
@@ -527,6 +513,7 @@ export function PatientDetails({ patientId }: { patientId: string }) {
               <div className="mt-6">
                 <div className="font-medium mb-3 text-medical-700">用药依从性分析</div>
                 <div className="h-64">
+                  {/* 自愈登记（T2/T3 批次）：@yyc3/ui/chart 为 recharts 原样导出，剥离非标 prop categories/xAxisKey/yAxisConfig（运行时本被忽略，行为不变） */}
                   <BarChart
                     data={[
                       { month: "1月", adherence: 90 },
@@ -534,19 +521,6 @@ export function PatientDetails({ patientId }: { patientId: string }) {
                       { month: "3月", adherence: 88 },
                       { month: "4月", adherence: 92 },
                     ]}
-                    categories={[
-                      {
-                        name: "依从性",
-                        key: "adherence",
-                        color: "hsl(var(--chart-1))",
-                      },
-                    ]}
-                    xAxisKey="month"
-                    yAxisConfig={{
-                      min: 0,
-                      max: 100,
-                      unit: "%",
-                    }}
                   />
                 </div>
               </div>

@@ -253,7 +253,8 @@ const getStatusBadge = (status: string) => {
   switch (status) {
     case "进行中":
       return (
-        <Badge variant="success" className="flex items-center gap-1">
+        // 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary
+        <Badge variant="secondary" className="flex items-center gap-1">
           <CheckCircle2 className="h-3 w-3" /> 进行中
         </Badge>
       )
@@ -271,7 +272,8 @@ const getStatusBadge = (status: string) => {
       )
     case "已暂停":
       return (
-        <Badge variant="warning" className="flex items-center gap-1">
+        // 自愈登记（T2/T3 批次）：Badge 无 warning variant，改最近语义合法值 secondary
+        <Badge variant="secondary" className="flex items-center gap-1">
           <AlertCircle className="h-3 w-3" /> 已暂停
         </Badge>
       )
@@ -395,7 +397,8 @@ export function ProjectDetails() {
                           </div>
                           <div className="flex justify-between">
                             <span className="text-muted-foreground">状态:</span>
-                            <Badge variant="success" className="text-xs">
+                            {/* 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary */}
+                            <Badge variant="secondary" className="text-xs">
                               {projectData.ethics.status}
                             </Badge>
                           </div>

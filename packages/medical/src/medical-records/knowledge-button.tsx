@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@yyc3/ui/dialog"
 import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
 import { KnowledgeIntegration } from "./knowledge-integration"
-import type { DiagnosticFinding } from "../../types/medical-records"
+import type { DiagnosticFinding } from "../types/medical-records"
 
 interface KnowledgeButtonProps {
   findings: DiagnosticFinding[]
@@ -63,6 +63,7 @@ export function KnowledgeButton({
           )}
 
           <div className="overflow-y-auto px-6 pb-6 flex-1">
+            {/* 自愈登记（T2/T3 批次）：KnowledgeIntegration 契约无 onError（组件不接收也不会调用，运行时本被丢弃），已剥离该 prop */}
             {findings.length === 0 ? (
               <div className="flex items-center justify-center h-64">
                 <div className="text-center">
@@ -72,7 +73,7 @@ export function KnowledgeButton({
                 </div>
               </div>
             ) : (
-              <KnowledgeIntegration findings={findings} patientId={patientId} onError={handleError} />
+              <KnowledgeIntegration findings={findings} patientId={patientId} />
             )}
           </div>
 

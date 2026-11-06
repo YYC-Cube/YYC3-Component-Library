@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { PageHeader } from "@/components/page-header"
+import { PageHeader } from "../components/page-header"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { MedicalButton } from "@yyc3/ui/medical-button"
@@ -28,9 +28,9 @@ export function MedicationInventoryClient() {
   return (
     <div className="container mx-auto p-6 space-y-6">
       <PageHeader
-        heading="药品库存管理"
-        subheading="管理和监控药品库存"
-        icon={<Clipboard className="h-6 w-6 text-medical-600" />}
+        title="药品库存管理"
+        description="管理和监控药品库存"
+        icon="pill"
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

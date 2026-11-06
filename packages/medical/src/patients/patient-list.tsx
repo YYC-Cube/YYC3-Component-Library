@@ -6,10 +6,10 @@ import { useState, useEffect } from "react"
 import { MedicalButton } from "@yyc3/ui/medical-button"
 import { ChevronDown, ChevronUp, MoreHorizontal, Star } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "../utils/cn"
 import { useRouter } from "next/navigation"
 import { FixedSizeList as List } from "react-window"
-import { useIsMobile } from "@yyc3/hooks/use-mobile"
+import { useIsMobile } from "../hooks/use-mobile"
 
 // 虚拟患者数据
 const patients = [

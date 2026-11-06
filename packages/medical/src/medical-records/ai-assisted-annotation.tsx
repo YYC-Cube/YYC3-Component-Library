@@ -25,10 +25,10 @@ import {
   HelpCircle,
 } from "lucide-react"
 import { InteractiveImageAnnotation } from "./interactive-image-annotation"
-import { aiAnnotationService } from "../../services/ai-annotation-service"
-import { knowledgeGraphService } from "../../services/knowledge-graph-service"
-import type { ImageMarker } from "../../types/imaging-features"
-import type { AIAnnotationSuggestion, GraphNode } from "../../types/knowledge-graph"
+import { aiAnnotationService } from "../services/ai-annotation-service"
+import { knowledgeGraphService } from "../services/knowledge-graph-service"
+import type { ImageMarker } from "../types/imaging-features"
+import type { AIAnnotationSuggestion, GraphNode } from "../types/knowledge-graph"
 
 interface AIAssistedAnnotationProps {
   selectedImage: string
@@ -442,17 +442,8 @@ export function AIAssistedAnnotation({
                       </span>
                     </div>
                   </div>
-                  <Progress
-                    value={consistencyResult.score * 100}
-                    className="h-2"
-                    indicatorClassName={
-                      consistencyResult.score >= 0.8
-                        ? "bg-green-500"
-                        : consistencyResult.score >= 0.5
-                          ? "bg-amber-500"
-                          : "bg-red-500"
-                    }
-                  />
+                  {/* 自愈登记（T2/T3 批次）：Progress 契约无 indicatorClassName（Indicator 样式硬编码，运行时本被丢弃），剥离 */}
+                  <Progress value={consistencyResult.score * 100} className="h-2" />
                 </div>
 
                 <div>

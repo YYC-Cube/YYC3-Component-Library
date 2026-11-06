@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { PageHeader } from "@/components/page-header"
+import { PageHeader } from "../components/page-header"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { MedicalButton } from "@yyc3/ui/medical-button"
@@ -29,9 +29,9 @@ export function PrescriptionManagementClient() {
   return (
     <div className="container mx-auto p-6 space-y-6">
       <PageHeader
-        heading="处方管理"
-        subheading="创建、审核和管理患者处方"
-        icon={<ClipboardList className="h-6 w-6 text-medical-600" />}
+        title="处方管理"
+        description="创建、审核和管理患者处方"
+        icon="fileText"
       />
 
       <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">

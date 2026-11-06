@@ -22,15 +22,15 @@ import {
   X,
   Trash2,
 } from "lucide-react"
-import type { ExperimentFilters } from "@/components/experiment-filter-drawer"
+import type { ExperimentFilters } from "../components/experiment-filter-drawer"
 import { Button } from "@yyc3/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { Input } from "@yyc3/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { ExperimentFilterDrawer } from "@/components/experiment-filter-drawer"
-import { ExperimentFilterTags } from "@/components/experiment-filter-tags"
-import { QuickFilterMenu } from "@/components/quick-filter-menu"
+import { ExperimentFilterDrawer } from "../components/experiment-filter-drawer"
+import { ExperimentFilterTags } from "../components/experiment-filter-tags"
+import { QuickFilterMenu } from "../components/quick-filter-menu"
 import {
   Dialog,
   DialogContent,
@@ -43,8 +43,8 @@ import { Label } from "@yyc3/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
 import { Textarea } from "@yyc3/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@yyc3/ui/radio-group"
-import { ExperimentTemplateManager } from "@/components/experiment-template-manager"
-import { SaveAsTemplateDialog } from "@/components/save-as-template-dialog"
+import { ExperimentTemplateManager } from "../components/experiment-template-manager"
+import { SaveAsTemplateDialog } from "../components/save-as-template-dialog"
 
 // 模拟试验设计数据
 const experimentDesigns = [
@@ -905,7 +905,8 @@ export function ExperimentDesign() {
               </div>
 
               <div className="space-y-4">
-                {currentDesignData.groups.map((group, index) => (
+                {/* 自愈登记（T2/T3 批次）：currentDesignData 为 any，map 回调参数补标注 */}
+                {currentDesignData.groups.map((group: any, index: number) => (
                   <Card key={index}>
                     <CardHeader className="pb-2">
                       <div className="flex justify-between items-center">
@@ -1009,7 +1010,8 @@ export function ExperimentDesign() {
                   </div>
 
                   <div className="space-y-4">
-                    {currentDesignData.variables.map((variable, index) => (
+                    {/* 自愈登记（T2/T3 批次）：currentDesignData 为 any，map 回调参数补标注 */}
+                    {currentDesignData.variables.map((variable: any, index: number) => (
                       <Card key={index}>
                         <CardHeader className="pb-2">
                           <div className="flex justify-between items-center">
@@ -1109,7 +1111,8 @@ export function ExperimentDesign() {
                   </div>
 
                   <div className="space-y-4">
-                    {currentDesignData.methods.map((method, index) => (
+                    {/* 自愈登记（T2/T3 批次）：currentDesignData 为 any，map 回调参数补标注 */}
+                    {currentDesignData.methods.map((method: any, index: number) => (
                       <Card key={index}>
                         <CardHeader className="pb-2">
                           <div className="flex justify-between items-center">
@@ -1236,7 +1239,8 @@ export function ExperimentDesign() {
                 <div className="space-y-2">
                   <Label>标签</Label>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {currentDesignData.tags.map((tag, index) => (
+                    {/* 自愈登记（T2/T3 批次）：currentDesignData 为 any，map 回调参数补标注 */}
+                    {currentDesignData.tags.map((tag: string, index: number) => (
                       <Badge key={index} variant="secondary" className="flex items-center gap-1">
                         {tag}
                         <X

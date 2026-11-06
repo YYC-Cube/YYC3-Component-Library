@@ -11,7 +11,7 @@ import { Textarea } from "@yyc3/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
 import { Checkbox } from "@yyc3/ui/checkbox"
 import { Loader2, FileText, ImageIcon, AlertCircle } from "lucide-react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "../hooks/use-toast"
 
 export function DiagnosisForm() {
   const { toast } = useToast()

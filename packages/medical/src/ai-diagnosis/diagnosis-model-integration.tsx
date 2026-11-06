@@ -45,7 +45,7 @@ import {
   Activity,
   Share2,
 } from "lucide-react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "../hooks/use-toast"
 
 // 模拟诊断记录数据
 const diagnosisData = {
@@ -904,7 +904,8 @@ export function DiagnosisModelIntegration() {
                         <CardTitle>数据集生成完成</CardTitle>
                         <CardDescription>数据集已成功生成，可用于模型训练</CardDescription>
                       </div>
-                      <Badge variant="success" className="flex items-center gap-1">
+                      {/* 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary */}
+                      <Badge variant="secondary" className="flex items-center gap-1">
                         <CheckCircle className="h-3 w-3" /> 已完成
                       </Badge>
                     </div>

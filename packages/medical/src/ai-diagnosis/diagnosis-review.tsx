@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "../hooks/use-toast"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
@@ -196,6 +196,12 @@ export function DiagnosisReview() {
   const getDoctorInfo = (doctorId: string | null) => {
     if (!doctorId) return null
     return mockDoctors.find((d) => d.id === doctorId)
+  }
+
+  // 自愈登记（T2/T3 批次）：选中诊断为联合类型，assignedTo 仅部分成员存在，用 in 收窄安全读取
+  const getSelectedAssignedTo = () => {
+    const selected = getSelectedDiagnosis()
+    return selected && "assignedTo" in selected ? selected.assignedTo : null
   }
 
   // 处理诊断审核
@@ -428,10 +434,10 @@ export function DiagnosisReview() {
                                   </div>
                                 </TableCell>
                                 <TableCell>
+                                  {/* 自愈登记（T2/T3 批次）：Select 契约无 onClick（Radix Root 不透传 DOM props，运行时本被丢弃），剥离 */}
                                   <Select
                                     defaultValue={diagnosis.priority}
                                     onValueChange={(value) => handleChangePriority(diagnosis.id, value)}
-                                    onClick={(e) => e.stopPropagation()}
                                   >
                                     <SelectTrigger className="w-[80px]">
                                       <SelectValue>{renderPriorityBadge(diagnosis.priority)}</SelectValue>
@@ -718,7 +724,8 @@ export function DiagnosisReview() {
 
                       {activeTab === "pending" && (
                         <div className="flex gap-2">
-                          {!getSelectedDiagnosis()?.assignedTo && (
+                          {/* 自愈登记（T2/T3 批次）：联合类型无 assignedTo 的成员改走 getSelectedAssignedTo（in 收窄），运行时取值等价 */}
+                          {!getSelectedAssignedTo() && (
                             <Button variant="outline" onClick={() => setAssignDialogOpen(true)}>
                               分配医生
                             </Button>

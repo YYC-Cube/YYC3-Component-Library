@@ -230,7 +230,8 @@ export function ModelIntegration() {
                         </div>
                         <div className="flex items-center gap-2">
                           {integration.status === "connected" ? (
-                            <Badge variant="success" className="flex items-center gap-1">
+                            // 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary
+                            <Badge variant="secondary" className="flex items-center gap-1">
                               <CheckCircle className="h-3 w-3" />
                               已连接
                             </Badge>
@@ -307,7 +308,8 @@ export function ModelIntegration() {
                     <Switch id="secure-transfer" defaultChecked />
                   </div>
 
-                  <Button variant="primary" className="w-full">
+                  {/* 自愈登记（T2/T3 批次）：Button 无 primary variant，改最近语义合法值 default */}
+                  <Button variant="default" className="w-full">
                     保存设置
                   </Button>
                 </CardContent>

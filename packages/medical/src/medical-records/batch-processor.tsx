@@ -69,6 +69,22 @@ const mockBatchTasks = [
 ]
 
 // 模拟批处理文件
+// 自愈登记（T2/T3 批次）：批处理文件补局部 interface（result/patientName/patientId 可为 null），
+// 供 useState 显式泛型使用，替代 typeof 字面量推断出的联合类型
+interface BatchFile {
+  id: string
+  name: string
+  type: string
+  size: string
+  uploadedAt: string
+  status: string
+  result: string | null
+  thumbnailUrl: string
+  patientName: string | null
+  patientId: string | null
+  isSelected: boolean
+}
+
 const mockBatchFiles = [
   {
     id: "file-001",
@@ -147,7 +163,7 @@ export function BatchProcessor() {
   const [isProcessing, setIsProcessing] = useState(false)
   const [processingProgress, setProcessingProgress] = useState(0)
   const [currentTask, setCurrentTask] = useState<(typeof mockBatchTasks)[0] | null>(null)
-  const [batchFiles, setBatchFiles] = useState<typeof mockBatchFiles>([])
+  const [batchFiles, setBatchFiles] = useState<BatchFile[]>([])
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [selectAll, setSelectAll] = useState(false)
   const [selectedCount, setSelectedCount] = useState(0)
@@ -573,7 +589,8 @@ export function BatchProcessor() {
                       {file.status === "已处理" && <Badge variant="default">已处理</Badge>}
                     </TableCell>
                     <TableCell>
-                      {file.result === "成功" && <Badge variant="success">成功</Badge>}
+                      {/* 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary */}
+                      {file.result === "成功" && <Badge variant="secondary">成功</Badge>}
                       {file.result === "失败" && <Badge variant="destructive">失败</Badge>}
                       {!file.result && "-"}
                     </TableCell>
@@ -605,7 +622,8 @@ export function BatchProcessor() {
               {currentTask?.type} | 创建于 {currentTask?.createdAt}
             </CardDescription>
           </div>
-          <Badge variant={currentTask?.status === "已完成" ? "success" : "secondary"}>{currentTask?.status}</Badge>
+              {/* 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary */}
+              <Badge variant={currentTask?.status === "已完成" ? "secondary" : "secondary"}>{currentTask?.status}</Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -791,9 +809,10 @@ export function BatchProcessor() {
                     <TableCell>{task.type}</TableCell>
                     <TableCell>{task.createdAt}</TableCell>
                     <TableCell>
+                      {/* 自愈登记（T2/T3 批次）：Badge 无 success variant，改最近语义合法值 secondary */}
                       <Badge
                         variant={
-                          task.status === "已完成" ? "success" : task.status === "处理中" ? "secondary" : "outline"
+                          task.status === "已完成" ? "secondary" : task.status === "处理中" ? "secondary" : "outline"
                         }
                       >
                         {task.status}

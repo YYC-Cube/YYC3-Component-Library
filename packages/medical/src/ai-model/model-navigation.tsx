@@ -6,7 +6,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { BarChart2, Layers, FileText, Settings, Database, AlertCircle, Users } from "lucide-react"
 import { Badge } from "@yyc3/ui/badge"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "../utils/cn"
 
 interface NavigationItem {
   title: string
