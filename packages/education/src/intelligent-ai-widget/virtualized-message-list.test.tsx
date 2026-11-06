@@ -12,6 +12,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import VirtualizedMessageList from './virtualized-message-list';
 import type { Message } from './intelligent-ai-widget';
 
+// jsdom 无布局计算：真身 useVirtualizer 量不到视口（rect 恒 0）→ getVirtualItems() 恒空。
+// 按裁决挂测试替身（几何固定的窗口化模拟，见 testing/jsdom-react-virtual-mock.ts），断言零改动。
+vi.mock('@tanstack/react-virtual', async () => await import('./testing/jsdom-react-virtual-mock'));
+
 const mockMessages: Message[] = Array.from({ length: 100 }, (_, i) => ({
   id: `message-${i}`,
   role: i % 3 === 0 ? 'user' : i % 3 === 1 ? 'assistant' : 'system',

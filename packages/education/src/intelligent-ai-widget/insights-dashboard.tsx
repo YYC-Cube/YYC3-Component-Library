@@ -59,6 +59,8 @@ export interface InsightsDashboardProps {
 interface MetricCardProps {
   metric: InsightMetric;
   onClick?: () => void;
+  // 配套测试版语义：按渲染序锚定指标卡（insight-card-{index}）
+  index?: number;
 }
 
 interface ChartCardProps {
@@ -76,19 +78,17 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
   onRecommendationAction
 }) => {
   const [period, setPeriod] = useState<'today' | 'week' | 'month' | 'year'>('today');
-  const [insightData, setInsightData] = useState<InsightData | null>(null);
-  const [loading, setLoading] = useState(true);
+  // 配套测试版语义：洞察数据同步生成（首帧即渲染标题与指标卡，加载指示仅作占位）
+  const [insightData, setInsightData] = useState<InsightData | null>(() => generateInsightData('today'));
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     loadInsightData(period);
   }, [period]);
 
-  const loadInsightData = useCallback(async (selectedPeriod: 'today' | 'week' | 'month' | 'year') => {
-    setLoading(true);
-
+  const loadInsightData = useCallback((selectedPeriod: 'today' | 'week' | 'month' | 'year') => {
     try {
-      const data = await generateInsightData(selectedPeriod);
-      setInsightData(data);
+      setInsightData(generateInsightData(selectedPeriod));
     } catch (error) {
       console.error('加载洞察数据失败:', error);
     } finally {
@@ -105,25 +105,7 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
     onRecommendationAction?.(recommendationId);
   }, [onRecommendationAction]);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-500">加载洞察数据...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!insightData) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <p className="text-gray-500">无法加载洞察数据</p>
-      </div>
-    );
-  }
-
+  // 加载中不再整页早退：工具栏（使用洞察标题）在加载窗口期保持可检索（配套测试依赖）
   return (
     <div className="flex flex-col h-full">
       {/* 工具栏 */}
@@ -157,6 +139,21 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
 
       {/* 内容区 */}
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
+        {loading && (
+          <div className="flex items-center justify-center h-full">
+            <div className="flex flex-col items-center space-y-4">
+              <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-gray-500">加载洞察数据...</p>
+            </div>
+          </div>
+        )}
+        {!loading && !insightData && (
+          <div className="flex items-center justify-center h-full">
+            <p className="text-gray-500">无法加载洞察数据</p>
+          </div>
+        )}
+        {!loading && insightData && (
+        <>
         {/* 核心指标 */}
         <div>
           <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
@@ -164,10 +161,11 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
             核心指标
           </h4>
           <div className="grid grid-cols-2 gap-3">
-            {insightData.metrics.map(metric => (
+            {insightData.metrics.map((metric, index) => (
               <MetricCard
                 key={metric.id}
                 metric={metric}
+                index={index}
               />
             ))}
           </div>
@@ -208,6 +206,8 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
             </div>
           </div>
         )}
+        </>
+        )}
       </div>
     </div>
   );
@@ -215,12 +215,15 @@ export const InsightsDashboard: React.FC<InsightsDashboardProps> = ({
 
 InsightsDashboard.displayName = 'InsightsDashboard';
 
-const MetricCard: React.FC<MetricCardProps> = React.memo(({ metric }) => {
+const MetricCard: React.FC<MetricCardProps> = React.memo(({ metric, index }) => {
   const TrendIcon = metric.positive ? TrendingUp : TrendingDown;
   const trendColor = metric.positive ? 'text-green-600' : 'text-red-600';
 
   return (
-    <div className="p-4 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg border border-indigo-100 hover:shadow-md transition-shadow">
+    <div
+      data-testid={typeof index === 'number' ? `insight-card-${index}` : undefined}
+      className="p-4 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg border border-indigo-100 hover:shadow-md transition-shadow"
+    >
       <div className="flex items-start justify-between mb-2">
         <div className="text-2xl">{metric.icon}</div>
         <div className={`flex items-center space-x-1 text-xs font-semibold ${trendColor}`}>
@@ -397,9 +400,7 @@ const PeriodButton: React.FC<{ label: string; active: boolean; onClick: () => vo
 
 PeriodButton.displayName = 'PeriodButton';
 
-async function generateInsightData(period: 'today' | 'week' | 'month' | 'year'): Promise<InsightData> {
-  await new Promise(resolve => setTimeout(resolve, 500));
-
+function generateInsightData(period: 'today' | 'week' | 'month' | 'year'): InsightData {
   const periodMultipliers = {
     today: 1,
     week: 7,

@@ -1,9 +1,11 @@
 // src/store/app-store.test.ts
+// 对齐现 store 基线：ModuleId 由 UI Slice 导出（仅 AUDIT/OTHER_MODULES），
+// 不存在 bootstrap 时代的 @/src/core/module-system 枚举
+import { describe, it, expect } from 'vitest';
 import { act } from '@testing-library/react';
 
 import { useAppStore } from './app-store';
-
-import { ModuleId } from '@/src/core/module-system';
+import { ModuleId } from './slices/createUISlice';
 
 describe('AppStore Zustand Store', () => {
   it('should have correct initial state', () => {
@@ -20,10 +22,10 @@ describe('AppStore Zustand Store', () => {
   it('should correctly update the active module', () => {
     // 使用 act 来包装状态更新
     act(() => {
-      useAppStore.getState().setActiveModule(ModuleId.EMOTION);
+      useAppStore.getState().setActiveModule(ModuleId.OTHER_MODULES);
     });
 
-    expect(useAppStore.getState().activeModule).toBe(ModuleId.EMOTION);
+    expect(useAppStore.getState().activeModule).toBe(ModuleId.OTHER_MODULES);
   });
 
   it('should correctly update accessibility settings', () => {

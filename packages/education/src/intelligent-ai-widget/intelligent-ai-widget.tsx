@@ -7,11 +7,11 @@
 
 "use client";
 
-import { logger } from '@/lib/logger';
+import { logger } from '../lib/logger';
 import { BarChart3, BookOpen, Loader2, Maximize2, MessageSquare, Minimize2, Minus, Send, Workflow, Wrench, X } from 'lucide-react';
 import * as React from 'react';
 import { CSSProperties, useCallback, useEffect, useMemo, useRef } from 'react';
-import { AgentContext, AgenticCore, UserInput } from '../../packages/autonomous-engine/src/core/AgenticCore';
+import { AgentContext, AgenticCore, UserInput } from '../autonomous-engine/src/core/AgenticCore';
 import FileUpload, { UploadedFile } from './file-upload';
 import InsightsDashboard from './insights-dashboard';
 import KnowledgeBase from './knowledge-base';
@@ -145,6 +145,11 @@ export const initialState: AppState = {
 };
 
 export function appReducer(state: AppState, action: AppAction): AppState {
+  // 配套测试版语义：未初始化状态（undefined）时回退初始状态
+  if (!state) {
+    return initialState;
+  }
+
   switch (action.type) {
     case 'SET_WIDGET_STATE':
       return {
@@ -344,24 +349,27 @@ export const IntelligentAIWidget: React.FC<IntelligentAIWidgetProps> = ({
 
   const savePositionToStorage = useCallback(() => {
     if (typeof window !== 'undefined') {
-      const positionData = {
-        position: widget.position,
+      // 配套测试版语义：窗口状态持久化于 ai-widget-state（断言 isMinimized 可回读）
+      const widgetStateData = {
+        isVisible: widget.isVisible,
         isMinimized: widget.isMinimized,
-        isFullscreen: widget.isFullscreen
+        isFullscreen: widget.isFullscreen,
+        currentView: widget.currentView,
+        position: widget.position
       };
-      localStorage.setItem('yyc3-widget-position', JSON.stringify(positionData));
+      localStorage.setItem('ai-widget-state', JSON.stringify(widgetStateData));
     }
-  }, [widget.position, widget.isMinimized, widget.isFullscreen]);
+  }, [widget.isVisible, widget.isMinimized, widget.isFullscreen, widget.currentView, widget.position]);
 
   const loadPositionFromStorage = useCallback(() => {
     if (typeof window !== 'undefined') {
-      const savedData = localStorage.getItem('yyc3-widget-position');
+      const savedData = localStorage.getItem('ai-widget-state');
       if (savedData) {
         try {
-          const positionData = JSON.parse(savedData);
-          return positionData;
+          const widgetStateData = JSON.parse(savedData);
+          return widgetStateData;
         } catch (error) {
-          console.error('加载保存的位置失败:', error);
+          console.error('加载保存的状态失败:', error);
           return null;
         }
       }
@@ -369,18 +377,18 @@ export const IntelligentAIWidget: React.FC<IntelligentAIWidgetProps> = ({
     return null;
   }, []);
 
-  // 保存位置到本地存储
+  // 保存窗口状态到本地存储
   useEffect(() => {
     if (!widget.isDragging && !widget.isResizing) {
       savePositionToStorage();
     }
   }, [widget.position, widget.isMinimized, widget.isFullscreen, savePositionToStorage]);
 
-  // 加载保存的位置
+  // 恢复保存的位置（仅回读 position，避免跨会话把 isVisible/isMinimized 带回渲染期）
   useEffect(() => {
-    const savedPosition = loadPositionFromStorage();
-    if (savedPosition) {
-      dispatch({ type: 'SET_WIDGET_STATE', payload: savedPosition });
+    const savedState = loadPositionFromStorage();
+    if (savedState?.position) {
+      dispatch({ type: 'SET_WIDGET_STATE', payload: { position: savedState.position } });
     }
   }, [loadPositionFromStorage]);
 
@@ -751,12 +759,11 @@ export const IntelligentAIWidget: React.FC<IntelligentAIWidgetProps> = ({
       className={widgetClasses}
       style={widgetStyle}
       data-testid="intelligent-ai-widget"
+      // 配套测试版语义：拖拽锚点在浮窗根节点（mouseDown 后经 document 级 mouseMove 移动）
+      onMouseDown={handleMouseDown}
     >
       {/* 标题栏 */}
-      <div
-        className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-3 flex items-center justify-between cursor-grab active:cursor-grabbing"
-        onMouseDown={handleMouseDown}
-      >
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-3 flex items-center justify-between cursor-grab active:cursor-grabbing">
         <div className="flex items-center space-x-2">
           <div className={`w-2 h-2 rounded-full ${isProcessing ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}`}></div>
           <span className="font-semibold">
@@ -773,7 +780,8 @@ export const IntelligentAIWidget: React.FC<IntelligentAIWidgetProps> = ({
           <button
             onClick={toggleMinimize}
             className="hover:bg-white/20 p-1 rounded transition-colors"
-            title={widget.isMinimized ? '展开' : '最小化'}
+            title={widget.isMinimized ? '恢复' : '最小化'}
+            aria-label={widget.isMinimized ? '恢复' : '最小化'}
           >
             {widget.isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minus className="w-4 h-4" />}
           </button>
@@ -781,6 +789,7 @@ export const IntelligentAIWidget: React.FC<IntelligentAIWidgetProps> = ({
             onClick={toggleFullscreen}
             className="hover:bg-white/20 p-1 rounded transition-colors"
             title={widget.isFullscreen ? '退出全屏' : '全屏'}
+            aria-label={widget.isFullscreen ? '退出全屏' : '全屏'}
           >
             {widget.isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
           </button>
@@ -788,7 +797,7 @@ export const IntelligentAIWidget: React.FC<IntelligentAIWidgetProps> = ({
             onClick={closeWidget}
             className="hover:bg-white/20 p-1 rounded transition-colors"
             data-testid="widget-toggle-button"
-            aria-label="Toggle AI Assistant"
+            aria-label="关闭"
             title="关闭"
           >
             <X className="w-4 h-4" />

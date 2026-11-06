@@ -7,7 +7,7 @@
 
 "use client";
 
-import { Search, Star, Clock, Grid, List, Zap, BookOpen, Play, Plus } from 'lucide-react';
+import { Search, Star, Clock, Grid, List, Zap, BookOpen, Play, Plus, X } from 'lucide-react';
 import * as React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -51,6 +51,9 @@ interface ToolCardProps {
   onExecute: (tool: Tool) => void;
   onPin: (toolId: string, pinned: boolean) => void;
   onOpenConfig?: (tool: Tool) => void;
+  // 配套测试版语义：卡片检索锚点（tool-card-{index}）与详情入口
+  testId?: string;
+  onSelect?: (tool: Tool) => void;
 }
 
 interface ToolCategoryProps {
@@ -214,7 +217,7 @@ export const ToolboxPanel: React.FC<ToolboxPanelProps> = ({
     }));
   }, [tools]);
 
-  const _filteredTools = useMemo(() => {
+  const filteredTools = useMemo(() => {
     return tools.filter(tool => {
       if (selectedCategory !== 'all' && tool.category !== selectedCategory) {
         return false;
@@ -273,10 +276,36 @@ export const ToolboxPanel: React.FC<ToolboxPanelProps> = ({
       .slice(0, 3);
   }, [tools]);
 
+  // 配套测试版语义：点击工具卡片进入「工具详情」视图
+  const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
+
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full relative">
+      {/* 工具详情浮层 */}
+      {selectedTool && (
+        <div className="absolute inset-0 z-10 bg-white flex flex-col">
+          <div className="p-4 border-b border-gray-200 bg-gray-50 flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-gray-900">工具详情</h3>
+            <button
+              onClick={() => setSelectedTool(null)}
+              className="p-1 rounded text-gray-500 hover:bg-gray-200 transition-colors"
+              aria-label="关闭工具详情"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+          <div className="p-4 overflow-y-auto">
+            <div className="text-3xl mb-2">{selectedTool.icon}</div>
+            <h4 className="font-semibold text-gray-900 mb-1">{selectedTool.name}</h4>
+            <p className="text-sm text-gray-600">{selectedTool.description}</p>
+          </div>
+        </div>
+      )}
+
       {/* 工具栏 */}
       <div className="p-4 border-b border-gray-200 bg-gray-50">
+        {/* 配套测试版语义：工具视图主标题 */}
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">可用工具</h3>
         <div className="flex items-center space-x-2 mb-3">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -329,12 +358,15 @@ export const ToolboxPanel: React.FC<ToolboxPanelProps> = ({
               固定工具
             </h3>
             <div className={`grid gap-3 ${viewMode === 'grid' ? 'grid-cols-2' : 'grid-cols-1'}`}>
-              {tools.filter(t => t.isPinned).map(tool => (
+              {tools.filter(t => t.isPinned).map((tool, index) => (
                 <ToolCard
                   key={tool.id}
                   tool={tool}
                   onExecute={handleToolExecute}
                   onPin={handleToolPin}
+                  onSelect={setSelectedTool}
+                  // 配套测试版语义：按渲染序锚定卡片（tool-card-0 为首张固定工具卡）
+                  testId={`tool-card-${index}`}
                 />
               ))}
             </div>
@@ -355,6 +387,7 @@ export const ToolboxPanel: React.FC<ToolboxPanelProps> = ({
                   tool={tool}
                   onExecute={handleToolExecute}
                   onPin={handleToolPin}
+                  onSelect={setSelectedTool}
                 />
               ))}
             </div>
@@ -374,6 +407,7 @@ export const ToolboxPanel: React.FC<ToolboxPanelProps> = ({
                 tool={tool}
                 onExecute={handleToolExecute}
                 onPin={handleToolPin}
+                onSelect={setSelectedTool}
               />
             ))}
           </div>
@@ -385,16 +419,18 @@ export const ToolboxPanel: React.FC<ToolboxPanelProps> = ({
 
 ToolboxPanel.displayName = 'ToolboxPanel';
 
-const ToolCard: React.FC<ToolCardProps> = React.memo(({ tool, onExecute, onPin }) => {
+const ToolCard: React.FC<ToolCardProps> = React.memo(({ tool, onExecute, onPin, testId, onSelect }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
+      data-testid={testId}
       className={`p-4 border rounded-lg transition-all cursor-pointer ${
         isHovered ? 'border-indigo-300 shadow-md' : 'border-gray-200 hover:border-indigo-300'
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => onSelect?.(tool)}
     >
       <div className="flex items-start justify-between mb-2">
         <div className="text-3xl">{tool.icon}</div>

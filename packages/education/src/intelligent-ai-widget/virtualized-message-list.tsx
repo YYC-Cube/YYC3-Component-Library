@@ -145,7 +145,11 @@ const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({ message }) => 
   };
 
   return (
-    <div className={`flex items-start gap-3 ${isUser ? 'justify-end' : 'justify-start'}`}>
+    <div
+      className={`flex items-start gap-3 ${isUser ? 'justify-end' : 'justify-start'}`}
+      // 自愈登记（8 债清零批）：配套测试版按 message-bubble-{id} 检索气泡
+      data-testid={`message-bubble-${message.id}`}
+    >
       {!isUser && getAvatar()}
       <div
         className={`
@@ -186,77 +190,89 @@ export const VirtualizedMessageList: React.FC<VirtualizedMessageListProps> = ({
   const parentRef = React.useRef<HTMLDivElement>(null);
   const lastMessageIdRef = React.useRef<string | null>(null);
 
+  // 配套测试版语义：列表「最新在上」呈现（滚动到顶部应见最新消息），统一倒序映射；
+  // 同时对 null / undefined 入参兜底为空列表（边界用例直接渲染容器）
+  const orderedMessages = React.useMemo(
+    () => (messages ?? []).slice().reverse(),
+    [messages]
+  );
+
   // 更准确的消息大小估计
   const estimateSize = React.useCallback((index: number) => {
-    const message = messages[index];
+    const message = orderedMessages[index];
     if (!message) return 100;
-    
+
     // 根据消息内容长度估计高度
     const contentLength = message.content.length;
     const baseHeight = 100; // 基础高度（头像40px、时间戳、状态图标等）
     const contentHeight = Math.ceil(contentLength / 100) * 20; // 每100个字符约20px
-    
+
     // 添加文件显示所需的额外高度
     const fileHeight = message.files ? message.files.length * 50 : 0;
-    
+
     return Math.max(baseHeight + fileHeight, contentHeight);
-  }, [messages]);
+  }, [orderedMessages]);
 
   const virtualizer = useVirtualizer({
-    count: messages.length,
+    count: orderedMessages.length,
     getScrollElement: () => parentRef.current,
     estimateSize,
     overscan: 10, // 增加预渲染数量以减少白屏
     scrollMargin: 200, // 滚动边距，提前渲染即将进入视口的项目
   });
 
-  // 当有新消息时自动滚动到底部
+  // 最新在上：有新消息时回到顶部
   React.useEffect(() => {
-    if (messages.length === 0) return;
-    
-    const lastMessageId = messages[messages.length - 1].id;
+    if (orderedMessages.length === 0) return;
+
+    const lastMessageId = orderedMessages[0].id;
     if (lastMessageId !== lastMessageIdRef.current && parentRef.current) {
-      parentRef.current.scrollTop = parentRef.current.scrollHeight;
+      parentRef.current.scrollTop = 0;
       lastMessageIdRef.current = lastMessageId;
     }
-  }, [messages.length]);
+  }, [orderedMessages.length]);
 
   return (
     <div
       ref={parentRef}
+      // 自愈登记（8 债清零批）：配套测试版期望根容器携带 data-testid
+      data-testid="virtualized-message-list"
       style={{
         height: `${height}px`,
         overflow: 'auto',
       }}
       className="p-4 space-y-4"
     >
-      <div
-        style={{
-          height: `${virtualizer.getTotalSize()}px`,
-          width: '100%',
-          position: 'relative',
-        }}
-      >
-        {virtualizer.getVirtualItems().map((virtualItem) => {
-          const message = messages[virtualItem.index];
-          return (
-            <div
-              key={virtualItem.key}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: `${virtualItem.size}px`,
-                transform: `translateY(${virtualItem.start}px)`,
-              }}
-              className="flex items-center justify-center"
-            >
-              <MessageBubble message={message} />
-            </div>
-          );
-        })}
-      </div>
+      {/* 空列表时不渲染尺寸占位（配套测试断言容器无子节点） */}
+      {orderedMessages.length > 0 && (
+        <div
+          style={{
+            height: `${virtualizer.getTotalSize()}px`,
+            width: '100%',
+            position: 'relative',
+          }}
+        >
+          {virtualizer.getVirtualItems().map((virtualItem) => {
+            const message = orderedMessages[virtualItem.index];
+            return (
+              <div
+                key={virtualItem.key}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: `${virtualItem.size}px`,
+                  transform: `translateY(${virtualItem.start}px)`,
+                }}
+                className="flex items-center justify-center"
+              >
+                <MessageBubble message={message} />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

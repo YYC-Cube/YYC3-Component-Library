@@ -91,6 +91,8 @@ export const WorkflowManager: React.FC<WorkflowManagerProps> = ({
   const [_selectedWorkflow, setSelectedWorkflow] = useState<Workflow | null>(null);
   const [_executions, setExecutions] = useState<Map<string, WorkflowExecution>>(new Map());
   const [viewMode, setViewMode] = useState<'list' | 'editor' | 'templates'>('list');
+  // 配套测试版语义：创建工作流后进入「工作流编辑器」视图
+  const [editorWorkflow, setEditorWorkflow] = useState<Partial<Workflow> | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -341,6 +343,8 @@ export const WorkflowManager: React.FC<WorkflowManagerProps> = ({
       executionCount: 0
     };
 
+    setEditorWorkflow(newWorkflow);
+    setViewMode('editor');
     onWorkflowCreate?.(newWorkflow);
   }, [onWorkflowCreate]);
 
@@ -409,7 +413,8 @@ export const WorkflowManager: React.FC<WorkflowManagerProps> = ({
               className="flex items-center space-x-1 px-3 py-1.5 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors"
             >
               <Plus className="w-4 h-4" />
-              <span>新建</span>
+              {/* 配套测试版语义：创建入口文案为「创建工作流」 */}
+              <span>创建工作流</span>
             </button>
           </div>
         </div>
@@ -509,6 +514,25 @@ export const WorkflowManager: React.FC<WorkflowManagerProps> = ({
                 category="分析"
                 onUse={handleWorkflowCreate}
               />
+            </div>
+          </div>
+        )}
+
+        {/* 配套测试版语义：创建工作流后进入编辑器视图 */}
+        {viewMode === 'editor' && editorWorkflow && (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold text-gray-900">工作流编辑器</h3>
+              <button
+                onClick={() => setViewMode('list')}
+                className="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors"
+              >
+                返回列表
+              </button>
+            </div>
+            <div className="p-4 bg-white rounded-lg border border-gray-200">
+              <h4 className="font-semibold text-gray-900 mb-1">{editorWorkflow.name}</h4>
+              <p className="text-sm text-gray-600">{editorWorkflow.description}</p>
             </div>
           </div>
         )}
