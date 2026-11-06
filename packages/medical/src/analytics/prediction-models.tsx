@@ -27,7 +27,12 @@ const resourcePredictionData = [
   { resource: "急诊室", 预计需求: 35, 实际需求: 32 },
 ]
 
-export function PredictionModels() {
+interface PredictionModelsProps {
+  category?: string
+  modelType?: string
+}
+
+export function PredictionModels({}: PredictionModelsProps) {
   return (
     <Card className="w-full">
       <CardHeader>

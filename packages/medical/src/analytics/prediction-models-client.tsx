@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3
 import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Button } from "@yyc3/ui/button"
 import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
-import { PredictionModels } from "@/components/analytics/prediction-models"
-import { PredictionTool } from "@/components/analytics/prediction-tool"
+import { PredictionModels } from "../components/analytics/prediction-models"
+import { PredictionTool } from "../components/analytics/prediction-tool"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
 import { Download, Filter, Play, Save, Share } from "lucide-react"
 

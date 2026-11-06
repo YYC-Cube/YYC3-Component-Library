@@ -3,15 +3,15 @@
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
 import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
-import { ErrorBoundary } from "@/components/error-boundary"
-import { UpcomingConsultations } from "@/components/upcoming-consultations"
+import { ErrorBoundary } from "../components/error-boundary"
+import { UpcomingConsultations } from "../components/upcoming-consultations"
 import Link from "next/link"
 import { Button } from "@yyc3/ui/button"
 import { CalendarClock, FileText, Users } from "lucide-react"
 
 // 动态导入可能使用浏览器API的组件
 const ConsultationRoom = dynamic(
-  () => import("@/components/consultation-room").then((mod) => ({ default: mod.ConsultationRoom })),
+  () => import("../components/consultation-room").then((mod) => ({ default: mod.ConsultationRoom })),
   {
     loading: () => <LoadingSpinner />,
     ssr: false,
@@ -19,7 +19,7 @@ const ConsultationRoom = dynamic(
 )
 
 const TeleconsultationDashboard = dynamic(
-  () => import("@/components/teleconsultation-dashboard").then((mod) => ({ default: mod.TeleconsultationDashboard })),
+  () => import("../components/teleconsultation-dashboard").then((mod) => ({ default: mod.TeleconsultationDashboard })),
   {
     loading: () => <LoadingSpinner />,
     ssr: false,

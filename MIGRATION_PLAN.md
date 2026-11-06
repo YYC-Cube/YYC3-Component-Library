@@ -3,7 +3,7 @@ file: MIGRATION_PLAN.md
 title: YYC³ 组件库拆分迁移计划 v2.1 — 双源重定界 · 存量定版 · 七阶段推进
 description: 基于 2026-11-03 真实主库勘误修订：双源结构（主库十池按需抽取 + personal 副本五块精准迁移）、权威副本策略、Phase 0~7 七阶段推进计划与验收标准
 author: YYC³ Team <admin@0379.email>
-version: v2.1.5
+version: v2.1.6
 created: 2026-07-25
 updated: 2026-11-03
 status: active
@@ -50,7 +50,7 @@ review_status: reviewed
 | ai | 1,512 | 19 | ✅ 已迁入（← AI-Digital-Consulting-Website 等） | Phase 1 固化 |
 | music | 417 | 2 | ✅ 已迁入（← YYC3-Music/D-Music-e 等） | Phase 1 固化 |
 | admin | 279 | 3 | ✅ 已迁入（← 双导管理等） | Phase 1 固化 |
-| medical | 120 | 0 | ✅ 已迁入 | Phase 1 固化（补测试） |
+| medical | 120 | 53 | ✅ T0+T1 恢复 36 组件+17 前置件（#38）| T2/T3 批次：82 件摘除登记（前置 services 10 + types 3 真身迁入） |
 | design | 67 | 0 | ✅ 已迁入 | Phase 1 固化（补测试） |
 | ui | 66 | 0 | ✅ 基础完成 | Phase 4 承接 Claw UI |
 | education | 62 | 4 | ✅ 已迁入（← YYC-Learning-Hub 等） | Phase 1 固化 |
@@ -215,6 +215,7 @@ review_status: reviewed
 | v2.1.3 | 2026-11-04 | 分诊结论更新：Supabase 真钥经库主确认属废弃项目，风险关闭；route.ts 口令改环境变量注入（发布硬门对应项清零） | YYC³ Team |
 | v2.1.4 | 2026-11-04 | **D3 归档裁决：karbon-navigation 弃迁·关闭**——9 件（2,393 行）为 Karbon 应用页面残件（ClientApp/EnterpriseApp/三模式页）而非布局组件，与 layouts 域定位不符；内部引用三路断裂（./components/ ./ui/ ./nara/），修复成本＞价值；已下线归档件，权威副本仍在 personal 副本原位只读留存。Phase 6 就此完结（唯一议题即 D3） | YYC³ Team |
 | v2.1.5 | 2026-11-06 | **lib services 真身批次（PR #37）**：桩层 4 件全退役，10 件真身 ~5,183 行落位 @yyc3/lib（D0 权威副本 UI-9/YYC-cloud-platform/lib，映射表 L77；零外部依赖闭包；10 子代理逐字转录 diff 校验）+ web-speech.d.ts ambient + 自愈 5 处（speechSynthesis 环境守卫等）+ 消费方适配 4 处；@yyc3/cloud 恢复 3 摘除件（VoiceControlPanel/EnhancedVoiceControl/ConversationInterface）→ **cloud 30 件全量导出，摘除彻底清零**；测试 lib 130✅（新增 69 纯逻辑例），全仓 **550✅/50❌**；覆盖率债登记 §五A（37.52%/services 49.38%）。精度抽取累计：city 17 / cloud 30 全量 / financial 30 / design 61 = 129 组件 + lib services 真身 10 件另计 | YYC³ Team |
+| v2.1.6 | 2026-11-06 | **medical T0+T1 批次（medical 专项重启首战）**：D0 重评颠覆回滚结论——「strict 缺陷密度最高」实为断链（TS2307 类型塌缩）为主因（any 全量仅 31 处/120 文件）；D0 权威副本 UI-9/ai-medical-systemadvanced（映射表 L517）四目录全覆盖。占位桶 → **53 有效导出**（36 组件：health-data 12/teleconsultation 4/ehr 5/ai-model-training 4/analytics 11 + 前置件 17）；`@/components/ui/*` 58 处重映射 @yyc3/ui（零重复搬运）；i18n 同步轻桥 + renderDay 旧版 API 剥离 + strict 修复 ~100 处（T1 闭包 tsc 清零）；摘除登记 82 件绑定 T2/T3（前置：services 10 + types 3 + use-toast/useApi 真身迁入）。全仓 BUILD=0 · **555✅/50❌** | YYC³ Team |
 
 ---
 

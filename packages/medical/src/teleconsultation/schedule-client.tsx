@@ -159,7 +159,7 @@ const consultations = [
 ]
 
 // 获取状态对应的样式
-const getStatusStyle = (status) => {
+const getStatusStyle = (status: string) => {
   switch (status) {
     case "已确认":
       return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
@@ -173,7 +173,8 @@ const getStatusStyle = (status) => {
 }
 
 export default function ScheduleClient() {
-  const [date, setDate] = useState(new Date())
+  // 自愈登记（T0+T1 批次）：Date | undefined 对齐 DayPicker v9 onSelect 契约
+  const [date, setDate] = useState<Date | undefined>(new Date())
   const [activeTab, setActiveTab] = useState("calendar")
   const [showNewConsultation, setShowNewConsultation] = useState(false)
   const [selectedDepartment, setSelectedDepartment] = useState("")
@@ -198,25 +199,15 @@ export default function ScheduleClient() {
   })
 
   // 根据日期获取当天的会诊
-  const getDayConsultations = (day) => {
+  const getDayConsultations = (day: Date) => {
     const formattedDate = day.toISOString().split("T")[0]
     return consultations.filter((consultation) => consultation.date === formattedDate)
   }
 
-  // 自定义日期渲染
-  const renderDay = (day) => {
-    const dayConsultations = getDayConsultations(day)
-    return (
-      <div className="relative">
-        <div>{day.getDate()}</div>
-        {dayConsultations.length > 0 && (
-          <div className="absolute bottom-0 left-0 right-0 flex justify-center">
-            <div className="h-1.5 w-1.5 rounded-full bg-blue-500"></div>
-          </div>
-        )}
-      </div>
-    )
-  }
+  // 自愈登记（T0+T1 批次）：源件 renderDay 依赖 react-day-picker 旧版自定义渲染 API，
+  // 本仓 @yyc3/ui/calendar 为 v9（不支持 renderDay prop）——剥离该用法，
+  // 日历降级为纯单选（底部圆点标记移除）；getDayConsultations 在下方列表仍在用
+
 
   return (
     <div className="space-y-6">
@@ -340,7 +331,7 @@ export default function ScheduleClient() {
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <span className="text-sm font-medium">
-                  {date.toLocaleDateString("zh-CN", { year: "numeric", month: "long" })}
+                  {(date ?? new Date()).toLocaleDateString("zh-CN", { year: "numeric", month: "long" })}
                 </span>
                 <Button variant="outline" size="sm">
                   <ChevronRight className="h-4 w-4" />
@@ -354,16 +345,15 @@ export default function ScheduleClient() {
               selected={date}
               onSelect={setDate}
               className="rounded-md border"
-              renderDay={renderDay}
             />
 
             <div className="mt-6">
               <h3 className="text-lg font-medium mb-4">
-                {date.toLocaleDateString("zh-CN", { year: "numeric", month: "long", day: "numeric" })} 的会诊
+                {date ? date.toLocaleDateString("zh-CN", { year: "numeric", month: "long", day: "numeric" }) : "请选择日期"} 的会诊
               </h3>
               <div className="space-y-4">
-                {getDayConsultations(date).length > 0 ? (
-                  getDayConsultations(date).map((consultation) => (
+                {getDayConsultations(date ?? new Date()).length > 0 ? (
+                  getDayConsultations(date ?? new Date()).map((consultation) => (
                     <Card key={consultation.id} className="overflow-hidden">
                       <div
                         className={`h-1.5 w-full ${

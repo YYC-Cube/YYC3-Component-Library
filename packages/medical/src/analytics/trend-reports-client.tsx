@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3
 import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Button } from "@yyc3/ui/button"
 import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
-import { TrendReports } from "@/components/analytics/trend-reports"
+import { TrendReports } from "../components/analytics/trend-reports"
 import { DateRangePicker } from "@yyc3/ui/date-picker"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
 import { Download, Filter, Share } from "lucide-react"
@@ -46,7 +46,12 @@ export default function TrendReportsClient() {
         </Tabs>
 
         <div className="flex flex-col sm:flex-row gap-2">
-          <DateRangePicker date={dateRange} onDateChange={setDateRange} />
+          <DateRangePicker
+            startDate={dateRange.from}
+            endDate={dateRange.to}
+            onStartDateChange={(d) => setDateRange((prev) => ({ ...prev, from: d ?? prev.from }))}
+            onEndDateChange={(d) => setDateRange((prev) => ({ ...prev, to: d ?? prev.to }))}
+          />
 
           <Select value={interval} onValueChange={setInterval}>
             <SelectTrigger className="w-[120px]">

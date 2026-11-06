@@ -21,8 +21,8 @@ import {
 } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui/chart"
 import { Activity, Users, TrendingUp, RefreshCw } from "lucide-react"
-import { useRealTimeData } from "@yyc3/hooks/use-real-time-data"
-import { isClient } from "@/utils/client-utils"
+import { useRealTimeData } from "../hooks/use-real-time-data"
+import { isClient } from "../utils/client-utils"
 
 // 初始数据
 const initialVisitData = [
@@ -46,7 +46,7 @@ const diseaseDistributionData = [
 // 饼图颜色
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"]
 
-export function AnalyticsDashboard({ onViewDetailedCharts }) {
+export function AnalyticsDashboard({ onViewDetailedCharts }: { onViewDetailedCharts?: () => void }) {
   const [activeTab, setActiveTab] = useState("visit-stats")
   const [lastUpdated, setLastUpdated] = useState(new Date())
   const [isAutoRefresh, setIsAutoRefresh] = useState(false)
@@ -57,8 +57,8 @@ export function AnalyticsDashboard({ onViewDetailedCharts }) {
     isLoading,
     refresh,
   } = useRealTimeData(
+    async () => initialVisitData, // 如果启用自动刷新，则每10秒更新一次
     initialVisitData,
-    isAutoRefresh ? 10000 : null, // 如果启用自动刷新，则每10秒更新一次
   )
 
   // 手动刷新数据

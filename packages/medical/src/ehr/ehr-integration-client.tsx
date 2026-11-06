@@ -3,16 +3,16 @@
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
 import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
-import { ErrorBoundary } from "@/components/error-boundary"
+import { ErrorBoundary } from "../components/error-boundary"
 import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Card } from "@yyc3/ui/card"
 import { Button } from "@yyc3/ui/button"
 import { useRouter } from "next/navigation"
-import { EHRIntegrationStatus } from "@/components/ehr-integration-status"
+import { EHRIntegrationStatus } from "../components/ehr-integration-status"
 
 // 动态导入可能使用浏览器API的组件
 const EHRDashboard = dynamic(
-  () => import("@/components/ehr-dashboard").then((mod) => ({ default: mod.EHRDashboard })),
+  () => import("../components/ehr-dashboard").then((mod) => ({ default: mod.EHRDashboard })),
   {
     loading: () => <LoadingSpinner />,
     ssr: false,
@@ -20,7 +20,7 @@ const EHRDashboard = dynamic(
 )
 
 const EHRDataMapping = dynamic(
-  () => import("@/components/ehr-data-mapping").then((mod) => ({ default: mod.EHRDataMapping })),
+  () => import("../components/ehr-data-mapping").then((mod) => ({ default: mod.EHRDataMapping })),
   {
     loading: () => <LoadingSpinner />,
     ssr: false,

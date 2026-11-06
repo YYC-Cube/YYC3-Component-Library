@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { Button } from "@yyc3/ui/button"
 import { useRouter } from "next/navigation"
-import { EHRDataMapping } from "@/components/ehr-data-mapping"
+import { EHRDataMapping } from "../components/ehr-data-mapping"
 import { Database, FileText, User, Stethoscope, Pill, Activity, Download, Upload, Save, History } from "lucide-react"
 
 export default function EHRMappingClient() {

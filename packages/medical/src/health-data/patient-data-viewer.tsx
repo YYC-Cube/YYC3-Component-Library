@@ -316,7 +316,8 @@ export function PatientDataViewer() {
                             <TableCell>{result.unit}</TableCell>
                             <TableCell>{result.date}</TableCell>
                             <TableCell>
-                              <Badge variant={result.status === "正常" ? "default" : "warning"}>{result.status}</Badge>
+                              {/* 自愈登记（T0+T1 批次）：源件 variant "warning" 不在 Badge 合法联合内，取最近语义 secondary */}
+                              <Badge variant={result.status === "正常" ? "default" : "secondary"}>{result.status}</Badge>
                             </TableCell>
                           </TableRow>
                         ))}
