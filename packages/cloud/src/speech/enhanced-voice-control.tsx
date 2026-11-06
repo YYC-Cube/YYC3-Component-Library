@@ -103,8 +103,8 @@ export function EnhancedVoiceControl({ onCommandExecuted, onNLPResult, className
 
   // 执行命令
   const executeCommand = useCallback((match: CommandMatch) => {
-    // 源件缺陷适配（Phase 7 精度抽取）：match.pattern 为 string（源代码悬空链 .description 已修正）
-    const commandText = `${match.command}: ${match.originalText ?? ''}`
+    // lib services 真身批次：CommandMatch.pattern 已为真身对象（CommandPattern.id）
+    const commandText = `${match.pattern.id}: ${match.originalText}`
     setExecutedCommands((prev) => [commandText, ...prev.slice(0, 9)])
 
     // 语音反馈

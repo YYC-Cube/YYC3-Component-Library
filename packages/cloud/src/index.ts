@@ -32,14 +32,14 @@ export { DeviceFeatures } from './native/device-features'
 export { InteractiveChart } from './charts/interactive-chart'
 export { MobileChart } from './charts/mobile-chart'
 
-// ── speech ──
-// VoiceControlPanel / EnhancedVoiceControl 摘除登记（消费链含 strict 隐式 any 连锁，
-// 待 lib services 真身 + medical 批次修复后恢复）
+// ── speech（lib services 真身解锁恢复）──
+export { VoiceControlPanel } from './speech/voice-control-panel'
+export { EnhancedVoiceControl } from './speech/enhanced-voice-control'
 
-// ── ai（lib services 桩层解锁恢复）──
+// ── ai（lib services 真身解锁恢复）──
 export { ModelSelector } from './ai/model-selector'
 export { ChatInterface } from './ai/chat-interface'
-// ConversationInterface 摘除登记（消费完整 AI 助手服务面，待 lib services 真身批次）
+export { ConversationInterface } from './ai/conversation-interface'
 
 // ── 类型与配置 ──
 export type { MainNavItem, SidebarNavItem, DashboardConfig } from './types'

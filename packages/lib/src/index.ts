@@ -81,24 +81,64 @@ export {
 } from './i18n/translator';
 
 // ============================================================
-// services 轻量桩层（Phase 7 lib services 批次）
-// chart-voice-control / mobile-service / visualization-service / ai-platform
-// 桩语义：接口正确 + 浏览器降级 + 模拟响应
+// services 真身（lib services 真身批次 · 2026-11-06）
+// 源（D0 权威副本）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/YYC-cloud-platform/lib/{services,contexts}
+// 10 件 ~5,183 行零外部依赖闭包；桩层全部退役
 // ============================================================
-export { chartVoiceControlManager, ChartVoiceControlService } from './services/chart-voice-control';
-export type { VoiceCommand, ChartVoiceControllerConfig, ChartVoiceController } from './services/chart-voice-control';
-export { useDeviceDetection, useGestures, useTouchDetection } from './services/mobile-service';
-export type { DeviceDetection } from './services/mobile-service';
-export type { DataPoint, DataSeries, ChartOptions, ChartType, ChartAnnotation } from './services/visualization-service';
+
+// 语音服务（识别/合成/多语言管理）
 export {
-  multiLanguageSpeechManager, nlpProcessor, voiceCommandEngine,
-  OllamaContext, useOllama, AIAssistantContext, useAIAssistant,
-} from './services/ai-platform';
+  SpeechRecognitionService, SpeechSynthesisService, MultiLanguageSpeechManager,
+  speechRecognitionService, speechSynthesisService, multiLanguageSpeechManager,
+} from './services/speech-service';
 export type {
-  SpeechRecognitionResult, NLPResult, CommandMatch,
-  OllamaModel, OllamaResponse, Message, Attachment, OllamaContextValue, AIAssistantMessage, AIAssistantContextValue,
-  RecognitionService, SynthesisService,
-} from './services/ai-platform';
+  SpeechRecognitionOptions, SpeechSynthesisOptions, VoiceCommand,
+  SpeechRecognitionResult, VoiceProfile,
+} from './services/speech-service';
+
+// NLP 处理器
+export { NLPProcessor, nlpProcessor } from './services/nlp-processor';
+export type { NLPResult, Entity, IntentPattern } from './services/nlp-processor';
+
+// 语音命令引擎
+export { VoiceCommandEngine, voiceCommandEngine } from './services/voice-command-engine';
+export type { CommandPattern, CommandParameter, CommandMatch, VoiceContext } from './services/voice-command-engine';
+
+// 移动端服务
+export { useDeviceDetection, useTouchDetection, usePwaInstall, useGestures } from './services/mobile-service';
+export type { MobileDetectionOptions } from './services/mobile-service';
+
+// 可视化服务
+export {
+  useDataset, dataTransformers, chartThemes, chartUtils, defaultChartOptions,
+} from './services/visualization-service';
+export type {
+  ChartType, InteractionType, ChartOptions, ChartAnnotation,
+  ChartData, DataPoint, DataSeries, DatasetOptions,
+} from './services/visualization-service';
+
+// 图表语音控制
+export {
+  ChartVoiceControlService, ChartVoiceControlManager, chartVoiceControlManager,
+} from './services/chart-voice-control';
+export type { ChartVoiceControlOptions, ChartDataSpeechOptions } from './services/chart-voice-control';
+
+// Ollama 服务
+export { OllamaService, ollamaService } from './services/ollama-service';
+export type {
+  OllamaModelInfo, OllamaGenerateParams, OllamaResponse, OllamaEmbeddingResponse,
+} from './services/ollama-service';
+
+// AI 助手服务
+export { AIAssistantService, aiAssistantService } from './services/ai-assistant-service';
+export type {
+  Message, Conversation, ConversationContext, ConversationSettings,
+  UserProfile, ToolCall, Attachment, Reaction, AIProvider,
+} from './services/ai-assistant-service';
+
+// 上下文（Provider 模式，源 contexts/ 布局保留）
+export { OllamaProvider, useOllama } from './contexts/ollama-context';
+export { AIAssistantProvider, useAIAssistant } from './contexts/ai-assistant-context';
 
 // ============================================================
 // B2b 批次（2026-11-04）：error-handling

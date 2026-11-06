@@ -28,7 +28,7 @@ import { chartThemes } from "../config/chart-themes"
 import { colors } from "../config/colors"
 import { useTheme } from "next-themes"
 import { useDebounce } from "@yyc3/lib"
-import { chartVoiceControlManager, type ChartVoiceController } from "@yyc3/lib"
+import { chartVoiceControlManager, type ChartVoiceControlService } from "@yyc3/lib"
 
 export type ChartType = "line" | "bar" | "area" | "pie" | "donut" | "scatter"
 
@@ -101,7 +101,7 @@ export const InteractiveChart: React.FC<InteractiveChartProps> = ({
 
   // 语音控制状态
   const [voiceControlEnabled, setVoiceControlEnabled] = useState(false)
-  const [voiceController, setVoiceController] = useState<ChartVoiceController | null>(null)
+  const [voiceController, setVoiceController] = useState<ChartVoiceControlService | null>(null)
 
   // 图表配置
   const chartOptions = {

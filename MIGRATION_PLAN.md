@@ -3,7 +3,7 @@ file: MIGRATION_PLAN.md
 title: YYC³ 组件库拆分迁移计划 v2.1 — 双源重定界 · 存量定版 · 七阶段推进
 description: 基于 2026-11-03 真实主库勘误修订：双源结构（主库十池按需抽取 + personal 副本五块精准迁移）、权威副本策略、Phase 0~7 七阶段推进计划与验收标准
 author: YYC³ Team <admin@0379.email>
-version: v2.1.4
+version: v2.1.5
 created: 2026-07-25
 updated: 2026-11-03
 status: active
@@ -199,6 +199,8 @@ review_status: reviewed
 
 **Phase 0 扫描归档**：Mimosa deep scan `scan-2026-11-03T22-24-54.273Z-5fcae1f1b9da`（seal sha256:9893…c5aa）38 high。分诊（2026-11-04）：真实凭据 1（`packages/ai/src/api/admin/setup/route.ts` 管理员口令）——**经库主确认该 Supabase 项目已废弃、账号停用，风险关闭、无需轮换**；代码侧已改环境变量注入（`ADMIN_SETUP_EMAIL/PASSWORD`，git 历史中的旧值随项目废弃失效）；占位/误报 23；SSRF/穿越/注入/弱加密 14 随批次修复；**Phase 7 publish 前 findings 清零为发布硬门**。
 
+**覆盖率债登记（2026-11-06，lib services 真身批次）**：真身 10 件 ~5,183 行落位后 lib+cloud istanbul 覆盖率 37.52%（services 49.38%）。未覆盖面：SpeechRecognition/speechSynthesis 真实调用链、useDataset fetch 拉取、exportData image/pdf 分支、ai-assistant-service 纯逻辑面、contexts Provider 树——登记于 `packages/lib/src/__tests__/services-real.test.ts` 文件头，绑定 lib services 深测批次或 medical 批次后的测试补强轮。
+
 ---
 
 ## 变更历史
@@ -212,6 +214,7 @@ review_status: reviewed
 | v2.1.2 | 2026-11-04 | Phase 0/1 收口：Q1 门定义修订（可运行全绿+阻断清单绑定批次）；速修基线 364✅/50❌；测试债登记簿（8 文件→3 批次）；Mimosa 38 findings 分诊归档（真钥 1 待轮换） | YYC³ Team |
 | v2.1.3 | 2026-11-04 | 分诊结论更新：Supabase 真钥经库主确认属废弃项目，风险关闭；route.ts 口令改环境变量注入（发布硬门对应项清零） | YYC³ Team |
 | v2.1.4 | 2026-11-04 | **D3 归档裁决：karbon-navigation 弃迁·关闭**——9 件（2,393 行）为 Karbon 应用页面残件（ClientApp/EnterpriseApp/三模式页）而非布局组件，与 layouts 域定位不符；内部引用三路断裂（./components/ ./ui/ ./nara/），修复成本＞价值；已下线归档件，权威副本仍在 personal 副本原位只读留存。Phase 6 就此完结（唯一议题即 D3） | YYC³ Team |
+| v2.1.5 | 2026-11-06 | **lib services 真身批次（PR #37）**：桩层 4 件全退役，10 件真身 ~5,183 行落位 @yyc3/lib（D0 权威副本 UI-9/YYC-cloud-platform/lib，映射表 L77；零外部依赖闭包；10 子代理逐字转录 diff 校验）+ web-speech.d.ts ambient + 自愈 5 处（speechSynthesis 环境守卫等）+ 消费方适配 4 处；@yyc3/cloud 恢复 3 摘除件（VoiceControlPanel/EnhancedVoiceControl/ConversationInterface）→ **cloud 30 件全量导出，摘除彻底清零**；测试 lib 130✅（新增 69 纯逻辑例），全仓 **550✅/50❌**；覆盖率债登记 §五A（37.52%/services 49.38%）。精度抽取累计：city 17 / cloud 30 全量 / financial 30 / design 61 = 129 组件 + lib services 真身 10 件另计 | YYC³ Team |
 
 ---
 
