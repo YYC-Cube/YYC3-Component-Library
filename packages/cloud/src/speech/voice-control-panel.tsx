@@ -23,7 +23,7 @@ import {
   XCircle,
   AlertCircle,
 } from "lucide-react"
-import { multiLanguageSpeechManager, type SpeechRecognitionResult } from "@yyc3/lib/services/speech-service"
+import { multiLanguageSpeechManager, type SpeechRecognitionResult } from "@yyc3/lib"
 
 export interface VoiceControlPanelProps {
   onCommandExecuted?: (command: string, params?: any) => void
@@ -80,7 +80,7 @@ export function VoiceControlPanel({ onCommandExecuted, onSpeechResult, className
     })
 
     recognitionService.onError((error) => {
-      setRecognitionError(error)
+      setRecognitionError(String(error))
       setIsListening(false)
     })
 

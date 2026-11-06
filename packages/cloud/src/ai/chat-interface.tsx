@@ -8,10 +8,10 @@
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
-import { useOllama } from "@yyc3/lib/contexts/ollama-context"
+import { useOllama } from "@yyc3/lib"
 import { ModelSelector } from "./model-selector"
 import { Send, Loader2, Settings, Trash2, Copy, CheckCheck } from "lucide-react"
-import type { OllamaResponse } from "@yyc3/lib/services/ollama-service"
+import type { OllamaResponse } from "@yyc3/lib"
 
 interface Message {
   id: string

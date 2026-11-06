@@ -9,9 +9,9 @@ import { Alert, AlertDescription } from "@yyc3/ui/alert"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { ScrollArea } from "@yyc3/ui/scroll-area"
 import { Mic, MicOff, Brain, Zap, Target, TrendingUp, MessageSquare, AlertTriangle } from "lucide-react"
-import { voiceCommandEngine, type CommandMatch } from "@yyc3/lib/services/voice-command-engine"
-import { nlpProcessor, type NLPResult } from "@yyc3/lib/services/nlp-processor"
-import { multiLanguageSpeechManager, type SpeechRecognitionResult } from "@yyc3/lib/services/speech-service"
+import { voiceCommandEngine, type CommandMatch } from "@yyc3/lib"
+import { nlpProcessor, type NLPResult } from "@yyc3/lib"
+import { multiLanguageSpeechManager, type SpeechRecognitionResult } from "@yyc3/lib"
 
 export interface EnhancedVoiceControlProps {
   onCommandExecuted?: (command: string, params?: any) => void
@@ -103,7 +103,8 @@ export function EnhancedVoiceControl({ onCommandExecuted, onNLPResult, className
 
   // 执行命令
   const executeCommand = useCallback((match: CommandMatch) => {
-    const commandText = `${match.pattern.description}: ${match.originalText}`
+    // 源件缺陷适配（Phase 7 精度抽取）：match.pattern 为 string（源代码悬空链 .description 已修正）
+    const commandText = `${match.command}: ${match.originalText ?? ''}`
     setExecutedCommands((prev) => [commandText, ...prev.slice(0, 9)])
 
     // 语音反馈
@@ -116,19 +117,19 @@ export function EnhancedVoiceControl({ onCommandExecuted, onNLPResult, className
     // 根据命令类型执行相应操作
     switch (match.pattern.id) {
       case "switch_chart_type":
-        handleChartTypeSwitch(match.parameters.chartType)
+        handleChartTypeSwitch(match.parameters?.chartType)
         break
       case "filter_time_period":
-        handleTimeFilter(match.parameters.timePeriod)
+        handleTimeFilter(match.parameters?.timePeriod)
         break
       case "export_data":
-        handleDataExport(match.parameters.format)
+        handleDataExport(match.parameters?.format)
         break
       case "navigate_page":
-        handleNavigation(match.parameters.page)
+        handleNavigation(match.parameters?.page)
         break
       case "search_content":
-        handleSearch(match.parameters.query)
+        handleSearch(match.parameters?.query)
         break
       case "help_command":
         handleHelp()
@@ -161,15 +162,15 @@ export function EnhancedVoiceControl({ onCommandExecuted, onNLPResult, className
     console.log("切换图表类型:", chartType)
   }
 
-  const handleTimeFilter = (timePeriod: string) => {
+  const handleTimeFilter = (timePeriod?: string) => {
     console.log("时间筛选:", timePeriod)
   }
 
-  const handleDataExport = (format: string) => {
+  const handleDataExport = (format?: string) => {
     console.log("数据导出:", format)
   }
 
-  const handleNavigation = (page: string) => {
+  const handleNavigation = (page?: string) => {
     const routes: { [key: string]: string } = {
       home: "/",
       dashboard: "/dashboard",
@@ -181,12 +182,12 @@ export function EnhancedVoiceControl({ onCommandExecuted, onNLPResult, className
       search: "/search",
     }
 
-    if (routes[page]) {
+    if (page && routes[page]) {
       window.location.href = routes[page]
     }
   }
 
-  const handleSearch = (query: string) => {
+  const handleSearch = (query?: string) => {
     console.log("搜索:", query)
   }
 

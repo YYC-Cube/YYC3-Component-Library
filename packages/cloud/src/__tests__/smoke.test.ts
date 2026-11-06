@@ -19,12 +19,12 @@ describe('@yyc3/cloud · 精度抽取验收（21 组件恢复导出）', () => {
       pkg.YYHeroSection, pkg.CloudSyncStatus, pkg.StorageUsage, pkg.Sidebar,
       pkg.ThemeProvider, pkg.ClientThemeProvider, pkg.DevelopmentDevices,
       pkg.ProductList, pkg.OrderStats, pkg.SalesChart, pkg.DeviceFeatures,
+      pkg.InteractiveChart, pkg.MobileChart, pkg.ModelSelector,
+      pkg.ChatInterface,
     ]) {
       expect(exp).toBeDefined()
     }
-    // 摘除件（lib services 批次遗留）确认不在桶
-    expect((pkg as Record<string, unknown>).InteractiveChart).toBeUndefined()
-    expect((pkg as Record<string, unknown>).ModelSelector).toBeUndefined()
+    // lib services 桩层解锁后摘除登记撤销（7 件恢复）
     expect(dashboardConfig.mainNav.length).toBeGreaterThan(0)
     expect(chartThemes.light.grid).toBeTruthy()
     expect(colors.series.length).toBeGreaterThan(0)
