@@ -3,7 +3,7 @@ file: MIGRATION_PLAN.md
 title: YYC³ 组件库拆分迁移计划 v2.1 — 双源重定界 · 存量定版 · 七阶段推进
 description: 基于 2026-11-03 真实主库勘误修订：双源结构（主库十池按需抽取 + personal 副本五块精准迁移）、权威副本策略、Phase 0~7 七阶段推进计划与验收标准
 author: YYC³ Team <admin@0379.email>
-version: v2.1.7
+version: v2.1.8
 created: 2026-07-25
 updated: 2026-11-03
 status: active
@@ -51,7 +51,7 @@ review_status: reviewed
 | music | 417 | 2 | ✅ 已迁入（← YYC3-Music/D-Music-e 等） | Phase 1 固化 |
 | admin | 279 | 3 | ✅ 已迁入（← 双导管理等） | Phase 1 固化 |
 | medical | 120 | 118 | ✅ **全量恢复**（T0+T1 36 + T2/T3 82，#38+#39）+ 前置件 47 | 摘除彻底清零；悬留：client 鉴权轻桥、tsc 非阻断残余、medical 色板 token |
-| design | 67 | 0 | ✅ 已迁入 | Phase 1 固化（补测试） |
+| design | 67 | 64 | ✅ **摘除清零**（61 + 收尾批 3，#40）| AuthContext/ai 双件真身落位，悬留无 |
 | ui | 66 | 0 | ✅ 基础完成 | Phase 4 承接 Claw UI |
 | education | 62 | 4 | ✅ 已迁入（← YYC-Learning-Hub 等） | Phase 1 固化 |
 | financial | 32 | 0 | ✅ 已迁入 | Phase 1 固化（补测试） |
@@ -217,6 +217,7 @@ review_status: reviewed
 | v2.1.5 | 2026-11-06 | **lib services 真身批次（PR #37）**：桩层 4 件全退役，10 件真身 ~5,183 行落位 @yyc3/lib（D0 权威副本 UI-9/YYC-cloud-platform/lib，映射表 L77；零外部依赖闭包；10 子代理逐字转录 diff 校验）+ web-speech.d.ts ambient + 自愈 5 处（speechSynthesis 环境守卫等）+ 消费方适配 4 处；@yyc3/cloud 恢复 3 摘除件（VoiceControlPanel/EnhancedVoiceControl/ConversationInterface）→ **cloud 30 件全量导出，摘除彻底清零**；测试 lib 130✅（新增 69 纯逻辑例），全仓 **550✅/50❌**；覆盖率债登记 §五A（37.52%/services 49.38%）。精度抽取累计：city 17 / cloud 30 全量 / financial 30 / design 61 = 129 组件 + lib services 真身 10 件另计 | YYC³ Team |
 | v2.1.6 | 2026-11-06 | **medical T0+T1 批次（medical 专项重启首战）**：D0 重评颠覆回滚结论——「strict 缺陷密度最高」实为断链（TS2307 类型塌缩）为主因（any 全量仅 31 处/120 文件）；D0 权威副本 UI-9/ai-medical-systemadvanced（映射表 L517）四目录全覆盖。占位桶 → **53 有效导出**（36 组件：health-data 12/teleconsultation 4/ehr 5/ai-model-training 4/analytics 11 + 前置件 17）；`@/components/ui/*` 58 处重映射 @yyc3/ui（零重复搬运）；i18n 同步轻桥 + renderDay 旧版 API 剥离 + strict 修复 ~100 处（T1 闭包 tsc 清零）；摘除登记 82 件绑定 T2/T3（前置：services 10 + types 3 + use-toast/useApi 真身迁入）。全仓 BUILD=0 · **555✅/50❌** | YYC³ Team |
 | v2.1.7 | 2026-11-06 | **medical T2/T3 批次（#39）：medical 域 118 组件全量恢复，摘除彻底清零**。前置件 30 落位（services 11 + types 5 + hooks 3 + lib/api 2 + components 9）；恢复 82 组件（medications 10/patients 8/research 11/ai-diagnosis 13/ai-model 11/clinical-decision 9/medical-records 20，同名件别名区分）；重映射 ~90 处 + 层级逃逸修正 21 处 + 源件自愈 ~75 处；**@react-three/fiber 8→9 升级**（reconciler 与 React 19 双实例冲突根因修复）；@yyc3/ui 桶补 DropdownMenuGroup。全仓 BUILD=0 · **555✅/50❌**（零新增失败）。悬留：client 鉴权轻桥（auth store 真身随应用层批次）、tsc 非阻断残余、medical 色板 token | YYC³ Team |
+| v2.1.8 | 2026-11-07 | **design 摘除件收尾批（#40）：design 域摘除彻底清零——滚动抽取主线六域全量收官**。AuthContext 真身（183 行零外部依赖，UI-9/yyc3-design-system）+ ai 双件真身（ai-models/ai-service 互闭包）落位包内；恢复 Header/ProtectedRoute/AIAssistant 3 摘除件（hasPermission 源件代差→admin 判定兜底自愈登记）；design 64 有效导出。全仓 BUILD=0 · **555✅/50❌**（零新增失败）。**六域摘除清零总账：city 17 / cloud 30 / financial 30 / design 64 / medical 118 全量**；剩余：Phase 7（apps/templates/终验）+ 8 债文件 | YYC³ Team |
 
 ---
 

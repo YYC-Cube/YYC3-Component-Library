@@ -45,10 +45,13 @@ describe('@yyc3/design · 精度抽取验收（61 组件恢复导出）', () => 
     ]) {
       expect(exp).toBeDefined()
     }
-    // 摘除件（lib contexts 批次遗留）确认不在桶
-    expect((pkg as Record<string, unknown>).ProtectedRoute).toBeUndefined()
-    expect((pkg as Record<string, unknown>).Header).toBeUndefined()
-    expect((pkg as Record<string, unknown>).AIAssistant).toBeUndefined()
+    // 摘除件收尾批（2026-11-07）：ProtectedRoute/Header + AuthContext 真身恢复导出
+    // （AIAssistant 早前批次已随 lib 真身恢复，摘除登记全部清零）
+    expect(pkg.ProtectedRoute).toBeDefined()
+    expect(pkg.Header).toBeDefined()
+    expect(pkg.AuthProvider).toBeDefined()
+    expect(pkg.useAuth).toBeDefined()
+    expect((pkg as Record<string, unknown>).AIAssistant).toBeDefined()
   })
 
   it('KPITracking 渲染', () => {

@@ -28,8 +28,8 @@ import {
   Server,
   ChevronRight,
 } from "lucide-react"
-import { aiService, type ChatMessage, type ChatRequest } from "@yyc3/lib/ai-service"
-import { AI_MODELS, type AIModel, getModelsByType } from "@yyc3/lib/ai-models"
+import { aiService, type ChatMessage, type ChatRequest } from "./lib/ai-service"
+import { AI_MODELS, type AIModel, getModelsByType } from "./lib/ai-models"
 
 interface Insight {
   id: string

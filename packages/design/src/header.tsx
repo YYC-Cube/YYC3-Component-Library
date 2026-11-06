@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@yyc3/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@yyc3/ui/sheet"
-import { useAuth } from "@/contexts/AuthContext"
+import { useAuth } from "./contexts/AuthContext"
 import { useTheme } from "next-themes"
 
 interface HeaderProps {

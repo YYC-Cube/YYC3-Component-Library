@@ -3,7 +3,7 @@
 import type React from "react"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/contexts/AuthContext"
+import { useAuth } from "./contexts/AuthContext"
 import { Loader2, Shield } from "lucide-react"
 
 interface ProtectedRouteProps {
@@ -13,7 +13,10 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children, requiredRole, requiredPermission }: ProtectedRouteProps) {
-  const { user, isAuthenticated, isLoading, hasRole, hasPermission } = useAuth()
+  // 自愈登记（design 摘除件收尾批）：真身 AuthContextType 无 hasPermission（源件代差，
+  // User 仅含 role 三值联合、无 permission 体系）——降级为 admin 判定兜底
+  const { user, isAuthenticated, isLoading, hasRole } = useAuth()
+  const hasPermission = (permission: string) => Boolean(user && user.role === "admin")
   const router = useRouter()
   const [mounted, setMounted] = useState(false)
 
