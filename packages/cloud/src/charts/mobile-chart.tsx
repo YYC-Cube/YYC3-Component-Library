@@ -228,7 +228,7 @@ export function MobileChart({
   }
 
   // 移动端优化的图表选项
-  const mobileOptimizedOptions = {
+  const mobileOptimizedOptions: ChartOptions = {
     ...options,
     animation: !isMobile,
     interactions: isTouchDevice ? ["tooltip"] : options.interactions || ["tooltip", "zoom", "pan"],
@@ -454,7 +454,7 @@ export function MobileChart({
       >
         <InteractiveChart
           data={filteredData as unknown as Parameters<typeof InteractiveChart>[0]['data']}
-          options={mobileOptimizedOptions}
+          options={mobileOptimizedOptions as unknown as Parameters<typeof InteractiveChart>[0]['options']}
           onDataPointClick={onDataPointClick}
         />
       </div>

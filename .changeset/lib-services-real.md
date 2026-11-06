@@ -1,0 +1,6 @@
+---
+'@yyc3/lib': minor
+'@yyc3/cloud': minor
+---
+
+lib services 真身批次：桩层全部退役，真身落位——10 件 ~5,183 行（D0 权威副本 UI-9/YYC-cloud-platform/lib，映射表 L77；10 子代理逐字转录 diff 校验）。@yyc3/lib 新增：speech-service（Recognition/Synthesis/MultiLanguageSpeechManager 三类全 API）、nlp-processor（process/batchProcess/意图实体库）、voice-command-engine（registerPatterns/matchCommand/getBestMatch）、visualization-service（dataTransformers×6/chartUtils/chartThemes/useDataset/DataSeries 全类型）、chart-voice-control（ChartVoiceControlManager 多控制器）、ollama-service（listModels/generateText/streamText/getEmbedding）、ai-assistant-service（对话/消息/工具全 API）+ OllamaProvider/useOllama、AIAssistantProvider/useAIAssistant（Provider 模式）。配套 web-speech.d.ts ambient（TS 5.9 lib.dom 缺 SpeechRecognition 接口面）。自愈登记：speechSynthesis 环境守卫（SSR/jsdom 降级 no-op）、NodeJS.Timeout→ReturnType、DataPoint[] 注解×2、formatNumber style 联合收窄。@yyc3/cloud 恢复 3 摘除件：VoiceControlPanel/EnhancedVoiceControl/ConversationInterface——cloud 域 30 件全量导出，摘除彻底清零。消费方适配 4 处（ChartVoiceControlService 类型名/match.pattern.id/mobileOptimizedOptions 注解+桥接断言）。测试：lib 130✅（新增真身纯逻辑 69 例：NLP×8/引擎×9/变换器×11/工具×11/语音控制×5/Ollama×11/移动×13）；全仓 BUILD=0 · 550✅/50❌（50❌ 全在册债）。覆盖率（lib+cloud istanbul）：37.52%（services 49.38%），浏览器 API 面未覆盖债登记于测试文件头，绑定后续批次。

@@ -59,7 +59,7 @@ export interface ConversationInterfaceProps {
   enableAttachments?: boolean
 }
 
-function ConversationInterface({
+export function ConversationInterface({
   className,
   showSidebar = true,
   enableVoice = true,

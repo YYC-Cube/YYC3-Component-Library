@@ -1,92 +1,217 @@
 // ============================================================
-// YYC³ · @yyc3/lib services 轻量桩层（桩 2/4）
-// 移动设备检测 hooks：设备类型/手势/触屏检测（浏览器 API 降级）
+// YYC³ · @yyc3/lib services 真身（lib services 真身批次 · 2026-11-06）
+// 源（D0 权威副本）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/YYC-cloud-platform/lib/services/mobile-service.ts
 // ============================================================
-import { useState, useEffect } from 'react'
-import type * as React from 'react'
+"use client"
 
-export interface DeviceDetection {
-  isMobile: boolean
-  isTablet: boolean
-  isDesktop: boolean
-  isTouchDevice: boolean
-  deviceType: 'mobile' | 'tablet' | 'desktop'
-  orientation: 'portrait' | 'landscape'
+import type React from "react"
+
+/**
+ * ⟨YYC³⟩ 移动端服务
+ * 提供移动端适配和功能支持
+ */
+
+import { useEffect, useState } from "react"
+
+export interface MobileDetectionOptions {
+  mobileBreakpoint?: number
+  tabletBreakpoint?: number
 }
 
-export function useDeviceDetection(): DeviceDetection {
-  const [detection, setDetection] = useState<DeviceDetection>({
-    isMobile: false,
-    isTablet: false,
-    isDesktop: true,
-    isTouchDevice: false,
-    deviceType: 'desktop',
-    orientation: 'landscape',
-  })
+/**
+ * 检测设备类型的Hook
+ */
+export function useDeviceDetection(options: MobileDetectionOptions = {}) {
+  const mobileBreakpoint = options.mobileBreakpoint || 640
+  const tabletBreakpoint = options.tabletBreakpoint || 1024
+
+  const [deviceType, setDeviceType] = useState<"mobile" | "tablet" | "desktop">("desktop")
+  const [orientation, setOrientation] = useState<"portrait" | "landscape">("portrait")
 
   useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth
-      const h = window.innerHeight
-      const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-      setDetection({
-        isMobile: w < 768,
-        isTablet: w >= 768 && w < 1024,
-        isDesktop: w >= 1024,
-        isTouchDevice: touch,
-        deviceType: w < 768 ? 'mobile' : w < 1024 ? 'tablet' : 'desktop',
-        orientation: w > h ? 'landscape' : 'portrait',
-      })
+    const handleResize = () => {
+      const width = window.innerWidth
+
+      if (width < mobileBreakpoint) {
+        setDeviceType("mobile")
+      } else if (width < tabletBreakpoint) {
+        setDeviceType("tablet")
+      } else {
+        setDeviceType("desktop")
+      }
+
+      setOrientation(window.innerHeight > window.innerWidth ? "portrait" : "landscape")
     }
-    update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
+
+    // 初始检测
+    handleResize()
+
+    // 监听窗口大小变化
+    window.addEventListener("resize", handleResize)
+
+    // 监听方向变化
+    window.addEventListener("orientationchange", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+      window.removeEventListener("orientationchange", handleResize)
+    }
+  }, [mobileBreakpoint, tabletBreakpoint])
+
+  return {
+    deviceType,
+    orientation,
+    isMobile: deviceType === "mobile",
+    isTablet: deviceType === "tablet",
+    isDesktop: deviceType === "desktop",
+  }
+}
+
+/**
+ * 检测触摸支持的Hook
+ */
+export function useTouchDetection() {
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+
+  useEffect(() => {
+    const detectTouch = () => {
+      setIsTouchDevice(
+        "ontouchstart" in window || navigator.maxTouchPoints > 0 || (navigator as any).msMaxTouchPoints > 0,
+      )
+    }
+
+    detectTouch()
   }, [])
 
-  return detection
+  return { isTouchDevice }
 }
 
-export function useGestures(
-  target: React.RefObject<HTMLElement | null>,
-  onSwipe?: (direction: 'left' | 'right' | 'up' | 'down') => void,
-): { gesture: string } {
-  const [gesture, setGesture] = useState('none')
+/**
+ * PWA安装提示Hook
+ */
+export function usePwaInstall() {
+  const [canInstall, setCanInstall] = useState(false)
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
+  const [isInstalled, setIsInstalled] = useState(false)
 
   useEffect(() => {
-    const el = target?.current
-    if (!el) return
-    let startX = 0
-    let startY = 0
-    const handleStart = (e: TouchEvent) => {
-      startX = e.touches[0].clientX
-      startY = e.touches[0].clientY
-    }
-    const handleEnd = (e: TouchEvent) => {
-      const dx = e.changedTouches[0].clientX - startX
-      const dy = e.changedTouches[0].clientY - startY
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
-        setGesture(dx > 0 ? 'swipe-right' : 'swipe-left')
-        onSwipe?.(dx > 0 ? 'right' : 'left')
-      } else if (Math.abs(dy) > 50) {
-        setGesture(dy > 0 ? 'swipe-down' : 'swipe-up')
-        onSwipe?.(dy > 0 ? 'down' : 'up')
+    // 检查是否已安装
+    const checkInstalled = () => {
+      if (window.matchMedia("(display-mode: standalone)").matches) {
+        setIsInstalled(true)
       }
     }
-    el.addEventListener('touchstart', handleStart, { passive: true })
-    el.addEventListener('touchend', handleEnd, { passive: true })
-    return () => {
-      el.removeEventListener('touchstart', handleStart)
-      el.removeEventListener('touchend', handleEnd)
-    }
-  }, [target, onSwipe])
 
-  return { gesture }
+    checkInstalled()
+
+    // 监听beforeinstallprompt事件
+    const handleBeforeInstallPrompt = (e: Event) => {
+      // 阻止Chrome 67及更早版本自动显示安装提示
+      e.preventDefault()
+      // 保存事件，以便稍后触发
+      setDeferredPrompt(e)
+      setCanInstall(true)
+    }
+
+    // 监听appinstalled事件
+    const handleAppInstalled = () => {
+      setIsInstalled(true)
+      setCanInstall(false)
+      setDeferredPrompt(null)
+    }
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt)
+    window.addEventListener("appinstalled", handleAppInstalled)
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt)
+      window.removeEventListener("appinstalled", handleAppInstalled)
+    }
+  }, [])
+
+  const promptInstall = async () => {
+    if (!deferredPrompt) {
+      return false
+    }
+
+    // 显示安装提示
+    deferredPrompt.prompt()
+
+    // 等待用户响应
+    const choiceResult = await deferredPrompt.userChoice
+
+    // 重置延迟提示变量
+    setDeferredPrompt(null)
+    setCanInstall(false)
+
+    return choiceResult.outcome === "accepted"
+  }
+
+  return { canInstall, isInstalled, promptInstall }
 }
 
-export function useTouchDetection(): { isTouchDevice: boolean } {
-  const [isTouchDevice, setIsTouchDevice] = useState(false)
+/**
+ * 移动端手势支持Hook
+ */
+export function useGestures(element: React.RefObject<HTMLElement | null>) {
+  const [gesture, setGesture] = useState<"none" | "swipe-left" | "swipe-right" | "swipe-up" | "swipe-down">("none")
+
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
-  }, [])
-  return { isTouchDevice }
+    if (!element.current) return
+
+    let touchStartX = 0
+    let touchStartY = 0
+    let touchEndX = 0
+    let touchEndY = 0
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX
+      touchStartY = e.touches[0].clientY
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].clientX
+      touchEndY = e.changedTouches[0].clientY
+      handleGesture()
+    }
+
+    const handleGesture = () => {
+      // 计算水平和垂直滑动距离
+      const deltaX = touchEndX - touchStartX
+      const deltaY = touchEndY - touchStartY
+
+      // 确定主要滑动方向
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // 水平滑动
+        if (deltaX > 50) {
+          setGesture("swipe-right")
+        } else if (deltaX < -50) {
+          setGesture("swipe-left")
+        }
+      } else {
+        // 垂直滑动
+        if (deltaY > 50) {
+          setGesture("swipe-down")
+        } else if (deltaY < -50) {
+          setGesture("swipe-up")
+        }
+      }
+
+      // 重置手势状态
+      setTimeout(() => {
+        setGesture("none")
+      }, 500)
+    }
+
+    const el = element.current
+    el.addEventListener("touchstart", handleTouchStart)
+    el.addEventListener("touchend", handleTouchEnd)
+
+    return () => {
+      el.removeEventListener("touchstart", handleTouchStart)
+      el.removeEventListener("touchend", handleTouchEnd)
+    }
+  }, [element])
+
+  return { gesture }
 }
