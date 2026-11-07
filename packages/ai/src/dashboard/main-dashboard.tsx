@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { KpiCard } from "@/components/common/kpi-card"
 import {
   Users,
@@ -18,7 +18,7 @@ import {
   Calendar,
   Target,
 } from "lucide-react"
-import { Progress } from "@yyc3/ui/progress"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 
 interface DashboardStats {
   totalUsers: number

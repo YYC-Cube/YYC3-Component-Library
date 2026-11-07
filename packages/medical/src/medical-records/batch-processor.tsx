@@ -3,15 +3,15 @@
 import type React from "react"
 
 import { useState, useEffect, useRef, useCallback } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Progress } from "@yyc3/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
-import { Badge } from "@yyc3/ui/badge"
-import { Checkbox } from "@yyc3/ui/checkbox"
-import { Label } from "@yyc3/ui/label"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
 import {
   Dialog,
   DialogContent,
@@ -19,8 +19,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui/dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+} from "@yyc3/ui-enterprise/dialog"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import {
   Upload,
   FileText,

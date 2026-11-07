@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
 import {
   Activity,
   Calendar,
@@ -18,9 +18,9 @@ import {
   AlertCircle,
   Plus,
 } from "lucide-react"
-import { MedicalButton } from "@yyc3/ui/medical-button"
-import { BarChart, LineChart } from "@yyc3/ui/chart"
-import { ResponsiveMedicalCard } from "@yyc3/ui/responsive-medical-card"
+import { MedicalButton } from "@yyc3/ui-enterprise/medical-button"
+import { BarChart, LineChart } from "@yyc3/ui-enterprise/chart"
+import { ResponsiveMedicalCard } from "@yyc3/ui-enterprise/responsive-medical-card"
 
 // 患者基本数据类型
 type Patient = {
@@ -345,7 +345,7 @@ export function PatientDetails({ patientId }: { patientId: string }) {
                 <CardDescription>最近5次检测数据</CardDescription>
               </CardHeader>
               <CardContent className="h-80">
-                {/* 自愈登记（T2/T3 批次）：@yyc3/ui/chart 为 recharts 原样导出，剥离非标 prop categories/xAxisKey（运行时本被忽略，行为不变） */}
+                {/* 自愈登记（T2/T3 批次）：@yyc3/ui-enterprise/chart 为 recharts 原样导出，剥离非标 prop categories/xAxisKey（运行时本被忽略，行为不变） */}
                 <LineChart data={vitalSigns} />
               </CardContent>
             </Card>
@@ -513,7 +513,7 @@ export function PatientDetails({ patientId }: { patientId: string }) {
               <div className="mt-6">
                 <div className="font-medium mb-3 text-medical-700">用药依从性分析</div>
                 <div className="h-64">
-                  {/* 自愈登记（T2/T3 批次）：@yyc3/ui/chart 为 recharts 原样导出，剥离非标 prop categories/xAxisKey/yAxisConfig（运行时本被忽略，行为不变） */}
+                  {/* 自愈登记（T2/T3 批次）：@yyc3/ui-enterprise/chart 为 recharts 原样导出，剥离非标 prop categories/xAxisKey/yAxisConfig（运行时本被忽略，行为不变） */}
                   <BarChart
                     data={[
                       { month: "1月", adherence: 90 },

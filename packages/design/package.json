@@ -26,7 +26,7 @@
   "dependencies": {
     "@iconify/react": "^6.0.4",
     "@yyc3/theme": "workspace:*",
-    "@yyc3/ui": "workspace:*",
+    "@yyc3/ui-enterprise": "workspace:*",
     "framer-motion": "^12.0.0",
     "lucide-react": "^0.550.0",
     "next": "^15.0.0",

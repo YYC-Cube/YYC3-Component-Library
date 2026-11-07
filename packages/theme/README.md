@@ -28,7 +28,7 @@ complexity: basic
 
 - 构建 ✅ tsup（CJS+ESM+**DTS**）+ postcss（CSS 管线独立）
 - 令牌真身：`src/claw-tokens.ts`（赛博朋克/液态玻璃双主题全量 ThemeVariables）
-- 消费方：`@yyc3/ui`（claw 组件系经薄壳引用，`workspace:*` 依赖）
+- 消费方：`@yyc3/ui-enterprise`（claw 组件系经薄壳引用，`workspace:*` 依赖）
 
 ## API
 

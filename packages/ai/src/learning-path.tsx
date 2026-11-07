@@ -1,8 +1,8 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { CheckCircle, Circle, ArrowDown, Target, BookOpen } from "lucide-react"
 import Link from "next/link"
 import type { CourseModule } from "@/data/course-recommendations"

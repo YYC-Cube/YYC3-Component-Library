@@ -2,8 +2,8 @@ import { useState } from "react";
 import { ClaudeSidebar, ChatHistory } from "./ClaudeSidebar";
 import { ChatContainer, Chat, Message } from "./ChatContainer";
 import { ClaudeWelcome } from "./ClaudeWelcome";
-import { SidebarProvider, SidebarTrigger } from "@yyc3/ui/sidebar";
-import { Button } from "@yyc3/ui/button";
+import { SidebarProvider, SidebarTrigger } from "@yyc3/ui-enterprise/sidebar";
+import { Button } from "@yyc3/ui-enterprise/button";
 import { Menu } from "lucide-react";
 
 export function Chat() {

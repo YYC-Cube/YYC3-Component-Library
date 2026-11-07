@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { BarChart2, Layers, FileText, Settings, Database, AlertCircle, Users } from "lucide-react"
-import { Badge } from "@yyc3/ui/badge"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { cn } from "../utils/cn"
 
 interface NavigationItem {

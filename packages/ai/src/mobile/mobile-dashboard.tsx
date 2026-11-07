@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent } from "@yyc3/ui/tabs"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@yyc3/ui/sheet"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent } from "@yyc3/ui-enterprise/tabs"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@yyc3/ui-enterprise/sheet"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 import {
   Bell,
   Search,

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { ArrowUpRight, ArrowDownRight } from "lucide-react"
-import { Card, CardContent } from "@yyc3/ui/card"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
 
 interface Stat {
   title: string

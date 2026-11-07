@@ -1,4 +1,4 @@
-import { YYCard, YYCardHeader, YYCardTitle, YYCardContent } from "@yyc3/ui/yy-card"
+import { YYCard, YYCardHeader, YYCardTitle, YYCardContent } from "@yyc3/ui-enterprise/yy-card"
 import { Package2, Star, Eye } from "lucide-react"
 
 export default function ProductList() {

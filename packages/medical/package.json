@@ -28,7 +28,7 @@
     "@react-three/fiber": "^9.8.2",
     "@yyc3/lib": "workspace:*",
     "@yyc3/theme": "workspace:*",
-    "@yyc3/ui": "workspace:*",
+    "@yyc3/ui-enterprise": "workspace:*",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.550.0",

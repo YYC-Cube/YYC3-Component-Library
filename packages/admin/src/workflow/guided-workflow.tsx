@@ -3,11 +3,11 @@
 import React from "react"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Progress } from "@yyc3/ui/progress"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 import { ChevronRight, ChevronLeft, Check, X, HelpCircle } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@yyc3/ui/tooltip"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@yyc3/ui-enterprise/tooltip"
 import { cn } from "@yyc3/lib/utils"
 
 interface Step {

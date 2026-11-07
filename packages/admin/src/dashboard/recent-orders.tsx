@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { Badge } from "@yyc3/ui/badge"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
 
 const orders = [
   {

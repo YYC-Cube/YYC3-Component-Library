@@ -10,9 +10,9 @@
 
 import { useState } from "react"
 import { Bell, Menu, Search, User, Settings } from "lucide-react"
-import { Button3D } from "@yyc3/ui/3d-button"
-import { Input } from "@yyc3/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@yyc3/ui/sheet"
+import { Button3D } from "@yyc3/ui-enterprise/3d-button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Sheet, SheetContent, SheetTrigger } from "@yyc3/ui-enterprise/sheet"
 import { MobileNav } from "./mobile-nav"
 import { AppLogo } from "./app-logo"
 import { Notifications } from "./notifications"

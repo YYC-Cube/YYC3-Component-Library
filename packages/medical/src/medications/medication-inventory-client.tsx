@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { PageHeader } from "../components/page-header"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { MedicalButton } from "@yyc3/ui/medical-button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { MedicalButton } from "@yyc3/ui-enterprise/medical-button"
 import {
   Clipboard,
   Plus,
@@ -16,11 +16,11 @@ import {
   BarChart3,
   ArrowUpDown,
 } from "lucide-react"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
 
 export function MedicationInventoryClient() {
   const [searchQuery, setSearchQuery] = useState("")

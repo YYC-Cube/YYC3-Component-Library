@@ -2,13 +2,13 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Input } from "@yyc3/ui/input"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import {
   FolderOpen,
   Plus,

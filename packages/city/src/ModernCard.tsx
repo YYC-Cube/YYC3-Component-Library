@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { cn } from "@yyc3/ui"
+import { cn } from "@yyc3/ui-enterprise"
 
 interface ModernCardProps {
   children: ReactNode

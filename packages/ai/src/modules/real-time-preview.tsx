@@ -14,12 +14,12 @@ import {
   Download,
   Share2,
 } from "lucide-react";
-import { BrandButton } from "@yyc3/ui/brand-button";
-import { BrandCard } from "@yyc3/ui/brand-card";
-import { BrandBadge } from "@yyc3/ui/brand-badge";
-import MonacoEditor from "@yyc3/ui/monaco-editor";
-import MarkdownPreview from "@yyc3/ui/markdown-preview";
-import Model3DPreview from "@yyc3/ui/model-3d-preview";
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button";
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card";
+import { BrandBadge } from "@yyc3/ui-enterprise/brand-badge";
+import MonacoEditor from "@yyc3/ui-enterprise/monaco-editor";
+import MarkdownPreview from "@yyc3/ui-enterprise/markdown-preview";
+import Model3DPreview from "@yyc3/ui-enterprise/model-3d-preview";
 import { useProjectStore } from "@yyc3/lib/project-store";
 import { applyRouteParams } from "@yyc3/lib/hash-params";
 

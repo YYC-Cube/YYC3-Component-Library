@@ -9,8 +9,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@yyc3/ui/breadcrumb"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@yyc3/ui/collapsible"
+} from "@yyc3/ui-enterprise/breadcrumb"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@yyc3/ui-enterprise/collapsible"
 import { ChevronDown, Home } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
 import { SoundButton } from "../design-system/sound-system"

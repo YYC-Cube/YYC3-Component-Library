@@ -1,4 +1,4 @@
-// YYC³ · @yyc3/ui Empty（Phase 4 · S2 补入）
+// YYC³ · @yyc3/ui-enterprise Empty（Phase 4 · S2 补入）
 // 源：personal 副本 YYC3-UI-用户界面/Button/components/ui/empty.tsx（shadcn 新版）
 import type * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'

@@ -2,8 +2,8 @@
 
 import { useAppSelector } from "@/store/hooks"
 import type { CalendarConfig } from "@/store/widgetsSlice"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { Settings, X } from "lucide-react"
 import { Calendar, momentLocalizer } from "react-big-calendar"
 import moment from "moment"

@@ -81,7 +81,7 @@ packages:
 {
   "name": "@yyc3/business",
   "dependencies": {
-    "@yyc3/ui": "workspace:*",
+    "@yyc3/ui-enterprise": "workspace:*",
     "@yyc3/utils": "workspace:*"
   }
 }
@@ -96,7 +96,7 @@ packages:
 pnpm install
 
 # 安装特定包的依赖
-pnpm --filter @yyc3/ui install
+pnpm --filter @yyc3/ui-enterprise install
 ```
 
 #### 添加新依赖
@@ -106,10 +106,10 @@ pnpm --filter @yyc3/ui install
 pnpm add -w package-name
 
 # 为特定包添加依赖
-pnpm --filter @yyc3/ui add package-name
+pnpm --filter @yyc3/ui-enterprise add package-name
 
 # 添加开发依赖
-pnpm --filter @yyc3/ui add -D package-name
+pnpm --filter @yyc3/ui-enterprise add -D package-name
 ```
 
 #### 移除依赖
@@ -119,7 +119,7 @@ pnpm --filter @yyc3/ui add -D package-name
 pnpm remove -w package-name
 
 # 从特定包移除依赖
-pnpm --filter @yyc3/ui remove package-name
+pnpm --filter @yyc3/ui-enterprise remove package-name
 ```
 
 ---
@@ -185,9 +185,9 @@ pnpm changeset
 # 3. 添加变更说明
 
 # 示例：
-# ? Which packages would you like to include? @yyc3/ui, @yyc3/business
+# ? Which packages would you like to include? @yyc3/ui-enterprise, @yyc3/business
 # ? Which packages should have a major bump? none
-# ? Which packages should have a minor bump? @yyc3/ui
+# ? Which packages should have a minor bump? @yyc3/ui-enterprise
 # ? Which packages should have a patch bump? @yyc3/business
 # ? Please enter a summary for this change:
 #   - 添加新的Button组件变体
@@ -248,10 +248,10 @@ pnpm build
 
 ```bash
 # 构建特定包
-pnpm --filter @yyc3/ui build
+pnpm --filter @yyc3/ui-enterprise build
 
 # 构建特定包及其依赖
-pnpm --filter @yyc3/ui... build
+pnpm --filter @yyc3/ui-enterprise... build
 ```
 
 #### 清理构建产物
@@ -261,7 +261,7 @@ pnpm --filter @yyc3/ui... build
 pnpm clean
 
 # 清理特定包的构建产物
-pnpm --filter @yyc3/ui clean
+pnpm --filter @yyc3/ui-enterprise clean
 ```
 
 ### 发布流程
@@ -319,9 +319,9 @@ pnpm lint
 
 ```
 @yyc3/smart
-  └── @yyc3/ui (workspace:*)
+  └── @yyc3/ui-enterprise (workspace:*)
   └── @yyc3/business (workspace:*)
-      └── @yyc3/ui (workspace:*)
+      └── @yyc3/ui-enterprise (workspace:*)
   └── @yyc3/utils (workspace:*)
 ```
 
@@ -332,7 +332,7 @@ pnpm lint
 ```json
 {
   "dependencies": {
-    "@yyc3/ui": "workspace:*",
+    "@yyc3/ui-enterprise": "workspace:*",
     "@yyc3/business": "workspace:^",
     "@yyc3/utils": "workspace:~"
   }
@@ -552,7 +552,7 @@ pnpm typecheck
 **解决方案**:
 ```bash
 # 运行特定包的测试
-pnpm --filter @yyc3/ui test
+pnpm --filter @yyc3/ui-enterprise test
 
 # 查看测试失败原因
 # 修复测试
@@ -572,7 +572,7 @@ npm whoami
 npm login
 
 # 检查包名是否已存在
-npm view @yyc3/ui
+npm view @yyc3/ui-enterprise
 
 # 使用不同的包名或版本
 ```
@@ -586,7 +586,7 @@ npm view @yyc3/ui
 pnpm list --depth=0
 
 # 查看特定包的依赖
-pnpm --filter @yyc3/ui list --depth=0
+pnpm --filter @yyc3/ui-enterprise list --depth=0
 ```
 
 #### 2. 查看构建日志
@@ -596,7 +596,7 @@ pnpm --filter @yyc3/ui list --depth=0
 pnpm build --force
 
 # 查看特定包的构建日志
-pnpm --filter @yyc3/ui build --force
+pnpm --filter @yyc3/ui-enterprise build --force
 ```
 
 #### 3. 查看缓存状态

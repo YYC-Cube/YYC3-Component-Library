@@ -2,12 +2,12 @@
 
 import type { Node } from "@xyflow/react"
 import { X } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Slider } from "@yyc3/ui/slider"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Slider } from "@yyc3/ui-enterprise/slider"
 
 type NodeConfigPanelProps = {
   node: Node | null

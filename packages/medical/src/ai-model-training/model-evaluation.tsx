@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Label } from "@yyc3/ui/label"
-import { Slider } from "@yyc3/ui/slider"
-import { Switch } from "@yyc3/ui/switch"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Slider } from "@yyc3/ui-enterprise/slider"
+import { Switch } from "@yyc3/ui-enterprise/switch"
 import {
   BarChart,
   LineChart,
@@ -24,7 +24,7 @@ import {
   PieChart,
   Pie,
 } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui/chart"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise/chart"
 import { ArrowRight, AlertCircle, BarChart2, PieChartIcon, Activity, Save, Share2, FileText } from "lucide-react"
 
 // 模拟评估数据

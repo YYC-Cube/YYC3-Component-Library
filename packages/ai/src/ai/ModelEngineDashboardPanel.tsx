@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Progress } from "@yyc3/ui/progress";
-import { Button } from "@yyc3/ui/button";
+import { Progress } from "@yyc3/ui-enterprise/progress";
+import { Button } from "@yyc3/ui-enterprise/button";
 import { Zap, Code, FlaskConical, Database } from "lucide-react";
 
 // 新设计仪表盘右侧面板

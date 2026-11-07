@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import { ClawButton, ClawLayout, ClawContainer, YYC3ThemeProvider, type YYC3Theme } from '@yyc3/ui';
+import { ClawButton, ClawLayout, ClawContainer, YYC3ThemeProvider, type YYC3Theme } from '@yyc3/ui-enterprise';
 
 // YYC³ Claw UI 双主题演示（Phase 3a · 源 S1 showcase 甄别后重制为交互演示）
 const meta: Meta<typeof ClawButton> = {

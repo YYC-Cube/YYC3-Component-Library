@@ -5,12 +5,12 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
-import { Badge } from "@yyc3/ui"
-import { Switch } from "@yyc3/ui"
-import { Input } from "@yyc3/ui"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
+import { Badge } from "@yyc3/ui-enterprise"
+import { Switch } from "@yyc3/ui-enterprise"
+import { Input } from "@yyc3/ui-enterprise"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise"
 import { Database, Plus, RefreshCw, Settings, Link, Link2OffIcon as LinkOff } from "lucide-react"
 
 // 模拟系统连接配置

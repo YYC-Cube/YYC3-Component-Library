@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Progress } from "@yyc3/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 import { Play, Pause, Square, Clock, Target, BarChart3, Calendar } from "lucide-react"
 
 interface TimeEntry {

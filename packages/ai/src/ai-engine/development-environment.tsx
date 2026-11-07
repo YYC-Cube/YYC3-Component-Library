@@ -30,12 +30,12 @@ import {
   Search,
   Maximize2,
 } from "lucide-react"
-import { CardContent, CardHeader, CardTitle, Card, CardDescription } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { CardContent, CardHeader, CardTitle, Card, CardDescription } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import {
   Dialog,
   DialogContent,
@@ -44,10 +44,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
-import { Slider } from "@yyc3/ui/slider"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Button } from "@yyc3/ui/button"
+} from "@yyc3/ui-enterprise/dialog"
+import { Slider } from "@yyc3/ui-enterprise/slider"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Button } from "@yyc3/ui-enterprise/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -55,9 +55,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { Progress } from "@yyc3/ui/progress"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"

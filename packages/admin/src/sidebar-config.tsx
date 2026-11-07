@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { Settings, Monitor, Smartphone, Tablet } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Switch } from "@yyc3/ui/switch"
-import { Slider } from "@yyc3/ui/slider"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Badge } from "@yyc3/ui/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Slider } from "@yyc3/ui-enterprise/slider"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 
 interface SidebarConfigProps {
   onConfigChange?: (config: SidebarConfig) => void

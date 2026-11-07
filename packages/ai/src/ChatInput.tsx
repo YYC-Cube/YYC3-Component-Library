@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "@yyc3/ui/button";
-import { Textarea } from "@yyc3/ui/textarea";
+import { Button } from "@yyc3/ui-enterprise/button";
+import { Textarea } from "@yyc3/ui-enterprise/textarea";
 import { Send } from "lucide-react";
 
 interface ChatInputProps {

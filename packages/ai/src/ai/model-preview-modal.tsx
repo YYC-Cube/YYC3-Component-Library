@@ -8,12 +8,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui/dialog"
-import { Button } from "@yyc3/ui/button"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Slider } from "@yyc3/ui/slider"
-import { Badge } from "@yyc3/ui/badge"
+} from "@yyc3/ui-enterprise/dialog"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Slider } from "@yyc3/ui-enterprise/slider"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { enhancedOllamaService, type EnhancedOllamaModel } from "@yyc3/lib/ai/enhanced-ollama-service"
 import { formatDuration } from "@yyc3/lib/utils"
 import { Loader2, Zap, MessageSquare, Code, ImageIcon, Copy, CheckCircle2, BarChart2 } from "lucide-react"

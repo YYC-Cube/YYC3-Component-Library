@@ -2,8 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion"
 import { Bell, Menu, Search, User } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +11,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
+} from "@yyc3/ui-enterprise/dropdown-menu"
 import { appConfig } from "@/src/config/app"
 
 interface HeaderProps {

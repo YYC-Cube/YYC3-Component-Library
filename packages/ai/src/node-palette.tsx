@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { MessageSquare, Layers, Wrench, FileText, ImageIcon, Code, Play, Flag, GitBranch, Globe } from "lucide-react"
-import { Card } from "@yyc3/ui/card"
+import { Card } from "@yyc3/ui-enterprise/card"
 
 type NodeType = {
   type: string

@@ -3,10 +3,10 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
 import { Upload, ImageIcon, Settings, Save, RotateCcw } from "lucide-react"
 
 interface LogoManagerProps {

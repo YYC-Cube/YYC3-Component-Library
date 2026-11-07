@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
 import { cn } from "@yyc3/lib/utils"
-import { Skeleton } from "@yyc3/ui/skeleton"
+import { Skeleton } from "@yyc3/ui-enterprise/skeleton"
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string

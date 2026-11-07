@@ -3,7 +3,7 @@
 import { memo } from "react"
 import { Handle, Position, type NodeProps } from "@xyflow/react"
 import { Layers, Settings } from "lucide-react"
-import { Card } from "@yyc3/ui/card"
+import { Card } from "@yyc3/ui-enterprise/card"
 
 export type EmbeddingModelNodeData = {
   model: string

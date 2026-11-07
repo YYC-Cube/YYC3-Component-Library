@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 import { Bell, Check, CheckCheck, Trash2, X, MessageSquare, ClipboardList, AlertCircle, Settings } from "lucide-react"
 import { mobileNotificationFallback } from "@yyc3/lib/mobile-notifications-fallback"
 

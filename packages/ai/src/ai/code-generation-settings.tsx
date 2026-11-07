@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui/popover"
-import { Button } from "@yyc3/ui/button"
-import { Slider } from "@yyc3/ui/slider"
-import { Switch } from "@yyc3/ui/switch"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui-enterprise/popover"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Slider } from "@yyc3/ui-enterprise/slider"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import { Settings2, Info } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@yyc3/ui/tooltip"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@yyc3/ui-enterprise/tooltip"
 import type { CodeGenerationOptions } from "@yyc3/lib/ai/model-code-integration"
 
 interface CodeGenerationSettingsProps {

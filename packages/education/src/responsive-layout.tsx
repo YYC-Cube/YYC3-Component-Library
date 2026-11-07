@@ -15,7 +15,7 @@ import BottomNav from "./bottom-nav"
 import { BrandHeader } from "./brand-header"
 import { BrandFooter } from "./brand-footer"
 import { SkipLink } from "./accessibility/skip-link"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import Link from "next/link"
 
 interface ResponsiveLayoutProps {

@@ -19,7 +19,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@yyc3/ui/card";
+} from "@yyc3/ui-enterprise/card";
 import {
   Table,
   TableBody,
@@ -27,16 +27,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@yyc3/ui/table";
-import { Button } from "@yyc3/ui/button";
-import { Input } from "@yyc3/ui/input";
+} from "@yyc3/ui-enterprise/table";
+import { Button } from "@yyc3/ui-enterprise/button";
+import { Input } from "@yyc3/ui-enterprise/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@yyc3/ui/select";
+} from "@yyc3/ui-enterprise/select";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -44,7 +44,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu";
+} from "@yyc3/ui-enterprise/dropdown-menu";
 import {
   IconArrowDown,
   IconArrowUp,
@@ -52,9 +52,9 @@ import {
   IconSettings,
   IconCustomArrowLeft,
   IconCustomArrowRight,
-} from "@yyc3/ui/icons";
-import { Skeleton } from "@yyc3/ui/skeleton";
-import { Badge } from "@yyc3/ui/badge";
+} from "@yyc3/ui-enterprise/icons";
+import { Skeleton } from "@yyc3/ui-enterprise/skeleton";
+import { Badge } from "@yyc3/ui-enterprise/badge";
 
 // 数据透视表属性
 export interface PivotTableProps<T> {

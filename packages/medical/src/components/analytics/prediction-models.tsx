@@ -4,12 +4,12 @@
 // ============================================================
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise"
 import { Download, RefreshCw, AlertTriangle, CheckCircle } from "lucide-react"
 
 // 模拟预测数据

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, createContext, useContext, type ReactNode } from "react"
 import { permissionSystem, type User } from "@yyc3/lib/security/permission-system"
-import { Alert, AlertDescription } from "@yyc3/ui/alert"
+import { Alert, AlertDescription } from "@yyc3/ui-enterprise/alert"
 import { Shield, AlertTriangle, Lock } from "lucide-react"
 
 // 权限上下文

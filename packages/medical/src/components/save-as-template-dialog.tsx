@@ -5,12 +5,12 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui"
-import { Input } from "@yyc3/ui"
-import { Label } from "@yyc3/ui"
-import { Textarea } from "@yyc3/ui"
-import { Switch } from "@yyc3/ui"
-import { Badge } from "@yyc3/ui"
+import { Button } from "@yyc3/ui-enterprise"
+import { Input } from "@yyc3/ui-enterprise"
+import { Label } from "@yyc3/ui-enterprise"
+import { Textarea } from "@yyc3/ui-enterprise"
+import { Switch } from "@yyc3/ui-enterprise"
+import { Badge } from "@yyc3/ui-enterprise"
 import {
   Dialog,
   DialogContent,
@@ -18,7 +18,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui"
+} from "@yyc3/ui-enterprise"
 import { X, Plus } from "lucide-react"
 
 interface SaveAsTemplateDialogProps {

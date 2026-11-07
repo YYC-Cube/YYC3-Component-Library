@@ -1,6 +1,6 @@
 ---
 file: POSITIONING.md
-title: "@yyc3/ui 包定位定义"
+title: "@yyc3/ui-enterprise 包定位定义"
 description: 基础 UI 组件库定位——shadcn 体系 + Claw 双主题双轨制
 author: YYC³ Team <admin@0379.email>
 version: v1.0.0
@@ -14,7 +14,7 @@ audience: developers
 complexity: basic
 ---
 
-# @yyc3/ui 包定位定义
+# @yyc3/ui-enterprise 包定位定义
 
 | 要素 | 定义 |
 | --- | --- |

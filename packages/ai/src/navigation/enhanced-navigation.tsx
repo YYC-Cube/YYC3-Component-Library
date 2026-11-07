@@ -9,7 +9,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@yyc3/ui/breadcrumb"
+} from "@yyc3/ui-enterprise/breadcrumb"
 import { Home, ArrowLeft, Clock } from "lucide-react"
 import { AnimatedContainer } from "../design-system/animation-system"
 import { SoundButton } from "../design-system/sound-system"

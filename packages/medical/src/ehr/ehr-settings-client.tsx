@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { useRouter } from "next/navigation"
-import { Switch } from "@yyc3/ui/switch"
-import { Input } from "@yyc3/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Label } from "@yyc3/ui/label"
-import { Slider } from "@yyc3/ui/slider"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Slider } from "@yyc3/ui-enterprise/slider"
 import { Save, RotateCcw, Clock, Shield, FileText, AlertTriangle } from "lucide-react"
 
 export default function EHRSettingsClient() {

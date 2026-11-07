@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useEffect, useRef, useState, useCallback } from "react"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@yyc3/ui/collapsible"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@yyc3/ui-enterprise/collapsible"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
 import { AnimatedContainer } from "./animation-system"

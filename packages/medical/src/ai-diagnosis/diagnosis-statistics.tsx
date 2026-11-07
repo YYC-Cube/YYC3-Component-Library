@@ -1,8 +1,8 @@
 "use client"
 
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Label } from "@yyc3/ui/label"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Label } from "@yyc3/ui-enterprise/label"
 import {
   BarChart,
   LineChart,
@@ -18,7 +18,7 @@ import {
   Pie,
   Cell,
 } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui/chart"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise/chart"
 import { useState } from "react"
 
 // 模拟诊断统计数据

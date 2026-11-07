@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Label } from "@yyc3/ui/label"
-import { Badge } from "@yyc3/ui/badge"
-import { TableCell, TableRow } from "@yyc3/ui/table"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { TableCell, TableRow } from "@yyc3/ui-enterprise/table"
 import {
   Dialog,
   DialogContent,
@@ -13,11 +13,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Separator } from "@yyc3/ui/separator"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
+} from "@yyc3/ui-enterprise/dialog"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Separator } from "@yyc3/ui-enterprise/separator"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
 import { MessageSquare, Tag, Send, Paperclip, Star, Eye, Edit, Target, Plus, Search, Clock, Timer, TrendingUp } from "lucide-react"
 
 // 数据接口定义

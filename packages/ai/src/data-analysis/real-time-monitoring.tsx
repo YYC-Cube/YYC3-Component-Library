@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { Activity, Server, Users, Zap, AlertTriangle, CheckCircle, XCircle, Clock } from "lucide-react"
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Progress } from "@yyc3/ui/progress"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { AnimatedContainer } from "../design-system/animation-system"
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 

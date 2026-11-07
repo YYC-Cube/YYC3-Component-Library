@@ -17,9 +17,9 @@ import {
   Shield,
   Zap
 } from "lucide-react"
-import { BrandButton } from "@yyc3/ui/brand-button"
-import { BrandCard } from "@yyc3/ui/brand-card"
-import { BrandBadge } from "@yyc3/ui/brand-badge"
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button"
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card"
+import { BrandBadge } from "@yyc3/ui-enterprise/brand-badge"
 import { useProjectStore } from "@yyc3/lib/project-store"
 import { applyRouteParams } from "@yyc3/lib/hash-params"
 

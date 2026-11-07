@@ -2,9 +2,9 @@
 
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Sheet, SheetContent, SheetTrigger } from "@yyc3/ui/sheet"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Sheet, SheetContent, SheetTrigger } from "@yyc3/ui-enterprise/sheet"
 import { MobileNotificationCenter } from "./mobile-notification-center"
 import {
   LayoutDashboard,

@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react"
 import type { WeatherConfig } from "@/store/widgetsSlice"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { Settings, X, Cloud, Sun, CloudRain, CloudSnow } from "lucide-react"
 
 interface WeatherWidgetProps {

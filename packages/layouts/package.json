@@ -20,7 +20,7 @@
     "dev": "tsup --watch"
   },
   "dependencies": {
-    "@yyc3/ui": "workspace:*"
+    "@yyc3/ui-enterprise": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19",

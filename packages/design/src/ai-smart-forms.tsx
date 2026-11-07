@@ -1,5 +1,5 @@
 "use client"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import {
   FileText,
   Smartphone,
@@ -15,7 +15,7 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { useToast } from '@yyc3/ui'
+import { useToast } from '@yyc3/ui-enterprise'
 
 export function AiSmartForms() {
   const router = useRouter()

@@ -52,7 +52,7 @@ complexity: intermediate
 │   └── registry/           ← 组件注册表（card-3d/spline-scene/spotlight）
 ├── packages/core/          ← @yyc3/core（AI Family + MCP + Auth）
 ├── packages/ai-hub/        ← @yyc3/ai-hub（Agents + Skills）
-└── packages/ui/            ← @yyc3/ui（隐含在 CLI 中）
+└── packages/ui/            ← @yyc3/ui-enterprise（隐含在 CLI 中）
 ```
 
 **关键发现**：`@yyc3/cli` 已经是一个功能完备的脚手架系统（fork 自 shadcn/ui CLI），具备：

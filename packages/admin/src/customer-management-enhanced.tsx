@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { EnhancedCard } from "@yyc3/ui/enhanced-card"
-import { EnhancedButton } from "@yyc3/ui/enhanced-button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { EnhancedCard } from "@yyc3/ui-enterprise/enhanced-card"
+import { EnhancedButton } from "@yyc3/ui-enterprise/enhanced-button"
 import { PageContainer } from "@/components/layout/page-container"
 import { commonStyles } from "../lib/design-system"
 import {

@@ -1,10 +1,10 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Button } from "@yyc3/ui/button"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
-import { Separator } from "@yyc3/ui/separator"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
+import { Separator } from "@yyc3/ui-enterprise/separator"
 import { CheckCircle, XCircle, Clock, AlertCircle, MessageSquare } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
 

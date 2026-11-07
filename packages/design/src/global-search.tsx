@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Input } from "@yyc3/ui/input"
+import { Input } from "@yyc3/ui-enterprise/input"
 import {
   CommandDialog,
   CommandEmpty,
@@ -10,8 +10,8 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@yyc3/ui/command"
-import { Badge } from "@yyc3/ui/badge"
+} from "@yyc3/ui-enterprise/command"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Search, Users, CheckSquare, DollarSign, Target, Calendar, FileText, Zap } from "lucide-react"
 
 interface SearchResult {

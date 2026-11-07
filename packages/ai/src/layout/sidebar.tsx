@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { BrandCard } from "@yyc3/ui/brand-card";
-import { BrandLogo } from "@yyc3/ui/brand-logo";
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card";
+import { BrandLogo } from "@yyc3/ui-enterprise/brand-logo";
 import { type ModuleType, moduleConfigs } from "@/types/modules";
 import { ensureDefaultProject } from "@yyc3/lib/default-project";
 

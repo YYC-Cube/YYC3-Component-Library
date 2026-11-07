@@ -3,7 +3,7 @@
 import { memo } from "react"
 import { Handle, Position, type NodeProps } from "@xyflow/react"
 import { FileJson, Settings } from "lucide-react"
-import { Card } from "@yyc3/ui/card"
+import { Card } from "@yyc3/ui-enterprise/card"
 
 export type StructuredOutputNodeData = {
   schemaName: string

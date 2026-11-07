@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { cn } from "@yyc3/lib/utils"
 
 interface AccessibleButtonProps extends React.ComponentProps<typeof Button> {

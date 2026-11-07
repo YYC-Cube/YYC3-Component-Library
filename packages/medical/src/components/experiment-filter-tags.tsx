@@ -4,8 +4,8 @@
 // ============================================================
 "use client"
 
-import { Button } from "@yyc3/ui"
-import { Badge } from "@yyc3/ui"
+import { Button } from "@yyc3/ui-enterprise"
+import { Badge } from "@yyc3/ui-enterprise"
 import { X } from "lucide-react"
 import type { ExperimentFilters } from "./experiment-filter-drawer"
 import { format } from "date-fns"

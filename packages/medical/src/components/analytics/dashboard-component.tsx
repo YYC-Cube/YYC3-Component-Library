@@ -4,10 +4,10 @@
 // ============================================================
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer, BarChart, Bar } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise"
 import { ArrowRight, BarChart2, LineChartIcon, PieChartIcon, GitCompare } from "lucide-react"
 
 // 模拟数据

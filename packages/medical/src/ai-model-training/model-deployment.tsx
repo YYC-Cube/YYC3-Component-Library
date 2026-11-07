@@ -1,19 +1,19 @@
 "use client"
 
-import { Slider } from "@yyc3/ui/slider"
+import { Slider } from "@yyc3/ui-enterprise/slider"
 
 import { useState, type ComponentProps } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Switch } from "@yyc3/ui/switch"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Progress } from "@yyc3/ui/progress"
-import { Separator } from "@yyc3/ui/separator"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Separator } from "@yyc3/ui-enterprise/separator"
 import {
   Cloud,
   Server,
@@ -33,7 +33,7 @@ import {
   Download,
 } from "lucide-react"
 
-// @yyc3/ui Badge 的 variant 联合类型暂不含 success/warning，运行时保持原值透传，仅补类型标注以通过 strict 检查
+// @yyc3/ui-enterprise Badge 的 variant 联合类型暂不含 success/warning，运行时保持原值透传，仅补类型标注以通过 strict 检查
 type BadgeVariant = ComponentProps<typeof Badge>["variant"]
 const badgeVariant = (variant: string): BadgeVariant => variant as BadgeVariant
 

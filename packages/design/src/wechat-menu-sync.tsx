@@ -3,13 +3,13 @@
 import * as React from "react"
 
 import { useState } from "react"
-import { Card } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Switch } from "@yyc3/ui/switch"
-import { Label } from "@yyc3/ui/label"
-import { Alert, AlertDescription } from "@yyc3/ui/alert"
+import { Card } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Alert, AlertDescription } from "@yyc3/ui-enterprise/alert"
 import {
   Dialog,
   DialogContent,
@@ -17,8 +17,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+} from "@yyc3/ui-enterprise/dialog"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import {
   FolderSyncIcon as Sync,
   Settings,
@@ -32,7 +32,7 @@ import {
   Trash,
   Edit,
 } from "lucide-react"
-import { toast } from "@yyc3/ui"
+import { toast } from "@yyc3/ui-enterprise"
 
 // 本地最小实现（Phase 7 精度抽取适配）：源依赖 @yyc3/lib/wechat-api（真身待 lib services 批次），
 // 就地提供同签名空实现 + WeChatMenu 类型，保持组件可编译可运行（同步操作降级为本地模拟）

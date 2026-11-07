@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 import { AlertTriangle } from "lucide-react"
 
 interface OcrServiceProps {

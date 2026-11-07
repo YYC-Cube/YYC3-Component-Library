@@ -1,7 +1,7 @@
 "use client"
 
 import { getAllExams, getExamById } from "@/data/exam-data"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
 
 export function ExamDataDebug() {
   const allExams = getAllExams()

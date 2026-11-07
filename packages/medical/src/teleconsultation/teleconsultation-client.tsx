@@ -2,11 +2,11 @@
 
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 import { ErrorBoundary } from "../components/error-boundary"
 import { UpcomingConsultations } from "../components/upcoming-consultations"
 import Link from "next/link"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { CalendarClock, FileText, Users } from "lucide-react"
 
 // 动态导入可能使用浏览器API的组件

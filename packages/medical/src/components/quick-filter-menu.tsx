@@ -4,7 +4,7 @@
 // ============================================================
 "use client"
 
-import { Button } from "@yyc3/ui"
+import { Button } from "@yyc3/ui-enterprise"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui"
+} from "@yyc3/ui-enterprise"
 import { Filter, Clock, CheckCircle, AlertTriangle, Users, Beaker, FlaskConical, Calendar } from "lucide-react"
 import type { ExperimentFilters } from "./experiment-filter-drawer"
 

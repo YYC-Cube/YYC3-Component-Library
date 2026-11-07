@@ -5,9 +5,9 @@ import type React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Mail, Lock, Eye, EyeOff, LogIn, UserPlus } from "lucide-react"
-import { BrandButton } from "@yyc3/ui/brand-button"
-import { BrandCard } from "@yyc3/ui/brand-card"
-import { BrandLogo } from "@yyc3/ui/brand-logo"
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button"
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card"
+import { BrandLogo } from "@yyc3/ui-enterprise/brand-logo"
 import { useAuth } from "./auth-provider"
 
 interface LoginModalProps {

@@ -13,7 +13,7 @@ import {
   LogOut,
 } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 
 const menuItems = [
   {

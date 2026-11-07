@@ -8,18 +8,18 @@ import type React from "react"
  */
 
 import { useState, useRef, useEffect, useCallback } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Badge } from "@yyc3/ui/badge"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { Alert, AlertDescription } from "@yyc3/ui/alert"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
+import { Alert, AlertDescription } from "@yyc3/ui-enterprise/alert"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
-} from "@yyc3/ui/dropdown-menu"
+} from "@yyc3/ui-enterprise/dropdown-menu"
 import {
   Dialog,
   DialogContent,
@@ -27,7 +27,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
+} from "@yyc3/ui-enterprise/dialog"
 import {
   Send,
   Bot,

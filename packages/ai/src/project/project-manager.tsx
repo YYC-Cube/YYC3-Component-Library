@@ -15,8 +15,8 @@ import {
   Server,
   Brain,
 } from "lucide-react"
-import { BrandButton } from "@yyc3/ui/brand-button"
-import { BrandBadge } from "@yyc3/ui/brand-badge"
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button"
+import { BrandBadge } from "@yyc3/ui-enterprise/brand-badge"
 import { useProjectStore } from "@yyc3/lib/project-store"
 import type { Project } from "@/types/project"
 import CreateProjectModal from "./create-project-modal"

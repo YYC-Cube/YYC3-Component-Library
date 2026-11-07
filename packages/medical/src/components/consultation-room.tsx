@@ -5,11 +5,11 @@
 "use client"
 
 import { useState, type KeyboardEvent } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui"
-import { Textarea } from "@yyc3/ui"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise"
+import { Textarea } from "@yyc3/ui-enterprise"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise"
 import {
   Video,
   VideoOff,

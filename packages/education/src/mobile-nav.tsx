@@ -12,9 +12,9 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@yyc3/ui/sheet"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@yyc3/ui-enterprise/sheet"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
 import { Menu, X, BookOpen, Brain, Users, TrendingUp, Home, LogOut, Target, GraduationCap } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"

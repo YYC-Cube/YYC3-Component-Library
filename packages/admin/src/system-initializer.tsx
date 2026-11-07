@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Progress } from "@yyc3/ui/progress"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { localDB, databaseSeeder } from "@yyc3/lib/local-database"
 import { Database, CheckCircle, AlertCircle, RefreshCw } from "lucide-react"
 

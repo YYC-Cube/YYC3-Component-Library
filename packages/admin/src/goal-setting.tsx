@@ -9,11 +9,11 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@yyc3/ui/accordion"
-import { Progress } from "@yyc3/ui/progress"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@yyc3/ui-enterprise/accordion"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { Edit, Download, Plus } from "lucide-react"
 
 // 模拟年度目标数据

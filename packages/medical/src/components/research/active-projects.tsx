@@ -5,11 +5,11 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
-import { Badge } from "@yyc3/ui"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui"
-import { Progress } from "@yyc3/ui"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
+import { Badge } from "@yyc3/ui-enterprise"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise"
+import { Progress } from "@yyc3/ui-enterprise"
 import { Calendar, Users, FileText, Clock, ChevronRight } from "lucide-react"
 
 // 模拟活跃项目数据

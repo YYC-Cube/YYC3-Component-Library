@@ -1,5 +1,5 @@
 import type React from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
 import { cn } from "@yyc3/lib/utils"
 
 interface ChartCardProps {

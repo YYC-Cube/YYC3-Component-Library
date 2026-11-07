@@ -8,13 +8,13 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@yyc3/ui/card";
-import { Button } from "@yyc3/ui/button";
-import { Textarea } from "@yyc3/ui/textarea";
-import { Badge } from "@yyc3/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs";
-import { Progress } from "@yyc3/ui/progress";
-import { Alert, AlertDescription } from "@yyc3/ui/alert";
+} from "@yyc3/ui-enterprise/card";
+import { Button } from "@yyc3/ui-enterprise/button";
+import { Textarea } from "@yyc3/ui-enterprise/textarea";
+import { Badge } from "@yyc3/ui-enterprise/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs";
+import { Progress } from "@yyc3/ui-enterprise/progress";
+import { Alert, AlertDescription } from "@yyc3/ui-enterprise/alert";
 import {
   Upload,
   Mic,

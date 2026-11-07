@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { cn } from "@yyc3/lib/utils"
 import type { ReactNode } from "react"
 import { Loader2 } from "lucide-react"

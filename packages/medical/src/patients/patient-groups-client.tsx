@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
 import { Search, Users, UserPlus, Settings, MoreHorizontal, Edit, Trash2, MessageSquare, Calendar } from "lucide-react"
-import { MedicalButton } from "@yyc3/ui/medical-button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
-import { Progress } from "@yyc3/ui/progress"
+import { MedicalButton } from "@yyc3/ui-enterprise/medical-button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui-enterprise/dropdown-menu"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 
 // 模拟患者分组数据
 const patientGroups = [

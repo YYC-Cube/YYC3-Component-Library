@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { useTemplateStore } from "@yyc3/lib/templates/template-store"
-import { Button } from "@yyc3/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Pagination } from "@yyc3/ui/pagination"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Pagination } from "@yyc3/ui-enterprise/pagination"
 import { PlusCircle, RefreshCw, Loader2 } from "lucide-react"
 import TemplateCard from "@/components/templates/template-card"
 import TemplateFilters from "@/components/templates/template-filters"

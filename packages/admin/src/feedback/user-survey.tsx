@@ -3,15 +3,15 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Textarea } from "@yyc3/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@yyc3/ui/radio-group"
-import { Checkbox } from "@yyc3/ui/checkbox"
-import { Label } from "@yyc3/ui/label"
-import { Progress } from "@yyc3/ui/progress"
-import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { RadioGroup, RadioGroupItem } from "@yyc3/ui-enterprise/radio-group"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui-enterprise/alert"
 import {
   Dialog,
   DialogContent,
@@ -20,7 +20,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
+} from "@yyc3/ui-enterprise/dialog"
 import { CheckCircle, AlertCircle, ChevronRight, ChevronLeft, X } from 'lucide-react'
 import { cn } from "@yyc3/lib/utils"
 

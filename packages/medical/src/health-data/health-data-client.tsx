@@ -5,7 +5,7 @@ import { HealthDataImport } from "./data-import"
 import { VitalSigns } from "./vital-signs"
 import { TestResults } from "./test-results"
 import { TrendsAnalysis } from "./trends-analysis"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { Upload, Activity, FileText, BarChart, Users, Calendar } from "lucide-react"
 
 export function HealthDataClient() {

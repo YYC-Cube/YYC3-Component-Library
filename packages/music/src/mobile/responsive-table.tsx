@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { Card, CardContent } from "@yyc3/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
 import { useMobile } from "@yyc3/hooks/use-mobile"
 
 interface Column {

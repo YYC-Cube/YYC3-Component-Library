@@ -6,7 +6,7 @@
 
 import * as React from "react"
 
-import type { ToastActionElement, ToastProps } from "@yyc3/ui/toast"
+import type { ToastActionElement, ToastProps } from "@yyc3/ui-enterprise/toast"
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000

@@ -7,8 +7,8 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent } from "@yyc3/ui/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
 import { Volume2, VolumeX, Moon, Sun } from "lucide-react"
 
 interface ExamExperienceEnhancerProps {

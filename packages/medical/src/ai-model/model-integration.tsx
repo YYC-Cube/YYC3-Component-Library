@@ -1,23 +1,23 @@
 "use client"
 
-import { SelectItem } from "@yyc3/ui/select"
+import { SelectItem } from "@yyc3/ui-enterprise/select"
 
-import { SelectContent } from "@yyc3/ui/select"
+import { SelectContent } from "@yyc3/ui-enterprise/select"
 
-import { SelectValue } from "@yyc3/ui/select"
+import { SelectValue } from "@yyc3/ui-enterprise/select"
 
-import { SelectTrigger } from "@yyc3/ui/select"
+import { SelectTrigger } from "@yyc3/ui-enterprise/select"
 
-import { Select } from "@yyc3/ui/select"
+import { Select } from "@yyc3/ui-enterprise/select"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
-import { Switch } from "@yyc3/ui/switch"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Switch } from "@yyc3/ui-enterprise/switch"
 import {
   Network,
   Code,

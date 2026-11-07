@@ -2,8 +2,8 @@
 
 import { useAppSelector } from "@/store/hooks"
 import type { StatsConfig } from "@/store/widgetsSlice"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { Settings, X, TrendingUp, TrendingDown } from "lucide-react"
 
 interface StatsWidgetProps {

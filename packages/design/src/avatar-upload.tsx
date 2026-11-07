@@ -3,8 +3,8 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
 import {
   Dialog,
   DialogContent,
@@ -12,11 +12,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
-import { Label } from "@yyc3/ui/label"
-import { Progress } from "@yyc3/ui/progress"
+} from "@yyc3/ui-enterprise/dialog"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 import { Camera, Upload, X, RotateCw, ZoomIn, ZoomOut } from "lucide-react"
-import { toast } from '@yyc3/ui'
+import { toast } from '@yyc3/ui-enterprise'
 
 interface AvatarUploadProps {
   currentAvatar?: string

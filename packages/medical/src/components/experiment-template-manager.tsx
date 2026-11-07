@@ -5,14 +5,14 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui"
-import { Input } from "@yyc3/ui"
-import { Badge } from "@yyc3/ui"
-import { Card, CardDescription, CardHeader, CardTitle } from "@yyc3/ui"
-import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui"
-import { ScrollArea } from "@yyc3/ui"
-import { DialogHeader, DialogTitle, DialogDescription } from "@yyc3/ui"
+import { Button } from "@yyc3/ui-enterprise"
+import { Input } from "@yyc3/ui-enterprise"
+import { Badge } from "@yyc3/ui-enterprise"
+import { Card, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui-enterprise"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise"
+import { ScrollArea } from "@yyc3/ui-enterprise"
+import { DialogHeader, DialogTitle, DialogDescription } from "@yyc3/ui-enterprise"
 import {
   Search,
   Plus,

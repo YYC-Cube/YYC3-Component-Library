@@ -3,10 +3,10 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
-import { Progress } from "@yyc3/ui/progress"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 import { Camera, Upload, X, Check, RotateCcw, ZoomIn, ZoomOut } from "lucide-react"
 import { toast } from "@yyc3/hooks/use-toast"
 

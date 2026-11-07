@@ -1,6 +1,6 @@
 "use client"
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
 
 const data = [
   { name: "食材成本", value: 45 },

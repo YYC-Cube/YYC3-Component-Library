@@ -51,7 +51,7 @@ UI-8 是十池中唯一以「组件库建设」为主题的池（40,256 文件�
 | 资产 | 规模 | 评估结论 |
 | --- | --- | --- |
 | `YYC3-UI-Design-System` | 5,616 文件（pkg `yyc3-design-system`） | ⭐⭐⭐ 优先并入 `@yyc3/design`（与既有 67 文件先 diff 去重），首批抽取候选 |
-| `yyc3-reusable-components` | 463 文件（pkg 同名） | ⭐⭐⭐ 通用复用件，首批抽取候选（目标 `@yyc3/ui`/`@yyc3/business` 按分类） |
+| `yyc3-reusable-components` | 463 文件（pkg 同名） | ⭐⭐⭐ 通用复用件，首批抽取候选（目标 `@yyc3/ui-enterprise`/`@yyc3/business` 按分类） |
 | `yyc3-monorepo` | turbo monorepo | ⭐⭐ 工程结构参考（对照本仓现状择优吸收，不整迁） |
 | `YYC3-组件拆分规范/` | 5 篇迁移规范 md | ⭐⭐⭐ 并入本仓 docs/（与既有拆分规范目录去重） |
 | `components/`、`applications/` | 散组件/应用 | ⭐ 逐件过 D0+SOP，无批量价值 |

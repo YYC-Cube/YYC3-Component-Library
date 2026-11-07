@@ -1,13 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 import { TrendReports } from "../components/analytics/trend-reports"
-import { DateRangePicker } from "@yyc3/ui/date-picker"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { DateRangePicker } from "@yyc3/ui-enterprise/date-picker"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import { Download, Filter, Share } from "lucide-react"
 
 export default function TrendReportsClient() {

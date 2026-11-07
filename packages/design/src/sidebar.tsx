@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 import { Icon } from "@iconify/react"
 
 const navigationItems = [

@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { TrendingUp, BarChart3, PieChart, Activity, Users, MapPin, Clock } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Progress } from "@yyc3/ui/progress"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 
 // 模拟数据
 const analyticsData = {

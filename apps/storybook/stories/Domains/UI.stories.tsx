@@ -1,10 +1,10 @@
 // ============================================================
-// YYC³ · 门户门面 Story · @yyc3/ui（Phase 7 apps 门户批次 · 2026-11-07）
+// YYC³ · 门户门面 Story · @yyc3/ui-enterprise（Phase 7 apps 门户批次 · 2026-11-07）
 // Claw 基础件 + 加载态展示；令牌经 preview 的 @yyc3/theme/styles 注入
 // ============================================================
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { ClawButton } from '@yyc3/ui'
-import { LoadingSpinner } from '@yyc3/ui'
+import { ClawButton } from '@yyc3/ui-enterprise'
+import { LoadingSpinner } from '@yyc3/ui-enterprise'
 
 const meta: Meta<typeof ClawButton> = {
   title: 'YYC3 域门面/UI 基础件',

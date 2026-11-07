@@ -1,7 +1,7 @@
 "use client"
 
 import { Bell, Brain, Settings, User } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,9 +9,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { Badge } from "@yyc3/ui/badge"
-import { Button } from "@yyc3/ui/button"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { FloatingElement } from "./animation-system"
 import { SoundControls, SoundButton, useSound } from "./sound-system"
 import { cn } from "@yyc3/lib/utils"

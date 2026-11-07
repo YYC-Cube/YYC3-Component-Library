@@ -3,11 +3,11 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
 import { ChevronDown, ChevronUp, Search, Filter, Check, X, Plus, Minus } from "lucide-react"
 
 // 移动端优化的按钮组件

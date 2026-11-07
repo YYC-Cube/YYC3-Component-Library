@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { useModelManagement } from "@yyc3/lib/ai/model-management-center"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Progress } from "@yyc3/ui/progress"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Download, Trash2, RefreshCw, Check, AlertCircle, Clock, Code, MessageSquare, ImageIcon } from "lucide-react"
 import { formatBytes } from "@yyc3/lib/utils"
 

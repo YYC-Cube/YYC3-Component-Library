@@ -14,10 +14,10 @@ import {
   Target,
   Shield,
 } from "lucide-react";
-import MonacoEditor from "@yyc3/ui/monaco-editor";
-import { BrandButton } from "@yyc3/ui/brand-button";
-import { BrandCard } from "@yyc3/ui/brand-card";
-import { BrandBadge } from "@yyc3/ui/brand-badge";
+import MonacoEditor from "@yyc3/ui-enterprise/monaco-editor";
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button";
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card";
+import { BrandBadge } from "@yyc3/ui-enterprise/brand-badge";
 import {
   aiService,
   type CodeSuggestion,

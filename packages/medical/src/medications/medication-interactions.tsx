@@ -2,17 +2,17 @@
 
 import { useState } from "react"
 import { Search, AlertCircle, Info, CheckCircle, XCircle, Plus, Trash2 } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { medicationInteractionService } from "../services/medication-interaction-service"
-import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { Separator } from "@yyc3/ui/separator"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
+import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui-enterprise/alert"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
+import { Separator } from "@yyc3/ui-enterprise/separator"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
 
 export function MedicationInteractions() {
   const [searchTerm, setSearchTerm] = useState("")

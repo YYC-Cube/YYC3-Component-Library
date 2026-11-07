@@ -3,9 +3,9 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
 import { ChevronLeft, ChevronRight, Search, SlidersHorizontal } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
 

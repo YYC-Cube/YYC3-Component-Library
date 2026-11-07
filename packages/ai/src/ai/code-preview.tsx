@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Loader2, Copy, CheckCircle2, Code, FileCode2, Play, Download } from "lucide-react"
-import MonacoEditor from "@yyc3/ui/monaco-editor"
+import MonacoEditor from "@yyc3/ui-enterprise/monaco-editor"
 import { detectLanguage, formatDuration } from "@yyc3/lib/utils"
 
 interface CodePreviewProps {

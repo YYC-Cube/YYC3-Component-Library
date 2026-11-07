@@ -23,25 +23,25 @@ import {
   Eye,
   Zap,
 } from "lucide-react";
-import { Button } from "@yyc3/ui/button";
+import { Button } from "@yyc3/ui-enterprise/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@yyc3/ui/card";
-import { Badge } from "@yyc3/ui/badge";
-import { Progress } from "@yyc3/ui/progress";
-import { Input } from "@yyc3/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs";
+} from "@yyc3/ui-enterprise/card";
+import { Badge } from "@yyc3/ui-enterprise/badge";
+import { Progress } from "@yyc3/ui-enterprise/progress";
+import { Input } from "@yyc3/ui-enterprise/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui/dialog";
+} from "@yyc3/ui-enterprise/dialog";
 import { ModelPreviewModal } from "./model-preview-modal";
 import { ModelSearchFilters, type ModelFilters } from "./model-search-filters";
 import { ModelBenchmark } from "./model-benchmark";

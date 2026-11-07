@@ -10,7 +10,7 @@ import {
   ClawFooter,
   ClawContainer,
   type YYC3Theme,
-} from '@yyc3/ui';
+} from '@yyc3/ui-enterprise';
 
 // YYC³ Claw UI 组件总览（Phase 3b-4 · 源 showcase×4 甄别后重制的交互演示）
 const meta: Meta = {

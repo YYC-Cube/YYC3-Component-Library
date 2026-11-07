@@ -14,13 +14,13 @@ import {
   useGLTF,
   useTexture,
 } from "@react-three/drei"
-import { Button } from "@yyc3/ui/button"
-import { Slider } from "@yyc3/ui/slider"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Switch } from "@yyc3/ui/switch"
-import { Label } from "@yyc3/ui/label"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Slider } from "@yyc3/ui-enterprise/slider"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 import {
   CuboidIcon as Cube,
   Maximize,

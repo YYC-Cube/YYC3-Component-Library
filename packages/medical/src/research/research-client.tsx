@@ -2,7 +2,7 @@
 
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 import { ErrorBoundary } from "../components/error-boundary"
 import { ActiveProjects } from "../components/research/active-projects"
 

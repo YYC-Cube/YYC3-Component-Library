@@ -7,13 +7,13 @@
 "use client"
 
 import { useState } from "react"
-import { RadioGroup, RadioGroupItem } from "@yyc3/ui/radio-group"
-import { Checkbox } from "@yyc3/ui/checkbox"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Label } from "@yyc3/ui/label"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
+import { RadioGroup, RadioGroupItem } from "@yyc3/ui-enterprise/radio-group"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { CheckCircle, CheckSquare, Lightbulb } from "lucide-react"
 
 interface EnhancedQuestionOptionsProps {

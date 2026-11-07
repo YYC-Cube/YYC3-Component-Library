@@ -263,7 +263,7 @@ import('../dist/commands/clean.js').then(({ registerCleanCommand }) => {
     "start": "next start"
   },
   "dependencies": {
-    "@yyc3/ui": "workspace:*",
+    "@yyc3/ui-enterprise": "workspace:*",
     "@yyc3/core": "workspace:*",
     "next": "^14.2.0",
     "react": "^18.3.0",

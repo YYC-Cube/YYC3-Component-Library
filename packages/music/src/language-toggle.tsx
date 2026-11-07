@@ -1,7 +1,7 @@
 "use client"
 import { Languages } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui-enterprise/dropdown-menu"
 import { useI18n } from "@yyc3/lib/hooks/use-i18n"
 
 const languages = [

@@ -21,7 +21,7 @@ complexity: basic
 | **一句话定位** | 全库共享功能层——零依赖工具函数（date/string/validation/data）+ 通用 Hooks（8）+ i18n 翻译器 + 错误处理系统，61 用例覆盖率四门达标 |
 | **包层级** | 共享库层（被全部包消费） |
 | **边界** | ✅ 纯逻辑与通用 Hooks；❌ UI 渲染（归 ui）、Agent 平台能力（归 web-ui） |
-| **主要消费方** | @yyc3/ui（cn 消费）+ 全部域包潜在消费 |
+| **主要消费方** | @yyc3/ui-enterprise（cn 消费）+ 全部域包潜在消费 |
 | **来源** | UI-8 yyc3-reusable-components 五源包全量（utils/hooks/types/i18n/error-handling，D0） |
 | **去留状态** | ✅ 保留（核心包，v0.3.0） |
 | **后续方向** | color 模块（Mimosa 误报复核后补入）；源 24 功能包按需评估 |

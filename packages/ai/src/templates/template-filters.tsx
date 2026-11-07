@@ -4,12 +4,12 @@ import type React from "react"
 
 import { useState } from "react"
 import { Search, Filter, X } from "lucide-react"
-import { Input } from "@yyc3/ui/input"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui/popover"
-import { Label } from "@yyc3/ui/label"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui-enterprise/popover"
+import { Label } from "@yyc3/ui-enterprise/label"
 import type { TemplateFilter, TemplateCategory } from "@/types/template"
 
 interface TemplateFiltersProps {

@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { EnhancedCard } from "@yyc3/ui/enhanced-card"
-import { EnhancedButton } from "@yyc3/ui/enhanced-button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { EnhancedCard } from "@yyc3/ui-enterprise/enhanced-card"
+import { EnhancedButton } from "@yyc3/ui-enterprise/enhanced-button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import {
   Upload,
   Download,

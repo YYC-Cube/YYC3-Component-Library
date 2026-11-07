@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Button } from "@yyc3/ui/button"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
+import { CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
 import { Users, MessageSquare, Edit3, Eye, RefreshCw, Smartphone, Monitor, Wifi, WifiOff } from "lucide-react"
 
 import { EnhancedCard } from "../design-system/enhanced-card-system"

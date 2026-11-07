@@ -1,5 +1,5 @@
 {
-  "name": "@yyc3/ui",
+  "name": "@yyc3/ui-enterprise",
   "version": "2.1.0",
   "description": "YYC³ 基础 UI 组件库 - shadcn/ui 风格的企业级组件集合",
   "main": "./dist/index.js",

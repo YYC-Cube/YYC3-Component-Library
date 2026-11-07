@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent } from "@yyc3/ui/card"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
 
 interface LoadingAnimationProps {
   type?: "pulse" | "spin" | "bounce" | "wave" | "dots" | "progress"

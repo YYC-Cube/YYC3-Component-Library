@@ -1,8 +1,8 @@
 "use client"
 
 import type { Widget } from "@/store/widgetsSlice"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { X } from "lucide-react"
 
 interface WidgetGalleryProps {

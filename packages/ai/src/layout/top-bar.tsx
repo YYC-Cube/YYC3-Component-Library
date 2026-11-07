@@ -11,8 +11,8 @@ import {
   LogOut,
   UserCircle,
 } from "lucide-react";
-import { BrandButton } from "@yyc3/ui/brand-button";
-import { BrandCard } from "@yyc3/ui/brand-card";
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button";
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card";
 import { useAuth } from "@/components/auth/auth-provider";
 
 interface TopBarProps {

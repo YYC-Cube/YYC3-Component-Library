@@ -30,7 +30,7 @@ describe('@yyc3/cloud · 精度抽取验收（21 组件恢复导出）', () => {
     expect(colors.series.length).toBeGreaterThan(0)
   })
 
-  it('ServerStats 渲染（含 @yyc3/ui 子路径消费）', () => {
+  it('ServerStats 渲染（含 @yyc3/ui-enterprise 子路径消费）', () => {
     render(React.createElement(ServerStats))
     expect(document.querySelector('div')).toBeTruthy()
   })
