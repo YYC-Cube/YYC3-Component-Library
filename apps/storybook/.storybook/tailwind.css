@@ -1,0 +1,66 @@
+/* ============================================================
+ * YYC³ · Storybook Tailwind utilities 层（走查批修复 · 2026-11-07）
+ * 域组件消费 Tailwind utility 类（gray/indigo 默认色板 + CSS 变量令牌双体系）：
+ * utilities 层缺失导致门面裸排——tw4 CSS-first 接入。
+ * 注：@source 不支持 {} 花括号扩展，.ts/.tsx 分条声明。
+ * ============================================================ */
+@import "tailwindcss";
+
+@source "../../../packages/ai/src/**/*.ts";
+@source "../../../packages/ai/src/**/*.tsx";
+@source "../../../packages/city/src/**/*.ts";
+@source "../../../packages/city/src/**/*.tsx";
+@source "../../../packages/cloud/src/**/*.ts";
+@source "../../../packages/cloud/src/**/*.tsx";
+@source "../../../packages/design/src/**/*.ts";
+@source "../../../packages/design/src/**/*.tsx";
+@source "../../../packages/financial/src/**/*.ts";
+@source "../../../packages/financial/src/**/*.tsx";
+@source "../../../packages/lib/src/**/*.ts";
+@source "../../../packages/lib/src/**/*.tsx";
+@source "../../../packages/medical/src/**/*.ts";
+@source "../../../packages/medical/src/**/*.tsx";
+@source "../../../packages/theme/src/**/*.ts";
+@source "../../../packages/theme/src/**/*.tsx";
+@source "../../../packages/ui/src/**/*.ts";
+@source "../../../packages/ui/src/**/*.tsx";
+@source "../stories/**/*.ts";
+@source "../stories/**/*.tsx";
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --color-chart-1: hsl(var(--chart-1, 173 58% 39%));
+  --color-chart-2: hsl(var(--chart-2, 12 76% 61%));
+  --color-chart-3: hsl(var(--chart-3, 197 37% 24%));
+  --color-chart-4: hsl(var(--chart-4, 43 74% 66%));
+  --color-chart-5: hsl(var(--chart-5, 27 87% 67%));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
