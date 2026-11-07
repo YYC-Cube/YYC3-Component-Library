@@ -1,8 +1,10 @@
+// ============================================================
+// YYC³ · shadcn 新版升级 Layer2（升级专项批次 B · 2026-11-07）
+// 源（shadcn 新版）：personal 副本 YYC3-D/Button/components/ui/field.tsx
+// ============================================================
 'use client'
 
-// YYC³ · @yyc3/ui Field（Phase 4 · S2 补入）
-// 源：personal 副本 YYC3-UI-用户界面/Button/components/ui/field.tsx（shadcn 新版）
-import * as React from 'react'
+import { useMemo } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '../lib/utils'
@@ -193,7 +195,7 @@ function FieldError({
 }: React.ComponentProps<'div'> & {
   errors?: Array<{ message?: string } | undefined>
 }) {
-  const content = React.useMemo(() => {
+  const content = useMemo(() => {
     if (children) {
       return children
     }

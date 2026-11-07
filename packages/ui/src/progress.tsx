@@ -1,29 +1,35 @@
-"use client"
+// ============================================================
+// YYC³ · shadcn 新版升级 Layer2（升级专项批次 B · 2026-11-07）
+// 源（shadcn 新版）：personal 副本 YYC3-D/Button/components/ui/progress.tsx
+// ============================================================
+'use client'
 
-import * as React from "react"
-import * as ProgressPrimitive from "@radix-ui/react-progress"
+import * as React from 'react'
+import * as ProgressPrimitive from '@radix-ui/react-progress'
 
-import { cn } from "../lib/utils"
+import { cn } from '../lib/utils'
 
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, max = 100, ...props }, ref) => {
-  const percentage = value != null ? (value / max) * 100 : 0
-
+function Progress({
+  className,
+  value,
+  ...props
+}: React.ComponentProps<typeof ProgressPrimitive.Root>) {
   return (
     <ProgressPrimitive.Root
-      ref={ref}
-      className={cn("relative h-4 w-full overflow-hidden rounded-full bg-secondary", className)}
+      data-slot="progress"
+      className={cn(
+        'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',
+        className,
+      )}
       {...props}
     >
       <ProgressPrimitive.Indicator
-        className="h-full w-full flex-1 bg-primary transition-all"
-        style={{ transform: `translateX(-${100 - percentage}%)` }}
+        data-slot="progress-indicator"
+        className="bg-primary h-full w-full flex-1 transition-all"
+        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
       />
     </ProgressPrimitive.Root>
   )
-})
-Progress.displayName = ProgressPrimitive.Root.displayName
+}
 
 export { Progress }

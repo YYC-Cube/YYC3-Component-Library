@@ -3,7 +3,7 @@ file: MIGRATION_PLAN.md
 title: YYC³ 组件库拆分迁移计划 v2.1 — 双源重定界 · 存量定版 · 七阶段推进
 description: 基于 2026-11-03 真实主库勘误修订：双源结构（主库十池按需抽取 + personal 副本五块精准迁移）、权威副本策略、Phase 0~7 七阶段推进计划与验收标准
 author: YYC³ Team <admin@0379.email>
-version: v2.2.1
+version: v2.3.0
 created: 2026-07-25
 updated: 2026-11-03
 status: active
@@ -154,7 +154,7 @@ review_status: reviewed
 | Phase 4 | **shadcn 拷贝去重**（S2 ×56 逐件 diff，决策门 D1：补入/跳过/择优） | 0.5 天 | 56 行 diff 清单留档 |
 | Phase 5 | **web-ui 与 core 决策**（D2：a 迁入 packages/core【推荐】/ b 跨仓引用 / c 暂缓仅迁无依赖件；S3 15 源文件清洗迁入；5 hooks 补单测） | 1 天 | D2 裁决 + 构建绿 |
 | Phase 6 | **归档裁决**（D3：karbon-navigation vs layouts） | 0.5 天 | 裁决留档 |
-| Phase 7 | **应用落地与发包**（~~apps/storybook 门户 + playground~~ ✅ #42；~~templates 终裁~~ ✅ D4 弃迁·关闭（#44）；changesets 演练 ✅；~~business/effects/icons 去留~~ ✅ 终裁保留（#27）；shadcn 升级专项 51 DIFF；13 阶段终验） | 持续 | 闭环提示词通过 |
+| Phase 7 | **应用落地与发包**（~~apps/storybook 门户 + playground~~ ✅ #42；~~templates 终裁~~ ✅ D4 弃迁·关闭（#44）；changesets 演练 ✅；~~business/effects/icons 去留~~ ✅ 终裁保留（#27）；~~shadcn 升级专项 51 DIFF~~ ✅ 批次 A+B（#45/#46）；13 阶段终验） | 持续 | 闭环提示词通过 |
 
 **主库抽取（Phase 2 映射表就绪后滚动进行，不计入上表固定工时）**：按业务域从权威副本抽取可复用组件，逐批走 §四 SOP；首批建议：UI-8 的 yyc3-reusable-components 与 YYC3-UI-Design-System。
 
@@ -227,6 +227,7 @@ review_status: reviewed
 | v2.1.9 | 2026-11-07 | **8 债文件批次（#41）：测试债彻底清零——全仓 671✅/0❌，CI test 门禁解除（合并不再需 --admin），Q1 门达成完全体**。修复方向按 provenance 分流：education×4 = D0 权威配套测试版（与 UI-9/yyc3-learning-platform 逐字节一致）→ 组件对齐测试契约（autonomous-engine 轻量桩 + logger 真身 88 行 + 渲染细节对齐；附带修复 appReducer undefined / filteredTools 未定义 2 个真 bug）；admin×3 + ai×1 = bootstrap 存量测试（断言的「言语云」版/activeModule 架构全知识库无源——实测推翻登记）→ 测试对齐现基线（10 个无源用例诚实删除 + 8 项意图保留断言降级清单入档）。通用：vitest.setup 补 RTL 自动 cleanup（多 render 树残留通用根因）。**附带确诊 CI-only 测试失败根因**（vite exports→dist，CI test 无 build 无 dist 解析断，#37 起 14~15 files 存量被本地债遮蔽）→ `yyc3WorkspaceAlias` 插件修复 → **CI 四门仓史首次全绿**。悬留：autonomous-engine/model-adapter 真身（牵 openai SDK 逃逸链）绑 learning-platform 专项 | YYC³ Team |
 | v2.2.0 | 2026-11-07 | **Phase 7 apps 门户批次（#42）**：`apps/storybook` 门户落地（Storybook 10.6.2 + addon-docs/a11y；stories 双源：packages/ai atoms 3 件 + 六域门面 Overview 6 件——UI/City/Cloud/Medical/Design/Financial；viteFinal 注入 workspace 源码别名（含 theme styles CSS 特例）——与 vitest 同款根因防御）+ `apps/playground` 实验场落地（vite 壳 + 六域组件实时导入演示页，域标签切换）；两 app 均 build 验证通过（storybook-static 6,817 modules / playground 318ms）；远程遗留分支 docs/phase6-d3 清理（PR#26 已完全合并零独有）。全仓 BUILD=0 · 671✅/0❌ 保持。空壳三包终裁确认在案（#27 保留）。Phase 7 剩余：templates 终裁 / shadcn 升级专项 51 DIFF / 13 阶段终验 | YYC³ Team |
 | v2.2.1 | 2026-11-07 | **D4 终裁：YYC3-Nexus-Portal 弃迁·关闭（#44）+ Mimosa 扫描排除策略（#43）**。D4：「言渝云枢」3D 展示门户（Next.js 16 全栈，106 文件 10,691 行，Figma Make 种子快照唯一独有项）性质不符（门户应用非组件/模板，templates/ 语义为 blueprints/themes，apps/ 展示职能已由 #42 承载）+ 不在十池权威副本体系 + Next 16 对齐与 UI 池去重成本＞价值（D3 karbon 先例同款）——副本原位只读留存，templates/ 保留目录壳定位声明。扫描排除：插件 payload 只读无 exclude 接口 → 产物即扫即删（storybook-static 误报×3 处置）。Phase 7 剩余：shadcn 升级专项 51 DIFF / 13 阶段终验 | YYC³ Team |
+| v2.3.0 | 2026-11-07 | **shadcn 新版升级专项收官（批次 A #45 + 批次 B #46）**。影响面评估入档（真实范围 50 件；tw4+@theme inline 无需 config 同步；API 破坏仅 4 处；消费面 654 文件）。批次 A：Layer1×5 + Layer3×3 + shim×2。**批次 B：Layer2 43 件 + sidebar 新件启用（theme 补 --sidebar-* 8×2 变量）+ chart 兼容 shim（BarChart/LineChart recharts 转发，21 消费文件零改动）**；ui changeset 标 MAJOR（h-9 收窄/焦点环重排/阴影档位——视觉面系统性变化）。**视觉走查清单建档**（docs/YYC3-团队通用-标规文档/YYC3-shadcn升级-视觉走查清单.md——发布前硬检查项，绑定 apps/storybook 门户人工走查）。验证：BUILD=0 · 671✅/0❌ · Storybook build 渲染冒烟通过。Phase 7 仅剩：13 阶段终验 | YYC³ Team |
 
 ---
 

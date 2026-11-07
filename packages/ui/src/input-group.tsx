@@ -1,9 +1,9 @@
+// ============================================================
+// YYC³ · shadcn 新版升级 Layer2（升级专项批次 B · 2026-11-07）
+// 源（shadcn 新版）：personal 副本 YYC3-D/Button/components/ui/input-group.tsx
+// ============================================================
 'use client'
 
-// YYC³ · @yyc3/ui InputGroup（Phase 4 · S2 补入）
-// 源：personal 副本 YYC3-UI-用户界面/Button/components/ui/input-group.tsx（shadcn 新版）
-// 注：本仓 Input 组件为 forwardRef 旧版（无 data-align 变体消费），结构兼容
-import type * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '../lib/utils'
