@@ -5,6 +5,7 @@
 // vite 对 workspace bare import 走 exports→dist，dev 环境无 dist 即断——别名到 src 桶。
 // ============================================================
 import type { StorybookConfig } from '@storybook/react-vite'
+import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
 import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -52,6 +53,15 @@ const config: StorybookConfig = {
 
     config.resolve = config.resolve ?? {}
     config.resolve.alias = [...(config.resolve.alias ?? []), ...aliases]
+    // 走查批修复：React 双实例（storybook 内置 react 与 workspace react 版本差）
+    // ——与 vitest.config 同款 dedupe，强制组件/Storybook 共享单实例
+    config.resolve.dedupe = ['react', 'react-dom', 'react/jsx-runtime']
+    // 走查批修复：域组件携带 next/image 链（storybook deps/next_image.js 引用
+    // Node 全局 process）——浏览器无 process，注入空 env 定义
+    config.define = { ...(config.define ?? {}), 'process.env': '{}' }
+    // 走查批修复：域组件消费 Tailwind utility 类（gray/indigo 默认色板 + CSS 变量令牌），
+    // utilities 层缺失导致门面裸排——tw4 插件 + .storybook/tailwind.css（@source 扫描包源）
+    config.plugins = [...(config.plugins ?? []), tailwindcss()]
     return config
   },
 }

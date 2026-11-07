@@ -5,7 +5,7 @@
   "description": "YYC³ 组件库门户 — Storybook 10 文档/可视化中心（六域组件门面 + ai atoms stories）",
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "storybook build -o storybook-static",
+    "build": "tailwindcss -i ./.storybook/tailwind.css -o ./.storybook/tailwind.build.css && storybook build -o storybook-static",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -28,9 +28,12 @@
     "@storybook/addon-a11y": "^10.6.2",
     "@storybook/addon-docs": "^10.6.2",
     "@storybook/react-vite": "^10.6.2",
+    "@tailwindcss/cli": "^4.1.9",
+    "@tailwindcss/vite": "^4.1.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "storybook": "^10.6.2",
+    "tailwindcss": "^4.1.9",
     "typescript": "^5.9",
     "vite": "^8.3.5"
   }
