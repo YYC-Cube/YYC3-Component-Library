@@ -1,7 +1,7 @@
 {
   "name": "@yyc3/theme",
-  "version": "2.1.0",
-  "description": "YYC³ 主题系统 - 全局样式 + Claw 设计令牌（赛博朋克/液态玻璃双主题）",
+  "version": "2.2.0",
+  "description": "YYC³ 主题系统 - 全局样式 + Claw 设计令牌（赛博朋克/液态玻璃双主题）+ next-themes ThemeProvider（A3 批次并入）",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -21,12 +21,21 @@
     "lint": "stylelint 'src/**/*.css'",
     "type-check": "tsc --noEmit"
   },
+  "dependencies": {
+    "next-themes": "^0.4.6"
+  },
   "devDependencies": {
+    "@types/react": "^19",
     "postcss": "^8.5",
     "postcss-cli": "^11.0.0",
+    "react": "^19.3.1",
     "stylelint": "^16.0.0",
     "tailwindcss": "^4.1.9",
     "tsup": "^8.3.0",
     "typescript": "^5.9"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
   }
 }
