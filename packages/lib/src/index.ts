@@ -11,6 +11,15 @@
 // 后续批次：hooks / types / error-handling / i18n 等 28 包功能库甄别并入
 // ============================================================
 
+// ============================================================
+// A3 移交批次（2026-11-07）：88 区 yyc3-shared-packages utils(cn) 并入
+// 源（D0 权威副本）：/Volumes/Development/YYC3-88/yyc3-shared-packages/packages/utils/src/utils.ts
+// 消费方迁移指引（RETIREMENT-PLAN）：`@yyc3/utils` → `@yyc3/lib`
+// ============================================================
+
+// className 合并器（shadcn 惯例 cn，家族多数派规范件）
+export { cn } from './utils/cn';
+
 // Date utilities
 export { getGreeting, getHourlyCare, formatDate, getRelativeTime, isToday, isThisWeek } from './utils/date';
 
