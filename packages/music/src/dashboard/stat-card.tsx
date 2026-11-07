@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import type { LucideIcon } from "lucide-react"
-import { Card, CardContent } from "@yyc3/ui/card"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
 import { cn } from "@yyc3/lib/utils"
 
 interface StatCardProps {

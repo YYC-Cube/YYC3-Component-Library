@@ -1,7 +1,7 @@
 "use client"
 
 import { CpuIcon, MemoryStickIcon as Memory, Thermometer } from "lucide-react"
-import { Progress } from "@yyc3/ui/progress"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 
 export function ServerStats() {
   // 在实际应用中，您需要从服务器获取这些数据

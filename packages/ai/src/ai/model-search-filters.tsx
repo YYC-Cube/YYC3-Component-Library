@@ -3,10 +3,10 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Input } from "@yyc3/ui/input"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Checkbox } from "@yyc3/ui/checkbox"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,8 +15,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui/popover"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui-enterprise/popover"
 import { Search, SlidersHorizontal, X, Check, Filter } from "lucide-react"
 import type { ModelType } from "@yyc3/lib/ai/enhanced-ollama-service"
 

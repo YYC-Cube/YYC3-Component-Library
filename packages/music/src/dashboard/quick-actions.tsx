@@ -1,8 +1,8 @@
 "use client"
 
 import { ShoppingCart, Package, Users, TrendingUp } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 
 export function QuickActions() {
   return (

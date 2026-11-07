@@ -1,6 +1,6 @@
 "use client"
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
 import { ProductForm } from "@/components/forms/product-form"
 import type { Product, ProductCategory } from "@yyc3/lib/types"
 import type { ProductFormData } from "@yyc3/lib/validations/product"

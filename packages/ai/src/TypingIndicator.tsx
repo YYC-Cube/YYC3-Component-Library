@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar";
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar";
 import { Bot } from "lucide-react";
 
 export function TypingIndicator() {

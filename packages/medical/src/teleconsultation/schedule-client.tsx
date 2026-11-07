@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Calendar } from "@yyc3/ui/calendar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Calendar } from "@yyc3/ui-enterprise/calendar"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import {
   Dialog,
   DialogContent,
@@ -13,13 +13,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Checkbox } from "@yyc3/ui/checkbox"
-import { Badge } from "@yyc3/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
+} from "@yyc3/ui-enterprise/dialog"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
 import { CalendarClock, Clock, Users, Video, Plus, Filter, Search, ChevronLeft, ChevronRight, X } from "lucide-react"
 
 // 模拟会诊数据
@@ -205,7 +205,7 @@ export default function ScheduleClient() {
   }
 
   // 自愈登记（T0+T1 批次）：源件 renderDay 依赖 react-day-picker 旧版自定义渲染 API，
-  // 本仓 @yyc3/ui/calendar 为 v9（不支持 renderDay prop）——剥离该用法，
+  // 本仓 @yyc3/ui-enterprise/calendar 为 v9（不支持 renderDay prop）——剥离该用法，
   // 日历降级为纯单选（底部圆点标记移除）；getDayConsultations 在下方列表仍在用
 
 

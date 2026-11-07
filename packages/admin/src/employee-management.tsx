@@ -9,13 +9,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { Input } from "@yyc3/ui/input"
-import { Button } from "@yyc3/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Search, Plus, User, Briefcase, Clock, Phone, Mail, MapPin, Calendar, Filter } from "lucide-react"
 
 // 模拟员工数据

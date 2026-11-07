@@ -4,8 +4,8 @@ import type React from "react"
 
 import { useState } from "react"
 import { CheckCircle, ChevronRight, X } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
 import { cn } from "@yyc3/lib/utils"
 
 interface SessionSummaryProps {

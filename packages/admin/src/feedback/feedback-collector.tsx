@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Textarea } from "@yyc3/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@yyc3/ui/radio-group"
-import { Label } from "@yyc3/ui/label"
-import { Input } from "@yyc3/ui/input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { RadioGroup, RadioGroupItem } from "@yyc3/ui-enterprise/radio-group"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import {
   Dialog,
   DialogContent,
@@ -16,8 +16,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
-import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
+} from "@yyc3/ui-enterprise/dialog"
+import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui-enterprise/alert"
 import { MessageSquare, ThumbsUp, ThumbsDown, Send, AlertCircle, CheckCircle } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
 

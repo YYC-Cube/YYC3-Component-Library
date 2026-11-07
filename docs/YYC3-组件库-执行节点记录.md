@@ -78,7 +78,7 @@ review_status: reviewed
 | 节点 | 动作 | 结果 | PR |
 | --- | --- | --- | --- |
 | N4.1 | docs-kit v1.0 五件套 + README 开源级（顶图/11 徽章/15 包表）+ topics×15 + 交互导览 HTML | 分支 docs/oss-kit | **#7 OPEN** |
-| N4.2 | 源甄别：yyc3-reusable-components = 28 包 monorepo，其 @yyc3/ui 同源且本仓超集（D1 全跳过） | 真实增量=功能包层 | — |
+| N4.2 | 源甄别：yyc3-reusable-components = 28 包 monorepo，其 @yyc3/ui-enterprise 同源且本仓超集（D1 全跳过） | 真实增量=功能包层 | — |
 | N4.3 | 首批抽取 @yyc3/lib v0.1.0（4 模块 30+ 导出/18 测试/build✅/changeset） | 分支 feat/extract-lib-utils | **#8 OPEN** |
 
 ## 三、真实完成度审计（2026-11-04，宣称 vs main 实况）

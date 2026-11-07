@@ -6,9 +6,9 @@
 
 import { motion } from "framer-motion"
 import { Edit, Trash2, ImageIcon } from "lucide-react"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { Badge } from "@yyc3/ui/badge"
-import { Button } from "@yyc3/ui/button"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
 import type { Product, ProductCategory } from "@yyc3/lib/types"
 
 interface ProductListTableProps {

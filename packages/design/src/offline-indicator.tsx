@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { WifiOff, Wifi, AlertCircle } from "lucide-react"
 
 export function OfflineIndicator() {

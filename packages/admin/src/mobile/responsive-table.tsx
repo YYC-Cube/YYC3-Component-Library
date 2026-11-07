@@ -3,9 +3,9 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Input } from "@yyc3/ui/input"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Input } from "@yyc3/ui-enterprise/input"
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +13,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@yyc3/ui/pagination"
+} from "@yyc3/ui-enterprise/pagination"
 import { cn } from "@yyc3/lib/utils"
 import { ChevronDown, ChevronUp, Search } from "lucide-react"
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Badge } from "@yyc3/ui/badge"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import {
   Microscope,
   FlaskConical,
@@ -23,11 +23,11 @@ import {
   Trash2,
 } from "lucide-react"
 import type { ExperimentFilters } from "../components/experiment-filter-drawer"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Input } from "@yyc3/ui/input"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { ExperimentFilterDrawer } from "../components/experiment-filter-drawer"
 import { ExperimentFilterTags } from "../components/experiment-filter-tags"
 import { QuickFilterMenu } from "../components/quick-filter-menu"
@@ -38,11 +38,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui/dialog"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Textarea } from "@yyc3/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@yyc3/ui/radio-group"
+} from "@yyc3/ui-enterprise/dialog"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { RadioGroup, RadioGroupItem } from "@yyc3/ui-enterprise/radio-group"
 import { ExperimentTemplateManager } from "../components/experiment-template-manager"
 import { SaveAsTemplateDialog } from "../components/save-as-template-dialog"
 

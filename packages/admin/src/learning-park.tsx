@@ -9,13 +9,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Input } from "@yyc3/ui/input"
-import { Button } from "@yyc3/ui/button"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 import { Search, BookOpen, Video, FileText, Users, Play } from "lucide-react"
 
 // 模拟数据

@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
 import { Brain, Activity, BarChart } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 
 export function AIModelClient() {
   const [activeTab, setActiveTab] = useState("overview")

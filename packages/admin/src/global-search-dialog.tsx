@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
-import { Input } from "@yyc3/ui/input"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Search, Clock, TrendingUp, FileText, Users, Calendar, RefreshCw } from "lucide-react"
 
 interface SearchResult {

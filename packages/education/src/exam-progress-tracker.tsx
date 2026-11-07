@@ -7,9 +7,9 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Progress } from "@yyc3/ui/progress"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 import { CheckCircle, Circle, AlertCircle, Clock, BookOpen } from "lucide-react"
 
 interface ExamProgressTrackerProps {

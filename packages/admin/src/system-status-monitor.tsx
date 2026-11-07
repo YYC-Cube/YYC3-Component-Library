@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
-import { Alert, AlertDescription } from "@yyc3/ui/alert"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Alert, AlertDescription } from "@yyc3/ui-enterprise/alert"
 import {
   Activity,
   Server,

@@ -1,8 +1,8 @@
 "use client"
 
 import type { TextConfig } from "@/store/widgetsSlice"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { Settings, X } from "lucide-react"
 
 interface TextWidgetProps {

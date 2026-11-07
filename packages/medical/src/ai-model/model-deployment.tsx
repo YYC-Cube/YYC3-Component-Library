@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { ArrowLeft, Server, Globe, Clock, CheckCircle, AlertCircle, Settings, RotateCcw, Loader2 } from "lucide-react"
-import { Progress } from "@yyc3/ui/progress"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Switch } from "@yyc3/ui/switch"
-import { Label } from "@yyc3/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { useToast } from "../hooks/use-toast"
 
 interface ModelData {

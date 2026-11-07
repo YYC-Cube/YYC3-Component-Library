@@ -1,5 +1,5 @@
 // ============================================================
-// YYC³ · @yyc3/ui Claw（Phase 3a）验收测试
+// YYC³ · @yyc3/ui-enterprise Claw（Phase 3a）验收测试
 // 设计令牌 / 双主题上下文 / ClawButton 行为 / ClawLayout / ClawContainer
 // ============================================================
 import { describe, it, expect, vi, afterEach } from 'vitest';

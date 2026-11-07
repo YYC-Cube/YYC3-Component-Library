@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { PageHeader } from "../components/page-header"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { MedicalButton } from "@yyc3/ui/medical-button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { MedicalButton } from "@yyc3/ui-enterprise/medical-button"
 import {
   ClipboardList,
   Plus,
@@ -18,10 +18,10 @@ import {
   AlertCircle,
   Clock,
 } from "lucide-react"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 
 export function PrescriptionManagementClient() {
   const [searchQuery, setSearchQuery] = useState("")

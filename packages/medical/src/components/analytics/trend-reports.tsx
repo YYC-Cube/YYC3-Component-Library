@@ -4,11 +4,11 @@
 // ============================================================
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise"
 import { Download, Calendar } from "lucide-react"
 
 // 模拟趋势数据

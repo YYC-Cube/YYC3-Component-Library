@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { useRouter } from "next/navigation"
-import { Badge } from "@yyc3/ui/badge"
-import { Switch } from "@yyc3/ui/switch"
-import { Input } from "@yyc3/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import {
   Dialog,
   DialogContent,
@@ -16,9 +16,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui/dialog"
-import { Label } from "@yyc3/ui/label"
-import { Textarea } from "@yyc3/ui/textarea"
+} from "@yyc3/ui-enterprise/dialog"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
 import {
   Database,
   Plus,

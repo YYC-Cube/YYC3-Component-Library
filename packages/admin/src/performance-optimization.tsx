@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Switch } from "@yyc3/ui/switch"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Switch } from "@yyc3/ui-enterprise/switch"
 import {
   Zap,
   Activity,

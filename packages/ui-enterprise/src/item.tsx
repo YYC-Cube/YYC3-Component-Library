@@ -1,4 +1,4 @@
-// YYC³ · @yyc3/ui Item（Phase 4 · S2 补入）
+// YYC³ · @yyc3/ui-enterprise Item（Phase 4 · S2 补入）
 // 源：personal 副本 YYC3-UI-用户界面/Button/components/ui/item.tsx（shadcn 新版）
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'

@@ -5,9 +5,9 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui"
-import { Card, CardContent } from "@yyc3/ui"
-import { Checkbox } from "@yyc3/ui"
+import { Button } from "@yyc3/ui-enterprise"
+import { Card, CardContent } from "@yyc3/ui-enterprise"
+import { Checkbox } from "@yyc3/ui-enterprise"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer, Tooltip } from "recharts"
 import { ChevronLeft, Download, Share2 } from "lucide-react"
 

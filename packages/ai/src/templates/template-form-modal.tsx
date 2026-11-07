@@ -1,6 +1,6 @@
 "use client"
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
 import TemplateForm from "@/components/templates/template-form"
 import type { CodeTemplate, CreateTemplateRequest, UpdateTemplateRequest } from "@/types/template"
 

@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Progress as EnhancedProgress } from '@yyc3/ui/progress'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Progress as EnhancedProgress } from '@yyc3/ui-enterprise/progress'
 import { Target, TrendingUp, Users, Calendar, Plus, Edit, Eye, Award } from "lucide-react"
 
 interface OKR {

@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Search, Plus, Filter, MoreHorizontal, FileText, Clock, AlertTriangle } from "lucide-react"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui-enterprise/dropdown-menu"
 import {
   Dialog,
   DialogContent,
@@ -16,10 +16,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui/dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Checkbox } from "@yyc3/ui/checkbox"
-import { Label } from "@yyc3/ui/label"
+} from "@yyc3/ui-enterprise/dialog"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
+import { Label } from "@yyc3/ui-enterprise/label"
 
 // 模拟临床路径数据
 const clinicalPathways = [

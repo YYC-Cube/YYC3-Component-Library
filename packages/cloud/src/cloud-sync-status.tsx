@@ -1,6 +1,6 @@
 "use client"
 
-import { Progress } from "@yyc3/ui/progress"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 import { Clock, CheckCircle, AlertCircle } from "lucide-react"
 
 export function CloudSyncStatus() {

@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Switch } from "@yyc3/ui/switch"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import {
   Shield,
   Eye,

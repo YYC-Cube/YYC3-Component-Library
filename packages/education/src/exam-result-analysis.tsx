@@ -6,10 +6,10 @@
  */
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { Trophy, Target, Clock, BookOpen, Download, Share2, RefreshCw } from "lucide-react"
 
 interface ExamResultAnalysisProps {

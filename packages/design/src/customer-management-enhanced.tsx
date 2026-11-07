@@ -3,12 +3,12 @@
 import { useState } from "react"
 import * as React from "react"
 import type { LucideIcon } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 // EnhancedCard 降级为 ui Card（原源件待 ui 批次补建），支持 title/description 快捷头
-import { Card as EnhancedCardBase, CardHeader, CardTitle, CardDescription, CardContent } from "@yyc3/ui/card"
+import { Card as EnhancedCardBase, CardHeader, CardTitle, CardDescription, CardContent } from "@yyc3/ui-enterprise/card"
 
 function EnhancedCard({
   title,

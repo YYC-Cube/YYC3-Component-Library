@@ -3,9 +3,9 @@
 import { useState } from "react"
 import type { Node, Edge } from "@xyflow/react"
 import { Copy, Check, Download } from "lucide-react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
-import { Button } from "@yyc3/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { generateAISDKCode, generateRouteHandlerCode } from "@yyc3/lib/code-generator"
 
 type CodeExportDialogProps = {

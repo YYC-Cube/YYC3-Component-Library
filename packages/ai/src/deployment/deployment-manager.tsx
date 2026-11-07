@@ -19,10 +19,10 @@ import {
   Shield,
   Monitor,
 } from "lucide-react";
-import { BrandButton } from "@yyc3/ui/brand-button";
-import { BrandCard } from "@yyc3/ui/brand-card";
-import { BrandBadge } from "@yyc3/ui/brand-badge";
-import { BrandToggle } from "@yyc3/ui/brand-toggle";
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button";
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card";
+import { BrandBadge } from "@yyc3/ui-enterprise/brand-badge";
+import { BrandToggle } from "@yyc3/ui-enterprise/brand-toggle";
 import { useProjectStore } from "@yyc3/lib/project-store";
 import { ensureDefaultProject } from "@yyc3/lib/default-project";
 import { applyRouteParams } from "@yyc3/lib/hash-params";

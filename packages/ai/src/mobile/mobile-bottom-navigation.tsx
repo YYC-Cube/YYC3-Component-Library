@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Home, Code2, Play, Users, FolderOpen } from "lucide-react"
 
 type MobilePage = "home" | "ai-generator" | "sandbox" | "collaboration" | "projects" | "settings"

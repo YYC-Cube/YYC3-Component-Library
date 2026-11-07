@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Skeleton } from "@yyc3/ui/skeleton"
-import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Skeleton } from "@yyc3/ui-enterprise/skeleton"
+import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui-enterprise/alert"
 import { StatCard } from "@/components/dashboard/stat-card"
 import { ChartCard } from "@/components/dashboard/chart-card"
 import { SimpleLineChart } from "@/components/dashboard/simple-line-chart"
@@ -12,7 +12,7 @@ import { SimpleBarChart } from "@/components/dashboard/simple-bar-chart"
 import { SimpleDonutChart } from "@/components/dashboard/simple-donut-chart"
 import { AdvancedLineChart } from "@/components/charts/advanced-charts"
 import { AlertCircle, BarChart3, DollarSign, RefreshCw, ShoppingCart, TrendingUp, UserCheck, Users } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { useDashboardStats, useSalesTrend, useCategoryDistribution, useRecentActivities } from "@yyc3/hooks/use-data"
 
 export function RealDataDashboard() {

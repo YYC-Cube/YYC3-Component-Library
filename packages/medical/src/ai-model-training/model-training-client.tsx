@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { ModelTrainingDashboard } from "../components/model-training-dashboard"
 import { ModelTrainingJobs } from "./model-training-jobs"
 import { ModelEvaluation } from "./model-evaluation"

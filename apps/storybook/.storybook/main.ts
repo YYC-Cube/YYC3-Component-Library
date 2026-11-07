@@ -23,9 +23,11 @@ const config: StorybookConfig = {
   },
   async viteFinal(config) {
     // storybook 编译上下文中 import.meta.url 指向临时 bundle，相对计算不可靠——
-    // 从 cwd（apps/storybook）向上探测含 packages/ui 的仓库根
+    // 从 cwd（apps/storybook）向上探测含 pnpm-workspace.yaml 的仓库根
+    // （A2 更名批次 2026-11-07：原锚 packages/ui 目录随 @yyc3/ui-enterprise 更名而漂移，
+    //   改用改名免疫的 workspace 标记文件）
     let repoRoot = process.cwd()
-    for (let i = 0; i < 4 && !fs.existsSync(path.join(repoRoot, 'packages', 'ui')); i++) {
+    for (let i = 0; i < 4 && !fs.existsSync(path.join(repoRoot, 'pnpm-workspace.yaml')); i++) {
       repoRoot = path.dirname(repoRoot)
     }
     const pkgRoot = path.join(repoRoot, 'packages')

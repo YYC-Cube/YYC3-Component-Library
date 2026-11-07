@@ -2,11 +2,11 @@
 
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 import { ErrorBoundary } from "../components/error-boundary"
-import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Card } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Card } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { useRouter } from "next/navigation"
 import { EHRIntegrationStatus } from "../components/ehr-integration-status"
 

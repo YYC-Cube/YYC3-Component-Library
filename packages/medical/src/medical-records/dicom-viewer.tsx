@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Slider } from "@yyc3/ui/slider"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Slider } from "@yyc3/ui-enterprise/slider"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 import { ZoomIn, ZoomOut, RotateCw, RotateCcw, Maximize, Contrast, Grid2X2 } from "lucide-react"
 import { useTranslation } from "../hooks/use-translation"
 

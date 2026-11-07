@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
-import { Badge } from "@yyc3/ui/badge"
-import { Switch } from "@yyc3/ui/switch"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Switch } from "@yyc3/ui-enterprise/switch"
 import {
   Dialog,
   DialogContent,
@@ -16,7 +16,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui/dialog"
+} from "@yyc3/ui-enterprise/dialog"
 import { Share2, Users, Lock, Globe, Eye, Edit, Trash2, Copy, Clock, UserPlus, MoreHorizontal } from "lucide-react"
 import {
   DropdownMenu,
@@ -24,7 +24,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
+} from "@yyc3/ui-enterprise/dropdown-menu"
 import { cn } from "@yyc3/lib/utils"
 
 // Example shared dashboards

@@ -23,9 +23,9 @@ import {
   Search,
   RefreshCw,
 } from "lucide-react"
-import { BrandCard } from "@yyc3/ui/brand-card"
-import { BrandButton } from "@yyc3/ui/brand-button"
-import { BrandBadge } from "@yyc3/ui/brand-badge"
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card"
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button"
+import { BrandBadge } from "@yyc3/ui-enterprise/brand-badge"
 import { ollamaService } from "@yyc3/lib/ai/ollama-service"
 import { streamProcessor } from "@yyc3/lib/data/stream-processor"
 import { dataLakeManager } from "@yyc3/lib/data/data-lake"

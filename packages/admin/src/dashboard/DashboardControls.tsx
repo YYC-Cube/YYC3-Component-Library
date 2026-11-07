@@ -3,9 +3,9 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui-enterprise/dropdown-menu"
 import { Edit, Save, Trash, Settings, Download, Upload, ChevronDown } from "lucide-react"
 import { useAppSelector, useAppDispatch } from "@/store/hooks"
 import { loadDashboard } from "@/store/dashboardSlice"

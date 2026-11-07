@@ -1,17 +1,17 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Switch } from "@yyc3/ui/switch"
-import { Checkbox } from "@yyc3/ui/checkbox"
-import { Progress } from "@yyc3/ui/progress"
-import { Separator } from "@yyc3/ui/separator"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Separator } from "@yyc3/ui-enterprise/separator"
 import {
   BarChart,
   LineChart,
@@ -27,7 +27,7 @@ import {
   PieChart,
   Cell,
 } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui/chart"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise/chart"
 import {
   Brain,
   BarChart2,

@@ -49,7 +49,7 @@ complexity: intermediate
 YYC³ 项目（155+ 组件）
     ↓ 拆分为
 ├─ UI基础组件库（38个）
-│   └─ @yyc3/ui
+│   └─ @yyc3/ui-enterprise
 ├─ 业务组件库（25个）
 │   └─ @yyc3/business
 └─ 核心库模块（20个）
@@ -328,7 +328,7 @@ packages:
 @yyc3/<package-name>
 
 # 示例
-@yyc3/ui              # UI基础组件库
+@yyc3/ui-enterprise              # UI基础组件库
 @yyc3/business        # 业务组件库
 @yyc3/performance     # 性能优化模块
 @yyc3/error           # 错误处理模块
@@ -342,7 +342,7 @@ packages:
 
 ```json
 {
-  "name": "@yyc3/ui",
+  "name": "@yyc3/ui-enterprise",
   "version": "1.0.0",
   "description": "YYC³ UI基础组件库 - 基于 Radix UI 和 Tailwind CSS 的高质量React组件库",
   "keywords": [
@@ -379,7 +379,7 @@ packages:
 
 ```json
 {
-  "name": "@yyc3/ui",
+  "name": "@yyc3/ui-enterprise",
   "version": "1.0.0",
   "dependencies": {
     "react": "^18.0.0",
@@ -417,7 +417,7 @@ packages:
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "@yyc3/ui": "^1.0.0",
+    "@yyc3/ui-enterprise": "^1.0.0",
     "recharts": "^2.0.0",
     "zustand": "^4.0.0",
     "date-fns": "^3.0.0"
@@ -425,7 +425,7 @@ packages:
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "@yyc3/ui": ">=1.0.0"
+    "@yyc3/ui-enterprise": ">=1.0.0"
   }
 }
 ```
@@ -574,7 +574,7 @@ gh release create v1.0.0 --notes "Release notes"
 
 ```bash
 # 安装 UI 组件库
-pnpm add @yyc3/ui
+pnpm add @yyc3/ui-enterprise
 
 # 安装业务组件库
 pnpm add @yyc3/business
@@ -592,7 +592,7 @@ pnpm add @yyc3/gitops
 
 ```typescript
 // 导入 UI 组件
-import { Button, Card, Dialog, Select } from '@yyc3/ui';
+import { Button, Card, Dialog, Select } from '@yyc3/ui-enterprise';
 
 // 导入业务组件
 import { 
@@ -615,7 +615,7 @@ import { GitOpsService } from '@yyc3/gitops';
 #### UI组件使用
 
 ```tsx
-import { Button, Card, CardHeader, CardTitle, CardContent } from '@yyc3/ui';
+import { Button, Card, CardHeader, CardTitle, CardContent } from '@yyc3/ui-enterprise';
 
 function MyComponent() {
   return (
@@ -690,7 +690,7 @@ collector.record('request_count', 1);
 module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@yyc3/ui/**/*.{js,ts,jsx,tsx}'
+    './node_modules/@yyc3/ui-enterprise/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     extend: {
@@ -740,7 +740,7 @@ module.exports = {
 #### 继承和扩展
 
 ```tsx
-import { Button as BaseButton } from '@yyc3/ui';
+import { Button as BaseButton } from '@yyc3/ui-enterprise';
 
 interface CustomButtonProps {
   variant?: 'primary' | 'secondary' | 'success' | 'danger';
@@ -771,7 +771,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 #### 组合使用
 
 ```tsx
-import { Card, Button, Input } from '@yyc3/ui';
+import { Card, Button, Input } from '@yyc3/ui-enterprise';
 
 function LoginForm() {
   return (
@@ -940,7 +940,7 @@ git commit -m "perf: 优化 Dialog 组件的渲染性能"
 git checkout -b upgrade-to-v2
 
 # 2. 更新依赖版本
-pnpm update @yyc3/ui@^2.0.0
+pnpm update @yyc3/ui-enterprise@^2.0.0
 
 # 3. 运行测试
 pnpm test
@@ -961,7 +961,7 @@ git merge upgrade-to-v2
 
 ```bash
 # 1. 更新依赖版本
-pnpm update @yyc3/ui@^1.1.0
+pnpm update @yyc3/ui-enterprise@^1.1.0
 
 # 2. 运行测试
 pnpm test
@@ -978,7 +978,7 @@ git commit -m "chore: 升级到 v1.1.0"
 
 ```bash
 # 1. 更新依赖版本
-pnpm update @yyc3/ui@^1.0.1
+pnpm update @yyc3/ui-enterprise@^1.0.1
 
 # 2. 运行测试
 pnpm test
@@ -992,10 +992,10 @@ git commit -m "chore: 升级到 v1.0.1"
 
 ```bash
 # 1. 查看已安装的版本
-pnpm list @yyc3/ui
+pnpm list @yyc3/ui-enterprise
 
 # 2. 降级到特定版本
-pnpm add @yyc3/ui@1.0.0
+pnpm add @yyc3/ui-enterprise@1.0.0
 
 # 3. 运行测试
 pnpm test
@@ -1014,7 +1014,7 @@ git commit -m "chore: 降级到 v1.0.0"
 #### 包级文档
 
 ```
-@yyc3/ui/
+@yyc3/ui-enterprise/
 ├── README.md                    # 包文档
 ├── CHANGELOG.md                 # 变更日志
 ├── CONTRIBUTING.md              # 贡献指南
@@ -1038,7 +1038,7 @@ git commit -m "chore: 降级到 v1.0.0"
 #### README.md 模板
 
 ```markdown
-# @yyc3/ui
+# @yyc3/ui-enterprise
 
 YYC³ UI基础组件库 - 基于 Radix UI 和 Tailwind CSS 的高质量React组件库
 
@@ -1054,13 +1054,13 @@ YYC³ UI基础组件库 - 基于 Radix UI 和 Tailwind CSS 的高质量React组�
 ## 安装
 
 \`\`\`bash
-pnpm add @yyc3/ui
+pnpm add @yyc3/ui-enterprise
 \`\`\`
 
 ## 快速开始
 
 \`\`\`tsx
-import { Button } from '@yyc3/ui';
+import { Button } from '@yyc3/ui-enterprise';
 
 function App() {
   return <Button>点击我</Button>;
@@ -1161,7 +1161,7 @@ npx storybook@latest init
 ```tsx
 // stories/Button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@yyc3/ui';
+import { Button } from '@yyc3/ui-enterprise';
 
 const meta: Meta<typeof Button> = {
   title: 'UI/Button',
@@ -1367,17 +1367,17 @@ class ComponentPerformanceMonitor {
 
 #### 任务清单
 
-- [ ] 拆分 UI 组件到 `@yyc3/ui` 包
+- [ ] 拆分 UI 组件到 `@yyc3/ui-enterprise` 包
 - [ ] 为每个组件编写单元测试
 - [ ] 为每个组件创建 Storybook Story
 - [ ] 编写组件文档
 - [ ] 配置 Tailwind CSS
 - [ ] 创建设计系统文档
-- [ ] 发布 `@yyc3/ui` v1.0.0
+- [ ] 发布 `@yyc3/ui-enterprise` v1.0.0
 
 #### 交付物
 
-- ✅ `@yyc3/ui` 包
+- ✅ `@yyc3/ui-enterprise` 包
 - ✅ 完整的测试覆盖
 - ✅ Storybook 文档
 - ✅ 组件使用文档

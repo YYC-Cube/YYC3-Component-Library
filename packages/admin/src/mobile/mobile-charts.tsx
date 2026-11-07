@@ -18,9 +18,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { ZoomIn, ZoomOut, RotateCcw } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
 import { Swipeable, PinchZoom } from "@/components/mobile/gesture-support"

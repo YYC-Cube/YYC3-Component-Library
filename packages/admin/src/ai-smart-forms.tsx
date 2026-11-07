@@ -1,5 +1,5 @@
 "use client"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import {
   FileText,
   Smartphone,

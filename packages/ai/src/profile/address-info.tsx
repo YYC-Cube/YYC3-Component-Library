@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Badge } from "@yyc3/ui/badge"
-import { Textarea } from "@yyc3/ui/textarea"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
 import { MapPin, Home, Building, Plus, Edit, Trash2, Save, CheckCircle, AlertCircle, Star } from "lucide-react"
 
 interface Address {

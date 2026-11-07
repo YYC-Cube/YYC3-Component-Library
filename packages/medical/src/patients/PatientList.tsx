@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation"
 import { useApi } from "../hooks/useApi"
 import { API_ENDPOINTS } from "../lib/api/endpoints"
 import type { Patient } from "../services/patientService"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
 
 export function PatientList() {
   const router = useRouter()

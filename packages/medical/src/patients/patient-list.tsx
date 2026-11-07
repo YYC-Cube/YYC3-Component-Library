@@ -3,9 +3,9 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { MedicalButton } from "@yyc3/ui/medical-button"
+import { MedicalButton } from "@yyc3/ui-enterprise/medical-button"
 import { ChevronDown, ChevronUp, MoreHorizontal, Star } from "lucide-react"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui-enterprise/dropdown-menu"
 import { cn } from "../utils/cn"
 import { useRouter } from "next/navigation"
 import { FixedSizeList as List } from "react-window"

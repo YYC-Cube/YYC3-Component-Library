@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Alert, AlertDescription } from "@yyc3/ui/alert"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Alert, AlertDescription } from "@yyc3/ui-enterprise/alert"
 import { Dna, Pill, AlertTriangle, CheckCircle, XCircle, Info, TrendingUp, TrendingDown, Minus } from "lucide-react"
 import { pharmacogenomicsService, type PharmacogenomicsProfile } from "../services/pharmacogenomics-service"
 

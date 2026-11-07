@@ -2,20 +2,20 @@
 
 import { User, LogOut, UserPlus, Bell, Settings, Home, BarChart3, Shield, Clock, ChevronRight, Moon, Sun, Info, Lock, RefreshCw } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { Card } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Card } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { Badge } from "@yyc3/ui/badge"
-import { Alert } from "@yyc3/ui/alert"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Alert } from "@yyc3/ui-enterprise/alert"
 import { useAuthStore } from "@/src/store/authStore"
 import { useState, useEffect } from "react"
-import { toast } from "@yyc3/ui/use-toast"
+import { toast } from "@yyc3/ui-enterprise/use-toast"
 import { userService } from "@/src/services/userService"
 
 interface UserProfileCardProps {

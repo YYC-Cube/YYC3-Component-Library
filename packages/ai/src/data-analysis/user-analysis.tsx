@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { Users, TrendingUp, Clock, MapPin, Smartphone, Monitor, UserCheck, UserX } from "lucide-react"
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Progress } from "@yyc3/ui/progress"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import { AnimatedContainer } from "../design-system/animation-system"
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 

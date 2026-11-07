@@ -1,9 +1,9 @@
 "use client"
 import { Search, Bell, Moon, MoreVertical } from "lucide-react"
-import { Input } from "@yyc3/ui/input"
-import { Button } from "@yyc3/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
-import { Badge } from "@yyc3/ui/badge"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui-enterprise/dropdown-menu"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 
 export function TopNav() {
   return (

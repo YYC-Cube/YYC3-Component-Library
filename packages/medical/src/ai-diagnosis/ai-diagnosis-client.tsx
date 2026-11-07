@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 // 确保导入路径正确
 import { DiagnosisForm } from "./diagnosis-form"
 import { DiagnosisHistory } from "./diagnosis-history"
@@ -9,7 +9,7 @@ import { DiagnosisExplainer } from "./diagnosis-explainer"
 import { DiagnosisComparison } from "./diagnosis-comparison"
 import Link from "next/link"
 import { FileText, Brain, Activity, BarChart } from "lucide-react"
-import { Card } from "@yyc3/ui/card"
+import { Card } from "@yyc3/ui-enterprise/card"
 
 export function AIDiagnosisClient() {
   const [activeTab, setActiveTab] = useState("new-diagnosis")

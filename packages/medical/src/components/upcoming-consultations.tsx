@@ -5,10 +5,10 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
-import { Badge } from "@yyc3/ui"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
+import { Badge } from "@yyc3/ui-enterprise"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise"
 import { Calendar, Clock, Users, Video, FileText, MoreVertical } from "lucide-react"
 
 // 模拟即将到来的会诊

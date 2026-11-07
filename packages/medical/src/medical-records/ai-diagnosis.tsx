@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Badge } from "@yyc3/ui/badge"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 import { Brain, FileText, ImageIcon, Activity, AlertCircle, CheckCircle, HelpCircle } from "lucide-react"
 import { useTranslation } from "../hooks/use-translation"
 

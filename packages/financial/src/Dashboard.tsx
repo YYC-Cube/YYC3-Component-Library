@@ -1,9 +1,9 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui';
-import { Badge } from '@yyc3/ui';
-import { Button } from '@yyc3/ui';
-import { Progress } from '@yyc3/ui';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui-enterprise';
+import { Badge } from '@yyc3/ui-enterprise';
+import { Button } from '@yyc3/ui-enterprise';
+import { Progress } from '@yyc3/ui-enterprise';
 import { 
   TrendingUp, 
   TrendingDown, 

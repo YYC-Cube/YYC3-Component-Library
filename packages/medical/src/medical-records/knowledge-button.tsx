@@ -1,10 +1,10 @@
 "use client"
 
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { BookOpen, AlertTriangle } from "lucide-react"
 import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@yyc3/ui/dialog"
-import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@yyc3/ui-enterprise/dialog"
+import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui-enterprise/alert"
 import { KnowledgeIntegration } from "./knowledge-integration"
 import type { DiagnosticFinding } from "../types/medical-records"
 

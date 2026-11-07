@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Checkbox } from "@yyc3/ui/checkbox"
-import { EnhancedButton } from "@yyc3/ui/enhanced-button"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
+import { EnhancedButton } from "@yyc3/ui-enterprise/enhanced-button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
+} from "@yyc3/ui-enterprise/dropdown-menu"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,8 +22,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@yyc3/ui/alert-dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+} from "@yyc3/ui-enterprise/alert-dialog"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import { CheckSquare, Trash2, Download, Tag, Users, Calendar, Mail, Archive, Star, MoreHorizontal } from "lucide-react"
 
 interface BatchOperationsProps {

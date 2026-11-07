@@ -2,8 +2,8 @@
 
 import { useState, Suspense } from "react"
 import dynamic from "next/dynamic"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
 
 // 动态导入大型组件并禁用SSR
 const Dashboard = dynamic(() => import("../components/analytics/dashboard-component"), {

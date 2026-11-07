@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { useBackground } from "@/contexts/background-context"
 import { Palette } from "lucide-react"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui-enterprise/dropdown-menu"
 
 export default function BackgroundSwitcher() {
   const { background, setBackground } = useBackground()

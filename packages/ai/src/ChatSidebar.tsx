@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button } from "@yyc3/ui/button";
-import { Input } from "@yyc3/ui/input";
-import { ScrollArea } from "@yyc3/ui/scroll-area";
-import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@yyc3/ui/sidebar";
+import { Button } from "@yyc3/ui-enterprise/button";
+import { Input } from "@yyc3/ui-enterprise/input";
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area";
+import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@yyc3/ui-enterprise/sidebar";
 import { Plus, Search, MessageSquare, Trash2 } from "lucide-react";
 
 export interface ChatHistory {

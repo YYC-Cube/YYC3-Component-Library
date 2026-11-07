@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@yyc3/ui": "workspace:*",
+    "@yyc3/ui-enterprise": "workspace:*",
     "@yyc3/theme": "workspace:*"
   },
   "devDependencies": {

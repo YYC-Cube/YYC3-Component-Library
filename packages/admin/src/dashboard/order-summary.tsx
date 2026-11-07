@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 
 const orders = [
   { label: "待确认", count: 5, color: "bg-orange-500" },

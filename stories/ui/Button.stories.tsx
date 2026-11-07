@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Button } from '@yyc3/ui';
+import { Button } from '@yyc3/ui-enterprise';
 
 const meta: Meta<typeof Button> = {
   title: 'UI/Button',

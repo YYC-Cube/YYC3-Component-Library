@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { createContext, useContext, useState, useRef, type ReactNode } from "react"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { Volume2, VolumeX } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
 

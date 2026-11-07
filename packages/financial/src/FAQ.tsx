@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent } from '@yyc3/ui';
-import { Badge } from '@yyc3/ui';
-import { Input } from '@yyc3/ui';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@yyc3/ui';
+import { Card, CardContent } from '@yyc3/ui-enterprise';
+import { Badge } from '@yyc3/ui-enterprise';
+import { Input } from '@yyc3/ui-enterprise';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@yyc3/ui-enterprise';
 import { Search } from 'lucide-react';
 
 interface FAQProps {

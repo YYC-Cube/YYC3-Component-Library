@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Input } from "@yyc3/ui/input"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Label } from "@yyc3/ui/label"
-import { Checkbox } from "@yyc3/ui/checkbox"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Checkbox } from "@yyc3/ui-enterprise/checkbox"
 import {
   Dialog,
   DialogContent,
@@ -17,7 +17,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
+} from "@yyc3/ui-enterprise/dialog"
 import {
   CheckSquare,
   Clock,

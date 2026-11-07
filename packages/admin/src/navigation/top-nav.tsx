@@ -16,21 +16,21 @@ import {
   Home,
   Palette,
 } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { Input } from "@yyc3/ui/input"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { Input } from "@yyc3/ui-enterprise/input"
 import { cn } from "@yyc3/lib/utils"
 import { useBackground } from "@/contexts/background-context"
 import AppLogo from "@/components/app-logo"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@yyc3/ui/sheet"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@yyc3/ui/tooltip"
-import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui/popover"
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@yyc3/ui-enterprise/sheet"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@yyc3/ui-enterprise/tooltip"
+import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui-enterprise/popover"
 
 interface TopNavProps {
   className?: string

@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Card, CardContent } from "@yyc3/ui/card";
-import { BrandCard } from "@yyc3/ui/brand-card";
-import { Button } from "@yyc3/ui/button";
-import { BrandButton } from "@yyc3/ui/brand-button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs";
+import { Card, CardContent } from "@yyc3/ui-enterprise/card";
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card";
+import { Button } from "@yyc3/ui-enterprise/button";
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs";
 import { Code, Download, Play, FileText, Terminal } from "lucide-react";
-import MonacoEditor from "@yyc3/ui/monaco-editor";
-import MarkdownPreview from "@yyc3/ui/markdown-preview";
+import MonacoEditor from "@yyc3/ui-enterprise/monaco-editor";
+import MarkdownPreview from "@yyc3/ui-enterprise/markdown-preview";
 import { detectLanguage, getFileExtension } from "@yyc3/lib/utils";
 import { useProjectStore } from "@yyc3/lib/project-store";
 import { applyRouteParams } from "@yyc3/lib/hash-params";

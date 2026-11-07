@@ -3,14 +3,14 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Badge } from "@yyc3/ui/badge"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
-import { LoadingSpinner } from "@yyc3/ui/loading-spinner"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
+import { LoadingSpinner } from "@yyc3/ui-enterprise/loading-spinner"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
 import { Upload, FileText, Search, ZoomIn, RotateCw, Download, Trash2 } from "lucide-react"
 
 // 模拟CT图像数据

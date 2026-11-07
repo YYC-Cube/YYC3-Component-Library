@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@yyc3/ui/collapsible"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@yyc3/ui-enterprise/collapsible"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
 import { AnimatedContainer } from "./animation-system"

@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react"
 import { Bell, CheckCircle, AlertCircle, Info, XCircle, X } from "lucide-react"
 import { useWebSocket } from "@yyc3/hooks/use-websocket"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@yyc3/ui-enterprise/dropdown-menu"
 
 export function WebSocketNotifications() {
   const { isConnected, notifications, clearNotifications, lastMessage } = useWebSocket({

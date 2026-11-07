@@ -3,10 +3,10 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@yyc3/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui/popover"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@yyc3/ui-enterprise/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui-enterprise/popover"
 import { Phone, Mail, Calendar, FileText, Users, CheckSquare, Zap } from "lucide-react"
 
 interface QuickAction {

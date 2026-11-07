@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { ModelPerformance } from "./model-performance"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
 
 export function ModelPerformanceClient() {
   const [activeTab, setActiveTab] = useState("overview")

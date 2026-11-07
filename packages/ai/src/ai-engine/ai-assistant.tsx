@@ -3,22 +3,22 @@
 import { useState, useRef, useEffect } from "react"
 import { Bot, Send, Mic, MicOff, Volume2, VolumeX, Sparkles, Brain, Lightbulb, TrendingUp, FileText, Users, BarChart3, Settings, Zap, MessageSquare, Copy, ThumbsUp, ThumbsDown, RefreshCw, Download, Share2 } from 'lucide-react'
 
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Switch } from "@yyc3/ui/switch"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Switch } from "@yyc3/ui-enterprise/switch"
 
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"

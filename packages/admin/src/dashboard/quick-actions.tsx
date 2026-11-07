@@ -1,4 +1,4 @@
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { Plus, Package, FileText, TrendingUp } from "lucide-react"
 
 export function QuickActions() {

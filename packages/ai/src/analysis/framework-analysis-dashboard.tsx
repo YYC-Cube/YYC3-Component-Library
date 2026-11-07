@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Progress } from "@yyc3/ui/progress"
-import { Badge } from "@yyc3/ui/badge"
-import { Button } from "@yyc3/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import {
   BarChart3,
   CheckCircle,

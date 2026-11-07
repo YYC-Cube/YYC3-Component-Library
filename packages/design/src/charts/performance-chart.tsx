@@ -1,7 +1,7 @@
 "use client"
 
 import { Area, AreaChart, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui/chart"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise/chart"
 
 const performanceData = [
   { week: "第1周", performance: 85, efficiency: 78 },

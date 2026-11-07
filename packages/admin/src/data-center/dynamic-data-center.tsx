@@ -24,20 +24,20 @@ import {
   PieChart,
 } from "lucide-react"
 
-import { Button } from "@yyc3/ui/button"
-import { CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { Progress } from "@yyc3/ui/progress"
-import { Switch } from "@yyc3/ui/switch"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Switch } from "@yyc3/ui-enterprise/switch"
 
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"

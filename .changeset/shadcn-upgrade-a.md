@@ -1,5 +1,5 @@
 ---
-'@yyc3/ui': minor
+'@yyc3/ui-enterprise': minor
 ---
 
 shadcn 新版升级批次 A（Layer1 + Layer3）：8 件对齐 shadcn 新版 + 2 处兼容 shim。

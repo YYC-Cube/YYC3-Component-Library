@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { MedicalImagingUploader } from "./medical-imaging-uploader"
 import { PrescriptionUploader } from "./prescription-uploader"
 import { OCRService } from "./ocr-service"

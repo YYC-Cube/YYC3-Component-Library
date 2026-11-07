@@ -9,7 +9,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@yyc3/ui/alert-dialog"
+} from "@yyc3/ui-enterprise/alert-dialog"
 
 interface ConfirmDialogProps {
   open: boolean

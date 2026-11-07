@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
 import {
   Search,
   Plus,
@@ -31,8 +31,8 @@ import {
   Clipboard,
   Bell,
 } from "lucide-react"
-import { Progress } from "@yyc3/ui/progress"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
 
 // 模拟治疗方案数据
 const treatmentPlans = [

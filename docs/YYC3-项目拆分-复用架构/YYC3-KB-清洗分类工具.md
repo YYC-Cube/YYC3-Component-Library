@@ -35,7 +35,7 @@ complexity: intermediate
 你现有的每个项目都可以视为：
 
 ```
-可复用框架 (@yyc3/core + @yyc3/ui + ...) + 场景配置 (内容、主题、路由、API)
+可复用框架 (@yyc3/core + @yyc3/ui-enterprise + ...) + 场景配置 (内容、主题、路由、API)
 ```
 
 因此做三件事：
@@ -107,30 +107,30 @@ console.log("按依赖相似度分组（阈值85%）：");
 
 ## 🧩 第二阶段：提炼共享包（2-3天，利用现有 @yyc3/* 结构）
 
-你已经有了 `@yyc3/core`, `@yyc3/ui`, `@yyc3/ai-hub`, `@yyc3/motion`, `@yyc3/i18n-core`, `@yyc3/emotion` 等。现在要做的是**把80多个项目中重复的组件、配置、工具函数全部迁移到这些包里**。
+你已经有了 `@yyc3/core`, `@yyc3/ui-enterprise`, `@yyc3/ai-hub`, `@yyc3/motion`, `@yyc3/i18n-core`, `@yyc3/emotion` 等。现在要做的是**把80多个项目中重复的组件、配置、工具函数全部迁移到这些包里**。
 
 ### 具体操作（选择一个代表项目，如 `YYC³-3`）
 
-1. **提取 UI 组件**所有项目都用了 Radix UI + shadcn/ui，但可能各自有 `components/ui/button.tsx` 等。→ 在 `@yyc3/ui` 中统一维护一份 shadcn 组件，并导出。
+1. **提取 UI 组件**所有项目都用了 Radix UI + shadcn/ui，但可能各自有 `components/ui/button.tsx` 等。→ 在 `@yyc3/ui-enterprise` 中统一维护一份 shadcn 组件，并导出。
 2. **提取布局和通用页面**大多数项目都有相同的布局（侧边栏/顶栏/仪表盘卡片）。→ 创建 `@yyc3/layouts` 包，导出 `DashboardLayout`, `LandingLayout` 等。
 3. **提取业务逻辑 hooks**大量项目都有 `useAuth`, `useApi`, `useLocalStorage` 等。→ 放入 `@yyc3/hooks` 或 `@yyc3/core`。
-4. **提取主题配置**shadcn 的主题变量（`globals.css`）几乎一致。→ `@yyc3/ui` 提供 `global.css` 和主题切换能力。
+4. **提取主题配置**shadcn 的主题变量（`globals.css`）几乎一致。→ `@yyc3/ui-enterprise` 提供 `global.css` 和主题切换能力。
 5. **统一依赖版本**
    使用 pnpm catalog 锁定所有共享依赖的版本（next, react, radix-ui, tailwindcss 等）。
 
 ### 脚本辅助：批量替换导入路径
 
-对于每个原项目，你需要把从 `@/components/ui/button` 的导入改为 `@yyc3/ui/button`。可以写一个 codemod：
+对于每个原项目，你需要把从 `@/components/ui/button` 的导入改为 `@yyc3/ui-enterprise/button`。可以写一个 codemod：
 
 ```bash
 # 安装 jscodeshift
 pnpm add -g jscodeshift
 
 # 创建一个转换脚本 replace-imports.js
-# 内容：将 '@/components/ui/(.+)' 替换为 '@yyc3/ui/$1'
+# 内容：将 '@/components/ui/(.+)' 替换为 '@yyc3/ui-enterprise/$1'
 ```
 
-或者更简单：**直接删除原项目的 `components/ui` 目录，然后在项目中安装 `@yyc3/ui` 并配置路径别名**。原项目会因找不到模块而报错，然后逐个修复 —— 虽然粗暴但准确。
+或者更简单：**直接删除原项目的 `components/ui` 目录，然后在项目中安装 `@yyc3/ui-enterprise` 并配置路径别名**。原项目会因找不到模块而报错，然后逐个修复 —— 虽然粗暴但准确。
 
 ---
 
@@ -221,8 +221,8 @@ yyc3 list-scenes
 # 分析当前目录下所有项目并生成依赖矩阵
 yyc3 analyze --output deps-matrix.json
 
-# 批量将所有项目中的重复组件替换为 @yyc3/ui 引用
-yyc3 refactor --replace-components --target @yyc3/ui
+# 批量将所有项目中的重复组件替换为 @yyc3/ui-enterprise 引用
+yyc3 refactor --replace-components --target @yyc3/ui-enterprise
 
 # 自动生成每个项目的 yyc3.config.json（基于扫描结果）
 yyc3 config-generate --interactive

@@ -3,7 +3,7 @@
 import { memo } from "react"
 import { Handle, Position, type NodeProps } from "@xyflow/react"
 import { Flag } from "lucide-react"
-import { Card } from "@yyc3/ui/card"
+import { Card } from "@yyc3/ui-enterprise/card"
 import { getStatusColor } from "@yyc3/lib/node-utils"
 
 export type EndNodeData = {

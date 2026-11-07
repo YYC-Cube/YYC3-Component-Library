@@ -1,4 +1,4 @@
-import { YYCard, YYCardHeader, YYCardTitle, YYCardContent } from "@yyc3/ui/yy-card"
+import { YYCard, YYCardHeader, YYCardTitle, YYCardContent } from "@yyc3/ui-enterprise/yy-card"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { TrendingUp } from "lucide-react"
 

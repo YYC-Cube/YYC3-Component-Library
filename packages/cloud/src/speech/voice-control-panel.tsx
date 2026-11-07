@@ -1,14 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Alert, AlertDescription } from "@yyc3/ui/alert"
-import { Progress } from "@yyc3/ui/progress"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Slider } from "@yyc3/ui/slider"
-import { Switch } from "@yyc3/ui/switch"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Alert, AlertDescription } from "@yyc3/ui-enterprise/alert"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Slider } from "@yyc3/ui-enterprise/slider"
+import { Switch } from "@yyc3/ui-enterprise/switch"
 import {
   Mic,
   MicOff,

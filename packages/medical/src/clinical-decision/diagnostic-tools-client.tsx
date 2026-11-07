@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 import {
   Brain,
   Stethoscope,
@@ -28,8 +28,8 @@ import {
   Filter,
   Search,
 } from "lucide-react"
-import { Progress } from "@yyc3/ui/progress"
-import { Switch } from "@yyc3/ui/switch"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Switch } from "@yyc3/ui-enterprise/switch"
 
 export function DiagnosticToolsClient() {
   const [activeTab, setActiveTab] = useState("symptom-analyzer")

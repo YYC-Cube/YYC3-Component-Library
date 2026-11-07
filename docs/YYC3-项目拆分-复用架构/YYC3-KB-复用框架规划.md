@@ -455,7 +455,7 @@ graph LR
 | ✅ 阶段一 | 基础框架 | create-yyc3-app + 14模板 |
 | 阶段二 | shadcn/ui组件库 | 20+标准组件 + 10+业务组件 |
 | 阶段三 | pnpm Monorepo | packages/ui + packages/lib |
-| 阶段四 | NPM生态 | @yyc3/ui + @yyc3/lib 发布 |
+| 阶段四 | NPM生态 | @yyc3/ui-enterprise + @yyc3/lib 发布 |
 
 ---
 

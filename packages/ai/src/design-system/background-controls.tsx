@@ -1,5 +1,5 @@
 "use client"
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,8 +7,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { Badge } from "@yyc3/ui/badge"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Palette, Cloud, Waves, Sparkles, Zap, Mountain, Settings } from "lucide-react"
 
 interface BackgroundControlsProps {

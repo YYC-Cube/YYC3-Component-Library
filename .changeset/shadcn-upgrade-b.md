@@ -1,5 +1,5 @@
 ---
-'@yyc3/ui': major
+'@yyc3/ui-enterprise': major
 '@yyc3/theme': minor
 ---
 

@@ -5,7 +5,7 @@
 import React, { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@yyc3/theme/styles'
-import { ClawButton } from '@yyc3/ui'
+import { ClawButton } from '@yyc3/ui-enterprise'
 import { ModernCard } from '@yyc3/city'
 import { ServerStats } from '@yyc3/cloud'
 import { VitalSigns } from '@yyc3/medical'

@@ -15,15 +15,15 @@ import {
   Monitor,
   Tablet,
 } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Switch } from "@yyc3/ui/switch"
-import { Label } from "@yyc3/ui/label"
-import { Separator } from "@yyc3/ui/separator"
-import { Input } from "@yyc3/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Separator } from "@yyc3/ui-enterprise/separator"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import {
   Dialog,
   DialogContent,
@@ -32,9 +32,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Progress } from "@yyc3/ui/progress"
+} from "@yyc3/ui-enterprise/dialog"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 
 import { AnimatedContainer } from "../design-system/animation-system"
 import { EnhancedCard } from "../design-system/enhanced-card-system"

@@ -5,7 +5,7 @@
 import type { ReactNode } from "react"
 import { useAuthStore } from "@yyc3/lib/store/auth-store"
 import type { Permission } from "@yyc3/lib/types"
-import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
+import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui-enterprise/alert"
 import { AlertCircle } from "lucide-react"
 
 interface PermissionGuardProps {

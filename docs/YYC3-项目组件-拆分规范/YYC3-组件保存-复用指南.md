@@ -47,7 +47,7 @@ complexity: intermediate
 - 简化跨包依赖管理
 
 #### 2. **包分类策略**
-- **@yyc3/ui** - UI基础组件包
+- **@yyc3/ui-enterprise** - UI基础组件包
 - **@yyc3/business** - 业务组件包
 - **@yyc3/smart** - Smart组件包
 - **@yyc3/effects** - 特效组件包
@@ -313,7 +313,7 @@ packages:
 
 ```json
 {
-  "name": "@yyc3/ui",
+  "name": "@yyc3/ui-enterprise",
   "version": "1.0.0",
   "description": "YYC³ UI基础组件库",
   "main": "./dist/index.js",
@@ -605,9 +605,9 @@ pnpm changeset
 # 3. 添加变更说明
 
 # 示例：
-# ? Which packages would you like to include? @yyc3/ui, @yyc3/business
+# ? Which packages would you like to include? @yyc3/ui-enterprise, @yyc3/business
 # ? Which packages should have a major bump? none
-# ? Which packages should have a minor bump? @yyc3/ui
+# ? Which packages should have a minor bump? @yyc3/ui-enterprise
 # ? Which packages should have a patch bump? @yyc3/business
 # ? Please enter a summary for this change:
 #   - 添加新的Button组件变体
@@ -629,7 +629,7 @@ pnpm version-packages
 ### CHANGELOG.md示例
 
 ```markdown
-# @yyc3/ui
+# @yyc3/ui-enterprise
 
 ## 1.2.0
 
@@ -672,7 +672,7 @@ pnpm version-packages
 
 ```bash
 # 安装UI基础组件包
-npm install @yyc3/ui
+npm install @yyc3/ui-enterprise
 
 # 安装业务组件包
 npm install @yyc3/business
@@ -681,7 +681,7 @@ npm install @yyc3/business
 npm install @yyc3/smart
 
 # 安装所有组件包
-npm install @yyc3/ui @yyc3/business @yyc3/smart @yyc3/effects @yyc3/navigation
+npm install @yyc3/ui-enterprise @yyc3/business @yyc3/smart @yyc3/effects @yyc3/navigation
 ```
 
 ### 2. 配置Tailwind CSS
@@ -694,7 +694,7 @@ module.exports = {
   darkMode: ['class'],
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
-    './node_modules/@yyc3/ui/**/*.{js,jsx,ts,tsx}',
+    './node_modules/@yyc3/ui-enterprise/**/*.{js,jsx,ts,tsx}',
     './node_modules/@yyc3/business/**/*.{js,jsx,ts,tsx}',
     './node_modules/@yyc3/smart/**/*.{js,jsx,ts,tsx}',
   ],
@@ -813,7 +813,7 @@ module.exports = {
 ### 3. 使用组件
 
 ```tsx
-import { Button, Input, Dialog } from '@yyc3/ui';
+import { Button, Input, Dialog } from '@yyc3/ui-enterprise';
 import { Dashboard } from '@yyc3/business';
 import { SmartSales } from '@yyc3/smart';
 

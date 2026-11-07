@@ -2,16 +2,16 @@
 
 import { useState } from "react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from "recharts"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { AlertCircle, TrendingDown, TrendingUp, Package } from "lucide-react"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui/chart"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
-import { Label } from "@yyc3/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Input } from "@yyc3/ui/input"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise/chart"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui-enterprise/dialog"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Input } from "@yyc3/ui-enterprise/input"
 
 // 模拟库存数据
 const inventoryData = [

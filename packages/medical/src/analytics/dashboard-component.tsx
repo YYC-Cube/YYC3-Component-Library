@@ -1,9 +1,9 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer, BarChart, Bar } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui/chart"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise/chart"
 import { ArrowRight, BarChart2, LineChartIcon, PieChartIcon, GitCompare } from "lucide-react"
 
 // 模拟数据

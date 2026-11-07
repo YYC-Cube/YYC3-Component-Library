@@ -1,16 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Switch } from "@yyc3/ui/switch"
-import { Label } from "@yyc3/ui/label"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Label } from "@yyc3/ui-enterprise/label"
 import { Play, RefreshCw, Download, Copy, Clock, AlertCircle, CheckCircle } from "lucide-react"
 import { useToast } from "@yyc3/hooks/use-toast"
 import { codeSandbox, type SupportedLanguage, type ExecutionResult } from "@yyc3/lib/code/code-sandbox"
-import MonacoEditor from "@yyc3/ui/monaco-editor"
+import MonacoEditor from "@yyc3/ui-enterprise/monaco-editor"
 
 export default function CodeSandboxExplorer() {
   const [language, setLanguage] = useState<SupportedLanguage>("javascript")

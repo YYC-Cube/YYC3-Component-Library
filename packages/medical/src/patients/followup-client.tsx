@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Select } from "@yyc3/ui/select"
-import { DatePicker } from "@yyc3/ui/date-picker"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Select } from "@yyc3/ui-enterprise/select"
+import { DatePicker } from "@yyc3/ui-enterprise/date-picker"
 import { Calendar, Search, Phone, Mail, MessageSquare, CheckCircle, Clock, AlertCircle, User } from "lucide-react"
-import { MedicalButton } from "@yyc3/ui/medical-button"
+import { MedicalButton } from "@yyc3/ui-enterprise/medical-button"
 import { cn } from "../utils/cn"
 
 // 模拟随访数据

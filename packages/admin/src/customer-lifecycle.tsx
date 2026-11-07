@@ -2,10 +2,10 @@
 
 import type React from "react"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
 import { UserPlus, TrendingUp, Star, Heart, Users, Target, Award, ArrowRight, BarChart3, Settings } from "lucide-react"
 
 interface LifecycleStage {

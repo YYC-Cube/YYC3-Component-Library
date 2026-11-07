@@ -12,12 +12,12 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@yyc3/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs";
-import { Button } from "@yyc3/ui/button";
-import { Input } from "@yyc3/ui/input";
-import { Badge } from "@yyc3/ui/badge";
-import { ScrollArea } from "@yyc3/ui/scroll-area";
+} from "@yyc3/ui-enterprise/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs";
+import { Button } from "@yyc3/ui-enterprise/button";
+import { Input } from "@yyc3/ui-enterprise/input";
+import { Badge } from "@yyc3/ui-enterprise/badge";
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area";
 import {
   Dialog,
   DialogContent,
@@ -25,14 +25,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog";
+} from "@yyc3/ui-enterprise/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@yyc3/ui/select";
+} from "@yyc3/ui-enterprise/select";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";

@@ -48,7 +48,7 @@ related_docs: [MIGRATION_PLAN.md, CONTRIBUTING.md, docs/YYC3-组件拆分-执行
 
 ## ✨ 特性
 
-- 🧩 **15 域分包**：`@yyc3/ui` 全量基础件（shadcn 体系 + 定制件）+ 14 个业务/职能域包
+- 🧩 **15 域分包**：`@yyc3/ui-enterprise` 全量基础件（shadcn 体系 + 定制件）+ 14 个业务/职能域包
 - 🏛️ **规范驱动**：拆分原则、独立单元判定、权威副本甄别、十步执行规程全套自研方法论（见 `docs/`）
 - 🧪 **质量门**：Vitest 4 + RTL + jsdom 单元通道；P0 场景矩阵（CS-001~010）与分级放行
 - 📖 **组件目录**：Storybook 10 十域 stories + autodocs
@@ -58,7 +58,7 @@ related_docs: [MIGRATION_PLAN.md, CONTRIBUTING.md, docs/YYC3-组件拆分-执行
 
 | 包名 | src | 构建 | 测试 | 导出面 |
 |------|-----|------|------|--------|
-| [`@yyc3/ui`](./packages/ui) | 66 | ✅ +DTS | ✅ 冒烟 | **全量真实导出**（170+，含 `cn`） |
+| [`@yyc3/ui-enterprise`](./packages/ui) | 66 | ✅ +DTS | ✅ 冒烟 | **全量真实导出**（170+，含 `cn`） |
 | [`@yyc3/lib`](./packages/lib) | 6 | ✅ +DTS | ✅ **18 用例** | **30+ 零依赖工具函数**（date/string/validation/data） |
 | [`@yyc3/ai`](./packages/ai) | 1,512 | ✅ | 19 文件 | 占位桶（断链随批次恢复） |
 | [`@yyc3/music`](./packages/music) | 417 | ✅ | 2 文件 | **4 组件收敛导出** |
@@ -91,7 +91,7 @@ pnpm storybook # 组件目录 → http://localhost:6006
 组件使用：
 
 ```tsx
-import { Button, Card, cn } from '@yyc3/ui'
+import { Button, Card, cn } from '@yyc3/ui-enterprise'
 ```
 
 ## 🗺️ 可视化导览

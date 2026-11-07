@@ -1,7 +1,7 @@
 "use client"
 
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { ChevronRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { BarChart3, Users, Settings, Bot, Building2, Brain, Smartphone, Shield } from "lucide-react"

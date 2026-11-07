@@ -7,8 +7,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu";
-import { Button } from "@yyc3/ui/button";
+} from "@yyc3/ui-enterprise/dropdown-menu";
+import { Button } from "@yyc3/ui-enterprise/button";
 import { useLanguage } from "../../hooks/use-language";
 
 export function LanguageSelector() {

@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { BrandCard } from "@yyc3/ui/brand-card"
-import { BrandBadge } from "@yyc3/ui/brand-badge"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
+import { BrandCard } from "@yyc3/ui-enterprise/brand-card"
+import { BrandBadge } from "@yyc3/ui-enterprise/brand-badge"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { FileCode2, Star, Clock, Download, Share2, MoreHorizontal, Edit, Trash2 } from "lucide-react"
 import {
   DropdownMenu,
@@ -13,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
+} from "@yyc3/ui-enterprise/dropdown-menu"
 import { formatDistanceToNow } from "date-fns"
 import { zhCN } from "date-fns/locale"
 import type { CodeTemplate } from "@/types/template"

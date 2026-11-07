@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui';
-import { Badge } from '@yyc3/ui';
-import { Button } from '@yyc3/ui';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@yyc3/ui';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@yyc3/ui-enterprise';
+import { Badge } from '@yyc3/ui-enterprise';
+import { Button } from '@yyc3/ui-enterprise';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@yyc3/ui-enterprise';
 import { 
   Database, 
   Brain, 

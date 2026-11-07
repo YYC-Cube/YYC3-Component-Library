@@ -1,6 +1,6 @@
 "use client"
 
-import { BrandButton } from "@yyc3/ui/brand-button"
+import { BrandButton } from "@yyc3/ui-enterprise/brand-button"
 
 interface ProjectFiltersProps {
   filters: {

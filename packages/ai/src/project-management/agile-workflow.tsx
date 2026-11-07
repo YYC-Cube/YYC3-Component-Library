@@ -22,13 +22,13 @@ import {
   Flame,
 } from "lucide-react"
 
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
-import { Separator } from "@yyc3/ui/separator"
-import { Textarea } from "@yyc3/ui/textarea"
+import { CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Avatar, AvatarFallback } from "@yyc3/ui-enterprise/avatar"
+import { Separator } from "@yyc3/ui-enterprise/separator"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
 
 import { AnimatedContainer } from "../design-system/animation-system"
 import { EnhancedCard } from "../design-system/enhanced-card-system"

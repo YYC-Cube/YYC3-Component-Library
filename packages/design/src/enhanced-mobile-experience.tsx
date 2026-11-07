@@ -3,11 +3,11 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Switch } from "@yyc3/ui/switch"
-import { Slider } from "@yyc3/ui/slider"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Slider } from "@yyc3/ui-enterprise/slider"
 import {
   Smartphone,
   Vibrate,

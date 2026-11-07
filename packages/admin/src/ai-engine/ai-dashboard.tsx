@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Brain, Sparkles, Target, TrendingUp, Zap, Settings } from 'lucide-react'
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 import { AnimatedContainer } from "../design-system/animation-system"
 

@@ -29,7 +29,7 @@ review_status: reviewed
 
 ## 一、方向判定（抽样证据）
 
-源（personal 副本 56 件）= **shadcn 新版**（`data-slot` 属性、`@/lib/utils` 别名、新 token 如 `shadow-xs`/`selection:bg-*`/`bg-accent`、函数式组件）；本仓 66 件 = **旧版但是活消费基线**（forwardRef/旧 token，已被 72+ 处 `@yyc3/ui/*` 引用、stories、Claw 系消费）。
+源（personal 副本 56 件）= **shadcn 新版**（`data-slot` 属性、`@/lib/utils` 别名、新 token 如 `shadow-xs`/`selection:bg-*`/`bg-accent`、函数式组件）；本仓 66 件 = **旧版但是活消费基线**（forwardRef/旧 token，已被 72+ 处 `@yyc3/ui-enterprise/*` 引用、stories、Claw 系消费）。
 
 **核心决策**：51 件同名 DIFF **SKIP**——直接换新版将引发全局视觉 token 变化（tailwind 配置须同步 `bg-muted`→`bg-accent` 等）并要求全部消费方重测；**shadcn 新版整体升级列为独立专项**（登记于下），不属"去重"批。
 

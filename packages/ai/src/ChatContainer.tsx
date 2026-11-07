@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { ChatMessage } from "./ChatMessage";
 import { ChatInput } from "./ChatInput";
 import { TypingIndicator } from "./TypingIndicator";
-import { ScrollArea } from "@yyc3/ui/scroll-area";
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area";
 
 export interface Message {
   id: string;

@@ -3,9 +3,9 @@
 import { useState } from "react"
 import type { Node, Edge } from "@xyflow/react"
 import { Play, X, CheckCircle, XCircle, Loader2 } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Card } from "@yyc3/ui/card"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card } from "@yyc3/ui-enterprise/card"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 
 type ExecutionResult = {
   nodeId: string

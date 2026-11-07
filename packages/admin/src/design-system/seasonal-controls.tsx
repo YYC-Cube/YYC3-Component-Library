@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@yyc3/ui/button"
+import { Button } from "@yyc3/ui-enterprise/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,8 +8,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
-import { Badge } from "@yyc3/ui/badge"
+} from "@yyc3/ui-enterprise/dropdown-menu"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Leaf, Sun, TreePine, Snowflake, Calendar, Sparkles } from "lucide-react"
 import type { Season } from "./seasonal-themes"
 import { useSound } from "./sound-system"

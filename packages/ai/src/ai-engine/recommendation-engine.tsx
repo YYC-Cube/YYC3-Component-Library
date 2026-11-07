@@ -3,21 +3,21 @@
 import { useState, useEffect } from "react"
 import { Target, Users, ShoppingCart, TrendingUp, Star, Heart, Eye, MousePointer, Clock, Filter, Zap, Brain, Sparkles, ArrowRight, ThumbsUp, ThumbsDown, RefreshCw, Settings, Download, Share2, BookOpen, Tag, Gift, MessageSquare, Calendar, MapPin } from 'lucide-react'
 
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
-import { Progress } from "@yyc3/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@yyc3/ui/select"
-import { Switch } from "@yyc3/ui/switch"
-import { Slider } from "@yyc3/ui/slider"
+} from "@yyc3/ui-enterprise/select"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Slider } from "@yyc3/ui-enterprise/slider"
 
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"

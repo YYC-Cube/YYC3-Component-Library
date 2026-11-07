@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { Check, ChevronDown, Loader2, AlertCircle, Server } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@yyc3/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui/popover"
-import { Badge } from "@yyc3/ui/badge"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@yyc3/ui-enterprise/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui-enterprise/popover"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { useModelCodeIntegration } from "@yyc3/lib/ai/model-code-integration"
 import { cn } from "@yyc3/lib/utils"
 

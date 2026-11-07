@@ -5,12 +5,12 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
-import { Input } from "@yyc3/ui"
-import { Label } from "@yyc3/ui"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
+import { Input } from "@yyc3/ui-enterprise"
+import { Label } from "@yyc3/ui-enterprise"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 import { useTranslation } from "../../hooks/use-translation"
 

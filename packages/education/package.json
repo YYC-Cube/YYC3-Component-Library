@@ -26,7 +26,7 @@
   "dependencies": {
     "@tanstack/react-virtual": "^3.14.26",
     "@yyc3/theme": "workspace:*",
-    "@yyc3/ui": "workspace:*",
+    "@yyc3/ui-enterprise": "workspace:*",
     "lucide-react": "^0.454.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"

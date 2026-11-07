@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
-import { Badge } from "@yyc3/ui/badge"
-import { Input } from "@yyc3/ui/input"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Separator } from "@yyc3/ui/separator"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Separator } from "@yyc3/ui-enterprise/separator"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 import {
   Users,
   MessageSquare,
@@ -28,7 +28,7 @@ import {
   VideoOff,
 } from "lucide-react"
 import { useToast } from "@yyc3/hooks/use-toast"
-import MonacoEditor from "@yyc3/ui/monaco-editor"
+import MonacoEditor from "@yyc3/ui-enterprise/monaco-editor"
 
 // 协作者接口
 interface Collaborator {

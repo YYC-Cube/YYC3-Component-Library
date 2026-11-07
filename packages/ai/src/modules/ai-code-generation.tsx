@@ -7,8 +7,8 @@ import {
   Play,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { EmotionIcon, UploadIcon, VoiceIcon } from "@yyc3/ui/icons";
-import EmojiPopover from "@yyc3/ui/emoji-popover";
+import { EmotionIcon, UploadIcon, VoiceIcon } from "@yyc3/ui-enterprise/icons";
+import EmojiPopover from "@yyc3/ui-enterprise/emoji-popover";
 
 // 常用表情常量（轻量选择，无外部依赖）
 const COMMON_EMOJIS = ["😊", "👍", "🎉", "❤️", "😂", "🤔", "🚀", "🙌", "😎", "💡"];

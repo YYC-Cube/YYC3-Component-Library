@@ -7,5 +7,5 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', 'react/jsx-runtime', '@yyc3/ui', '@yyc3/theme'],
+  external: ['react', 'react-dom', 'react/jsx-runtime', '@yyc3/ui-enterprise', '@yyc3/theme'],
 })

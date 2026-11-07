@@ -1,14 +1,14 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@yyc3/ui/tabs"
-import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
-import { Progress } from "@yyc3/ui/progress"
-import { Separator } from "@yyc3/ui/separator"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@yyc3/ui-enterprise/tabs"
+import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui-enterprise/alert"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Separator } from "@yyc3/ui-enterprise/separator"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 import {
   Brain,
   Crosshair,

@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Bell, Check, Trash2, X } from "lucide-react"
-import { Button } from "@yyc3/ui/button"
-import { Card } from "@yyc3/ui/card"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card } from "@yyc3/ui-enterprise/card"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 import { type Notification, NotificationType } from "@yyc3/lib/types"
 import {
   getUserNotifications,

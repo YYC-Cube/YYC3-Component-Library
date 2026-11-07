@@ -1,7 +1,7 @@
 "use client"
 
 import { Bar, BarChart, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui/chart"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@yyc3/ui-enterprise/chart"
 
 const financeData = [
   { category: "销售收入", income: 450000, expense: 0 },

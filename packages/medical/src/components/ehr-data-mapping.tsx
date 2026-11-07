@@ -5,11 +5,11 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui"
-import { Button } from "@yyc3/ui"
-import { Badge } from "@yyc3/ui"
-import { Input } from "@yyc3/ui"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise"
+import { Button } from "@yyc3/ui-enterprise"
+import { Badge } from "@yyc3/ui-enterprise"
+import { Input } from "@yyc3/ui-enterprise"
 import { Search, ArrowRight, Edit, Save, X, Plus } from "lucide-react"
 
 // 模拟数据映射配置

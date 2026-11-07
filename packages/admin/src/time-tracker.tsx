@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { EnhancedCard } from "@yyc3/ui/enhanced-card"
-import { EnhancedButton } from "@yyc3/ui/enhanced-button"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { EnhancedCard } from "@yyc3/ui-enterprise/enhanced-card"
+import { EnhancedButton } from "@yyc3/ui-enterprise/enhanced-button"
 import {
   Dialog,
   DialogContent,
@@ -12,9 +12,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@yyc3/ui/dialog"
-import { Input } from "@yyc3/ui/input"
-import { Textarea } from "@yyc3/ui/textarea"
+} from "@yyc3/ui-enterprise/dialog"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
 import { Play, Pause, Square, Clock, Timer, Plus, Trash2 } from "lucide-react"
 
 interface TimeEntry {

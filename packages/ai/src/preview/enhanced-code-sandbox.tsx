@@ -2,14 +2,14 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Switch } from "@yyc3/ui/switch"
-import { Label } from "@yyc3/ui/label"
-import { Badge } from "@yyc3/ui/badge"
-import { Separator } from "@yyc3/ui/separator"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Switch } from "@yyc3/ui-enterprise/switch"
+import { Label } from "@yyc3/ui-enterprise/label"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Separator } from "@yyc3/ui-enterprise/separator"
 import {
   Play,
   Square,
@@ -30,7 +30,7 @@ import {
   Loader2,
 } from "lucide-react"
 import { useToast } from "@yyc3/hooks/use-toast"
-import MonacoEditor from "@yyc3/ui/monaco-editor"
+import MonacoEditor from "@yyc3/ui-enterprise/monaco-editor"
 
 // Mimosa finding 修复（13 阶段终验 · 2026-11-07）：沙箱动态执行输入长度上限（100KB）
 const MAX_CODE_SIZE = 100 * 1024

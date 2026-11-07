@@ -7,7 +7,7 @@
 "use client"
 
 import type { ReactNode } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
 import { cn } from "@yyc3/lib/utils"
 
 interface TouchCardProps {

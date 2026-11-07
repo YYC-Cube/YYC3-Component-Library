@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Input } from "@yyc3/ui/input"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
 import { Search, Calendar, Filter, FileText, ArrowRight } from "lucide-react"
-import { DatePicker } from "@yyc3/ui/date-picker"
+import { DatePicker } from "@yyc3/ui-enterprise/date-picker"
 
 // 模拟诊断历史数据
 const MOCK_HISTORY = [

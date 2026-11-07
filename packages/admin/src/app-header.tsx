@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@yyc3/ui/dropdown-menu"
+} from "@yyc3/ui-enterprise/dropdown-menu"
 import AppLogo from "@/components/app-logo"
 
 interface AppHeaderProps {

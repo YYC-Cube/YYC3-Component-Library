@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui/popover"
-import { Badge } from "@yyc3/ui/badge"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@yyc3/ui-enterprise/popover"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
 import { Bell, Check, X, AlertCircle, Info, CheckCircle, Clock, Trash2, Settings } from "lucide-react"
-import { toast } from '@yyc3/ui'
+import { toast } from '@yyc3/ui-enterprise'
 
 interface Notification {
   id: string

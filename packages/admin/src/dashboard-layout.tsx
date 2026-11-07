@@ -20,8 +20,8 @@ import {
   ChevronDown,
 } from "lucide-react"
 import { cn } from "@yyc3/lib/utils"
-import { Button } from "@yyc3/ui/button"
-import { ScrollArea } from "@yyc3/ui/scroll-area"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { ScrollArea } from "@yyc3/ui-enterprise/scroll-area"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Logo } from "@/components/logo"
 

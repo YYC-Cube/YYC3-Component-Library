@@ -1,2 +1,2 @@
 // YYC³ Components
-// Import UI components from @yyc3/ui
+// Import UI components from @yyc3/ui-enterprise

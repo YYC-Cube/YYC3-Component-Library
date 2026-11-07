@@ -1,5 +1,5 @@
 // ============================================================
-// YYC³ · @yyc3/ui YYCard（Phase 7 · cloud 域精度抽取补建）
+// YYC³ · @yyc3/ui-enterprise YYCard（Phase 7 · cloud 域精度抽取补建）
 // 源用法对齐：packages/cloud/src/ecommerce/*（YYCard/YYCardHeader/YYCardTitle/YYCardContent）
 // 基于 Card 组合的 YY 前缀薄封装（预置云控制台视觉类名）
 // ============================================================

@@ -352,7 +352,7 @@ yyc3-monorepo/
 
 ```typescript
 // 原子组件 - 最高复用性
-import { Button, Input, Text, Icon } from '@yyc3/ui';
+import { Button, Input, Text, Icon } from '@yyc3/ui-enterprise';
 
 function LoginForm() {
   return (
@@ -369,7 +369,7 @@ function LoginForm() {
 
 ```typescript
 // 分子组件 - 中等复用性
-import { SearchBox, FormField, Avatar } from '@yyc3/ui';
+import { SearchBox, FormField, Avatar } from '@yyc3/ui-enterprise';
 
 function Header() {
   return (
@@ -384,7 +384,7 @@ function Header() {
 
 ```typescript
 // 有机体组件 - 低复用性
-import { Header, Modal, Card, Table } from '@yyc3/ui';
+import { Header, Modal, Card, Table } from '@yyc3/ui-enterprise';
 
 function Dashboard() {
   return (

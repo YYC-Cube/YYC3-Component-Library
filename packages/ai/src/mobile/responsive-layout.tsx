@@ -5,7 +5,7 @@ import { useMediaQuery } from "@yyc3/hooks/use-media-query";
 import { useSafeArea } from "@yyc3/hooks/use-safe-area";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@yyc3/ui/button";
+import { Button } from "@yyc3/ui-enterprise/button";
 
 interface ResponsiveLayoutProps {
   children: React.ReactNode;

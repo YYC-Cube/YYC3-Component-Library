@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
 import { ResponsiveGrid, ResponsiveGridItem } from "./responsive-grid"
 import { ResponsiveContainer } from "./responsive-container"
 import { useResponsiveLayout } from "@yyc3/lib/responsive-layout"

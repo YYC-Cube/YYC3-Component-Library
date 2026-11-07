@@ -7,11 +7,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Badge } from "@yyc3/ui/badge"
-import { Progress } from "@yyc3/ui/progress"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@yyc3/ui/sheet"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Progress } from "@yyc3/ui-enterprise/progress"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@yyc3/ui-enterprise/sheet"
 import { Menu, Clock, Target, ChevronUp, ChevronDown } from "lucide-react"
 
 interface MobileExamOptimizationProps {

@@ -34,22 +34,22 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@yyc3/ui/card";
-import { Button } from "@yyc3/ui/button";
+} from "@yyc3/ui-enterprise/card";
+import { Button } from "@yyc3/ui-enterprise/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@yyc3/ui/select";
-import { Skeleton } from "@yyc3/ui/skeleton";
+} from "@yyc3/ui-enterprise/select";
+import { Skeleton } from "@yyc3/ui-enterprise/skeleton";
 import {
   IconDownload,
   IconExpand,
   IconFilter,
   IconRefresh,
-} from "@yyc3/ui/icons";
+} from "@yyc3/ui-enterprise/icons";
 
 // 图表类型定义
 export type ChartType =

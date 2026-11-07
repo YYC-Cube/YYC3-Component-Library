@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { useToast } from "../hooks/use-toast"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui/table"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@yyc3/ui-enterprise/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui-enterprise/select"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@yyc3/ui-enterprise/table"
 import {
   Dialog,
   DialogContent,
@@ -13,12 +13,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@yyc3/ui/dialog"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Textarea } from "@yyc3/ui/textarea"
-import { Badge } from "@yyc3/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
+} from "@yyc3/ui-enterprise/dialog"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Textarea } from "@yyc3/ui-enterprise/textarea"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui-enterprise/avatar"
 import { CheckCircle, Clock, User, Search, Tag, Calendar, FileText } from "lucide-react"
 
 // 模拟待审核诊断数据

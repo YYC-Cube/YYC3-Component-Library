@@ -3,10 +3,10 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Home, Heart, Lightbulb, Building2, Clock, Star, ArrowRight, Filter, Search, MapPin } from "lucide-react"
-import { Card, CardContent } from "@yyc3/ui/card"
-import { Button } from "@yyc3/ui/button"
-import { Badge } from "@yyc3/ui/badge"
-import { Input } from "@yyc3/ui/input"
+import { Card, CardContent } from "@yyc3/ui-enterprise/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Input } from "@yyc3/ui-enterprise/input"
 
 // 现代化服务分区数据
 const serviceZones = {

@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@yyc3/ui/button"
-import { Input } from "@yyc3/ui/input"
-import { Badge } from "@yyc3/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
-// EnhancedCard/EnhancedButton 本地薄包装（原 @yyc3/ui/enhanced-* 源件待 ui 批次补建）
-import { Card as EnhancedCardBase, CardHeader, CardTitle, CardDescription, CardContent } from "@yyc3/ui/card"
+import { Button } from "@yyc3/ui-enterprise/button"
+import { Input } from "@yyc3/ui-enterprise/input"
+import { Badge } from "@yyc3/ui-enterprise/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui-enterprise/tabs"
+// EnhancedCard/EnhancedButton 本地薄包装（原 @yyc3/ui-enterprise/enhanced-* 源件待 ui 批次补建）
+import { Card as EnhancedCardBase, CardHeader, CardTitle, CardDescription, CardContent } from "@yyc3/ui-enterprise/card"
 import type { LucideIcon } from "lucide-react"
 
 function EnhancedButton({
