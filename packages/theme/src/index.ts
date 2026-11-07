@@ -29,3 +29,8 @@ export {
   mergeStyles,
   isCyberpunk,
 } from './claw-tokens'
+
+// ── ThemeProvider（A3 移交批次 · 2026-11-07）──
+// 源（D0 权威副本）：/Volumes/Development/YYC3-88/yyc3-shared-packages/packages/theme/src/theme-provider.tsx
+export { ThemeProvider } from './theme-provider'
+export type { ThemeProviderProps } from 'next-themes'
