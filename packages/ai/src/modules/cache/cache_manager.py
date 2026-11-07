@@ -111,16 +111,31 @@ class CacheManager:
             for key in expired_keys:
                 del self._cache[key]
     
+    def _safe_file_path(self, key: str) -> str:
+        """
+        Mimosa finding 修复（13 阶段终验 · 2026-11-07）：
+        路径穿越防护 —— 缓存键先经 basename() 白名单化（剥离键中携带的
+        目录分隔符与 ..），拼接后在 normpath 归一化并校验结果仍位于缓存
+        目录内；携带绝对路径或越界内容的键将被拒绝。
+        """
+        safe_name = os.path.basename(f"{key}.json")
+        cache_root = os.path.normpath(os.path.abspath(self._cache_dir))
+        file_path = os.path.normpath(os.path.abspath(os.path.join(cache_root, safe_name)))
+        if os.path.dirname(file_path) != cache_root:
+            raise ValueError(f"非法缓存键（疑似路径穿越）: {key!r}")
+        return file_path
+
     def cache_to_file(self, key: str, data: Any) -> None:
         """
         将数据缓存到文件
-        
+
         Args:
             key (str): 缓存键
             data (Any): 要缓存的数据
         """
         try:
-            file_path = os.path.join(self._cache_dir, f"{key}.json")
+            # Mimosa finding 修复：经 _safe_file_path 校验，防路径穿越（非法键走原失败处理）
+            file_path = self._safe_file_path(key)
             with open(file_path, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
         except Exception as e:
@@ -138,7 +153,8 @@ class CacheManager:
             Any: 缓存的数据或None
         """
         try:
-            file_path = os.path.join(self._cache_dir, f"{key}.json")
+            # Mimosa finding 修复：经 _safe_file_path 校验，防路径穿越（非法键返回 None）
+            file_path = self._safe_file_path(key)
             if not os.path.exists(file_path):
                 return None
             
