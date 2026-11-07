@@ -160,8 +160,11 @@ export { Toggle, toggleVariants } from "./toggle"
 export { ToggleGroup, ToggleGroupItem } from "./toggle-group"
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip"
 export { useToast, toast } from "./use-toast"
+// A3 移交（正仓会话① · 2026-11-07）：88 区独有件净移入 + 批次 A 存量补导出
+export { useIsMobile } from "./use-mobile"
 
 // 自定义UI组件
+export { default as Loading } from "./loading"
 export { LoadingSpinner } from "./loading-spinner"
 export { LoadingFallback } from "./loading-fallback"
 export { MedicalCard } from "./medical-card"
