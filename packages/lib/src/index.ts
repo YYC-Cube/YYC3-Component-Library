@@ -7,9 +7,21 @@
 // @File    : index.ts · @yyc3/lib 桶文件（首批滚动抽取 · 2026-11-04）
 // 源（D0 权威副本）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-8/
 //   yyc3-reusable-components/packages/utils（零依赖工具函数）
-// 本批范围：date / string / validation / data（color 因扫描器误报移出待复核）
+// 本批范围：date / string / validation / data / color（B2#4 闭环：误报复核定性成立后补入）
 // 后续批次：hooks / types / error-handling / i18n 等 28 包功能库甄别并入
 // ============================================================
+
+// ============================================================
+// A3 移交批次（2026-11-07）：88 区 yyc3-shared-packages utils(cn) 并入
+// 源（D0 权威副本）：/Volumes/Development/YYC3-88/yyc3-shared-packages/packages/utils/src/utils.ts
+// 消费方迁移指引（RETIREMENT-PLAN）：`@yyc3/utils` → `@yyc3/lib`
+// ============================================================
+
+// className 合并器（shadcn 惯例 cn，家族多数派规范件）
+export { cn } from './utils/cn';
+
+// Color utilities（B2#4 闭环：Mimosa 误报复核定性成立后补入，exec→match 等价改写登记）
+export { hexToRgb, hexToRgba, isDarkColor, getContrastColor } from './utils/color';
 
 // Date utilities
 export { getGreeting, getHourlyCare, formatDate, getRelativeTime, isToday, isThisWeek } from './utils/date';
@@ -166,3 +178,34 @@ export {
   trySafeSync,
 } from './error-handling/error-handler';
 export type { ErrorStorage, ErrorHandlerConfig } from './error-handling/error-handler';
+
+// ============================================================
+// J4 批次（2026-11-07）：行业适配 core（adapters.industry）
+// 源（D0 权威副本）：99 区 apps/yyc3-futuristic-dashboard/lib/industry-adapter.ts
+// 行业配置本体在域包：@yyc3/{education,medical,financial,business}（注册制，core 零配置）
+// ============================================================
+export {
+  registerIndustryConfigs,
+  getIndustryConfig,
+  getAllIndustries,
+  generateIndustryMetrics,
+  getIndustryHighScores,
+  getIndustryStandards,
+} from './adapters/industry';
+export type {
+  IndustryType,
+  IndustryDomain,
+  IndustryConfig,
+  IndustryConfigRegistry,
+  IndustryHighScores,
+  IndustryMetric,
+  DashboardLayout,
+  WidgetConfig,
+  AIModelConfig,
+  PerformanceConfig,
+  AvailabilityConfig,
+  SecurityConfig,
+  IntelligenceConfig,
+  EfficiencyConfig,
+  StandardsConfig,
+} from './adapters/industry';

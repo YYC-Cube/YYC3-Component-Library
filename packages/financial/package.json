@@ -24,6 +24,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@yyc3/lib": "workspace:*",
     "@yyc3/theme": "workspace:*",
     "@yyc3/ui": "workspace:*",
     "react": "^19.3.1",

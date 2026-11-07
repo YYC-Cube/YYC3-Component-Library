@@ -25,13 +25,17 @@
   },
   "dependencies": {
     "@tanstack/react-virtual": "^3.14.26",
+    "@yyc3/lib": "workspace:*",
     "@yyc3/theme": "workspace:*",
     "@yyc3/ui": "workspace:*",
+    "eventemitter3": "^5.0.1",
     "lucide-react": "^0.454.0",
+    "openai": "^4.104.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@types/node": "^26.6.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tsup": "^8.3.5",

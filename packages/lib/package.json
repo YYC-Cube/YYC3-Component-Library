@@ -1,7 +1,7 @@
 {
   "name": "@yyc3/lib",
-  "version": "0.2.0",
-  "description": "YYC³ 共享功能库 — 零依赖工具函数（日期/字符串/验证/数据），首批滚动抽取自 UI-8 yyc3-reusable-components",
+  "version": "0.3.0",
+  "description": "YYC³ 共享功能库 — 核心零依赖工具函数（日期/字符串/验证/数据）+ shadcn 惯例 cn；首批滚动抽取自 UI-8，A3 批次并入 88 区 utils(cn)",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -21,6 +21,10 @@
     "dev": "tsup --watch",
     "type-check": "tsc --noEmit"
   },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.2.0"
+  },
   "devDependencies": {
     "@types/react": "^19",
     "react": "^19.3.1",
@@ -36,6 +40,7 @@
     "yyc3",
     "utils",
     "validation",
+    "cn",
     "zero-dependency"
   ],
   "author": "YYC³ Team <admin@0379.email>",
