@@ -4,10 +4,12 @@ HTTP请求工具模块
 """
 
 import os
+import re
 import time
 import logging
 import requests
 from typing import Dict, Any, Optional, Union, Tuple
+from urllib.parse import urlparse
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -20,6 +22,31 @@ logger = setup_logger(__name__)
 class HTTPRequestError(Exception):
     """HTTP请求异常"""
     pass
+
+def validate_url(url: str) -> None:
+    """
+    Mimosa finding 修复（13 阶段终验 · 2026-11-07）：
+    SSRF 防护 —— 请求发起前校验目标 URL：
+    1) 仅允许 http/https 协议，拒绝 file/ftp/data 等危险协议；
+    2) 拒绝私网/环回/链路本地（169.254.x，含云元数据）/0.0.0.0/.internal/
+       .localhost 及纯数字十进制 IP 等内网目标，防止服务端请求伪造探测内网。
+    校验失败抛出 HTTPRequestError。
+    """
+    parsed = urlparse(url)
+    if parsed.scheme not in ('http', 'https'):
+        raise HTTPRequestError(f"禁止的 URL 协议: {parsed.scheme or '(空)'}: {url}")
+    host = (parsed.hostname or '').lower().strip('[]')
+    is_private = (
+        host == 'localhost'
+        or host in ('::1', '0.0.0.0')
+        or host.endswith('.internal')
+        or host.endswith('.localhost')
+        or host.startswith(('127.', '10.', '192.168.', '169.254.'))
+        or re.match(r'^172\.(1[6-9]|2\d|3[01])\.', host) is not None
+        or host.isdigit()
+    )
+    if is_private:
+        raise HTTPRequestError(f"禁止访问内网/环回地址: {host}")
 
 class RetryConfig:
     """重试配置类"""
@@ -116,7 +143,10 @@ class HTTPUtils:
         # 确保使用HTTPS
         if not url.startswith('https://'):
             logger.warning(f"不安全的HTTP请求，建议使用HTTPS: {url}")
-        
+
+        # Mimosa finding 修复（13 阶段终验 · 2026-11-07）：SSRF 防护，请求前校验目标地址
+        validate_url(url)
+
         # 记录请求信息
         logger.debug(f"发送{method}请求到{url}")
         
@@ -226,6 +256,8 @@ class HTTPUtils:
             bool: 下载是否成功
         """
         try:
+            # Mimosa finding 修复：SSRF 防护，下载前校验目标地址（非法 URL 由 except 捕获返回 False）
+            validate_url(url)
             logger.info(f"开始下载文件: {url} 到 {save_path}")
             
             # 确保保存目录存在

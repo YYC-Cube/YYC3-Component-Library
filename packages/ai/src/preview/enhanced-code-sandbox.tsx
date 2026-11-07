@@ -32,6 +32,9 @@ import {
 import { useToast } from "@yyc3/hooks/use-toast"
 import MonacoEditor from "@yyc3/ui/monaco-editor"
 
+// Mimosa finding 修复（13 阶段终验 · 2026-11-07）：沙箱动态执行输入长度上限（100KB）
+const MAX_CODE_SIZE = 100 * 1024
+
 // 文件系统接口
 interface FileSystemItem {
   id: string
@@ -224,6 +227,17 @@ fetchData();
       return
     }
 
+    // Mimosa finding 修复（13 阶段终验 · 2026-11-07）：执行前校验输入长度上限（100KB），
+    // 超限拒绝执行，抑制超大输入带来的资源耗尽与注入面放大
+    if (file.content.length > MAX_CODE_SIZE) {
+      toast({
+        title: "代码过长",
+        description: `代码超过 ${MAX_CODE_SIZE / 1024}KB 上限，已拒绝执行`,
+        variant: "destructive",
+      })
+      return
+    }
+
     setIsExecuting(true)
     setExecutionResult(null)
 
@@ -264,6 +278,12 @@ fetchData();
               dependencies: dependencies.map((dep) => dep.name),
             })
 
+            // Mimosa finding 修复（13 阶段终验 · 2026-11-07）—— 代码注入风险边界登记：
+            // 此处动态执行用户代码是「沙箱预览」组件的功能本质，非服务端入口：
+            // 仅运行于客户端浏览器，无服务端权限/凭据/文件系统访问；执行前已叠加
+            // 100KB 输入上限与敏感 API 屏蔽（createSafeExecutionEnvironment 将
+            // process/require/module/eval/Function 置空）。Mimosa 分诊结论：接受
+            // 残余风险，仅做防御性加固，不改变沙箱执行功能。
             // eslint-disable-next-line no-new-func
             const executeFunction = new Function(safeCode)
             await executeFunction()
