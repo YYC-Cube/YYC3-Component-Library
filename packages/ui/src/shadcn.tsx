@@ -1,6 +1,6 @@
 // ============================================================
 // shadcn-compatible barrel — v0 应用批量迁移出口（@yyc3/ui-enterprise/shadcn）
-// 由 N2 会话生成：聚合全部组件模块命名导出，覆盖 v0 本地 components/ui 全集
+// 由 N2 会话维护：聚合 78 个组件模块命名导出
 // ============================================================
 
 export * from "./3d-button";
@@ -29,8 +29,10 @@ export * from "./drawer";
 export * from "./dropdown-menu";
 export * from "./dynamic-loading";
 export * from "./empty";
+export * from "./enhanced-button";
 export * from "./enhanced-form";
 export * from "./field";
+export * from "./floating-nav-buttons";
 export * from "./form";
 export * from "./hover-card";
 export * from "./input-group";
@@ -59,12 +61,14 @@ export * from "./responsive-table";
 export * from "./scroll-area";
 export * from "./select";
 export * from "./separator";
+export * from "./shadcn";
 export * from "./sheet";
 export * from "./sidebar";
 export * from "./skeleton";
 export * from "./slider";
 export * from "./sonner";
 export * from "./spinner";
+export * from "./status-badge";
 export * from "./switch";
 export * from "./table";
 export * from "./tabs";
@@ -74,5 +78,6 @@ export * from "./toaster";
 export * from "./toggle-group";
 export * from "./toggle";
 export * from "./tooltip";
+export * from "./tree";
 export * from "./use-mobile";
 export * from "./yy-card";
