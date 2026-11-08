@@ -191,3 +191,6 @@ export { ExperimentFilterTags } from './components/experiment-filter-tags'
 export { ExperimentTemplateManager } from './components/experiment-template-manager'
 export { QuickFilterMenu } from './components/quick-filter-menu'
 export { SaveAsTemplateDialog } from './components/save-as-template-dialog'
+
+// ── 行业适配（J4 · 2026-11-07，源：99 区 industry-adapter D0 副本）──
+export { MEDICAL_INDUSTRY_CONFIGS } from './adapters/industry'

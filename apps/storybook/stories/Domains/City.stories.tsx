@@ -18,14 +18,14 @@ export const 城市卡片组合: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: 16, maxWidth: 420 }}>
       <ModernCard>
-        <ModernCardHeader>城市数据总览</ModernCardHeader>
+        <ModernCardHeader title="城市数据总览" />
         <ModernCardContent>
           <p style={{ margin: 0, color: '#666' }}>实时人流 / 车流 / 能耗监控数据看板。</p>
         </ModernCardContent>
         <ModernCardFooter>更新于刚刚</ModernCardFooter>
       </ModernCard>
       <ModernCard>
-        <ModernCardHeader>交通态势</ModernCardHeader>
+        <ModernCardHeader title="交通态势" />
         <ModernCardContent>
           <p style={{ margin: 0, color: '#666' }}>主干道平均车速 42km/h，拥堵指数 1.3（畅通）。</p>
         </ModernCardContent>
