@@ -1,6 +1,6 @@
 // ============================================================
 // shadcn-compatible barrel — v0 应用批量迁移出口（@yyc3/ui-enterprise/shadcn）
-// 由 N2 会话维护：聚合 78 个组件模块命名导出
+// 由 N2/theme 会话维护：聚合 81 个组件模块命名导出
 // ============================================================
 
 export * from "./3d-button";
@@ -30,7 +30,9 @@ export * from "./dropdown-menu";
 export * from "./dynamic-loading";
 export * from "./empty";
 export * from "./enhanced-button";
+export * from "./enhanced-card";
 export * from "./enhanced-form";
+export * from "./enhanced-progress";
 export * from "./field";
 export * from "./floating-nav-buttons";
 export * from "./form";
@@ -39,6 +41,7 @@ export * from "./input-group";
 export * from "./input-otp";
 export * from "./input";
 export * from "./interactive-card";
+export * from "./interactive-progress";
 export * from "./item";
 export * from "./kbd";
 export * from "./label";
