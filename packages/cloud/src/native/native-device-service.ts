@@ -203,7 +203,7 @@ class DeviceInfoService {
 
   getDeviceCapabilities(): string[] {
     const caps: string[] = []
-    if (navigator.mediaDevices?.getUserMedia) caps.push('camera')
+    if (typeof navigator.mediaDevices?.getUserMedia === 'function') caps.push('camera')
     if ('geolocation' in navigator) caps.push('geolocation')
     if ('DeviceMotionEvent' in window) caps.push('motion')
     if ('vibrate' in navigator) caps.push('vibration')

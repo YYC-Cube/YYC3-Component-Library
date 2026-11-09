@@ -877,23 +877,6 @@ export const openAPISpec = {
         }
       }
     }
-    }
-  },
-  components: {
-    securitySchemes: {
-      ApiKeyAuth: {
-        type: 'apiKey',
-        in: 'header',
-        name: 'X-API-Key',
-        description: 'API密钥认证'
-      },
-      BearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-        description: 'JWT令牌认证'
-      }
-    }
   },
   // 安全认证机制
   security: [
@@ -910,6 +893,12 @@ export const openAPISpec = {
         in: 'header',
         name: 'X-API-Key',
         description: 'API密钥认证方式，用于访问所有受保护的API端点。开发者需要在每个请求的请求头中提供有效的API密钥。'
+      },
+      BearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        description: 'JWT令牌认证'
       }
     },
     schemas: {

@@ -225,7 +225,7 @@ export default function HomePage() {
               © 2025 YanYu Cloud | 言语云³ | YYC³智能呼叫系统 v1.0.0
             </p>
             <p className="text-blue-100/60 text-sm mt-2">
-              联系邮箱: <admin@0379.email>
+              联系邮箱: admin@0379.email
             </p>
           </div>
         </footer>
