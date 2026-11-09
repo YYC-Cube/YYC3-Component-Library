@@ -10,15 +10,14 @@
       "@/*": ["./src/*"]
     }
   },
-  // type-check / build 仅收敛到包入口 src/index.ts。
-  // 本包同样是整应用误迁（175 个 src 顶层条目、275 个 tsx），双导管理 5 份副本
-  // 指纹同源损坏，无法用「恢复权威副本」方式修复；已就地修完 1,923 个语法错，
-  // 剩余 649 个语义错分布在 101/276 个文件，缺 @/store/*、@yyc3/lib/<subpath>、
-  // zod、react-hook-form、react-big-calendar、react-beautiful-dnd、moment 等。
-  // 这些缺件多属未随迁的上游应用文件，属「重建应用」范畴，已在 src/index.ts
-  // 【技术债登记】中逐项记录，待专项拆包时恢复 include 为 src/**/*。
+  // C1 拆包（2026-11-10）：应用外壳已迁 apps/admin，src 保留 150 个链路完整的件。
+  // include 由「收敛到空入口」恢复为 src/**/*，组件面全量清零 —— 从「空壳绿」变「真绿」。
+  // 迁出 128 件（126 个应用侧文件 + 2 个跟随迁移的测试），其中 101 件原带 649 个语义错，
+  // 27 件为零错但依赖断链；台账见 src/index.ts【技术债登记】。
+  // apps/admin 尚无 package.json（不进入 pnpm workspace 构建），定位为应用侧留存地，
+  // 待重建为可运行应用时再补脚手架。
   "include": [
-    "src/index.ts"
+    "src/**/*"
   ],
   "exclude": ["node_modules",
     "dist", "src/**/__tests__/**"]
