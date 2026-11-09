@@ -61,15 +61,15 @@ export function GlobalShortcuts({ onNavigate, onAction }: GlobalShortcutsProps) 
       id: "nav-customers",
       key: "Ctrl+2", 
       description: "打开客户管理",
-      action: () => onNavigate?("/customers"),
-      category: "导航",\
+      action: () => onNavigate?.("/customers"),
+      category: "导航",
       icon: <Users className="w-4 h-4" />
     },
     {
       id: "nav-tasks",
       key: "Ctrl+3",
       description: "打开任务管理",
-      action: () => onNavigate?("/tasks"),
+      action: () => onNavigate?.("/tasks"),
       category: "导航",
       icon: <CheckSquare className="w-4 h-4" />
     },
@@ -77,7 +77,7 @@ export function GlobalShortcuts({ onNavigate, onAction }: GlobalShortcutsProps) 
       id: "nav-analytics",
       key: "Ctrl+4",
       description: "打开数据分析",
-      action: () => onNavigate?("/analytics"),
+      action: () => onNavigate?.("/analytics"),
       category: "导航",
       icon: <BarChart3 className="w-4 h-4" />
     },
@@ -153,7 +153,7 @@ export function GlobalShortcuts({ onNavigate, onAction }: GlobalShortcutsProps) 
       id: "settings",
       key: "Ctrl+,",
       description: "打开设置",
-      action: () => onNavigate?("/settings"),
+      action: () => onNavigate?.("/settings"),
       category: "系统",
       icon: <Settings className="w-4 h-4" />
     }

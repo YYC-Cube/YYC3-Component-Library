@@ -8,7 +8,7 @@ import { Button } from "@yyc3/ui/button"
 import { Progress } from "@yyc3/ui/progress"
 import { ChevronRight, ChevronLeft, Check, X, HelpCircle } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@yyc3/ui/tooltip"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 interface Step {
   id: string

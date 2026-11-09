@@ -40,7 +40,7 @@ import {
   Server,
   Network,
 } from "lucide-react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "@yyc3/ui"
 import {
   LineChart,
   Line,

@@ -29,7 +29,7 @@ import {
   Trash2,
   Edit,
 } from "lucide-react"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from "@yyc3/ui"
 
 interface MenuButton {
   id: string

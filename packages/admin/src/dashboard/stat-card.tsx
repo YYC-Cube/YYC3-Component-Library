@@ -1,4 +1,4 @@
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import type { LucideIcon } from "lucide-react"
 
 interface StatCardProps {

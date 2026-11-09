@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 export type Season = "spring" | "summer" | "autumn" | "winter"
 

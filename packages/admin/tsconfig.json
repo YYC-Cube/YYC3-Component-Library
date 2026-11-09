@@ -2,8 +2,13 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "incremental": false
+    "incremental": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/components/ui/*": ["../ui/src/*"],
+      "@/components/*": ["./src/*"],
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "src/**/*"

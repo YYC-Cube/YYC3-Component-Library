@@ -187,6 +187,7 @@ export function EmployeeManagement() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
+            </div>
             <div>
               <Select value={department} onValueChange={setDepartment}>
                 <SelectTrigger className="w-[180px]">
@@ -198,6 +199,7 @@ export function EmployeeManagement() {
                   ))}
                 </SelectContent>
               </Select>
+            </div>
             <div>
               <Select value={status} onValueChange={setStatus}>
                 <SelectTrigger className="w-[120px]">
@@ -209,6 +211,7 @@ export function EmployeeManagement() {
                   <SelectItem value="离职">离职</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
             <div>
               <Button variant="outline">
                 <Filter className="mr-1 h-4 w-4" /> 高级筛选
@@ -382,9 +385,11 @@ export function EmployeeManagement() {
                   <div>
                     <div className="text-sm text-muted-foreground">出勤率（本月）</div>
                     <div className="text-2xl font-bold mt-1">{selectedEmployee.attendance}%</div>
+                  </div>
                   <div>
                     <div className="text-sm text-muted-foreground">迟到次数（本月）</div>
                     <div className="text-2xl font-bold mt-1">2次</div>
+                  </div>
                   <div>
                     <div className="text-sm text-muted-foreground">请假天数（本月）</div>
                     <div className="text-2xl font-bold mt-1">1天</div>
@@ -403,13 +408,12 @@ export function EmployeeManagement() {
                       <DollarSign className="h-5 w-5 text-muted-foreground" />
                       <span className="text-sm font-medium">绩效奖金:</span>
                       <span>{formatSalary(Math.round(selectedEmployee.salary * 0.3))}</span>
-                    <div>
+                    </div>
                       <div className="flex items-center gap-2">
                         <DollarSign className="h-5 w-5 text-muted-foreground" />
                         <span className="text-sm font-medium">应发工资:</span>
                         <span>{formatSalary(Math.round(selectedEmployee.salary * 1.3))}</span>
                       </div>
-                    </div>
                   </div>
                 </div>
               </TabsContent>

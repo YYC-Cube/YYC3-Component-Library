@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useEffect, useCallback } from "react"
 import { Loader2 } from "lucide-react"
 import { PullToRefresh } from "@/components/mobile/gesture-support"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 interface MobileDataLoaderProps<T> {
   fetchData: (page: number, limit: number) => Promise<T[]>

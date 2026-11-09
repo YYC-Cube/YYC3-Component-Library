@@ -23,7 +23,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@yyc3/ui/dropdown-menu"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 // 示例保存的筛选条件
 const exampleSavedFilters = [

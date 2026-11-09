@@ -25,7 +25,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@yyc3/ui/dropdown-menu"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 // Example shared dashboards
 const exampleDashboards = [

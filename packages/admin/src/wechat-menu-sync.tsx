@@ -31,7 +31,7 @@ import {
   Edit,
 } from "lucide-react"
 import { wechatApiService, type WeChatMenu } from "@yyc3/lib/wechat-api"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "@yyc3/ui"
 
 interface WeChatMenuConfig {
   id: string

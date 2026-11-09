@@ -36,8 +36,7 @@ const LoginFormSchema = z.object({
     .max(50, '密码最多50个字符'),
   rememberMe: z.boolean().default(false),
   otp: z.string().optional()
-    .refine((val) => val === undefined || val.length === 6, '验证码必须是6位数字'),
-    .optional()
+    .refine((val) => val === undefined || val.length === 6, '验证码必须是6位数字')
 });
 
 type LoginFormData = z.infer<typeof LoginFormSchema>;
@@ -142,11 +141,11 @@ export const LoginPage: React.FC = () => {
   }, [router]);
 
   // 切换密码可见性
-  const togglePasswordVisibility = () =
+  const togglePasswordVisibility = () =>
     setShowPassword(!showPassword);
 
   // 切换回密码登录模式
-  const switchToPasswordMode = () =
+  const switchToPasswordMode = () =>
     setFormMode('password');
 
   // 表单动画配置
@@ -184,14 +183,14 @@ export const LoginPage: React.FC = () => {
             className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-600 text-white mb-4"
           >
             <LockIcon size={32} />
-          </motion.div
+          </motion.div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             欢迎回来
-          </h1
+          </h1>
           <p className="text-gray-600 dark:text-gray-300">
             请登录您的账户以继续
-          </p
-        </div
+          </p>
+        </div>
 
         {/* 成功消息 */}
         {showSuccess && successMessage && (
@@ -205,7 +204,7 @@ export const LoginPage: React.FC = () => {
               >
               <AlertDescription>{successMessage}</AlertDescription>
             </Alert>
-          </motion.div
+          </motion.div>
         )}
 
         {/* 错误消息 */}
@@ -220,17 +219,17 @@ export const LoginPage: React.FC = () => {
               >
               <AlertDescription>{displayError}</AlertDescription>
             </Alert>
-          </motion.div
+          </motion.div>
         )}
 
         {/* 登录表单卡片 */}
         <Card className="border-0 shadow-xl dark:bg-gray-800 dark:shadow-2xl">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-center">用户登录</CardTitle
+            <CardTitle className="text-xl font-bold text-center">用户登录</CardTitle>
             <CardDescription className="text-center">
               输入您的凭据以访问您的账户
-            </CardDescription
-          </CardHeader
+            </CardDescription>
+          </CardHeader>
 
           <CardContent>
             <Form {...form}>
@@ -246,11 +245,11 @@ export const LoginPage: React.FC = () => {
                   name="username"
                   render={({ field }) => (
                     <FormItem className="space-y-2">
-                      <FormLabel htmlFor="username">用户名</FormLabel
+                      <FormLabel htmlFor="username">用户名</FormLabel>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                           <UserIcon className="h-5 w-5 text-gray-400 dark:text-gray-500" />
-                        </div
+                        </div>
                         <FormControl>
                           <Input
                             id="username"
@@ -259,12 +258,12 @@ export const LoginPage: React.FC = () => {
                             {...field}
                             disabled={authLoading}
                           />
-                        </FormControl
+                        </FormControl>
                         <FormMessage />
-                      </div
-                    </FormItem
+                      </div>
+                    </FormItem>
                   )}
-                /
+                />
 
                 {/* 密码输入 */}
                 <FormField
@@ -272,11 +271,11 @@ export const LoginPage: React.FC = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem className="space-y-2">
-                      <FormLabel htmlFor="password">密码</FormLabel
+                      <FormLabel htmlFor="password">密码</FormLabel>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                           <LockIcon className="h-5 w-5 text-gray-400 dark:text-gray-500" />
-                        </div
+                        </div>
                         <FormControl>
                           <Input
                             id="password"
@@ -286,7 +285,7 @@ export const LoginPage: React.FC = () => {
                             {...field}
                             disabled={authLoading}
                           />
-                        </FormControl
+                        </FormControl>
                         <button
                           type="button"
                           onClick={togglePasswordVisibility}
@@ -295,17 +294,17 @@ export const LoginPage: React.FC = () => {
                         >
                           {showPassword ? (
                             <EyeOffIcon className="h-5 w-5 text-gray-400 dark:text-gray-500"
-                              /
+                              />
                           ) : (
                             <EyeIcon className="h-5 w-5 text-gray-400 dark:text-gray-500"
-                              /
+                              />
                           )}
-                        </button
+                        </button>
                         <FormMessage />
-                      </div
-                    </FormItem
+                      </div>
+                    </FormItem>
                   )}
-                /
+                />
 
                 {/* OTP验证码输入 - 仅在OTP模式下显示 */}
                 {formMode === 'otp' && (
@@ -314,7 +313,7 @@ export const LoginPage: React.FC = () => {
                     name="otp"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <FormLabel htmlFor="otp">验证码 (OTP)</FormLabel
+                        <FormLabel htmlFor="otp">验证码 (OTP)</FormLabel>
                         <div className="relative">
                           <FormControl>
                             <Input
@@ -327,12 +326,12 @@ export const LoginPage: React.FC = () => {
                               inputMode="numeric"
                               maxLength={6}
                             />
-                          </FormControl
+                          </FormControl>
                           <FormMessage />
-                        </div
-                      </FormItem
+                        </div>
+                      </FormItem>
                     )}
-                  /
+                  />
                 )}
 
                 {/* 记住我复选框 */}
@@ -349,22 +348,22 @@ export const LoginPage: React.FC = () => {
                               {...field}
                               disabled={authLoading}
                             />
-                          </FormControl
+                          </FormControl>
                           <Label htmlFor="remember-me" className="text-sm font-medium">
                             记住我
-                          </Label
-                        </FormItem
+                          </Label>
+                        </FormItem>
                       )}
-                    /
-                  </div
+                    />
+                  </div>
                   <a
                     href="/forgot-password"
                     className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
                   >
                     忘记密码?
-                  </a
-                </div
-              </motion.div
+                  </a>
+                </div>
+              </motion.div>
 
               {/* 提交按钮 */}
               <CardFooter className="pt-4 pb-0">
@@ -376,19 +375,19 @@ export const LoginPage: React.FC = () => {
                 >
                   {authLoading ? (
                     <div className="flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
                       登录中...
-                    </div
+                    </div>
                   ) : formMode === 'otp' ? (
                     '验证验证码'
                   ) : (
                     '登录'
                   )}
-                </Button
-              </CardFooter
-            </Form
-          </CardContent
-        </Card
+                </Button>
+              </CardFooter>
+            </Form>
+          </CardContent>
+        </Card>
 
         {/* 切换登录模式按钮 - 仅在OTP模式下显示 */}
         {formMode === 'otp' && (
@@ -402,8 +401,8 @@ export const LoginPage: React.FC = () => {
               className="text-sm"
             >
               返回密码登录
-            </Button
-          </div
+            </Button>
+          </div>
         )}
 
         {/* 注册链接 */}
@@ -415,22 +414,22 @@ export const LoginPage: React.FC = () => {
               className="ml-1 font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
             >
               立即注册
-            </a
-          </span
-        </div
+            </a>
+          </span>
+        </div>
 
         {/* 其他登录选项 */}
         <div className="mt-8">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300 dark:border-gray-700"></div
-            </div
+              <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
+            </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
                 或通过以下方式登录
-              </span
-            </div
-          </div
+              </span>
+            </div>
+          </div>
           <div className="mt-6 grid grid-cols-3 gap-3">
             <Button
               type="button"
@@ -440,7 +439,7 @@ export const LoginPage: React.FC = () => {
             >
               {/* 这里可以放置第三方登录图标 */}
               <span className="text-xs">企业微信</span>
-            </Button
+            </Button>
             <Button
               type="button"
               variant="secondary"
@@ -449,7 +448,7 @@ export const LoginPage: React.FC = () => {
             >
               {/* 这里可以放置第三方登录图标 */}
               <span className="text-xs">钉钉</span>
-            </Button
+            </Button>
             <Button
               type="button"
               variant="secondary"
@@ -458,19 +457,19 @@ export const LoginPage: React.FC = () => {
             >
               {/* 这里可以放置第三方登录图标 */}
               <span className="text-xs">扫码</span>
-            </Button
-          </div
-        </div
+            </Button>
+          </div>
+        </div>
 
         {/* 页脚链接 */}
         <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
-          <a href="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300 mx-2">隐私政策</a
-          <a href="/terms" className="hover:text-gray-700 dark:hover:text-gray-300 mx-2">服务条款</a
-          <a href="/help" className="hover:text-gray-700 dark:hover:text-gray-300 mx-2">帮助中心</a
-          <span className="block mt-2">© 2024 双导管理系统. 保留所有权利。</span
-        </div
-      </div
-    </div
+          <a href="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300 mx-2">隐私政策</a>
+          <a href="/terms" className="hover:text-gray-700 dark:hover:text-gray-300 mx-2">服务条款</a>
+          <a href="/help" className="hover:text-gray-700 dark:hover:text-gray-300 mx-2">帮助中心</a>
+          <span className="block mt-2">© 2024 双导管理系统. 保留所有权利。</span>
+        </div>
+      </div>
+    </div>
   );
 };
 

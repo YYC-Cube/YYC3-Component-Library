@@ -8,7 +8,7 @@ import { Switch } from "@yyc3/ui/switch"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@yyc3/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "@yyc3/ui"
 import { commonStyles, notificationConfig } from "../lib/design-system"
 import {
   Bell,

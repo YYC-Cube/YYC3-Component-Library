@@ -14,7 +14,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@yyc3/ui/pagination"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import { ChevronDown, ChevronUp, Search } from "lucide-react"
 
 interface Column<T> {

@@ -38,7 +38,7 @@ import {
   Award,
   TrendingUp,
 } from "lucide-react"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from "@yyc3/ui"
 
 interface User {
   id: string

@@ -22,7 +22,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3
 import { Button } from "@yyc3/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { ZoomIn, ZoomOut, RotateCcw } from "lucide-react"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import { Swipeable, PinchZoom } from "@/components/mobile/gesture-support"
 
 interface MobileChartCardProps {

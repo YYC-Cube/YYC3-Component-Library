@@ -555,7 +555,7 @@ const DataVisualization: React.FC<{
               <YAxis type="number" dataKey={dataFields[1]} name={dataFields[1]} />
               <ZAxis type="number" range={[60, 400]} name="value" dataKey="value" />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              {showLegend && <Legend />
+              {showLegend && <Legend />}
               <Scatter 
                 name="团队绩效" 
                 data={chartData} 

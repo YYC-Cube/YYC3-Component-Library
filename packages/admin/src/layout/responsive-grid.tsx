@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useResponsiveLayout } from "@yyc3/lib/responsive-layout"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import type { JSX } from "react/jsx-runtime"
 
 // 网格配置接口

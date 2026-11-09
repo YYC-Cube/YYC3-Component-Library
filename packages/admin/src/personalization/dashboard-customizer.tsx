@@ -30,7 +30,7 @@ import {
   DollarSign,
   Calendar,
 } from "lucide-react"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 // 可用的小部件类型
 const availableWidgets = [

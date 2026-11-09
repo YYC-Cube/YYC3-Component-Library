@@ -5,7 +5,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 import { useResponsiveLayout, type LayoutConfig } from "@yyc3/lib/responsive-layout"
 import { Sidebar } from "@/components/sidebar"
 import { Header } from "@/components/header"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 // 布局上下文
 interface LayoutContextType {

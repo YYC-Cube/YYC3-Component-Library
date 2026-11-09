@@ -363,7 +363,7 @@ export function EmployeeManage() {
               </div>
               <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                 {selectedEmployees.length > 0 && (
-                  >
+                  <>
                     <span className="text-sm text-gray-500 mr-2 mt-1">
                       已选择 {selectedEmployees.length} 项
                     </span>
@@ -454,7 +454,7 @@ export function EmployeeManage() {
                         <div className="grid gap-2">
                           <label htmlFor="employee-hire-date">入职日期</label>
                           <Input id="employee-hire-date" type="date" />
-                        <div>
+                        </div>
                         <div className="grid gap-2">
                           <label htmlFor="employee-status">员工状态</label>
                           <Select defaultValue="probation">
@@ -662,7 +662,7 @@ export function EmployeeManage() {
                           <div
                             className="h-2.5 rounded-full bg-blue-500"
                             style={{ width: `${percentage}%` }}
-                          /<div>
+                          />
                         </div>
                       </div>
                     );

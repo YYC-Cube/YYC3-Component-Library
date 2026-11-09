@@ -13,7 +13,7 @@ import { SimpleDonutChart } from "@/components/dashboard/simple-donut-chart"
 import { AdvancedLineChart } from "@/components/charts/advanced-charts"
 import { AlertCircle, BarChart3, DollarSign, RefreshCw, ShoppingCart, TrendingUp, UserCheck, Users } from "lucide-react"
 import { Button } from "@yyc3/ui/button"
-import { useDashboardStats, useSalesTrend, useCategoryDistribution, useRecentActivities } from "@yyc3/hooks/use-data"
+import { useDashboardStats, useSalesTrend, useCategoryDistribution, useRecentActivities } from "../hooks/use-data"
 
 export function RealDataDashboard() {
   const [activeTab, setActiveTab] = useState("overview")

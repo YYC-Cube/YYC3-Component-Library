@@ -25,7 +25,7 @@ import {
   Shield,
   Trash2,
 } from "lucide-react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "@yyc3/ui"
 
 interface BackupRecord {
   id: string

@@ -174,11 +174,11 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
   const displayColor = config.color;
 
   // 处理返回上一页
-  const handleGoBack = () =
+  const handleGoBack = () =>
     router.back();
 
   // 处理返回首页
-  const handleGoHome = () =
+  const handleGoHome = () =>
     router.push('/');
 
   // 动画配置
@@ -217,7 +217,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
             className={`mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg ${displayColor}`}
           >
             {config.icon}
-          </motion.div
+          </motion.div>
 
           {/* 错误代码 */}
           {displayCode !== 0 && (
@@ -226,7 +226,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
               className="text-9xl font-bold text-gray-200 dark:text-gray-700"
             >
               {displayCode}
-            </motion.div
+            </motion.div>
           )}
 
           {/* 错误标题 */}
@@ -235,7 +235,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
             className="mt-6 text-2xl font-bold text-gray-900 dark:text-white"
           >
             {displayTitle}
-          </motion.h1
+          </motion.h1>
 
           {/* 错误消息 */}
           <motion.p
@@ -243,7 +243,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
             className="mt-2 text-base text-gray-600 dark:text-gray-300"
           >
             {displayMessage}
-          </motion.p
+          </motion.p>
 
           {/* 错误详情（如果有） */}
           {message && message !== config.message && (
@@ -252,7 +252,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
               className="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-700 dark:text-gray-300 text-left text-sm"
             >
               {message}
-            </motion.div
+            </motion.div>
           )}
 
           {/* 操作按钮 */}
@@ -267,8 +267,8 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
               variant="secondary"
             >
               <ArrowLeftIcon size={16} />
-              <span>{backButtonText}</span
-            </Button
+              <span>{backButtonText}</span>
+            </Button>
 
             {/* 返回首页按钮 */}
             {showHomeButton && (
@@ -277,7 +277,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
                 className="flex items-center justify-center"
               >
                 返回首页
-              </Button
+              </Button>
             )}
 
             {/* 额外按钮 */}
@@ -288,7 +288,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
                 variant={extraButton.variant || 'primary'}
               >
                 {extraButton.text}
-              </Button
+              </Button>
             )}
 
             {/* 自定义链接按钮 */}
@@ -299,9 +299,9 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
                 variant="secondary"
               >
                 前往指定页面
-              </Button
+              </Button>
             )}
-          </motion.div
+          </motion.div>
 
           {/* 搜索建议 */}
           {type === ErrorType.NOT_FOUND && (
@@ -309,7 +309,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
               >
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                 您可以尝试以下操作：
-              </p
+              </p>
               <div className="flex justify-center space-x-4"
                 >
                 <a
@@ -317,15 +317,15 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
                   className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
                 >
                   搜索内容
-                </a
+                </a>
                 <a
                   href="/sitemap"
                   className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
                 >
                   网站地图
-                </a
-              </div
-            </motion.div
+                </a>
+              </div>
+            </motion.div>
           )}
 
           {/* 登录建议 */}
@@ -337,10 +337,10 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 登录账户
-              </a
-            </motion.div
+              </a>
+            </motion.div>
           )}
-        </motion.div
+        </motion.div>
 
         {/* 页脚链接 */}
         <motion.div
@@ -349,11 +349,11 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
           transition={{ delay: 1, duration: 0.5 }}
           className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400"
         >
-          <p>如果问题持续存在，请联系 <a href="/support" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">技术支持</a></p
-          <p className="mt-2">© 2024 双导管理系统. 保留所有权利。</p
-        </motion.div
-      </div
-    </div
+          <p>如果问题持续存在，请联系 <a href="/support" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">技术支持</a></p>
+          <p className="mt-2">© 2024 双导管理系统. 保留所有权利。</p>
+        </motion.div>
+      </div>
+    </div>
   );
 };
 

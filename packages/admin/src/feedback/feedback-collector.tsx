@@ -19,7 +19,7 @@ import {
 } from "@yyc3/ui/dialog"
 import { Alert, AlertDescription, AlertTitle } from "@yyc3/ui/alert"
 import { MessageSquare, ThumbsUp, ThumbsDown, Send, AlertCircle, CheckCircle } from "lucide-react"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 interface FeedbackCollectorProps {
   onSubmit?: (feedback: {

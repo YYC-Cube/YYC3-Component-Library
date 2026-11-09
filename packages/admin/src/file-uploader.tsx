@@ -127,7 +127,7 @@ const fileTypeIcons: { [key: string]: React.ReactNode } = {
   mov: <Video className="h-8 w-8 text-pink-500" />,
   zip: <File className="h-8 w-8 text-yellow-500" />,
   rar: <File className="h-8 w-8 text-yellow-500" />,
-  7z: <File className="h-8 w-8 text-yellow-500" />,
+  '7z': <File className="h-8 w-8 text-yellow-500" />,
   default: <FileQuestion className="h-8 w-8 text-gray-500" />
 }
 
@@ -298,7 +298,7 @@ export function FileUploader() {
                 onChange={handleFileSelect}
               />
               <Upload className="h-16 w-16 mx-auto mb-4 text-blue-500" />
-              <h3 className="text-lg font-medium mb-2">拖拽文件到此处或点击上传>
+              <h3 className="text-lg font-medium mb-2">拖拽文件到此处或点击上传</h3>
               <p className="text-sm text-gray-500 mb-4">
                 支持 PDF、Word、Excel、图片、视频等格式，单个文件最大500MB
               </p>
@@ -309,7 +309,7 @@ export function FileUploader() {
                 <Plus className="mr-2 h-4 w-4" />
                 选择文件
               </Button>
-            </div
+            </div>
 
             {/* 上传设置 */}
             <Card variant="outline">
@@ -326,7 +326,7 @@ export function FileUploader() {
                   >
                     更多设置
                   </Button>
-                </div
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -346,7 +346,7 @@ export function FileUploader() {
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">存储位置>
+                    <label className="text-sm font-medium">存储位置</label>
                     <Select defaultValue="default">
                       <SelectTrigger>
                         <SelectValue placeholder="选择存储位置" />
@@ -366,7 +366,7 @@ export function FileUploader() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="public">公开</SelectItem>
-                        <SelectItem value="team">团队可见>
+                        <SelectItem value="team">团队可见</SelectItem>
                         <SelectItem value="private">仅自己可见</SelectItem>
                         <SelectItem value="custom">自定义权限</SelectItem>
                       </SelectContent>
@@ -374,7 +374,7 @@ export function FileUploader() {
                   </div>
                 </div>
               </CardContent>
-            </Card
+            </Card>
 
             {/* 上传进度 */}
             {isUploading && (
@@ -396,19 +396,19 @@ export function FileUploader() {
                         <div
                           className="h-2 rounded-full bg-blue-500 transition-all duration-300 ease-out"
                           style={{ width: `${uploadProgress}%` }}
-                        /<div
-                      </div
-                    </div
+                        />
+                      </div>
+                    </div>
                     <div className="flex justify-end">
                       <Button variant="outline" size="sm">
                         取消上传
                       </Button>
-                    </div
-                  </div
-                </CardContent
-              </Card
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             )}
-          </div
+          </div>
         )}
 
         {activeTab === "manage" && (
@@ -437,7 +437,7 @@ export function FileUploader() {
                       </SelectItem>
                     ))}
                   </SelectContent>
-                </Select
+                </Select>
                 <Button variant="ghost">
                   <FolderPlus className="mr-2 h-4 w-4" />
                   新建文件夹
@@ -447,7 +447,7 @@ export function FileUploader() {
                   批量下载
                 </Button>
               </div>
-            </div
+            </div>
 
             {/* 文件列表 */}
             {filteredFiles.length === 0 ? (
@@ -460,7 +460,7 @@ export function FileUploader() {
                     : "点击上传按钮开始添加文件"
                   }
                 </p>
-              </div
+              </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredFiles.map((file) => (
@@ -489,36 +489,37 @@ export function FileUploader() {
                               >
                                 <Eye className="h-4 w-4" />
                                 预览
-                              </button
+                              </button>
                               <button
                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left flex items-center gap-2"
                                 onClick={() => handleDownloadFile(file)}
                               >
                                 <Download className="h-4 w-4" />
                                 下载
-                              </button
+                              </button>
                               <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left flex items-center gap-2"
                               >
                                 <Share2 className="h-4 w-4" />
                                 分享
-                              </button
+                              </button>
                               <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left flex items-center gap-2"
                               >
                                 <Archive className="h-4 w-4" />
                                 归档
-                              </button
+                              </button>
                               <button
                                 className="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left flex items-center gap-2"
                                 onClick={() => handleDeleteFile(file.id)}
                               >
                                 <Trash2 className="h-4 w-4" />
                                 删除
-                              </button
-                            </div
-                          </div
-                        </div
-                      </div
-                    </CardHeader
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </CardHeader>
                     <CardContent className="px-4 pb-4 pt-0">
                       {file.previewUrl ? (
                         <div
@@ -530,26 +531,26 @@ export function FileUploader() {
                             alt={file.name}
                             className="w-full h-32 object-cover"
                           />
-                        </div
+                        </div>
                       ) : null}
                       <div className="space-y-2 text-xs text-gray-500">
                         <div className="flex justify-between">
                           <span>上传时间:</span>
                           <span>{file.uploadTime}</span>
-                        </div
+                        </div>
                         <div className="flex justify-between">
                           <span>上传人:</span>
                           <span>{file.uploader}</span>
-                        </div
+                        </div>
                         <div className="flex justify-between">
                           <span>所属部门:</span>
                           <span>{file.department}</span>
-                        </div
+                        </div>
                         <div className="flex justify-between">
                           <span>下载次数:</span>
                           <span>{file.downloadCount}</span>
-                        </div
-                      </div
+                        </div>
+                      </div>
                       <div className="mt-3 flex flex-wrap gap-1">
                         <Badge variant="secondary" className="text-xs">
                           {file.category}
@@ -559,13 +560,13 @@ export function FileUploader() {
                             {tag}
                           </Badge>
                         ))}
-                      </div
-                    </CardContent
-                  </Card
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
-              </div
+              </div>
             )}
-          </div
+          </div>
         )}
 
         {activeTab === "statistics" && (
@@ -574,48 +575,48 @@ export function FileUploader() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Card>
                 <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
-                  <CardTitle className="text-sm font-medium">总文件数>
+                  <CardTitle className="text-sm font-medium">总文件数</CardTitle>
                   <File className="h-4 w-4 text-muted-foreground" />
-                </CardHeader
+                </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{files.length}</div>
                   <div className="text-xs text-muted-foreground">所有已上传文件总数</div>
-                </CardContent
-              </Card
+                </CardContent>
+              </Card>
               <Card>
                 <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
                   <CardTitle className="text-sm font-medium">总存储空间</CardTitle>
                   <FolderOpen className="h-4 w-4 text-blue-500" />
-                </CardHeader
+                </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold text-blue-600">
                     {formatFileSize(
                       files.reduce((total, file) => total + file.size, 0)
                     )}
-                  </div
+                  </div>
                   <div className="text-xs text-muted-foreground">已使用存储空间</div>
-                </CardContent
-              </Card
+                </CardContent>
+              </Card>
               <Card>
                 <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
                   <CardTitle className="text-sm font-medium">总下载次数</CardTitle>
                   <Download className="h-4 w-4 text-green-500" />
-                </CardHeader
+                </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold text-green-600">
                     {files.reduce((total, file) => total + file.downloadCount, 0)}
-                  </div
+                  </div>
                   <div className="text-xs text-muted-foreground">所有文件下载次数总和</div>
-                </CardContent
-              </Card
-            </div
+                </CardContent>
+              </Card>
+            </div>
 
             {/* 上传趋势图表 */}
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle>上传趋势分析</CardTitle>
                 <CardDescription>最近10个月文件上传统计</CardDescription>
-              </CardHeader
+              </CardHeader>
               <CardContent>
                 <div className="h-[300px]">
                   <ResponsiveContainer width="100%" height="100%">
@@ -628,9 +629,9 @@ export function FileUploader() {
                       <Bar dataKey="size" name="上传大小(MB)" fill="#10b981" />
                     </BarChart>
                   </ResponsiveContainer>
-                </div
-              </CardContent
-            </Card
+                </div>
+              </CardContent>
+            </Card>
 
             {/* 存储空间使用建议 */}
             <Card variant="outline">
@@ -639,7 +640,7 @@ export function FileUploader() {
                   <Info className="h-4 w-4" />
                   存储空间建议
                 </CardTitle>
-              </CardHeader
+              </CardHeader>
               <CardContent>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-2 p-3 bg-blue-50 rounded-md">
@@ -648,18 +649,18 @@ export function FileUploader() {
                       <span className="font-medium">存储空间充足</span>
                       <span className="ml-1">当前存储空间使用率低于30%，无需扩容。</span>
                     </div>
-                  </div
+                  </div>
                   <div className="flex items-start gap-2 p-3 bg-yellow-50 rounded-md">
                     <AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5" />
                     <div>
-                      <span className="font-medium">清理建议>
+                      <span className="font-medium">清理建议</span>
                       <span className="ml-1">建议定期清理3个月前的临时文件和重复文件，以优化存储空间。</span>
                     </div>
-                  </div
-                </div
-              </CardContent
-            </Card
-          </div
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         )}
 
         {/* 文件预览对话框 */}
@@ -673,7 +674,7 @@ export function FileUploader() {
               <DialogDescription>
                 上传时间: {selectedFile?.uploadTime} | 上传人: {selectedFile?.uploader}
               </DialogDescription>
-            </DialogHeader
+            </DialogHeader>
             <div className="flex-1 overflow-auto py-4">
               {selectedFile?.previewUrl ? (
                 <img
@@ -685,16 +686,16 @@ export function FileUploader() {
                 <div className="flex flex-col items-center justify-center h-[300px]">
                   {getFileIcon(selectedFile?.type || "")}
                   <p className="mt-4 text-gray-500">此文件类型不支持在线预览</p>
-                </div
+                </div>
               )}
-            </div
+            </div>
             <DialogFooter className="mt-auto pt-4 border-t">
               <Button
                 variant="outline"
                 onClick={() => setIsPreviewDialogOpen(false)}
               >
                 关闭
-              </Button
+              </Button>
               <Button
                 onClick={() => {
                   handleDownloadFile(selectedFile)
@@ -703,10 +704,10 @@ export function FileUploader() {
               >
                 <Download className="mr-2 h-4 w-4" />
                 下载文件
-              </Button
-            </DialogFooter
-          </DialogContent
-        </Dialog
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
         {/* 设置对话框 */}
         <Dialog open={isSettingsDialogOpen} onOpenChange={setIsSettingsDialogOpen}>
@@ -718,7 +719,7 @@ export function FileUploader() {
               </DialogTitle>
               <DialogDescription>配置文件上传的高级选项
               </DialogDescription>
-            </DialogHeader
+            </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
                 <label className="text-sm font-medium">允许上传的文件类型</label>
@@ -726,11 +727,11 @@ export function FileUploader() {
                   placeholder="例如: .jpg,.png,.pdf,.docx"
                   defaultValue=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.mp4,.avi,.zip,.rar"
                 />
-              </div
+              </div>
               <div className="grid gap-2">
                 <label className="text-sm font-medium">最大文件大小限制 (MB)</label>
                 <Input type="number" defaultValue="500" />
-              </div
+              </div>
               <div className="grid gap-2">
                 <label className="text-sm font-medium">自动生成缩略图</label>
                 <Select defaultValue="true">
@@ -742,7 +743,7 @@ export function FileUploader() {
                     <SelectItem value="false">否</SelectItem>
                   </SelectContent>
                 </Select>
-              </div
+              </div>
               <div className="grid gap-2">
                 <label className="text-sm font-medium">默认存储位置</label>
                 <Select defaultValue="default">
@@ -755,19 +756,19 @@ export function FileUploader() {
                     <SelectItem value="private">私人存储空间</SelectItem>
                   </SelectContent>
                 </Select>
-              </div
-            </div
+              </div>
+            </div>
             <DialogFooter>
               <Button variant="outline" onClick={() => setIsSettingsDialogOpen(false)}>
                 取消
-              </Button
+              </Button>
               <Button onClick={() => setIsSettingsDialogOpen(false)}>
                 保存设置
-              </Button
-            </DialogFooter
-          </DialogContent
-        </Dialog
-      </CardContent
-    </Card
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </CardContent>
+    </Card>
   )
 }

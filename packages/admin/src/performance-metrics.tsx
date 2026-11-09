@@ -238,7 +238,7 @@ export function PerformanceMetrics() {
                     <Line type="monotone" dataKey="amount" name="销售额" stroke="#8884d8" activeDot={{ r: 8 }} />
                   </LineChart>
                 </ResponsiveContainer>
-              <div>
+              </div>
             </TabsContent>
             <TabsContent value="pie" className="mt-0">
               <div className="h-[400px] w-full">
@@ -257,7 +257,7 @@ export function PerformanceMetrics() {
                       {departmentContributionData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
-                    </Pie
+                    </Pie>
                     <Tooltip />
                     <Legend />
                   </PieChart>
@@ -309,7 +309,7 @@ export function PerformanceMetrics() {
                     {departmentContributionData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
-                  </Pie
+                  </Pie>
                   <Tooltip />
                 </PieChart>
               </ResponsiveContainer>

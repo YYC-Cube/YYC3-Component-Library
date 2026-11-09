@@ -25,7 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@yyc3/ui/dropdown-menu"
 import { Input } from "@yyc3/ui/input"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import { useBackground } from "@/contexts/background-context"
 import AppLogo from "@/components/app-logo"
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@yyc3/ui/sheet"

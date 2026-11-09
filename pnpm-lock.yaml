@@ -256,15 +256,24 @@ importers:
 
   packages/admin:
     dependencies:
+      '@yyc3/lib':
+        specifier: workspace:*
+        version: link:../lib
       '@yyc3/theme':
         specifier: workspace:*
         version: link:../theme
       '@yyc3/ui':
         specifier: workspace:*
         version: link:../ui
+      framer-motion:
+        specifier: ^11.0.0
+        version: 11.18.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       lucide-react:
         specifier: ^0.454.0
         version: 0.454.0(react@19.3.1)
+      next:
+        specifier: ^15.0.0
+        version: 15.5.29(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -274,6 +283,9 @@ importers:
       react-dom:
         specifier: ^19.3.1
         version: 19.3.1(react@19.3.1)
+      recharts:
+        specifier: ^2.15.0
+        version: 2.15.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
     devDependencies:
       '@types/react':
         specifier: ^19

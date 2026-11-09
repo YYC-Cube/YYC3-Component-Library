@@ -8,7 +8,7 @@ import Link from "next/link"
 import { Button } from "@yyc3/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@yyc3/ui/sheet"
 import { ScrollArea } from "@yyc3/ui/scroll-area"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react"
 
 interface NavItem {

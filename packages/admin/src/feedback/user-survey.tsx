@@ -22,7 +22,7 @@ import {
   DialogTrigger,
 } from "@yyc3/ui/dialog"
 import { CheckCircle, AlertCircle, ChevronRight, ChevronLeft, X } from 'lucide-react'
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 // 问题类型
 type QuestionType = "radio" | "checkbox" | "text" | "textarea" | "rating"

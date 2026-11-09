@@ -140,7 +140,7 @@ interface RolePermissionConfig {
 }
 
 // 获取权限类别文本
-const getCategoryText = (category: PermissionCategory) =\u003e {
+const getCategoryText = (category: PermissionCategory) => {
   switch (category) {
     case 'system':
       return '系统管理';
@@ -164,7 +164,7 @@ const getCategoryText = (category: PermissionCategory) =\u003e {
 };
 
 // 获取权限类别颜色
-const getCategoryColor = (category: PermissionCategory) =\u003e {
+const getCategoryColor = (category: PermissionCategory) => {
   switch (category) {
     case 'system':
       return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100';
@@ -188,7 +188,7 @@ const getCategoryColor = (category: PermissionCategory) =\u003e {
 };
 
 // 获取操作文本
-const getActionText = (action: PermissionAction) =\u003e {
+const getActionText = (action: PermissionAction) => {
   switch (action) {
     case 'view':
       return '查看';
@@ -206,7 +206,7 @@ const getActionText = (action: PermissionAction) =\u003e {
 };
 
 // 获取角色文本
-const getRoleText = (role: Role) =\u003e {
+const getRoleText = (role: Role) => {
   switch (role) {
     case 'admin':
       return '管理员';
@@ -222,7 +222,7 @@ const getRoleText = (role: Role) =\u003e {
 };
 
 // 获取角色颜色
-const getRoleColor = (role: Role) =\u003e {
+const getRoleColor = (role: Role) => {
   switch (role) {
     case 'admin':
       return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100';
@@ -238,7 +238,7 @@ const getRoleColor = (role: Role) =\u003e {
 };
 
 // 格式化日期
-const formatDate = (date: Date) =\u003e {
+const formatDate = (date: Date) => {
   return new Date(date).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: '2-digit',
@@ -249,32 +249,32 @@ const formatDate = (date: Date) =\u003e {
 };
 
 // 权限管理组件
-const PermissionsManagement: React.FC = () =\u003e {
-  const [permissions, setPermissions] = useState\u003cPermission[]\u003e([]);
-  const [rolePermissions, setRolePermissions] = useState\u003cRolePermissionConfig[]\u003e([]);
-  const [filteredPermissions, setFilteredPermissions] = useState\u003cPermission[]\u003e([]);
+const PermissionsManagement: React.FC = () => {
+  const [permissions, setPermissions] = useState<Permission[]>([]);
+  const [rolePermissions, setRolePermissions] = useState<RolePermissionConfig[]>([]);
+  const [filteredPermissions, setFilteredPermissions] = useState<Permission[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState\u003cstring\u003e('all');
-  const [selectedRole, setSelectedRole] = useState\u003cRole\u003e('admin');
-  const [sortBy, setSortBy] = useState\u003c'name' | 'category' | 'createdAt'\u003e('name');
-  const [sortDirection, setSortDirection] = useState\u003c'asc' | 'desc'\u003e('asc');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedRole, setSelectedRole] = useState<Role>('admin');
+  const [sortBy, setSortBy] = useState<'name' | 'category' | 'createdAt'>('name');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [isAddPermissionOpen, setIsAddPermissionOpen] = useState(false);
   const [isEditPermissionOpen, setIsEditPermissionOpen] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
-  const [selectedPermissions, setSelectedPermissions] = useState\u003cstring[]\u003e([]);
-  const [currentPermission, setCurrentPermission] = useState\u003cPermission | null\u003e(null);
+  const [selectedPermissions, setSelectedPermissions] = useState<string[]>([]);
+  const [currentPermission, setCurrentPermission] = useState<Permission | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('permissions');
   const [isRoleEditMode, setIsRoleEditMode] = useState(false);
-  const [editedRolePermissions, setEditedRolePermissions] = useState\u003cstring[]\u003e([]);
+  const [editedRolePermissions, setEditedRolePermissions] = useState<string[]>([]);
 
   // 所有角色列表
   const allRoles: Role[] = ['admin', 'manager', 'employee', 'visitor'];
 
   // 模拟数据和加载效果
-  useEffect(() =\u003e {
+  useEffect(() => {
     // 模拟加载延迟
-    const timer = setTimeout(() =\u003e {
+    const timer = setTimeout(() => {
       // 模拟权限数据
       const mockPermissions: Permission[] = [
         {
@@ -439,7 +439,7 @@ const PermissionsManagement: React.FC = () =\u003e {
       const mockRolePermissions: RolePermissionConfig[] = [
         {
           role: 'admin',
-          permissions: mockPermissions.filter(p =\u003e true).map(p =\u003e p.id),
+          permissions: mockPermissions.filter(p => true).map(p => p.id),
           description: '系统管理员，拥有所有权限',
           isSystemDefault: true,
           createdAt: new Date('2024-01-01'),
@@ -447,9 +447,9 @@ const PermissionsManagement: React.FC = () =\u003e {
         },
         {
           role: 'manager',
-          permissions: mockPermissions.filter(p =\u003e 
+          permissions: mockPermissions.filter(p => 
             p.applicableRoles.includes('manager')
-          ).map(p =\u003e p.id),
+          ).map(p => p.id),
           description: '部门经理，拥有管理部门的权限',
           isSystemDefault: true,
           createdAt: new Date('2024-01-01'),
@@ -457,9 +457,9 @@ const PermissionsManagement: React.FC = () =\u003e {
         },
         {
           role: 'employee',
-          permissions: mockPermissions.filter(p =\u003e 
+          permissions: mockPermissions.filter(p => 
             p.applicableRoles.includes('employee')
-          ).map(p =\u003e p.id),
+          ).map(p => p.id),
           description: '普通员工，拥有基础操作权限',
           isSystemDefault: true,
           createdAt: new Date('2024-01-01'),
@@ -467,9 +467,9 @@ const PermissionsManagement: React.FC = () =\u003e {
         },
         {
           role: 'visitor',
-          permissions: mockPermissions.filter(p =\u003e 
-            p.action === 'view' \u0026\u0026 p.applicableRoles.includes('visitor')
-          ).map(p =\u003e p.id),
+          permissions: mockPermissions.filter(p => 
+            p.action === 'view' && p.applicableRoles.includes('visitor')
+          ).map(p => p.id),
           description: '访客，只能查看有限信息',
           isSystemDefault: true,
           createdAt: new Date('2024-01-01'),
@@ -483,26 +483,26 @@ const PermissionsManagement: React.FC = () =\u003e {
       setIsLoading(false);
     }, 800);
 
-    return () =\u003e clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, []);
 
   // 切换角色编辑模式
-  useEffect(() =\u003e {
-    if (activeTab === 'roles' \u0026\u0026 rolePermissions.length \u003e 0) {
-      const currentRolePerms = rolePermissions.find(rp =\u003e rp.role === selectedRole);
+  useEffect(() => {
+    if (activeTab === 'roles' && rolePermissions.length > 0) {
+      const currentRolePerms = rolePermissions.find(rp => rp.role === selectedRole);
       setEditedRolePermissions(currentRolePerms ? [...currentRolePerms.permissions] : []);
     }
   }, [selectedRole, activeTab, rolePermissions]);
 
   // 筛选和排序权限
-  useEffect(() =\u003e {
+  useEffect(() => {
     let result = [...permissions];
 
     // 搜索筛选
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       result = result.filter(
-        permission =\u003e 
+        permission => 
           permission.name.toLowerCase().includes(query) ||
           permission.code.toLowerCase().includes(query) ||
           permission.description.toLowerCase().includes(query)
@@ -511,11 +511,11 @@ const PermissionsManagement: React.FC = () =\u003e {
 
     // 类别筛选
     if (selectedCategory !== 'all') {
-      result = result.filter(permission =\u003e permission.category === selectedCategory);
+      result = result.filter(permission => permission.category === selectedCategory);
     }
 
     // 排序
-    result.sort((a, b) =\u003e {
+    result.sort((a, b) => {
       let comparison = 0;
       switch (sortBy) {
         case 'name':
@@ -537,38 +537,38 @@ const PermissionsManagement: React.FC = () =\u003e {
   }, [permissions, searchQuery, selectedCategory, sortBy, sortDirection]);
 
   // 处理权限选择
-  const handlePermissionSelect = (permissionId: string) =\u003e {
-    setSelectedPermissions(prev =\u003e
+  const handlePermissionSelect = (permissionId: string) => {
+    setSelectedPermissions(prev =>
       prev.includes(permissionId) 
-        ? prev.filter(id =\u003e id !== permissionId)
+        ? prev.filter(id => id !== permissionId)
         : [...prev, permissionId]
     );
   };
 
   // 处理全选
-  const handleSelectAll = () =\u003e {
+  const handleSelectAll = () => {
     if (selectedPermissions.length === filteredPermissions.length) {
       setSelectedPermissions([]);
     } else {
-      setSelectedPermissions(filteredPermissions.map(permission =\u003e permission.id));
+      setSelectedPermissions(filteredPermissions.map(permission => permission.id));
     }
   };
 
   // 处理添加权限
-  const handleAddPermission = (permissionData: Omit\u003cPermission, 'id' | 'createdAt' | 'updatedAt'\u003e) =\u003e {
+  const handleAddPermission = (permissionData: Omit<Permission, 'id' | 'createdAt' | 'updatedAt'>) => {
     const newPermission: Permission = {
       ...permissionData,
       id: `perm-${Date.now()}`,
       createdAt: new Date(),
       updatedAt: new Date()
     };
-    setPermissions(prev =\u003e [...prev, newPermission]);
+    setPermissions(prev => [...prev, newPermission]);
     setIsAddPermissionOpen(false);
   };
 
   // 处理编辑权限
-  const handleEditPermission = (permissionId: string, permissionData: Partial\u003cPermission\u003e) =\u003e {
-    setPermissions(prev =\u003e prev.map(permission =\u003e 
+  const handleEditPermission = (permissionId: string, permissionData: Partial<Permission>) => {
+    setPermissions(prev => prev.map(permission => 
       permission.id === permissionId 
         ? { ...permission, ...permissionData, updatedAt: new Date() }
         : permission
@@ -578,20 +578,20 @@ const PermissionsManagement: React.FC = () =\u003e {
   };
 
   // 处理删除权限
-  const handleDeletePermissions = () =\u003e {
+  const handleDeletePermissions = () => {
     // 过滤掉系统保留的权限
-    const removableIds = selectedPermissions.filter(id =\u003e {
-      const permission = permissions.find(p =\u003e p.id === id);
+    const removableIds = selectedPermissions.filter(id => {
+      const permission = permissions.find(p => p.id === id);
       return permission ? !permission.isSystemReserved : false;
     });
 
     // 删除权限
-    setPermissions(prev =\u003e prev.filter(permission =\u003e !removableIds.includes(permission.id)));
+    setPermissions(prev => prev.filter(permission => !removableIds.includes(permission.id)));
     
     // 从所有角色权限配置中移除被删除的权限
-    setRolePermissions(prev =\u003e prev.map(rolePerm =\u003e ({
+    setRolePermissions(prev => prev.map(rolePerm => ({
       ...rolePerm,
-      permissions: rolePerm.permissions.filter(id =\u003e !removableIds.includes(id)),
+      permissions: rolePerm.permissions.filter(id => !removableIds.includes(id)),
       updatedAt: new Date()
     })));
     
@@ -600,8 +600,8 @@ const PermissionsManagement: React.FC = () =\u003e {
   };
 
   // 处理权限状态变更
-  const handlePermissionToggle = (permissionId: string) =\u003e {
-    setPermissions(prev =\u003e prev.map(permission =\u003e 
+  const handlePermissionToggle = (permissionId: string) => {
+    setPermissions(prev => prev.map(permission => 
       permission.id === permissionId 
         ? { ...permission, isEnabled: !permission.isEnabled, updatedAt: new Date() }
         : permission
@@ -609,17 +609,17 @@ const PermissionsManagement: React.FC = () =\u003e {
   };
 
   // 处理角色权限变更
-  const handleRolePermissionToggle = (permissionId: string) =\u003e {
-    setEditedRolePermissions(prev =\u003e
+  const handleRolePermissionToggle = (permissionId: string) => {
+    setEditedRolePermissions(prev =>
       prev.includes(permissionId)
-        ? prev.filter(id =\u003e id !== permissionId)
+        ? prev.filter(id => id !== permissionId)
         : [...prev, permissionId]
     );
   };
 
   // 保存角色权限配置
-  const saveRolePermissions = () =\u003e {
-    setRolePermissions(prev =\u003e prev.map(rolePerm =\u003e 
+  const saveRolePermissions = () => {
+    setRolePermissions(prev => prev.map(rolePerm => 
       rolePerm.role === selectedRole 
         ? { ...rolePerm, permissions: [...editedRolePermissions], updatedAt: new Date() }
         : rolePerm
@@ -628,30 +628,30 @@ const PermissionsManagement: React.FC = () =\u003e {
   };
 
   // 取消角色权限编辑
-  const cancelRolePermissionEdit = () =\u003e {
-    const currentRolePerms = rolePermissions.find(rp =\u003e rp.role === selectedRole);
+  const cancelRolePermissionEdit = () => {
+    const currentRolePerms = rolePermissions.find(rp => rp.role === selectedRole);
     setEditedRolePermissions(currentRolePerms ? [...currentRolePerms.permissions] : []);
     setIsRoleEditMode(false);
   };
 
   // 打开编辑权限对话框
-  const openEditDialog = (permission: Permission) =\u003e {
+  const openEditDialog = (permission: Permission) => {
     setCurrentPermission(permission);
     setIsEditPermissionOpen(true);
   };
 
   // 打开删除确认对话框
-  const openDeleteConfirm = () =\u003e {
+  const openDeleteConfirm = () => {
     // 检查是否有系统保留的权限被选中
-    const hasSystemReserved = selectedPermissions.some(id =\u003e {
-      const permission = permissions.find(p =\u003e p.id === id);
+    const hasSystemReserved = selectedPermissions.some(id => {
+      const permission = permissions.find(p => p.id === id);
       return permission ? permission.isSystemReserved : false;
     });
 
     if (hasSystemReserved) {
       // 过滤掉系统保留的权限
-      setSelectedPermissions(prev =\u003e prev.filter(id =\u003e {
-        const permission = permissions.find(p =\u003e p.id === id);
+      setSelectedPermissions(prev => prev.filter(id => {
+        const permission = permissions.find(p => p.id === id);
         return permission ? !permission.isSystemReserved : false;
       }));
       
@@ -664,633 +664,633 @@ const PermissionsManagement: React.FC = () =\u003e {
   };
 
   // 渲染加载状态
-  const renderSkeleton = () =\u003e {
-    return Array(8).fill(0).map((_, index) =\u003e (
-      \u003cdiv key={index} className="flex items-center space-x-4 p-4 mb-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm"\u003e
-        \u003cSkeleton className="h-5 w-5 rounded"\u003e\u003c/Skeleton\u003e
-        \u003cdiv className="flex-1 space-y-2"\u003e
-          \u003cSkeleton className="h-5 w-1/4"\u003e\u003c/Skeleton\u003e
-          \u003cSkeleton className="h-4 w-2/3"\u003e\u003c/Skeleton\u003e
-        \u003c/div\u003e
-        \u003cSkeleton className="h-8 w-24"\u003e\u003c/Skeleton\u003e
-      \u003c/div\u003e
+  const renderSkeleton = () => {
+    return Array(8).fill(0).map((_, index) => (
+      <div key={index} className="flex items-center space-x-4 p-4 mb-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+        <Skeleton className="h-5 w-5 rounded"></Skeleton>
+        <div className="flex-1 space-y-2">
+          <Skeleton className="h-5 w-1/4"></Skeleton>
+          <Skeleton className="h-4 w-2/3"></Skeleton>
+        </div>
+        <Skeleton className="h-8 w-24"></Skeleton>
+      </div>
     ));
   };
 
   // 渲染权限列表项
-  const renderPermissionItem = (permission: Permission) =\u003e {
+  const renderPermissionItem = (permission: Permission) => {
     return (
-      \u003cdiv 
+      <div 
         key={permission.id}
         className={`flex items-center justify-between p-4 mb-3 rounded-lg transition-all duration-200 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md ${
           !permission.isEnabled ? 'opacity-60' : ''
         }`}
-      \u003e
-        \u003cdiv className="flex items-start space-x-4"\u003e
-          \u003cCheckbox 
+      >
+        <div className="flex items-start space-x-4">
+          <Checkbox 
             id={`permission-${permission.id}`}
             checked={selectedPermissions.includes(permission.id)}
-            onCheckedChange={() =\u003e handlePermissionSelect(permission.id)}
+            onCheckedChange={() => handlePermissionSelect(permission.id)}
             disabled={permission.isSystemReserved}
             className="mt-0.5 data-[state=checked]:bg-primary"
-          /\u003e
-          \u003cdiv className="space-y-1 flex-1"\u003e
-            \u003cdiv className="flex items-center gap-2"\u003e
-              \u003clabel 
+          />
+          <div className="space-y-1 flex-1">
+            <div className="flex items-center gap-2">
+              <label 
                 htmlFor={`permission-${permission.id}`}
                 className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              \u003e
+              >
                 {permission.name}
-              \u003c/label\u003e
-              {permission.isSystemReserved \u0026\u0026 (
-                \u003cBadge variant="outline" className="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 text-xs"\u003e
+              </label>
+              {permission.isSystemReserved && (
+                <Badge variant="outline" className="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 text-xs">
                   系统保留
-                \u003c/Badge\u003e
+                </Badge>
               )}
-            \u003c/div\u003e
-            \u003cdiv className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-1"\u003e
-              \u003cBadge variant="outline" className={`${getCategoryColor(permission.category)} text-xs font-normal`}\u003e
+            </div>
+            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <Badge variant="outline" className={`${getCategoryColor(permission.category)} text-xs font-normal`}>
                 {getCategoryText(permission.category)}
-              \u003c/Badge\u003e
-              \u003cspan\u003e•\u003c/span\u003e
-              \u003cspan\u003e{getActionText(permission.action)}\u003c/span\u003e
-              \u003cspan\u003e•\u003c/span\u003e
-              \u003ccode className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs font-mono"\u003e
+              </Badge>
+              <span>•</span>
+              <span>{getActionText(permission.action)}</span>
+              <span>•</span>
+              <code className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs font-mono">
                 {permission.code}
-              \u003c/code\u003e
-            \u003c/div\u003e
-            \u003cp className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2"\u003e
+              </code>
+            </div>
+            <p className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2">
               {permission.description}
-            \u003c/p\u003e
-            \u003cdiv className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mt-1"\u003e
-              \u003cspan\u003e适用角色: {permission.applicableRoles.map(role =\u003e getRoleText(role)).join(', ')}\u003c/span\u003e
-              \u003cspan\u003e更新于: {formatDate(permission.updatedAt)}\u003c/span\u003e
-            \u003c/div\u003e
-          \u003c/div\u003e
-        \u003c/div\u003e
+            </p>
+            <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <span>适用角色: {permission.applicableRoles.map(role => getRoleText(role)).join(', ')}</span>
+              <span>更新于: {formatDate(permission.updatedAt)}</span>
+            </div>
+          </div>
+        </div>
 
-        \u003cdiv className="flex flex-col items-end space-y-2"\u003e
-          \u003cdiv className="flex items-center gap-2"\u003e
-            \u003cLabel htmlFor={`toggle-${permission.id}`} className="text-xs text-gray-500 dark:text-gray-400"\u003e
+        <div className="flex flex-col items-end space-y-2">
+          <div className="flex items-center gap-2">
+            <Label htmlFor={`toggle-${permission.id}`} className="text-xs text-gray-500 dark:text-gray-400">
               {permission.isEnabled ? '启用' : '禁用'}
-            \u003c/Label\u003e
-            \u003cSwitch 
+            </Label>
+            <Switch 
               id={`toggle-${permission.id}`}
               checked={permission.isEnabled}
-              onCheckedChange={() =\u003e handlePermissionToggle(permission.id)}
+              onCheckedChange={() => handlePermissionToggle(permission.id)}
               disabled={permission.isSystemReserved}
               aria-label={`${permission.name} 的启用状态`}
-            /\u003e
-          \u003c/div\u003e
+            />
+          </div>
 
-          \u003cDropdownMenu\u003e
-            \u003cDropdownMenuTrigger asChild\u003e
-              \u003cButton variant="ghost" size="icon" className="h-8 w-8"\u003e
-                \u003cMoreHorizontal className="h-4 w-4" /\u003e
-                \u003cspan className="sr-only"\u003e操作\u003c/span\u003e
-              \u003c/Button\u003e
-            \u003c/DropdownMenuTrigger\u003e
-            \u003cDropdownMenuContent align="end" className="w-48"\u003e
-              \u003cDropdownMenuItem 
-                onClick={() =\u003e openEditDialog(permission)}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <MoreHorizontal className="h-4 w-4" />
+                <span className="sr-only">操作</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem 
+                onClick={() => openEditDialog(permission)}
                 disabled={permission.isSystemReserved}
-              \u003e
-                \u003cEdit className="mr-2 h-4 w-4" /\u003e
-                \u003cspan\u003e编辑权限\u003c/span\u003e
-              \u003c/DropdownMenuItem\u003e
-              \u003cDropdownMenuSeparator /\u003e
-              \u003cDropdownMenuItem 
-                onClick={() =\u003e handlePermissionSelect(permission.id) || openDeleteConfirm()}
+              >
+                <Edit className="mr-2 h-4 w-4" />
+                <span>编辑权限</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem 
+                onClick={() => handlePermissionSelect(permission.id) || openDeleteConfirm()}
                 className="text-red-600 dark:text-red-400"
                 disabled={permission.isSystemReserved}
-              \u003e
-                \u003cTrash2 className="mr-2 h-4 w-4" /\u003e
-                \u003cspan\u003e删除权限\u003c/span\u003e
-              \u003c/DropdownMenuItem\u003e
-            \u003c/DropdownMenuContent\u003e
-          \u003c/DropdownMenu\u003e
-        \u003c/div\u003e
-      \u003c/div\u003e
+              >
+                <Trash2 className="mr-2 h-4 w-4" />
+                <span>删除权限</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
     );
   };
 
   // 渲染角色权限配置
-  const renderRolePermissions = () =\u003e {
-    const currentRoleConfig = rolePermissions.find(rp =\u003e rp.role === selectedRole);
+  const renderRolePermissions = () => {
+    const currentRoleConfig = rolePermissions.find(rp => rp.role === selectedRole);
     const isSystemDefault = currentRoleConfig?.isSystemDefault || false;
 
     return (
-      \u003cCard className="mt-4"\u003e
-        \u003cCardHeader className="pb-2"\u003e
-          \u003cdiv className="flex items-center justify-between"\u003e
-            \u003cdiv className="flex items-center gap-2"\u003e
-              \u003cBadge variant="outline" className={`${getRoleColor(selectedRole)} font-medium`}\u003e
+      <Card className="mt-4">
+        <CardHeader className="pb-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className={`${getRoleColor(selectedRole)} font-medium`}>
                 {getRoleText(selectedRole)}
-              \u003c/Badge\u003e
-              {isSystemDefault \u0026\u0026 (
-                \u003cBadge variant="outline" className="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"\u003e
+              </Badge>
+              {isSystemDefault && (
+                <Badge variant="outline" className="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
                   系统默认
-                \u003c/Badge\u003e
+                </Badge>
               )}
-            \u003c/div\u003e
-            \u003cdiv className="flex items-center gap-2"\u003e
+            </div>
+            <div className="flex items-center gap-2">
               {!isRoleEditMode ? (
-                \u003cButton
+                <Button
                   size="sm"
-                  onClick={() =\u003e setIsRoleEditMode(true)}
+                  onClick={() => setIsRoleEditMode(true)}
                   disabled={selectedRole === 'admin'}
-                \u003e
-                  \u003cEdit className="h-4 w-4 mr-1" /\u003e
+                >
+                  <Edit className="h-4 w-4 mr-1" />
                   编辑权限
-                \u003c/Button\u003e
+                </Button>
               ) : (
-                \u003e
-                  \u003cButton
+                <>
+                  <Button
                     size="sm"
                     variant="ghost"
                     onClick={cancelRolePermissionEdit}
-                  \u003e
-                    \u003cX className="h-4 w-4 mr-1" /\u003e
+                  >
+                    <X className="h-4 w-4 mr-1" />
                     取消
-                  \u003c/Button\u003e
-                  \u003cButton
+                  </Button>
+                  <Button
                     size="sm"
                     onClick={saveRolePermissions}
-                  \u003e
-                    \u003cSave className="h-4 w-4 mr-1" /\u003e
+                  >
+                    <Save className="h-4 w-4 mr-1" />
                     保存
-                  \u003c/Button\u003e
-                \u003e
+                  </Button>
+                </>
               )}
-            \u003c/div\u003e
-          \u003c/div\u003e
-        \u003c/CardHeader\u003e
-        \u003cCardContent\u003e
-          \u003cp className="text-sm text-gray-500 dark:text-gray-400 mb-4"\u003e
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
             {currentRoleConfig?.description}
-          \u003c/p\u003e
-          \u003cScrollArea className="h-[calc(100vh-400px)] pr-4"\u003e
+          </p>
+          <ScrollArea className="h-[calc(100vh-400px)] pr-4">
             {isLoading ? (
               renderSkeleton()
             ) : (
-              \u003ediv className="space-y-3"\u003e
-                {permissions.map(permission =\u003e (
-                  \u003cdiv 
+              <div className="space-y-3">
+                {permissions.map(permission => (
+                  <div 
                     key={permission.id}
                     className="flex items-center justify-between p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700"
-                  \u003e
-                    \u003cdiv className="flex items-center gap-3 flex-1"\u003e
-                      \u003cCheckbox 
+                  >
+                    <div className="flex items-center gap-3 flex-1">
+                      <Checkbox 
                         id={`role-perm-${permission.id}`}
                         checked={editedRolePermissions.includes(permission.id)}
-                        onCheckedChange={() =\u003e handleRolePermissionToggle(permission.id)}
+                        onCheckedChange={() => handleRolePermissionToggle(permission.id)}
                         disabled={!isRoleEditMode || selectedRole === 'admin' || !permission.isEnabled}
                         className="data-[state=checked]:bg-primary"
-                      /\u003e
-                      \u003cdiv className="space-y-1 flex-1"\u003e
-                        \u003cdiv className="flex items-center gap-2"\u003e
-                          \u003clabel 
+                      />
+                      <div className="space-y-1 flex-1">
+                        <div className="flex items-center gap-2">
+                          <label 
                             htmlFor={`role-perm-${permission.id}`}
                             className="font-medium text-sm"
-                          \u003e
+                          >
                             {permission.name}
-                          \u003c/label\u003e
-                          \u003cBadge variant="outline" className={`${getCategoryColor(permission.category)} text-xs font-normal`}\u003e
+                          </label>
+                          <Badge variant="outline" className={`${getCategoryColor(permission.category)} text-xs font-normal`}>
                             {getCategoryText(permission.category)}
-                          \u003c/Badge\u003e
-                        \u003c/div\u003e
-                        \u003cp className="text-xs text-gray-500 dark:text-gray-400"\u003e
+                          </Badge>
+                        </div>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
                           {permission.description}
-                        \u003c/p\u003e
-                      \u003c/div\u003e
-                    \u003c/div\u003e
-                  \u003c/div\u003e
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              \u003c/div\u003e
+              </div>
             )}
-          \u003c/ScrollArea\u003e
-        \u003c/CardContent\u003e
-      \u003c/Card\u003e
+          </ScrollArea>
+        </CardContent>
+      </Card>
     );
   };
 
   return (
-    \u003cdiv className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6"\u003e
-      \u003cCard className="max-w-7xl mx-auto"\u003e
-        \u003cCardHeader className="pb-2"\u003e
-          \u003cdiv className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"\u003e
-            \u003cdiv\u003e
-              \u003cCardTitle className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2"\u003e
-                \u003cShield className="h-6 w-6" /\u003e
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6">
+      <Card className="max-w-7xl mx-auto">
+        <CardHeader className="pb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <Shield className="h-6 w-6" />
                 权限管理
-              \u003c/CardTitle\u003e
-              \u003cCardDescription className="text-gray-500 dark:text-gray-400"\u003e
+              </CardTitle>
+              <CardDescription className="text-gray-500 dark:text-gray-400">
                 管理系统权限和角色权限配置
-              \u003c/CardDescription\u003e
-            \u003c/div\u003e
-            \u003cdiv className="flex flex-wrap gap-2"\u003e
-              \u003cButton
+              </CardDescription>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button
                 variant="ghost"
                 size="sm"
                 className="flex items-center gap-1"
-                onClick={() =\u003e setIsLoading(true) || setTimeout(() =\u003e setIsLoading(false), 500)}
-              \u003e
-                \u003cRefreshCcw className="h-4 w-4" /\u003e
+                onClick={() => setIsLoading(true) || setTimeout(() => setIsLoading(false), 500)}
+              >
+                <RefreshCcw className="h-4 w-4" />
                 刷新
-              \u003c/Button\u003e
-              \u003cButton
+              </Button>
+              <Button
                 variant="ghost"
                 size="sm"
                 className="flex items-center gap-1"
-              \u003e
-                \u003cDownload className="h-4 w-4" /\u003e
+              >
+                <Download className="h-4 w-4" />
                 导出
-              \u003c/Button\u003e
-              \u003cButton
+              </Button>
+              <Button
                 variant="ghost"
                 size="sm"
                 className="flex items-center gap-1"
-              \u003e
-                \u003cUpload className="h-4 w-4" /\u003e
+              >
+                <Upload className="h-4 w-4" />
                 导入
-              \u003c/Button\u003e
-              {activeTab === 'permissions' \u0026\u0026 (
-                \u003cButton
+              </Button>
+              {activeTab === 'permissions' && (
+                <Button
                   className="flex items-center gap-1"
-                  onClick={() =\u003e setIsAddPermissionOpen(true)}
-                \u003e
-                  \u003cPlus className="h-4 w-4" /\u003e
+                  onClick={() => setIsAddPermissionOpen(true)}
+                >
+                  <Plus className="h-4 w-4" />
                   添加权限
-                \u003c/Button\u003e
+                </Button>
               )}
-            \u003c/div\u003e
-          \u003c/div\u003e
-        \u003c/CardHeader\u003e
+            </div>
+          </div>
+        </CardHeader>
 
-        \u003cCardContent\u003e
+        <CardContent>
           {/* 标签页切换 */}
-          \u003cTabs value={activeTab} onValueChange={setActiveTab} className="mb-6"\u003e
-            \u003cTabsList className="grid grid-cols-2 w-full max-w-xs"\u003e
-              \u003cTabsTrigger value="permissions"\u003e权限列表\u003c/TabsTrigger\u003e
-              \u003cTabsTrigger value="roles"\u003e角色权限配置\u003c/TabsTrigger\u003e
-            \u003c/TabsList\u003e
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+            <TabsList className="grid grid-cols-2 w-full max-w-xs">
+              <TabsTrigger value="permissions">权限列表</TabsTrigger>
+              <TabsTrigger value="roles">角色权限配置</TabsTrigger>
+            </TabsList>
 
-            \u003cTabsContent value="permissions" className="mt-4"\u003e
+            <TabsContent value="permissions" className="mt-4">
               {/* 权限列表筛选和搜索 */}
-              \u003cdiv className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"\u003e
-                \u003cdiv className="relative"\u003e
-                  \u003cSearch className="absolute left-2 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" /\u003e
-                  \u003cInput
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="relative">
+                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
+                  <Input
                     placeholder="搜索权限名称、代码或描述..."
                     className="pl-8"
                     value={searchQuery}
-                    onChange={(e) =\u003e setSearchQuery(e.target.value)}
-                  /\u003e
-                \u003c/div\u003e
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
 
-                \u003cSelect value={selectedCategory} onValueChange={setSelectedCategory}\u003e
-                  \u003cSelectTrigger className="w-full"\u003e
-                    \u003cSelectValue placeholder="选择类别" /\u003e
-                  \u003c/SelectTrigger\u003e
-                  \u003cSelectContent\u003e
-                    \u003cSelectItem value="all"\u003e所有类别\u003c/SelectItem\u003e
-                    \u003cSelectItem value="system"\u003e系统管理\u003c/SelectItem\u003e
-                    \u003cSelectItem value="user"\u003e用户管理\u003c/SelectItem\u003e
-                    \u003cSelectItem value="department"\u003e部门管理\u003c/SelectItem\u003e
-                    \u003cSelectItem value="task"\u003e任务管理\u003c/SelectItem\u003e
-                    \u003cSelectItem value="meeting"\u003e会议管理\u003c/SelectItem\u003e
-                    \u003cSelectItem value="report"\u003e报表管理\u003c/SelectItem\u003e
-                    \u003cSelectItem value="finance"\u003e财务管理\u003c/SelectItem\u003e
-                    \u003cSelectItem value="hr"\u003e人力资源\u003c/SelectItem\u003e
-                  \u003c/SelectContent\u003e
-                \u003c/Select\u003e
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="选择类别" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">所有类别</SelectItem>
+                    <SelectItem value="system">系统管理</SelectItem>
+                    <SelectItem value="user">用户管理</SelectItem>
+                    <SelectItem value="department">部门管理</SelectItem>
+                    <SelectItem value="task">任务管理</SelectItem>
+                    <SelectItem value="meeting">会议管理</SelectItem>
+                    <SelectItem value="report">报表管理</SelectItem>
+                    <SelectItem value="finance">财务管理</SelectItem>
+                    <SelectItem value="hr">人力资源</SelectItem>
+                  </SelectContent>
+                </Select>
 
-                \u003cdiv className="flex items-center gap-2"\u003e
-                  \u003cLabel htmlFor="sort-permissions" className="text-sm font-medium"\u003e排序方式：\u003c/Label\u003e
-                  \u003cSelect value={sortBy} onValueChange={(value) =\u003e setSortBy(value as any)}\u003e
-                    \u003cSelectTrigger id="sort-permissions" className="flex-1"\u003e
-                      \u003cSelectValue placeholder="排序方式" /\u003e
-                    \u003c/SelectTrigger\u003e
-                    \u003cSelectContent\u003e
-                      \u003cSelectItem value="name"\u003e按名称\u003c/SelectItem\u003e
-                      \u003cSelectItem value="category"\u003e按类别\u003c/SelectItem\u003e
-                      \u003cSelectItem value="createdAt"\u003e按创建时间\u003c/SelectItem\u003e
-                    \u003c/SelectContent\u003e
-                  \u003c/Select\u003e
-                  \u003cButton
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="sort-permissions" className="text-sm font-medium">排序方式：</Label>
+                  <Select value={sortBy} onValueChange={(value) => setSortBy(value as any)}>
+                    <SelectTrigger id="sort-permissions" className="flex-1">
+                      <SelectValue placeholder="排序方式" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="name">按名称</SelectItem>
+                      <SelectItem value="category">按类别</SelectItem>
+                      <SelectItem value="createdAt">按创建时间</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Button
                     variant="ghost"
                     size="icon"
                     className="h-9 w-9"
-                    onClick={() =\u003e setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')}
-                  \u003e
-                    \u003cChevronDown 
+                    onClick={() => setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')}
+                  >
+                    <ChevronDown 
                       className={`h-4 w-4 transition-transform duration-200 ${
                         sortDirection === 'asc' ? 'rotate-180' : ''
                       }`}
-                    /\u003e
-                  \u003c/Button\u003e
-                \u003c/div\u003e
-              \u003c/div\u003e
+                    />
+                  </Button>
+                </div>
+              </div>
 
               {/* 批量操作栏 */}
-              {selectedPermissions.length \u003e 0 \u0026\u0026 (
-                \u003cdiv className="flex items-center justify-between p-3 mb-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-100 dark:border-blue-900/30"\u003e
-                  \u003cdiv className="flex items-center gap-2"\u003e
-                    \u003cCheckbox 
-                      checked={selectedPermissions.length === filteredPermissions.length \u0026\u0026 filteredPermissions.length \u003e 0}
+              {selectedPermissions.length > 0 && (
+                <div className="flex items-center justify-between p-3 mb-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-100 dark:border-blue-900/30">
+                  <div className="flex items-center gap-2">
+                    <Checkbox 
+                      checked={selectedPermissions.length === filteredPermissions.length && filteredPermissions.length > 0}
                       onCheckedChange={handleSelectAll}
                       aria-label="全选"
-                    /\u003e
-                    \u003cspan className="text-sm font-medium text-blue-800 dark:text-blue-400"\u003e
+                    />
+                    <span className="text-sm font-medium text-blue-800 dark:text-blue-400">
                       已选择 {selectedPermissions.length} 个权限
-                    \u003c/span\u003e
-                  \u003c/div\u003e
-                  \u003cdiv className="flex items-center gap-2"\u003e
-                    \u003cButton
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
                       variant="ghost"
                       size="sm"
                       className="text-sm"
-                      onClick={() =\u003e setSelectedPermissions([])}
-                    \u003e
+                      onClick={() => setSelectedPermissions([])}
+                    >
                       取消选择
-                    \u003c/Button\u003e
-                    \u003cButton
+                    </Button>
+                    <Button
                       variant="destructive"
                       size="sm"
                       className="text-sm"
                       onClick={openDeleteConfirm}
-                    \u003e
+                    >
                       批量删除
-                    \u003c/Button\u003e
-                  \u003c/div\u003e
-                \u003c/div\u003e
+                    </Button>
+                  </div>
+                </div>
               )}
 
               {/* 权限列表 */}
-              \u003cScrollArea className="h-[calc(100vh-350px)] pr-4"\u003e
+              <ScrollArea className="h-[calc(100vh-350px)] pr-4">
                 {isLoading ? (
                   renderSkeleton()
-                ) : filteredPermissions.length \u003e 0 ? (
+                ) : filteredPermissions.length > 0 ? (
                   filteredPermissions.map(renderPermissionItem)
                 ) : (
-                  \u003cdiv className="flex flex-col items-center justify-center py-12 text-center"\u003e
-                    \u003cLock className="h-12 w-12 text-gray-400 dark:text-gray-500 mb-4" /\u003e
-                    \u003ch3 className="text-lg font-medium text-gray-900 dark:text-white mb-1"\u003e未找到权限\u003c/h3\u003e
-                    \u003cp className="text-gray-500 dark:text-gray-400 max-w-md"\u003e
+                  <div className="flex flex-col items-center justify-center py-12 text-center">
+                    <Lock className="h-12 w-12 text-gray-400 dark:text-gray-500 mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">未找到权限</h3>
+                    <p className="text-gray-500 dark:text-gray-400 max-w-md">
                       没有找到符合当前筛选条件的权限，请尝试调整筛选条件或添加新权限。
-                    \u003c/p\u003e
-                    \u003cButton
+                    </p>
+                    <Button
                       className="mt-4"
-                      onClick={() =\u003e {
+                      onClick={() => {
                         setSearchQuery('');
                         setSelectedCategory('all');
                       }}
-                    \u003e
+                    >
                       重置筛选条件
-                    \u003c/Button\u003e
-                  \u003c/div\u003e
+                    </Button>
+                  </div>
                 )}
-              \u003c/ScrollArea\u003e
-            \u003c/TabsContent\u003e
+              </ScrollArea>
+            </TabsContent>
 
-            \u003cTabsContent value="roles" className="mt-4"\u003e
+            <TabsContent value="roles" className="mt-4">
               {/* 角色选择器 */}
-              \u003cdiv className="mb-6"\u003e
-                \u003cdiv className="flex items-center gap-4"\u003e
-                  \u003cLabel htmlFor="role-select" className="text-sm font-medium"\u003e选择角色：\u003c/Label\u003e
-                  \u003cSelect 
+              <div className="mb-6">
+                <div className="flex items-center gap-4">
+                  <Label htmlFor="role-select" className="text-sm font-medium">选择角色：</Label>
+                  <Select 
                     value={selectedRole} 
-                    onValueChange={(value) =\u003e setSelectedRole(value as Role)}
-                  \u003e
-                    \u003cSelectTrigger id="role-select" className="w-64"\u003e
-                      \u003cSelectValue placeholder="选择角色" /\u003e
-                    \u003c/SelectTrigger\u003e
-                    \u003cSelectContent\u003e
-                      {allRoles.map(role =\u003e (
-                        \u003cSelectItem key={role} value={role}\u003e
+                    onValueChange={(value) => setSelectedRole(value as Role)}
+                  >
+                    <SelectTrigger id="role-select" className="w-64">
+                      <SelectValue placeholder="选择角色" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {allRoles.map(role => (
+                        <SelectItem key={role} value={role}>
                           {getRoleText(role)}
-                        \u003c/SelectItem\u003e
+                        </SelectItem>
                       ))}
-                    \u003c/SelectContent\u003e
-                  \u003c/Select\u003e
-                  {selectedRole === 'admin' \u0026\u0026 (
-                    \u003cBadge variant="outline" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100 flex items-center gap-1"\u003e
-                      \u003cAlertTriangle className="h-3 w-3" /\u003e
+                    </SelectContent>
+                  </Select>
+                  {selectedRole === 'admin' && (
+                    <Badge variant="outline" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100 flex items-center gap-1">
+                      <AlertTriangle className="h-3 w-3" />
                       管理员权限不可修改
-                    \u003c/Badge\u003e
+                    </Badge>
                   )}
-                \u003c/div\u003e
-              \u003c/div\u003e
+                </div>
+              </div>
               
               {/* 角色权限配置 */}
               {renderRolePermissions()}
-            \u003c/TabsContent\u003e
-          \u003c/Tabs\u003e
-        \u003c/CardContent\u003e
+            </TabsContent>
+          </Tabs>
+        </CardContent>
 
-        \u003cCardFooter className="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 py-4"\u003e
-          \u003cdiv className="text-sm text-gray-500 dark:text-gray-400"\u003e
+        <CardFooter className="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 py-4">
+          <div className="text-sm text-gray-500 dark:text-gray-400">
             共 {permissions.length} 个权限
-          \u003c/div\u003e
-        \u003c/CardFooter\u003e
-      \u003c/Card\u003e
+          </div>
+        </CardFooter>
+      </Card>
 
       {/* 添加权限对话框 */}
-      \u003cDialog open={isAddPermissionOpen} onOpenChange={setIsAddPermissionOpen}\u003e
-        \u003cDialogContent className="sm:max-w-md"\u003e
-          \u003cDialogHeader\u003e
-            \u003cDialogTitle className="flex items-center gap-2"\u003e
-              \u003cPlus className="h-5 w-5" /\u003e
+      <Dialog open={isAddPermissionOpen} onOpenChange={setIsAddPermissionOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Plus className="h-5 w-5" />
               添加新权限
-            \u003c/DialogTitle\u003e
-            \u003cDialogDescription\u003e
+            </DialogTitle>
+            <DialogDescription>
               创建新的系统权限
-            \u003c/DialogDescription\u003e
-          \u003c/DialogHeader\u003e
-          \u003cdiv className="grid gap-4 py-4"\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="name" className="text-right"\u003e
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
                 权限名称
-              \u003c/Label\u003e
-              \u003cInput id="name" className="col-span-3" /\u003e
-            \u003c/div\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="code" className="text-right"\u003e
+              </Label>
+              <Input id="name" className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="code" className="text-right">
                 权限代码
-              \u003c/Label\u003e
-              \u003cInput id="code" className="col-span-3" placeholder="例如：system:manage" /\u003e
-            \u003c/div\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="category" className="text-right"\u003e
+              </Label>
+              <Input id="code" className="col-span-3" placeholder="例如：system:manage" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="category" className="text-right">
                 所属类别
-              \u003c/Label\u003e
-              \u003cSelect defaultValue="system"\u003e
-                \u003cSelectTrigger id="category" className="col-span-3"\u003e
-                  \u003cSelectValue placeholder="选择类别" /\u003e
-                \u003c/SelectTrigger\u003e
-                \u003cSelectContent\u003e
-                  \u003cSelectItem value="system"\u003e系统管理\u003c/SelectItem\u003e
-                  \u003cSelectItem value="user"\u003e用户管理\u003c/SelectItem\u003e
-                  \u003cSelectItem value="department"\u003e部门管理\u003c/SelectItem\u003e
-                  \u003cSelectItem value="task"\u003e任务管理\u003c/SelectItem\u003e
-                  \u003cSelectItem value="meeting"\u003e会议管理\u003c/SelectItem\u003e
-                  \u003cSelectItem value="report"\u003e报表管理\u003c/SelectItem\u003e
-                  \u003cSelectItem value="finance"\u003e财务管理\u003c/SelectItem\u003e
-                  \u003cSelectItem value="hr"\u003e人力资源\u003c/SelectItem\u003e
-                \u003c/SelectContent\u003e
-              \u003c/Select\u003e
-            \u003c/div\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="action" className="text-right"\u003e
+              </Label>
+              <Select defaultValue="system">
+                <SelectTrigger id="category" className="col-span-3">
+                  <SelectValue placeholder="选择类别" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="system">系统管理</SelectItem>
+                  <SelectItem value="user">用户管理</SelectItem>
+                  <SelectItem value="department">部门管理</SelectItem>
+                  <SelectItem value="task">任务管理</SelectItem>
+                  <SelectItem value="meeting">会议管理</SelectItem>
+                  <SelectItem value="report">报表管理</SelectItem>
+                  <SelectItem value="finance">财务管理</SelectItem>
+                  <SelectItem value="hr">人力资源</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="action" className="text-right">
                 操作类型
-              \u003c/Label\u003e
-              \u003cSelect defaultValue="view"\u003e
-                \u003cSelectTrigger id="action" className="col-span-3"\u003e
-                  \u003cSelectValue placeholder="选择操作类型" /\u003e
-                \u003c/SelectTrigger\u003e
-                \u003cSelectContent\u003e
-                  \u003cSelectItem value="view"\u003e查看\u003c/SelectItem\u003e
-                  \u003cSelectItem value="create"\u003e创建\u003c/SelectItem\u003e
-                  \u003cSelectItem value="edit"\u003e编辑\u003c/SelectItem\u003e
-                  \u003cSelectItem value="delete"\u003e删除\u003c/SelectItem\u003e
-                  \u003cSelectItem value="manage"\u003e管理\u003c/SelectItem\u003e
-                \u003c/SelectContent\u003e
-              \u003c/Select\u003e
-            \u003c/div\u003e
-            \u003cdiv className="grid grid-cols-4 items-start gap-4"\u003e
-              \u003cLabel htmlFor="description" className="text-right mt-2"\u003e
+              </Label>
+              <Select defaultValue="view">
+                <SelectTrigger id="action" className="col-span-3">
+                  <SelectValue placeholder="选择操作类型" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="view">查看</SelectItem>
+                  <SelectItem value="create">创建</SelectItem>
+                  <SelectItem value="edit">编辑</SelectItem>
+                  <SelectItem value="delete">删除</SelectItem>
+                  <SelectItem value="manage">管理</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid grid-cols-4 items-start gap-4">
+              <Label htmlFor="description" className="text-right mt-2">
                 权限描述
-              \u003c/Label\u003e
-              \u003cTextarea id="description" className="col-span-3 min-h-[80px]" /\u003e
-            \u003c/div\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="enabled" className="text-right"\u003e
+              </Label>
+              <Textarea id="description" className="col-span-3 min-h-[80px]" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="enabled" className="text-right">
                 启用
-              \u003c/Label\u003e
-              \u003cSwitch id="enabled" defaultChecked /\u003c/Switch
-            \u003c/div\u003e
-          \u003c/div\u003e
-          \u003cDialogFooter\u003e
-            \u003cButton variant="ghost" onClick={() =\u003e setIsAddPermissionOpen(false)}\u003e
+              </Label>
+              <Switch id="enabled" defaultChecked />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setIsAddPermissionOpen(false)}>
               取消
-            \u003c/Button\u003e
-            \u003cButton onClick={() =\u003e setIsAddPermissionOpen(false)}\u003e
+            </Button>
+            <Button onClick={() => setIsAddPermissionOpen(false)}>
               添加权限
-            \u003c/Button\u003e
-          \u003c/DialogFooter\u003e
-        \u003c/DialogContent\u003e
-      \u003c/Dialog\u003e
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* 编辑权限对话框 */}
-      \u003cDialog open={isEditPermissionOpen} onOpenChange={setIsEditPermissionOpen}\u003e
-        \u003cDialogContent className="sm:max-w-md"\u003e
-          \u003cDialogHeader\u003e
-            \u003cDialogTitle className="flex items-center gap-2"\u003e
-              \u003cEdit className="h-5 w-5" /\u003e
+      <Dialog open={isEditPermissionOpen} onOpenChange={setIsEditPermissionOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Edit className="h-5 w-5" />
               编辑权限
-            \u003c/DialogTitle\u003e
-            \u003cDialogDescription\u003e
+            </DialogTitle>
+            <DialogDescription>
               修改权限信息
-            \u003c/DialogDescription\u003e
-          \u003c/DialogHeader\u003e
-          \u003cdiv className="grid gap-4 py-4"\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="edit-name" className="text-right"\u003e
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="edit-name" className="text-right">
                 权限名称
-              \u003c/Label\u003e
-              \u003cInput id="edit-name" className="col-span-3" defaultValue={currentPermission?.name} /\u003e
-            \u003c/div\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="edit-code" className="text-right"\u003e
+              </Label>
+              <Input id="edit-name" className="col-span-3" defaultValue={currentPermission?.name} />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="edit-code" className="text-right">
                 权限代码
-              \u003c/Label\u003e
-              \u003cInput 
+              </Label>
+              <Input 
                 id="edit-code" 
                 className="col-span-3" 
                 defaultValue={currentPermission?.code}
                 disabled={currentPermission?.isSystemReserved}
-              /\u003e
-            \u003c/div\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="edit-description" className="text-right mt-2"\u003e
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="edit-description" className="text-right mt-2">
                 权限描述
-              \u003c/Label\u003e
-              \u003cTextarea 
+              </Label>
+              <Textarea 
                 id="edit-description" 
                 className="col-span-3 min-h-[80px]" 
                 defaultValue={currentPermission?.description}
-              /\u003e
-            \u003c/div\u003e
-            \u003cdiv className="grid grid-cols-4 items-center gap-4"\u003e
-              \u003cLabel htmlFor="edit-enabled" className="text-right"\u003e
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="edit-enabled" className="text-right">
                 启用
-              \u003c/Label\u003e
-              \u003cSwitch 
+              </Label>
+              <Switch 
                 id="edit-enabled" 
                 defaultChecked={currentPermission?.isEnabled}
                 disabled={currentPermission?.isSystemReserved}
-              /\u003e
-            \u003c/div\u003e
-          \u003c/div\u003e
-          \u003cDialogFooter\u003e
-            \u003cButton variant="ghost" onClick={() => setIsEditPermissionOpen(false)}\u003e
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setIsEditPermissionOpen(false)}>
               取消
-            \u003c/Button\u003e
-            \u003cButton onClick={() => setIsEditPermissionOpen(false)}\u003e
+            </Button>
+            <Button onClick={() => setIsEditPermissionOpen(false)}>
               保存更改
-            \u003c/Button\u003e
-          \u003c/DialogFooter\u003e
-        \u003c/DialogContent\u003e
-      \u003c/Dialog\u003e
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* 删除确认对话框 */}
-      \u003cDialog open={isDeleteConfirmOpen} onOpenChange={setIsDeleteConfirmOpen}\u003e
-        \u003cDialogContent className="sm:max-w-md"\u003e
-          \u003cDialogHeader\u003e
-            \u003cDialogTitle className="flex items-center gap-2 text-red-600 dark:text-red-400"\u003e
-              \u003cAlertCircle className="h-5 w-5" /\u003e
+      <Dialog open={isDeleteConfirmOpen} onOpenChange={setIsDeleteConfirmOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-red-600 dark:text-red-400">
+              <AlertCircle className="h-5 w-5" />
               确认删除
-            \u003c/DialogTitle\u003e
-            \u003cDialogDescription\u003e
+            </DialogTitle>
+            <DialogDescription>
               您确定要删除选中的权限吗？此操作无法撤销。
-            \u003c/DialogDescription\u003e
-          \u003c/DialogHeader\u003e
-          \u003cdiv className="py-4"\u003e
-            \u003cdiv className="bg-red-50 dark:bg-red-950/30 p-3 rounded-lg border border-red-100 dark:border-red-900/30 mb-4"\u003e
-              \u003cdiv className="flex items-start gap-2"\u003e
-                \u003cAlertTriangle className="h-5 w-5 text-red-500 mt-0.5" /\u003e
-                \u003cp className="text-sm text-red-700 dark:text-red-300"\u003e
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <div className="bg-red-50 dark:bg-red-950/30 p-3 rounded-lg border border-red-100 dark:border-red-900/30 mb-4">
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5" />
+                <p className="text-sm text-red-700 dark:text-red-300">
                   删除权限将同时移除所有角色对此权限的访问。请确保此操作不会影响系统的正常使用。
-                \u003c/p\u003e
-              \u003c/div\u003e
-            \u003c/div\u003e
-            \u003cdiv className="space-y-2"\u003e
-              \u003cspan className="text-sm font-medium text-gray-700 dark:text-gray-300 block"\u003e
+                </p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 block">
                 将要删除的权限（{selectedPermissions.length}个）：
-              \u003c/span\u003e
-              \u003cScrollArea className="h-32 p-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"\u003e
+              </span>
+              <ScrollArea className="h-32 p-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                 {selectedPermissions.map(id => {
                   const permission = permissions.find(p => p.id === id);
                   return permission ? (
-                    \u003cdiv key={id} className="text-sm text-gray-600 dark:text-gray-400 py-1 border-b border-gray-200 dark:border-gray-700 last:border-0"\u003e
+                    <div key={id} className="text-sm text-gray-600 dark:text-gray-400 py-1 border-b border-gray-200 dark:border-gray-700 last:border-0">
                       {permission.name} ({permission.code})
-                    \u003c/div\u003e
+                    </div>
                   ) : null;
                 })}
-              \u003c/ScrollArea\u003e
-            \u003c/div\u003e
-          \u003c/div\u003e
-          \u003cDialogFooter\u003e
-            \u003cButton variant="ghost" onClick={() => setIsDeleteConfirmOpen(false)}\u003e
+              </ScrollArea>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setIsDeleteConfirmOpen(false)}>
               取消
-            \u003c/Button\u003e
-            \u003cButton variant="destructive" onClick={handleDeletePermissions}\u003e
+            </Button>
+            <Button variant="destructive" onClick={handleDeletePermissions}>
               确认删除
-            \u003c/Button\u003e
-          \u003c/DialogFooter\u003e
-        \u003c/DialogContent\u003e
-      \u003c/Dialog\u003e
-    \u003c/div\u003e
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 

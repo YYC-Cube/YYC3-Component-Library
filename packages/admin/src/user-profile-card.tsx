@@ -15,7 +15,7 @@ import { Badge } from "@yyc3/ui/badge"
 import { Alert } from "@yyc3/ui/alert"
 import { useAuthStore } from "@/src/store/authStore"
 import { useState, useEffect } from "react"
-import { toast } from "@yyc3/ui/use-toast"
+import { toast } from "@yyc3/ui"
 import { userService } from "@/src/services/userService"
 
 interface UserProfileCardProps {

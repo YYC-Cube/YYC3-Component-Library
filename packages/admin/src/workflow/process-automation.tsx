@@ -23,7 +23,7 @@ import {
   RefreshCw,
   Zap,
 } from "lucide-react"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import { ReactNode } from "react"
 
 // 类型定义

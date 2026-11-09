@@ -28,7 +28,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3
 import { Button } from "@yyc3/ui/button"
 import { ChevronDown, Download, ZoomIn, ZoomOut, RefreshCw } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 // 高级折线图
 export function AdvancedLineChart({

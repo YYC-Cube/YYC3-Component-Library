@@ -23,7 +23,7 @@ import {
   PlayCircle,
   MessageCircle,
 } from "lucide-react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "@yyc3/ui"
 
 interface HelpArticle {
   id: string

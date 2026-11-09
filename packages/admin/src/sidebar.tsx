@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import { Button } from "@yyc3/ui/button"
 import { ScrollArea } from "@yyc3/ui/scroll-area"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@yyc3/ui/tooltip"
