@@ -2,9 +2,14 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/ui/*": ["../ui/src/*"],
+      "@/lib/utils": ["../lib/src/utils/cn"],
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "dist", "src/**/__tests__/**"]
+  "exclude": ["node_modules", "dist", "src/**/__tests__/**", "src/top-nav.tsx"]
 }
