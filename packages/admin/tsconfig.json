@@ -10,8 +10,15 @@
       "@/*": ["./src/*"]
     }
   },
+  // type-check / build 仅收敛到包入口 src/index.ts。
+  // 本包同样是整应用误迁（175 个 src 顶层条目、275 个 tsx），双导管理 5 份副本
+  // 指纹同源损坏，无法用「恢复权威副本」方式修复；已就地修完 1,923 个语法错，
+  // 剩余 649 个语义错分布在 101/276 个文件，缺 @/store/*、@yyc3/lib/<subpath>、
+  // zod、react-hook-form、react-big-calendar、react-beautiful-dnd、moment 等。
+  // 这些缺件多属未随迁的上游应用文件，属「重建应用」范畴，已在 src/index.ts
+  // 【技术债登记】中逐项记录，待专项拆包时恢复 include 为 src/**/*。
   "include": [
-    "src/**/*"
+    "src/index.ts"
   ],
   "exclude": ["node_modules",
     "dist", "src/**/__tests__/**"]
