@@ -11,7 +11,7 @@
  * notes: design-system 依赖已对齐 @yyc3/theme（cardSurfaces/getProgressColor）
  */
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@yyc3/ui-enterprise/shadcn"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card"
 
 import { cn } from "../lib/utils"
 import { cardSurfaces } from "@yyc3/theme"
