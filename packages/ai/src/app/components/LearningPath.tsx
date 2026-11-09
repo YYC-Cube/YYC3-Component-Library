@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'motion/react';
+import { motion, useInView } from 'framer-motion';
 import { Sparkles, CheckCircle2, Lock, ChevronDown, ChevronUp, Zap } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 

@@ -12,7 +12,7 @@
  */
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   HelpCircle, BookOpen, MessageCircle, Keyboard, ExternalLink, X,
 } from "lucide-react";

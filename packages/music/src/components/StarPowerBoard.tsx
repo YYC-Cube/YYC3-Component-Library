@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, Star, Sparkles, Trophy, Crown, Gem, Flame,
   TrendingUp, ChevronRight, Zap, Clock, Calendar,

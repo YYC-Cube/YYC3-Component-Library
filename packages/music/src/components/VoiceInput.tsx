@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, MicOff, X, Search, Music, Radio, Waves, AudioLines, Loader2 } from 'lucide-react';
 
 interface Props {

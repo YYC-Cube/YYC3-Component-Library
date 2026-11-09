@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Activity, Wifi, Shield, Cpu, Zap } from 'lucide-react';
 
 interface Props {

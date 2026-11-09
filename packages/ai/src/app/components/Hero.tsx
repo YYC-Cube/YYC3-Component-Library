@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Settings, CircleHelp, ChevronRight } from 'lucide-react';
 import shieldLogo from 'figma:asset/40025af4b8baa344842bf5c8553025808daf7909.png';
 import cloudLogo from 'figma:asset/bbf3e3fa0f74d88bf01cb28b236dfeee49fdfab5.png';

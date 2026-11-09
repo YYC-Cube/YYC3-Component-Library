@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Palette, X, Sun, Moon, Check, RotateCcw } from 'lucide-react';
 import { clsx } from 'clsx';
 import {

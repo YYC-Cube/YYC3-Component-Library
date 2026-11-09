@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Music, Plus, SquarePen, Trash2, Languages, Sparkles, Shield, Brain, ChartPie, Scale, Heart, Target, Mic, Menu, X, Search, Minimize2, User, ChevronRight, Layers, MessageSquare, Paintbrush, Film, MonitorPlay, Cloud, RefreshCw, Star, Trophy, Keyboard } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { get as idbGet, set as idbSet, del as idbDel } from 'idb-keyval';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
 import { AIAssistant } from './AIAssistant';

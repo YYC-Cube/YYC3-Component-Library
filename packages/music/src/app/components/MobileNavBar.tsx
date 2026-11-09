@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import {
   Layers, Play, Pause, Sparkles, User, Music, SkipForward,
   Disc3, Download, WifiOff, Headphones

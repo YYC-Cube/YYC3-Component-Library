@@ -22,7 +22,7 @@
 
 import React from 'react';
 import { clsx } from 'clsx';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import {
   Loader2, CheckCircle2, AlertCircle, AlertTriangle, Info,
   Search, Eye, EyeOff, X,

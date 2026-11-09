@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { User, Cpu } from 'lucide-react';
 
 interface ChatMessageProps {

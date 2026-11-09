@@ -12,7 +12,7 @@
  */
 
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
 export const BrandHeader: React.FC = () => {

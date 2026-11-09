@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Send, MessageCircle, Heart, Eye, EyeOff } from 'lucide-react';
 import { clsx } from 'clsx';
 import { apiFetch } from '../lib/supabase';

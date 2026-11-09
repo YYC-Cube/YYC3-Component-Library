@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { supabase, API_BASE } from '../lib/supabase';
 import { publicAnonKey } from '../../../utils/supabase/info';
 import { X, Mail, Lock, Loader2, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import dMusicGold from 'figma:asset/f48b90018686a90dc84317ba5c2d07bb6da83e88.png';
 import { useI18n } from '../hooks/useI18n';

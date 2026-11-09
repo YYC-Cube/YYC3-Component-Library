@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, Brain, Sparkles, Music, Heart, TrendingUp, 
   Shuffle, Clock, Star, Zap, Play, Plus, 

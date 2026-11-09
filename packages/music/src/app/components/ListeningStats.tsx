@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Clock, Music, Heart, TrendingUp, BarChart2 } from 'lucide-react';
 import { clsx } from 'clsx';
 import {

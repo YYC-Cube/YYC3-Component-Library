@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Power, Shield, Settings, Scan, PlayCircle, PauseCircle } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';

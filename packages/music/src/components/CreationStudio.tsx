@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, Wand2, Copy, Check, Loader2, Sparkles,
   Smile, Frown, Zap, Cloud, Heart,

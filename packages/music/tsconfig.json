@@ -3,11 +3,24 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
-    "incremental": false
+    "incremental": false,
+    "baseUrl": ".",
+    // 别名口径：`@/components/ui/*` 指向上游应用自带的 shadcn 副本
+    // （src/app/components/ui，48 件，与 @yyc3/ui 同源分叉，MD5 全差异）；
+    // 其余 `@/*` 指向本包 src。原 tsconfig 无 paths，212 处导入被判为 TS2307。
+    // 副本去重须逐件 diff（D1 口径），不在本步处理。
+    "paths": {
+      "@/components/ui/*": ["./src/app/components/ui/*"],
+      "@/*": ["./src/*"]
+    }
   },
   // type-check / build 仅收敛到 src/index.ts 的公开面闭包
   // （index.ts → Player → SimpleBackgroundVideo / BackgroundVideo / SearchBar / error-boundary）。
-  // 其余 392 个文件属整应用误迁，缺失 src/hooks、src/types、src/data、src/services 等上游根文件，
+  // 其余 392 个文件属整应用误迁，缺失 src/hooks、src/types、src/data、src/services 等上游根文件。
+  // Step 0 已归位配置层：补 46 项依赖声明 + `@/*` / `@/components/ui/*` 别名 +
+  // 133 处 motion/react 统一为 framer-motion，全量 include 错误 1,185 → 640（TS2307 739 → 297）。
+  // 剩余真缺口：../hooks/useI18n(32)、../lib/supabase(25)、@react-three/{fiber,drei}(37)、
+  // three(15)、@mantine/*(14)、figma:asset/*(25) 等，须随应用抽取。
   // 已在 src/index.ts【技术债登记】中记录，待滚动抽取批次重建，不纳入本包门禁。
   "include": [
     "src/index.ts",

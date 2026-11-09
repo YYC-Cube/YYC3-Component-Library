@@ -1,11 +1,17 @@
 // YYC³ Components
 // Import UI components from @yyc3/ui
 //
-// 【技术债登记】（A 线分诊 · 2026-11-10）
+// 【技术债登记】（A 线分诊 · 2026-11-10；Step 0 配置归一同日复核）
 // 本包为整应用误迁：src 下 440 个顶层条目（app/、admin/、modules/、monitoring/、
 // ai/、analytics/ 与大量 *Page.tsx），依赖 next / framer-motion / lucide-react
 // 以及未随迁的 src/lib/types、src/lib/data 等上游根文件。
-// 整包类型错误 7,190（TS2307 3,066 / TS2322 2,082 / TS7006 911 / TS2722 331 …）。
+// Step 0 已归位配置层：补 46 项依赖声明（radix 全套、lucide-react、framer-motion、
+// next、clsx、cva、recharts、sonner 等）+ tsconfig `@/*` 别名 + 237 处 motion/react
+// 统一为 framer-motion。全量 include 错误 **7,190 → 2,631**（TS2307 3,066 → 734）。
+// 剩余真缺口 top：@yyc3/lib/utils(32)、@xyflow/react(30)、@yyc3/ui/brand-button(22)、
+// @yyc3/ui/brand-card(21)、@yyc3/ui/brand-badge(17)、@yyc3/lib/project-store(13)、
+// react-router(12)、@yyc3/lib/hash-params(11)、@yyc3/lib/node-utils(10)、
+// three/@react-three/*、@mantine/*、figma:asset/*。
 // 本轮已修的语法层缺陷（保留）：
 //   1. lib/services/workflow-api-service.ts 第 710 行截断 → 补全 createWorkflowTemplate 尾段；
 //   2. lib/openapi/spec.ts 第 880 行多余右花括号 + 重复 components 键 → 合并并补 BearerAuth；

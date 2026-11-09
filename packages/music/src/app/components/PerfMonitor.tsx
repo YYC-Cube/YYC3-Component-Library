@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, X, Cpu, MemoryStick, Layers, Clock, FlaskConical } from 'lucide-react';
 import { clsx } from 'clsx';
 import { getCanvasPerf, type CanvasPerfData } from '../lib/canvasPerfRegistry';

@@ -4,7 +4,7 @@ import {
   Film, SkipBack, SkipForward, Repeat, Repeat1, PictureInPicture2,
   MonitorPlay
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type Language = 'zh' | 'en';
 

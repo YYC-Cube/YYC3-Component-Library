@@ -2,7 +2,7 @@ import { useState, useReducer, useRef, useCallback, useEffect, lazy, Suspense, u
 import { useSearchParams, RouterProvider, createBrowserRouter } from 'react-router';
 import { clsx } from 'clsx';
 import { supabase, apiFetch, API_BASE } from './lib/supabase';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { LogOut, User, Star, Users, UserCircle, BarChart3, Wand2, Trophy, MessageCircle, SkipBack, SkipForward, Globe, Sparkles, Palette, Film, Radio, Bell, GitBranch, Heart, Brain, Disc3, Shield } from 'lucide-react';
 import { useAudioEngine, type Emotion } from './hooks/useAudioEngine';
 import { I18nProvider, useI18n } from './hooks/useI18n';

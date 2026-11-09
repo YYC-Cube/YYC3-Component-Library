@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { clsx } from 'clsx';
 import {
   Music, Users, Wand2, BarChart3, UserCircle,

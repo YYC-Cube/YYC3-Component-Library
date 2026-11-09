@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Server, ToggleLeft, ToggleRight, AlertCircle } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 const translations = {
   zh: {

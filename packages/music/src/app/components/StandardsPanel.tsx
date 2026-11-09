@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, Shield, Activity, CheckCircle, AlertTriangle, 
   Clock, Server, Lock, FileCheck, ChartPie, 

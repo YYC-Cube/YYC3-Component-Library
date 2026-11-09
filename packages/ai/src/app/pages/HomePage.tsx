@@ -13,7 +13,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { User, Settings } from "lucide-react";
 import { AuroraBackground } from "../components/homepage/AuroraBackground";
 import { BrandHeader } from "../components/homepage/BrandHeader";

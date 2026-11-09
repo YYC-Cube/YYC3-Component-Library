@@ -6,7 +6,7 @@ import {
   Sparkles, Paintbrush, Grid3x3, SlidersHorizontal,
   Plus, Trash2
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
 
 // ─── Types ───────────────────────────────────────────

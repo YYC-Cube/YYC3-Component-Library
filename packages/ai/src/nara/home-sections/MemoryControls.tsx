@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Database, HardDrive, Brain, Trash2, RefreshCw } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 const translations = {
   zh: {

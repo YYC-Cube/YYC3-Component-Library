@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Keyboard, X, ArrowDown, Volume2, VolumeX, Play, SkipBack, SkipForward, Search, Sparkles, Minimize2 } from 'lucide-react';
 
 // ═══════════════════════════════════════════════════════

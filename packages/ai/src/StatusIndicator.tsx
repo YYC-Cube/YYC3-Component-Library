@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 interface StatusIndicatorProps {
   status: 'online' | 'offline' | 'warning' | 'error' | 'connecting';

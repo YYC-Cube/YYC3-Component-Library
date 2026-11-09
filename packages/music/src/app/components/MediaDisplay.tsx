@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AudioVisualizer } from './AudioVisualizer';
 import type { Emotion } from '../hooks/useAudioEngine';

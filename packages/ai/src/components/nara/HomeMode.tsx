@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown, ChevronRight, Settings, Activity, Brain, Lock, Zap, Database, Code, Key, Wrench, Rocket, Skull, Sliders } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { SystemArchitectureControls } from './home-sections/SystemArchitectureControls';
 import { SecurityControls } from './home-sections/SecurityControls';
 import { MemoryControls } from './home-sections/MemoryControls';

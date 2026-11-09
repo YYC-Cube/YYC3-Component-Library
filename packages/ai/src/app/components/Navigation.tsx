@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Menu, X, Home, Layers, Cpu, Box, Code, BookOpen, Palette } from 'lucide-react';
 import { cn } from '@/lib/utils'; // I'll need to create this utility or just use clsx directly
 

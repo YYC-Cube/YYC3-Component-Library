@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { clsx } from 'clsx';
 import {
   Trophy, Sparkles, Radio, Star, GitBranch, Award,

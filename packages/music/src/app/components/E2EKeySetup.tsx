@@ -14,7 +14,7 @@
  *   - Status display for already-enrolled users
  */
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, Shield, Key, Lock, Unlock, CheckCircle2, AlertTriangle,
   RefreshCw, Download, Upload, Eye, EyeOff, Fingerprint, Sparkles,
