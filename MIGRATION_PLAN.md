@@ -49,7 +49,7 @@ review_status: reviewed
 | --- | ---: | ---: | --- | --- |
 | ai | 1,512 | 19 | ✅ 已迁入（← AI-Digital-Consulting-Website 等） | Phase 1 固化 |
 | music | 417 | 2 | ✅ 已迁入（← YYC3-Music/D-Music-e 等） | Phase 1 固化 |
-| admin | 279 | 3 | ✅ 已迁入（← 双导管理等） | Phase 1 固化 |
+| admin | 151（原 279；128 件应用侧迁 `apps/admin`，2026-11-10） | 1 | ✅ **C1 拆包完成**：闭包判据筛出组件面，`include` 恢复 `src/**/*` 且 0 错，开放 141 条导出 | 第二批：10 个应用壳残留判定 + `apps/admin` 脚手架 |
 | medical | 120 | 118 | ✅ **全量恢复**（T0+T1 36 + T2/T3 82，#38+#39）+ 前置件 47 | 摘除彻底清零；悬留：client 鉴权轻桥、tsc 非阻断残余、medical 色板 token |
 | design | 67 | 64 | ✅ **摘除清零**（61 + 收尾批 3，#40）| AuthContext/ai 双件真身落位，悬留无 |
 | ui | 66 | 0 | ✅ 基础完成 | Phase 4 承接 Claw UI |
@@ -60,12 +60,12 @@ review_status: reviewed
 | layouts | 6 | 0 | ✅ 完成 | Phase 7 裁决 karbon 归属 |
 | theme | 1 | 0 | 🚧 起步 | Phase 4 承接 theme-tokens |
 | business / effects / icons | 0 | 0 | ⬜ 空壳（终裁**保留**，PR#27 用户指令） | icons 方案：lucide 封装+品牌 SVG 待补；随 publish 批次评估 |
-| **合计** | **2,629** | **28** | — | — |
+| **合计** | **2,501**（admin C1 拆包 -128） | **26** | — | — |
 
 ### 1.2 配套资产
 
 - `stories/`：10 域 stories 齐备 ✅；脚手架遗留示例待清理（Phase 1）
-- `apps/`、`templates/`：空目录，Phase 7 落地
+- `apps/`、`templates/`：`apps/admin` 已接收 admin 128 件应用侧文件（无 package.json，暂不进 workspace 构建），`apps/storybook` + `apps/playground` 承载门户，Phase 7 落地完成
 - 治理：git ✅（远程 `YYC-Cube/YYC3-Component-Library`，底册已登记，PR #1 已合并）；分支保护 ⬜（Phase 0）
 
 ---
