@@ -10,13 +10,13 @@
 import { logger } from '../lib/logger';
 import { BarChart3, BookOpen, Loader2, Maximize2, MessageSquare, Minimize2, Minus, Send, Workflow, Wrench, X } from 'lucide-react';
 import * as React from 'react';
-import { CSSProperties, useCallback, useEffect, useMemo, useRef } from 'react';
-import { AgentContext, AgenticCore, UserInput } from '../autonomous-engine/src/core/AgenticCore';
-import FileUpload, { UploadedFile } from './file-upload';
+import { type CSSProperties, useCallback, useEffect, useMemo, useRef } from 'react';
+import { type AgentContext, AgenticCore, type UserInput } from '../autonomous-engine/src/core/AgenticCore';
+import FileUpload, { type UploadedFile } from './file-upload';
 import InsightsDashboard from './insights-dashboard';
 import KnowledgeBase from './knowledge-base';
 import MessageHistory from './message-history';
-import messageStorage, { StoredMessage } from './message-storage';
+import messageStorage, { type StoredMessage } from './message-storage';
 import ToolboxPanel from './toolbox-panel';
 import VirtualizedMessageList from './virtualized-message-list';
 import WorkflowManager from './workflow-manager';

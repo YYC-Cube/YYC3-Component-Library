@@ -2,12 +2,16 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "incremental": false
+    "incremental": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/components/ui/*": ["../ui/src/*"],
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "src/**/*"
   ],
   "exclude": ["node_modules",
-    "dist", "src/**/__tests__/**"]
+    "dist", "src/**/__tests__/**", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

@@ -17,7 +17,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 // 主题切换Hook
 export function useTheme() {
   const [mounted, setMounted] = React.useState(false)
-  const _themeContext = React.useContext(require("next-themes").ThemeContext)
+  const themeContext = React.useContext(require("next-themes").ThemeContext)
   const { theme, setTheme, resolvedTheme, systemTheme } = themeContext as any || {}
 
   React.useEffect(() => {

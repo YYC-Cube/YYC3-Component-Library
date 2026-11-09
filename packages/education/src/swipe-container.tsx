@@ -7,7 +7,7 @@
 "use client"
 
 import { useState, useRef, type ReactNode, type TouchEvent } from "react"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 interface SwipeContainerProps {
   children: ReactNode

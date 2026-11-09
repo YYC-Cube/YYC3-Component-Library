@@ -9,7 +9,7 @@
 import type React from "react"
 
 import Link from "next/link"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 interface SkipLinkProps {
   href: string

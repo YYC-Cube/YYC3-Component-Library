@@ -1,7 +1,3 @@
-// ============================================================
-// YYC³ · @yyc3/education lib 真身（8 债清零批 · 2026-11-07）
-// 源（D0 权威副本）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/yyc3-learning-platform/lib/logger.ts
-// ============================================================
 /**
  * @fileoverview 日志工具模块
  * @description 提供统一的应用日志记录功能，支持多级别日志输出

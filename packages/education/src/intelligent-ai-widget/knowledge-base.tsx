@@ -44,12 +44,12 @@ export interface KnowledgeBaseProps {
   onItemClick?: (item: KnowledgeItem) => void;
   onItemCreate?: (item: Partial<KnowledgeItem>) => void;
   onItemUpdate?: (itemId: string, updates: Partial<KnowledgeItem>) => void;
-  __onItemDelete?: (itemId: string) => void;
+  onItemDelete?: (itemId: string) => void;
 }
 
 interface KnowledgeCardProps {
   item: KnowledgeItem;
-  _onClick: (item: KnowledgeItem) => void;
+  onClick: (item: KnowledgeItem) => void;
   onFavorite: (itemId: string, favorite: boolean) => void;
 }
 
@@ -62,7 +62,7 @@ export const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({
   onItemClick,
   onItemCreate,
   onItemUpdate,
-  _onItemDelete
+  onItemDelete
 }) => {
   const [items, setItems] = useState<KnowledgeItem[]>([]);
   const [categories, setCategories] = useState<KnowledgeCategory[]>([]);
@@ -367,7 +367,7 @@ export const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({
 
 KnowledgeBase.displayName = 'KnowledgeBase';
 
-const KnowledgeCard: React.FC<KnowledgeCardProps> = React.memo(({ item, __onClick, onFavorite }) => {
+const KnowledgeCard: React.FC<KnowledgeCardProps> = React.memo(({ item, onClick, onFavorite }) => {
   const typeIcons = {
     article: '📄',
     document: '📋',
@@ -438,10 +438,10 @@ const KnowledgeCard: React.FC<KnowledgeCardProps> = React.memo(({ item, __onClic
 
 KnowledgeCard.displayName = 'KnowledgeCard';
 
-const CategoryCard: React.FC<CategoryCardProps> = React.memo(({ category, __onClick }) => (
+const CategoryCard: React.FC<CategoryCardProps> = React.memo(({ category, onClick }) => (
   <div
     className="p-4 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg border border-indigo-100 hover:shadow-md transition-all cursor-pointer"
-    onClick={_onClick}
+    onClick={onClick}
   >
     <div className="flex items-start justify-between mb-2">
       <span className="text-3xl">{category.icon}</span>

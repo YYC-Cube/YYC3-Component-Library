@@ -53,7 +53,7 @@ export interface PrefetchContext {
   requestId: string;
   prompt: string;
   timestamp: number;
-  priority: 'low' | 'normal' | 'high';
+  priority: 'low' | 'normal' | 'high' | 'urgent';
 }
 
 export class EnhancedStreamingProcessor extends EventEmitter {
