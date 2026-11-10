@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@yyc3/ui/button"
+import { Textarea } from "@yyc3/ui/textarea"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
 import { Heart, MessageSquare, Share2, Music, ImageIcon, MapPin } from "lucide-react"
 
 interface Post {

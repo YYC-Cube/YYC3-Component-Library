@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 import { Mic } from "lucide-react"
 
 export default function GlitchMelodyGenerator() {

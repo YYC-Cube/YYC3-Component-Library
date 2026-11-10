@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@yyc3/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Shield, Users, Settings, BarChart, Radio } from "lucide-react"
 import PermissionGuard from "./permission-guard"
 import { type User, Role, Permission } from "@/lib/auth/permissions"

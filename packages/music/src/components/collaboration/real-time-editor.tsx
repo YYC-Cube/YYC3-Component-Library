@@ -3,9 +3,9 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@yyc3/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
 import { Save, Users, Music, Video, MessageSquare } from "lucide-react"
 
 // 模拟协作用户

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Music, Paintbrush, Zap } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
 

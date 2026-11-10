@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { Slider } from "@/components/ui/slider"
+import { Textarea } from "@yyc3/ui/textarea"
+import { Button } from "@yyc3/ui/button"
+import { Slider } from "@yyc3/ui/slider"
 import { Canvas } from "@react-three/fiber"
 import { Environment, OrbitControls } from "@react-three/drei"
 

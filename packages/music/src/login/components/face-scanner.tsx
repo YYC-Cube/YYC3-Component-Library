@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 import { Camera, Check } from "lucide-react"
 
 export default function FaceScanner() {

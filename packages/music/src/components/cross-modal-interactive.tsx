@@ -4,9 +4,9 @@ import type React from "react"
 
 import { useState } from "react"
 import { Upload, Music, FileText } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@yyc3/ui/button"
+import { Input } from "@yyc3/ui/input"
+import { Textarea } from "@yyc3/ui/textarea"
 
 export default function CrossModalInteractive() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)

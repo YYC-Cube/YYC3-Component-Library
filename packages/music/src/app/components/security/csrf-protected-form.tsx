@@ -3,8 +3,8 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@yyc3/ui/button"
+import { Input } from "@yyc3/ui/input"
 import { Loader } from "lucide-react"
 
 export default function CsrfProtectedForm() {

@@ -4,9 +4,9 @@ import type React from "react"
 
 import { useState } from "react"
 import { Upload, Video, Wand2, Scissors, Palette } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@yyc3/ui/button"
+import { Input } from "@yyc3/ui/input"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 
 export default function MultimediaDIYWorkshop() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)

@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import { Canvas, useThree, useFrame } from "@react-three/fiber"
 import { OrbitControls, Text } from "@react-three/drei"
 import { motion } from "framer-motion"
-import { Slider } from "@/components/ui/slider"
+import { Slider } from "@yyc3/ui/slider"
 import type * as THREE from "three"
 
 function AudioTrack({ position, color, name }: { position: [number, number, number]; color: string; name: string }) {

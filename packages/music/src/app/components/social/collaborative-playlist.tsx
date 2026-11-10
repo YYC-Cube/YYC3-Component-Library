@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@yyc3/ui/button"
+import { Input } from "@yyc3/ui/input"
+import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
 import { Music, Plus, Users, ThumbsUp, MessageSquare, Share2 } from "lucide-react"
 
 interface PlaylistItem {

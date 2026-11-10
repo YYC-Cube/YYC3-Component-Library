@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 import { Mic, Play, Square } from "lucide-react"
 
 export default function MusicPassword() {

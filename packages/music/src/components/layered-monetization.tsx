@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Layers, Users, Building, Code } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 
 const userTypes = [
   { type: "免费层", icon: Users, color: "bg-blue-500", benefits: "广告（15s片头）+ 基础功能" },

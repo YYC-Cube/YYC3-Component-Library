@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Camera, CameraOff, RotateCcw, AlertCircle, Info } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 
 export default function InnovativeInteractions() {
   const [isCameraEnabled, setIsCameraEnabled] = useState(false)
