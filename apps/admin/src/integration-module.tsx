@@ -1,6 +1,6 @@
 "use client"
 
-import { ThirdPartyIntegrations } from "./third-party-integrations"
+import { ThirdPartyIntegrations } from "@/components/third-party-integrations"
 
 export function IntegrationModule() {
   return <ThirdPartyIntegrations />

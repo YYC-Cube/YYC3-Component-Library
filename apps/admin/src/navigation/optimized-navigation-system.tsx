@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { ChevronDown, Home } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { SoundButton } from "../design-system/sound-system"
-import { AnimatedContainer } from "../design-system/animation-system"
+import { cn } from "@yyc3/lib"
+import { SoundButton } from "@/components/design-system/sound-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
 
 // 定义面包屑项接口
 interface BreadcrumbItem {

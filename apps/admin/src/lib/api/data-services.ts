@@ -1,4 +1,4 @@
-import { apiClient } from "./api-client"
+import { apiClient } from "@/components/lib/api/api-client"
 
 // 数据类型定义
 export interface SalesData {

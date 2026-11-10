@@ -30,9 +30,9 @@ import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
 import { Separator } from "@yyc3/ui/separator"
 import { Textarea } from "@yyc3/ui/textarea"
 
-import { AnimatedContainer } from "../design-system/animation-system"
-import { EnhancedCard } from "../design-system/enhanced-card-system"
-import { SoundButton } from "../design-system/sound-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
+import { EnhancedCard } from "@/components/design-system/enhanced-card-system"
+import { SoundButton } from "@/components/design-system/sound-system"
 
 // 敏捷开发数据类型定义
 interface UserStory {

@@ -7,9 +7,9 @@ import { Button } from "@yyc3/ui/button"
 import { Avatar, AvatarFallback } from "@yyc3/ui/avatar"
 import { Users, MessageSquare, Edit3, Eye, RefreshCw, Smartphone, Monitor, Wifi, WifiOff } from "lucide-react"
 
-import { EnhancedCard } from "../design-system/enhanced-card-system"
-import { AnimatedContainer } from "../design-system/animation-system"
-import { useSound } from "../design-system/sound-system"
+import { EnhancedCard } from "@/components/design-system/enhanced-card-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
+import { useSound } from "@/components/design-system/sound-system"
 
 interface CollaboratorStatus {
   id: string

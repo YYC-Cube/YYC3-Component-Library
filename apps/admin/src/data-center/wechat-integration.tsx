@@ -23,10 +23,10 @@ import {
   Download,
 } from "lucide-react"
 
-import { EnhancedCard } from "../design-system/enhanced-card-system"
+import { EnhancedCard } from "@/components/design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"
-import { AnimatedContainer } from "../design-system/animation-system"
-import { useSound } from "../design-system/sound-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
+import { useSound } from "@/components/design-system/sound-system"
 
 interface WeChatShareConfig {
   title: string

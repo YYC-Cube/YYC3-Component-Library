@@ -1,0 +1,25 @@
+{
+  // apps/admin — 应用侧 TS 工程（C1 拆包配套）
+  // 定位：承接自 @yyc3/admin 迁出的 128 件应用外壳，先做「可编译」，再谈「可运行」。
+  // 脚本名刻意使用 type-check:app 而非 type-check：应用侧尚未清零，
+  // 不得并入 `pnpm -r type-check` 门禁；清零后再改名并纳入根门禁。
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "baseUrl": ".",
+    // 三段落位（数组 = 依次回退）：
+    // 1) @/components/ui/* → 权威组件基座 @yyc3/ui 源码（上游应用自带的 ui 副本不随迁）
+    // 2) @/components/*   → 先查本应用 src（上游原义），未命中再回退 @yyc3/admin 组件面源码
+    // 3) @/* 与 @/src/*   → 本应用 src（lib/、hooks/、contexts/、store/ 等应用私有件）
+    "paths": {
+      "@/components/ui/*": ["../../packages/ui/src/*"],
+      "@/components/*": ["./src/*", "../../packages/admin/src/*"],
+      "@/lib/design-system": ["../../packages/admin/lib/design-system.ts"],
+      "@/src/*": ["./src/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/**/__tests__/**"]
+}

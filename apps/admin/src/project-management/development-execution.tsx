@@ -27,9 +27,9 @@ import { Progress } from "@yyc3/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@yyc3/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
 
-import { AnimatedContainer } from "../design-system/animation-system"
-import { EnhancedCard } from "../design-system/enhanced-card-system"
-import { SoundButton } from "../design-system/sound-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
+import { EnhancedCard } from "@/components/design-system/enhanced-card-system"
+import { SoundButton } from "@/components/design-system/sound-system"
 
 // 项目数据类型定义
 interface Task {

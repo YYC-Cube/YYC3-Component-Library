@@ -23,10 +23,10 @@ import {
   DropdownMenuTrigger,
 } from "@yyc3/ui/dropdown-menu"
 
-import { EnhancedCard } from "../design-system/enhanced-card-system"
+import { EnhancedCard } from "@/components/design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"
-import { AnimatedContainer, FloatingElement } from "../design-system/animation-system"
-import { useSound } from "../design-system/sound-system"
+import { AnimatedContainer, FloatingElement } from "@/components/design-system/animation-system"
+import { useSound } from "@/components/design-system/sound-system"
 
 // 数据类型定义
 interface AnalysisMetric {

@@ -1,0 +1,43 @@
+{
+  "name": "@yyc3/app-admin",
+  "version": "0.0.0",
+  "private": true,
+  "description": "YYC³ 经管后台应用（C1 拆包自 @yyc3/admin 迁出的 128 件应用外壳，整改中）",
+  "scripts": {
+    "type-check:app": "tsc --noEmit",
+    "clean": "rm -rf .tsbuildinfo"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.14.0",
+    "@yyc3/lib": "workspace:*",
+    "@yyc3/theme": "workspace:*",
+    "@yyc3/ui": "workspace:*",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^11.0.0",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.454.0",
+    "moment": "^2.31.0",
+    "next": "^15.0.0",
+    "react": "^19.3.1",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-big-calendar": "^1.20.0",
+    "react-dom": "^19.3.1",
+    "react-grid-layout": "^2.3.0",
+    "react-hook-form": "^7.60.0",
+    "react-redux": "^9.3.1",
+    "react-window": "^1.8.11",
+    "recharts": "^2.15.0",
+    "uuid": "^14.0.3",
+    "zod": "^4.6.6"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.22",
+    "@types/react": "^19",
+    "@types/react-beautiful-dnd": "^13.1.8",
+    "@types/react-big-calendar": "^1.16.3",
+    "@types/react-dom": "^19",
+    "@types/react-grid-layout": "^2.1.0",
+    "@types/react-window": "^1.8.8",
+    "typescript": "^5.9"
+  }
+}

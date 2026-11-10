@@ -11,8 +11,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Home, ArrowLeft, Clock } from "lucide-react"
-import { AnimatedContainer } from "../design-system/animation-system"
-import { SoundButton } from "../design-system/sound-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
+import { SoundButton } from "@/components/design-system/sound-system"
 
 // 定义面包屑项接口
 interface BreadcrumbItem {

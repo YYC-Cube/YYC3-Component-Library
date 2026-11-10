@@ -11,8 +11,8 @@ import {
 } from "@yyc3/ui/dropdown-menu"
 import { Badge } from "@yyc3/ui/badge"
 import { Leaf, Sun, TreePine, Snowflake, Calendar, Sparkles } from "lucide-react"
-import type { Season } from "./seasonal-themes"
-import { useSound } from "./sound-system"
+import type { Season } from "@/components/design-system/seasonal-themes"
+import { useSound } from "@/components/design-system/sound-system"
 
 interface SeasonalControlsProps {
   onSeasonChange: (season: Season) => void

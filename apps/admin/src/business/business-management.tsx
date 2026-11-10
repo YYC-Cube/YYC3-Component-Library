@@ -30,9 +30,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 
-import { EnhancedCard } from "../design-system/enhanced-card-system"
-import { AnimatedContainer } from "../design-system/animation-system"
-import { useSound } from "../design-system/sound-system"
+import { EnhancedCard } from "@/components/design-system/enhanced-card-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
+import { useSound } from "@/components/design-system/sound-system"
 
 // AI分析结果接口
 interface AIInsight {

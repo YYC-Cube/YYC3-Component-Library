@@ -26,9 +26,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-import { EnhancedCard } from "../design-system/enhanced-card-system"
+import { EnhancedCard } from "@/components/design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"
-import { AnimatedContainer } from "../design-system/animation-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
 
 export function FinanceManagement() {
   const [selectedPeriod, setSelectedPeriod] = useState("month")

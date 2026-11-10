@@ -12,8 +12,8 @@ import {
 } from "@yyc3/ui/dropdown-menu"
 import { Badge } from "@yyc3/ui/badge"
 import { Button } from "@yyc3/ui/button"
-import { FloatingElement } from "./animation-system"
-import { SoundControls, SoundButton, useSound } from "./sound-system"
+import { FloatingElement } from "@/components/design-system/animation-system"
+import { SoundControls, SoundButton, useSound } from "@/components/design-system/sound-system"
 import { cn } from "@yyc3/lib"
 
 interface HeaderActionsProps {

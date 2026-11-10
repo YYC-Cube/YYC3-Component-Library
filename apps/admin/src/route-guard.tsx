@@ -10,7 +10,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter, NextRouter } from 'next/router';
 import { useAuth, useProtectedRoute } from '../hooks/useAuth';
-import { SkeletonLoader } from './ui/skeleton-loader';
+import { SkeletonLoader } from '@/components/ui/skeleton-loader';
 import { ErrorPage } from './error-page';
 
 // 路由守卫Props接口

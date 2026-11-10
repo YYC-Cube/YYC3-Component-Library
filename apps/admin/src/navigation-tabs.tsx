@@ -8,7 +8,7 @@
  */
 
 import React, { useState } from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '@yyc3/lib';
 import {
   BarChart3,
   Bell,

@@ -26,15 +26,22 @@
 // mobile-native-app.tsx、system-initialization-loader.tsx、offline-initialization-support.tsx
 //
 // 【技术债登记】
-// - apps/admin：128 件应用侧文件当前无 package.json、不进 pnpm workspace 构建，
-//   其中 101 件仍缺 @/store/*（widgetsSlice 9、hooks 6）、@yyc3/lib 子路径
-//   （responsive-layout 5、performance-monitor 2、local-database 2）、zod、
-//   react-hook-form、react-big-calendar、react-beautiful-dnd、moment、leaflet 等。
-//   恢复为可运行应用需补脚手架并按应用口径重装依赖，不能就地补齐。
+// - apps/admin（2026-11-10 已补脚手架）：private 包 @yyc3/app-admin，含 package.json /
+//   tsconfig（@/components/ui/* → @yyc3/ui、@/components/* → 先本应用再回退本包、
+//   @/* → 本应用 src）/ globals.css；脚本名 type-check:app，暂不并入根门禁。
+//   应用侧实测 586 错（脚手架前 655）：41 处缺模块（@yyc3/lib 子路径 5 类 + 应用私有
+//   sync-service-manager/authStore/useAuth 等）＋545 处类型错，其中 5 个文件占 46%
+//   （real-time-data-processor 85、electronic-signature 74、advanced-charts 45、
+//   marketing-planning 38、department-manage 27）。
+// - 已从知识库补入权威副本（MD5 逐件一致，源
+//   /Volumes/Knowledge/YYC3-Knowledge-Base/YYC3-Knowledge-Base-UI/02-…/yyc3-management-ops-center）：
+//   store/{widgetsSlice,hooks,store,dashboardSlice}.ts、contexts/background-context.tsx。
+// - 未解：@yyc3/lib 只暴露根入口，responsive-layout / local-database / performance-monitor /
+//   auth/permission-types 等子路径不存在 —— 属 lib 真源扩充决策，不在应用侧就地造件。
 // - 双导管理 5 份副本指纹同源损坏，无法「恢复权威副本」，只能随应用重建重写。
 // - 组件面内 10 个应用壳残留（见上）待第二批判定：迁 apps/admin 或删除。
-// - 反方意见：迁出件当前既不构建也不测，门禁可见错误从 649 降为 0，属「移出视野」
-//   而非「修好」；本步价值是让组件面诚实为真，不代表 admin 应用已可用。
+// - 反方意见：迁出件当前不构建、不测、type-check:app 不进门禁，可见错误从 649 挪到 586；
+//   本步价值是让组件面诚实为真 + 应用侧有可运行的类型入口，不代表 admin 应用可用。
 // ============================================================
 
 export { AdvancedTimer } from './advanced-timer';

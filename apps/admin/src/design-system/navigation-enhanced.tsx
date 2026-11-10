@@ -4,8 +4,8 @@ import type React from "react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@yyc3/ui/collapsible"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@yyc3/lib"
-import { AnimatedContainer } from "./animation-system"
-import { SoundButton } from "./sound-system"
+import { AnimatedContainer } from "@/components/design-system/animation-system"
+import { SoundButton } from "@/components/design-system/sound-system"
 
 interface MenuItem {
   title: string

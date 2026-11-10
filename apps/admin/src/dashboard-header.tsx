@@ -15,9 +15,9 @@ import { Input } from "@yyc3/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@yyc3/ui/sheet"
 import { MobileNav } from "./mobile-nav"
 import { AppLogo } from "./app-logo"
-import { Notifications } from "./notifications"
+import { Notifications } from "@/components/notifications"
 import { SettingsPanel } from "./settings-panel"
-import { UserProfile } from "./user-profile"
+import { UserProfile } from "@/components/user-profile"
 import { useAppContext } from "@yyc3/lib/AppContext"
 
 export function DashboardHeader() {

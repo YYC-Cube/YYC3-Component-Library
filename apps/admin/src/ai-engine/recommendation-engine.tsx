@@ -19,10 +19,10 @@ import {
 import { Switch } from "@yyc3/ui/switch"
 import { Slider } from "@yyc3/ui/slider"
 
-import { EnhancedCard } from "../design-system/enhanced-card-system"
+import { EnhancedCard } from "@/components/design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"
-import { AnimatedContainer, FloatingElement } from "../design-system/animation-system"
-import { useSound } from "../design-system/sound-system"
+import { AnimatedContainer, FloatingElement } from "@/components/design-system/animation-system"
+import { useSound } from "@/components/design-system/sound-system"
 
 // 推荐类型定义
 interface Recommendation {
