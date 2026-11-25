@@ -176,21 +176,21 @@ export const getProgressColor = (progress: number, status?: string): string => {
 // 状态配置
 export const statusConfig = {
   task: {
-    todo: { label: "待开始", color: "bg-slate-100 text-slate-800", icon: "Clock" },
-    "in-progress": { label: "进行中", color: "bg-sky-100 text-sky-800", icon: "Play" },
-    review: { label: "待审核", color: "bg-amber-100 text-amber-800", icon: "Eye" },
-    completed: { label: "已完成", color: "bg-emerald-100 text-emerald-800", icon: "Check" },
+    todo: { label: "待开始", color: "bg-slate-100 text-slate-800", bgColor: "bg-slate-100", borderColor: "border-slate-200", icon: "Clock" },
+    "in-progress": { label: "进行中", color: "bg-sky-100 text-sky-800", bgColor: "bg-sky-100", borderColor: "border-sky-200", icon: "Play" },
+    review: { label: "待审核", color: "bg-amber-100 text-amber-800", bgColor: "bg-amber-100", borderColor: "border-amber-200", icon: "Eye" },
+    completed: { label: "已完成", color: "bg-emerald-100 text-emerald-800", bgColor: "bg-emerald-100", borderColor: "border-emerald-200", icon: "Check" },
   },
   approval: {
-    pending: { label: "待审批", color: "bg-amber-100 text-amber-800", icon: "Clock" },
-    approved: { label: "已批准", color: "bg-emerald-100 text-emerald-800", icon: "Check" },
-    rejected: { label: "已拒绝", color: "bg-red-100 text-red-800", icon: "X" },
-    cancelled: { label: "已取消", color: "bg-slate-100 text-slate-800", icon: "Ban" },
+    pending: { label: "待审批", color: "bg-amber-100 text-amber-800", bgColor: "bg-amber-100", borderColor: "border-amber-200", icon: "Clock" },
+    approved: { label: "已批准", color: "bg-emerald-100 text-emerald-800", bgColor: "bg-emerald-100", borderColor: "border-emerald-200", icon: "Check" },
+    rejected: { label: "已拒绝", color: "bg-red-100 text-red-800", bgColor: "bg-red-100", borderColor: "border-red-200", icon: "X" },
+    cancelled: { label: "已取消", color: "bg-slate-100 text-slate-800", bgColor: "bg-slate-100", borderColor: "border-slate-200", icon: "Ban" },
   },
   customer: {
-    active: { label: "活跃", color: "bg-emerald-100 text-emerald-800", icon: "UserCheck" },
-    inactive: { label: "非活跃", color: "bg-slate-100 text-slate-800", icon: "UserX" },
-    potential: { label: "潜在", color: "bg-amber-100 text-amber-800", icon: "User" },
+    active: { label: "活跃", color: "bg-emerald-100 text-emerald-800", bgColor: "bg-emerald-100", borderColor: "border-emerald-200", icon: "UserCheck" },
+    inactive: { label: "非活跃", color: "bg-slate-100 text-slate-800", bgColor: "bg-slate-100", borderColor: "border-slate-200", icon: "UserX" },
+    potential: { label: "潜在", color: "bg-amber-100 text-amber-800", bgColor: "bg-amber-100", borderColor: "border-amber-200", icon: "User" },
   },
 }
 
@@ -232,10 +232,16 @@ export const notificationConfig = {
 
 // 工具函数
 export const getStatusStyle = (type: string, status: string) => {
+  const config = statusConfig as Record<
+    string,
+    Record<string, { label: string; color: string; bgColor: string; borderColor: string; icon: string }>
+  >
   return (
-    statusConfig[type as keyof typeof statusConfig]?.[status as keyof typeof statusConfig.task] || {
+    config[type]?.[status] || {
       label: status,
       color: "bg-slate-100 text-slate-800",
+      bgColor: "bg-slate-100",
+      borderColor: "border-slate-200",
       icon: "Circle",
     }
   )

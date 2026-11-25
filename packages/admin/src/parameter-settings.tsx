@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@yyc3/ui/textarea"
 import { Badge } from "@yyc3/ui/badge"
 import { Settings, Globe, Mail, Shield, Database, Clock, Save, RefreshCw, Eye, EyeOff, FileText } from "lucide-react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "@yyc3/ui"
 import Image from "next/image"
 
 export function ParameterSettings() {

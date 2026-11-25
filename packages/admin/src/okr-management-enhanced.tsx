@@ -20,7 +20,7 @@ import {
 } from "@yyc3/ui/dialog"
 import { Label } from "@yyc3/ui/label"
 import { OKRAnalyticsCharts } from "@/components/charts/okr-analytics-charts"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "@yyc3/ui"
 import {
   Target,
   TrendingUp,

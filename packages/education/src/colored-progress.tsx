@@ -7,7 +7,7 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 interface ColoredProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   value: number

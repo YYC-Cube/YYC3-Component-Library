@@ -24,7 +24,7 @@ import {
   Users,
   Globe,
 } from "lucide-react"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from "@yyc3/ui"
 
 interface SystemMetric {
   name: string

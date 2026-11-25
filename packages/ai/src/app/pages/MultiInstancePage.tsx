@@ -13,7 +13,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, AppWindow, FolderKanban, MessageSquare, Radio,
   Plus, X, Maximize2, Minimize2, Eye, EyeOff, Copy, Trash2,

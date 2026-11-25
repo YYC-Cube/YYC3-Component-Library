@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Mic, MicOff } from 'lucide-react';
 
 interface VoiceInputProps {

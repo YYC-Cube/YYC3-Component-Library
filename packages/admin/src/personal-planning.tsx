@@ -318,7 +318,7 @@ export function PersonalPlanning() {
                           <div className="text-sm flex items-center gap-1 text-muted-foreground">
                             <Calendar className="h-3.5 w-3.5" />
                             截止日期
-                          </span>
+                          </div>
                           <div className="font-medium">{skill.deadline}</div>
                           <div className="text-sm text-muted-foreground">完成度: {skill.progress}%</div>
                           <div className="flex gap-2 mt-2">
@@ -345,7 +345,7 @@ export function PersonalPlanning() {
                   <Plus className="h-4 w-4" />
                   添加培训
                 </Button>
-              <div>
+              </div>
               <div className="space-y-4">
                 {upcomingTrainings.map((training) => (
                   <Card key={training.id}>
@@ -367,14 +367,14 @@ export function PersonalPlanning() {
                           <div className="flex items-center gap-1 text-sm text-muted-foreground">
                             <Calendar className="h-3.5 w-3.5" />
                             培训时间
-                          </span>
+                          </div>
                           <div className="font-medium">
                             {training.startDate} - {training.endDate}
                           </div>
                           <div className="flex items-center gap-1 text-sm text-muted-foreground">
                             <Clock className="h-3.5 w-3.5" />
                             持续时间: {training.duration}
-                          </span>
+                          </div>
                           <div className="flex gap-2 mt-2">
                             <Button variant="ghost" size="icon" className="h-8 w-8">
                               <Edit2 className="h-4 w-4" />

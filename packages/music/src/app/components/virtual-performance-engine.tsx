@@ -5,8 +5,8 @@ import type React from "react"
 import { useState, useRef } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { OrbitControls, Environment } from "@react-three/drei"
-import { Button } from "@/components/ui/button"
-import { Slider } from "@/components/ui/slider"
+import { Button } from "@yyc3/ui/button"
+import { Slider } from "@yyc3/ui/slider"
 import type * as THREE from "three"
 
 function VirtualIdol({ mood }: { mood: "calm" | "energetic" }) {

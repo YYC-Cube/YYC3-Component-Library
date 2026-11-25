@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { motion, useInView, useMotionValue, useTransform } from 'motion/react';
+import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { Move, Hand, MousePointer2, Volume2, Fingerprint, Eye } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 

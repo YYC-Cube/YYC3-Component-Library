@@ -31,7 +31,7 @@ review_status: reviewed
 
 - **v1.0（2026-07-25）**：按 `YYC3-UI-1~8` 等目录整迁的三阶段计划（合计 ~17 万文件 / 27 小时）。
 - **v2.0（2026-11-03）**：因误将 `YYC-Cube/personal/YYC3-Knowledge-Base` 当作唯一知识库，判定「v1 源目录消失」，重定界为 personal 副本五块素材。
-- **v2.1（2026-11-03，本版）**：用户指正真实路径后勘误——v1 引用的源在**主库 `/Users/yanyu/YYC3-Knowledge-Base` 中全部存在**（实测十池 632,382 文件）。本版确立**双源结构**与**权威副本策略**，新增 Phase 2「主库普查与权威副本甄别」，后续阶段顺延为 Phase 3~7。完整证据见《[YYC3-组件库-迁移实况评估报告 v2.0.0](docs/YYC3-项目组件-拆分规范/YYC3-组件库-迁移实况评估报告.md)》。
+- **v2.1（2026-11-03，本版）**：用户指正真实路径后勘误——v1 引用的源在**主库 `/Users/yanyu/YYC3-Knowledge-Base` 中全部存在**（实测十池 632,382 文件）。本版确立**双源结构**与**权威副本策略**，新增 Phase 2「主库普查与权威副本甄别」，后续阶段顺延为 Phase 3~7。完整证据见《[YYC3-组件库-迁移实况评估报告 v2.0.0](docs/YYC3-项目组件-拆分规范/YYC3-组件库-迁移实况评估报告.md)》。**※ 2026-11-10 该主库已整体迁至 `/Volumes/Knowledge/YYC3-Knowledge-Base/YYC3-Knowledge-Base-UI` 并重组为九分类目录，取件规则见 §2.1。**
 
 | v1 断言 | 主库实测（2026-11-03） |
 | --- | --- |
@@ -49,7 +49,7 @@ review_status: reviewed
 | --- | ---: | ---: | --- | --- |
 | ai | 1,512 | 19 | ✅ 已迁入（← AI-Digital-Consulting-Website 等） | Phase 1 固化 |
 | music | 417 | 2 | ✅ 已迁入（← YYC3-Music/D-Music-e 等） | Phase 1 固化 |
-| admin | 279 | 3 | ✅ 已迁入（← 双导管理等） | Phase 1 固化 |
+| admin | 151（原 279；128 件应用侧迁 `apps/admin`，2026-11-10） | 1 | ✅ **C1 拆包完成**：闭包判据筛出组件面，`include` 恢复 `src/**/*` 且 0 错，开放 141 条导出 | 第二批：10 个应用壳残留判定 + `apps/admin` 脚手架 |
 | medical | 120 | 118 | ✅ **全量恢复**（T0+T1 36 + T2/T3 82，#38+#39）+ 前置件 47 | 摘除彻底清零；悬留：client 鉴权轻桥、tsc 非阻断残余、medical 色板 token |
 | design | 67 | 64 | ✅ **摘除清零**（61 + 收尾批 3，#40）| AuthContext/ai 双件真身落位，悬留无 |
 | ui | 66 | 0 | ✅ 基础完成 | Phase 4 承接 Claw UI |
@@ -60,12 +60,12 @@ review_status: reviewed
 | layouts | 6 | 0 | ✅ 完成 | Phase 7 裁决 karbon 归属 |
 | theme | 1 | 0 | 🚧 起步 | Phase 4 承接 theme-tokens |
 | business / effects / icons | 0 | 0 | ⬜ 空壳（终裁**保留**，PR#27 用户指令） | icons 方案：lucide 封装+品牌 SVG 待补；随 publish 批次评估 |
-| **合计** | **2,629** | **28** | — | — |
+| **合计** | **2,501**（admin C1 拆包 -128） | **26** | — | — |
 
 ### 1.2 配套资产
 
 - `stories/`：10 域 stories 齐备 ✅；脚手架遗留示例待清理（Phase 1）
-- `apps/`、`templates/`：空目录，Phase 7 落地
+- `apps/`、`templates/`：`apps/admin` 已接收 admin 128 件应用侧文件（无 package.json，暂不进 workspace 构建），`apps/storybook` + `apps/playground` 承载门户，Phase 7 落地完成
 - 治理：git ✅（远程 `YYC-Cube/YYC3-Component-Library`，底册已登记，PR #1 已合并）；分支保护 ⬜（Phase 0）
 
 ---
@@ -76,9 +76,14 @@ review_status: reviewed
 
 ### 2.1 源 A｜主库十池（主要源：已迁内容的来源池 + 剩余大规模自研素材）
 
-**路径**：`/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI{,-1..-9}`（非 git，实测 632,382 文件）
+**路径（2026-11-10 已迁移）**：`/Volumes/Knowledge/YYC3-Knowledge-Base/YYC3-Knowledge-Base-UI`（非 git）
 
-**结构定性**：UI/UI-1/UI-6/UI-9 = 同一集合四份先后快照；UI-4/UI-5 = 孪生；UI-2 = node_modules 占 92.3%；UI-3 = 策展版归档（01-Core/02-UI-Applications/…）；UI-8 = **组件库建设工作区**；UI-9 = **最全终版快照 + 独有增量**。
+> **路径口径变更**：原 `/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI{,-1..-9}`（十池、632,382 文件）已重组为按业务分类的九目录结构，旧池名路径作废。新根下为 `00-项目资产-资产台账`、`01-项目整合-核心基建`、`02-项目开发-业务应用`（其下再分 00-应用容器 / 01-AI平台与智能体 / 02-企业管理与经管运维 / 03-云平台与基础设施 / 04-教育与学习 / 05-医疗健康 / 06-文娱与音乐 / 07-智慧城市与物联网 / 08-电商官网与落地页 / 09-数据看板与可视化 / 10-作品集与创意 / 11-行业与生活服务）、`03-项目模版-场景模板`、`04-项目资产-组件体系`、`05-项目开发-工具链`、`06-项目资产-数据语料`、`07-项目运营-归档变体`、`08-项目测试-沙箱`。
+> **取件规则**：按**项目名**在新根下检索，不再按旧池名（`YYC3-UI-9/…`）定位。已实测映射样例：`yyc3-reusable-components` → `04-项目资产-组件体系/`；`yyc3-jinlan-admin`、`yyc3-management-ops-center` → `02-项目开发-业务应用/02-企业管理与经管运维/`；`yyc3-learning-platform` → `02-项目开发-业务应用/04-教育与学习/`。
+> **权威副本策略的沿用方式**：旧「UI-9 最全 ＞ UI-8 工作区 ＞ 其他快照」的优先级不再按池名判定，改为按项目名在 `02/04` 下取唯一副本、`07-归档变体` 仅作差异比对。
+> 源码内既有 provenance 注释（`// 源（D0 权威副本）：/Users/yanyu/YYC3-Knowledge-Base/…`）保留为**迁移时点的历史记录**，不回改，避免造出未经核验的新路径。
+
+**结构定性（历史口径存档）**：UI/UI-1/UI-6/UI-9 = 同一集合四份先后快照；UI-4/UI-5 = 孪生；UI-2 = node_modules 占 92.3%；UI-3 = 策展版归档（01-Core/02-UI-Applications/…）；UI-8 = **组件库建设工作区**；UI-9 = **最全终版快照 + 独有增量**。
 
 **使用方式**：**组件级、按需、永不整迁**。v1 的业务域→项目映射（音乐/AI/医疗/管理商务/教育/城市/金融）保留为抽取索引。
 

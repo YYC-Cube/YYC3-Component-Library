@@ -12,7 +12,7 @@
  */
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Clock, Archive, FileText, MoreHorizontal,
   FolderOpen, Trash2, Pencil, Copy, ExternalLink,

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, Sparkles, Wand2, Music2, Mic2, FileMusic, 
   ChevronLeft, Plus, CheckCircle2, LayoutGrid,

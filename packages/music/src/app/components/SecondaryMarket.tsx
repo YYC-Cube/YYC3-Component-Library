@@ -9,7 +9,7 @@
  *   - Cancel own listings
  */
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, TrendingUp, ShoppingCart, Tag, Star, ArrowRight, Clock,
   BarChart3, ArrowLeftRight, Check, AlertCircle, Disc3, Hash,

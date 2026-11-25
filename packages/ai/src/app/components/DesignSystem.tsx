@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 const colors = [
   { name: 'Core Blue', hex: '#007AFF', role: '品牌主色' },

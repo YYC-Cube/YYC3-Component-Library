@@ -11,7 +11,7 @@
 
 import * as React from 'react';
 import { ChevronDown, Search, Calendar, Filter, Download, Upload, Trash2 } from 'lucide-react';
-import messageStorage, { StoredMessage, MessageFilter, PaginationOptions } from './message-storage';
+import messageStorage, { type StoredMessage, type MessageFilter, type PaginationOptions } from './message-storage';
 
 interface MessageHistoryProps {
   onLoadMessages: (messages: StoredMessage[]) => void;

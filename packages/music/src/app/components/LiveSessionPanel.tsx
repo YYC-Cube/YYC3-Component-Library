@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Radio, Users, Send, Music, Wifi, WifiOff } from 'lucide-react';
 import { clsx } from 'clsx';
 import { apiFetch } from '../lib/supabase';

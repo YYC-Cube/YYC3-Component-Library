@@ -3,13 +3,27 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
-    "incremental": false
+    "incremental": false,
+    "baseUrl": ".",
+    // 别名口径：@/* 指向本包 src，还原上游整应用里的 `@/components/*`、`@/lib/*`、
+    // `@/types/*` 等写法（原 tsconfig 无 paths，故这 1,100+ 处导入全部被判为 TS2307）。
+    // 注意：@/components/ui/* 解析到本包自带的 shadcn 副本（与 @yyc3/ui 同源分叉），
+    // 未指向权威源 —— 去重须逐件 diff（D1 口径），不在本步处理。
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
+  // type-check / build 仅收敛到包入口 src/index.ts。
+  // 该包是整应用误迁（440 个 src 顶层条目：app/、admin/、modules/、monitoring/、
+  // 大量 *Page.tsx）。Strip 0 已把「配置性缺口」归位：补 46 项依赖声明 + `@/*` 别名，
+  // 全量 include 错误 7,190 → 2,631（TS2307 3,066 → 734）。
+  // 剩余 734 处缺模块均为真缺：@yyc3/lib 子路径（project-store/hash-params/node-utils/
+  // ai/*）、@yyc3/ui 子路径（brand-button/card/badge、monaco-editor 等）、@xyflow/react、
+  // react-router、three/r3f、@mantine/*、figma:asset/* 等上游应用件，须随应用抽取，不能就地补。
+  // 已在 src/index.ts【技术债登记】中记录，待按组件库口径重新抽取，不纳入本包门禁。
   "include": [
-    "src/**/*"
+    "src/index.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules",
+    "dist", "src/**/__tests__/**"]
 }

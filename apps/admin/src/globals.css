@@ -1,0 +1,3 @@
+/* apps/admin 全局样式占位。
+   上游 customer/layout.tsx 引入 `./globals.css`；本工程当前只做类型编译，
+   样式管线（Tailwind/PostCSS）待应用可运行时再补。 */

@@ -13,7 +13,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, Upload, FolderOpen, Link, PenTool, Code, Clipboard,
   User, Settings, Bot, X, ArrowUp, FileUp,

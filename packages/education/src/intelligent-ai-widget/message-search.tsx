@@ -11,7 +11,7 @@
 
 import * as React from 'react';
 import { Search, Calendar, Filter, Clock, MessageSquare, ChevronRight, X } from 'lucide-react';
-import messageStorage, { StoredMessage, MessageFilter } from './message-storage';
+import messageStorage, { type StoredMessage, type MessageFilter } from './message-storage';
 
 interface MessageSearchProps {
   onResultSelect?: (message: StoredMessage) => void;

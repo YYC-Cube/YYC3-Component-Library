@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, Heart, Star, Sparkles, Trophy, Crown, Gem, Flame,
   Orbit, Eye, Users, Mic2, Music, Headphones, Award,

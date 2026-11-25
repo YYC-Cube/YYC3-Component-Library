@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { TrendingUp, Heart, Music } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 
 const dataServices = [
   {

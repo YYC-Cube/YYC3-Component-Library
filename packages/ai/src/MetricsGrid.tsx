@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Database, Users, Globe, Zap, Clock, Server } from 'lucide-react';
 import { Card } from './ui/card';
 

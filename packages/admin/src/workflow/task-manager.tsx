@@ -26,7 +26,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@yyc3/ui/dialog"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 interface User {
   id: string;

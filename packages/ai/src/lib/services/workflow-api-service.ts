@@ -707,4 +707,18 @@ export async function getWorkflowTemplates(): Promise<WorkflowTemplate[]> {
 
 // 模拟API调用 - 创建工作流模板
 export async function createWorkflowTemplate(
-  template: Omit<WorkflowTemplate, "id" | "createdAt" | "upda
+  template: Omit<WorkflowTemplate, "id" | "createdAt" | "updatedAt">,
+): Promise<WorkflowTemplate> {
+  // 模拟API延迟
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+
+  // 创建新模板
+  const newTemplate: WorkflowTemplate = {
+    ...template,
+    id: `template${Date.now()}`,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+
+  return newTemplate
+}

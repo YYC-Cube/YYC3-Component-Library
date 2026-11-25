@@ -1,4 +1,4 @@
-import { motion, useInView } from 'motion/react';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Sparkles } from 'lucide-react';
 import { useLanguage } from './LanguageContext';

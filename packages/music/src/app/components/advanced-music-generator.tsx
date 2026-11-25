@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@yyc3/ui/button"
+import { Input } from "@yyc3/ui/input"
+import { Slider } from "@yyc3/ui/slider"
+import { Textarea } from "@yyc3/ui/textarea"
 import { Loader, Music, Play, Pause, Download } from "lucide-react"
 
 export default function AdvancedMusicGenerator() {

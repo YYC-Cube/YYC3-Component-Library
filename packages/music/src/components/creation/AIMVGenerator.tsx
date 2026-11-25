@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Play, Pause, SkipForward, Video, Type } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Slider } from "@/components/ui/slider"
+import { Button } from "@yyc3/ui/button"
+import { Slider } from "@yyc3/ui/slider"
 
 type MVStyle = "movie" | "anime" | "vlog"
 

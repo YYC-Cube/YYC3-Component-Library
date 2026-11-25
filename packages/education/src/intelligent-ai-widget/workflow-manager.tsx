@@ -61,7 +61,7 @@ export interface ExecutionLog {
 export interface WorkflowManagerProps {
   onWorkflowExecute?: (workflowId: string) => Promise<void>;
   onWorkflowCreate?: (workflow: Partial<Workflow>) => void;
-  __onWorkflowUpdate?: (workflowId: string, updates: Partial<Workflow>) => void;
+  onWorkflowUpdate?: (workflowId: string, updates: Partial<Workflow>) => void;
   onWorkflowDelete?: (workflowId: string) => void;
 }
 

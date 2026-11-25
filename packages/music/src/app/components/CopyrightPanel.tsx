@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Shield, CheckCircle, Copy, Download, FileText, Clock, Hash, User as UserIcon, Music, Sparkles } from 'lucide-react';
 import { clsx } from 'clsx';
 import { apiFetch } from '../lib/supabase';

@@ -231,7 +231,7 @@ export function MobileExamOptimization({
       </div>
 
       {/* 移动端内容区域间距调整 */}
-      <style jsx global>{`
+      <style>{`
         @media (max-width: 768px) {
           .mobile-exam-content {
             padding-top: 120px !important;

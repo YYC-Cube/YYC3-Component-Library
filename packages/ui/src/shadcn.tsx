@@ -1,6 +1,6 @@
 // ============================================================
 // shadcn-compatible barrel — v0 应用批量迁移出口（@yyc3/ui-enterprise/shadcn）
-// 由 N2 会话维护：聚合 78 个组件模块命名导出
+// 由 N2/theme 会话维护：聚合 81 个组件模块命名导出
 // ============================================================
 
 export * from "./3d-button";
@@ -30,7 +30,10 @@ export * from "./dropdown-menu";
 export * from "./dynamic-loading";
 export * from "./empty";
 export * from "./enhanced-button";
-export * from "./enhanced-form";
+export * from "./enhanced-card";
+export { EnhancedForm, EnhancedInput } from "./enhanced-form";
+export { FormField as EnhancedFormField } from "./enhanced-form";
+export * from "./enhanced-progress";
 export * from "./field";
 export * from "./floating-nav-buttons";
 export * from "./form";
@@ -39,6 +42,7 @@ export * from "./input-group";
 export * from "./input-otp";
 export * from "./input";
 export * from "./interactive-card";
+export * from "./interactive-progress";
 export * from "./item";
 export * from "./kbd";
 export * from "./label";
@@ -46,7 +50,9 @@ export * from "./lazy-load";
 export * from "./loading-fallback";
 export * from "./loading-spinner";
 export * from "./loading";
-export * from "./medical-button";
+export { MedicalButton } from "./medical-button";
+export type { ButtonProps as MedicalButtonProps } from "./medical-button";
+export { buttonVariants as medicalButtonVariants } from "./medical-button";
 export * from "./medical-card";
 export * from "./menubar";
 export * from "./navigation-menu";
@@ -61,7 +67,6 @@ export * from "./responsive-table";
 export * from "./scroll-area";
 export * from "./select";
 export * from "./separator";
-export * from "./shadcn";
 export * from "./sheet";
 export * from "./sidebar";
 export * from "./skeleton";
@@ -74,7 +79,7 @@ export * from "./table";
 export * from "./tabs";
 export * from "./textarea";
 export * from "./toast";
-export * from "./toaster";
+export { Toaster as LegacyToaster } from "./toaster";
 export * from "./toggle-group";
 export * from "./toggle";
 export * from "./tooltip";

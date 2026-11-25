@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { get as idbGet, set as idbSet } from 'idb-keyval';
 import {
   Send, Clock, MapPin, Mic, MicOff, X, Radio, Lock, Unlock,

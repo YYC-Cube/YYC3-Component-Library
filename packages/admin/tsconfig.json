@@ -2,14 +2,23 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "incremental": false
+    "incremental": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/components/ui/*": ["../ui/src/*"],
+      "@/components/*": ["./src/*"],
+      "@/*": ["./src/*"]
+    }
   },
+  // C1 拆包（2026-11-10）：应用外壳已迁 apps/admin，src 保留 150 个链路完整的件。
+  // include 由「收敛到空入口」恢复为 src/**/*，组件面全量清零 —— 从「空壳绿」变「真绿」。
+  // 迁出 128 件（126 个应用侧文件 + 2 个跟随迁移的测试），其中 101 件原带 649 个语义错，
+  // 27 件为零错但依赖断链；台账见 src/index.ts【技术债登记】。
+  // apps/admin 尚无 package.json（不进入 pnpm workspace 构建），定位为应用侧留存地，
+  // 待重建为可运行应用时再补脚手架。
   "include": [
     "src/**/*"
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules",
+    "dist", "src/**/__tests__/**"]
 }

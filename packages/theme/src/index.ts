@@ -34,3 +34,6 @@ export {
 // 源（D0 权威副本）：/Volumes/Development/YYC3-88/yyc3-shared-packages/packages/theme/src/theme-provider.tsx
 export { ThemeProvider } from './theme-provider'
 export type { ThemeProviderProps } from 'next-themes'
+
+// ── 进度与卡片表面（ui 包依赖：getProgressColor / cardSurfaces）──
+export { getProgressColor, cardSurfaces } from './progress'

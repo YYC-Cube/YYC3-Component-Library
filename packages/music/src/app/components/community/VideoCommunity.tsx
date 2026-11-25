@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Video, ThumbsUp, ShoppingCart } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 
 type MVContest = {
   id: string

@@ -40,3 +40,6 @@ storybook-static
 
 # Test coverage
 coverage
+
+# TS incremental
+*.tsbuildinfo

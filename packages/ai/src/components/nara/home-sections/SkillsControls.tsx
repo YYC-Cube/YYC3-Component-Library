@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Zap, Plus, Pause, Play, Trash2 } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 interface Skill {
   id: string;

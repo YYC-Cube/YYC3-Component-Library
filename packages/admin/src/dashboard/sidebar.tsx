@@ -12,7 +12,7 @@ import {
   Settings,
   LogOut,
 } from "lucide-react"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import { Button } from "@yyc3/ui/button"
 
 const menuItems = [

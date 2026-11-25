@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Share2, Download, Copy, Check, Users, Sparkles } from 'lucide-react';
 import { clsx } from 'clsx';
 import { useI18n } from '../hooks/useI18n';

@@ -12,7 +12,7 @@
  */
 
 import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Monitor, ArrowDownToLine, FileCode, Bot, Terminal, Eye, Database } from "lucide-react";
 import {
   crossWindowDragService,

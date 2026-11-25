@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { clsx } from 'clsx';
 import { Heart, Smile, Frown, Zap, Cloud, Sparkles } from 'lucide-react';
 import type { Emotion } from '../hooks/useAudioEngine';

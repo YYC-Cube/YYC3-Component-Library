@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@yyc3/ui/avatar"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@yyc3/ui/dialog"
 import { Progress } from "@yyc3/ui/progress"
 import { Camera, Upload, X, Check, RotateCcw, ZoomIn, ZoomOut } from "lucide-react"
-import { toast } from "@yyc3/hooks/use-toast"
+import { toast } from "@yyc3/ui"
 
 interface AvatarUploadProps {
   currentAvatar?: string

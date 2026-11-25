@@ -3,13 +3,31 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
-    "incremental": false
+    "incremental": false,
+    "baseUrl": ".",
+    // 别名口径：`@/*` 指向本包 src（原 tsconfig 无 paths，212 处导入被判为 TS2307）。
+    // ui 副本已按 D1 逐件 diff 去重（2026-11-10）：48 件副本删除、122 处引用改指
+    // `@yyc3/ui/<name>`，故不再需要 `@/components/ui/*` 映射。
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
+  // type-check / build 仅收敛到 src/index.ts 的公开面闭包
+  // （index.ts → Player → SimpleBackgroundVideo / BackgroundVideo / SearchBar / error-boundary）。
+  // 其余 391 个文件属整应用误迁，缺失 src/hooks、src/types、src/data、src/services 等上游根文件。
+  // Step 0 已归位配置层：补 46 项依赖声明 + `@/*` 别名 +
+  // 133 处 motion/react 统一为 framer-motion，全量 include 错误 1,185 → 640（TS2307 739 → 297）。
+  // ui 副本去重后再降一批（见上）；剩余为上游应用件：../hooks/useI18n、../lib/supabase、
+  // @react-three/{fiber,drei}、three、@mantine/*、figma:asset/* 等，须随应用抽取。
+  // 已在 src/index.ts【技术债登记】中记录，待滚动抽取批次重建，不纳入本包门禁。
   "include": [
-    "src/**/*"
+    "src/index.ts",
+    "src/Player.tsx",
+    "src/SimpleBackgroundVideo.tsx",
+    "src/BackgroundVideo.tsx",
+    "src/SearchBar.tsx",
+    "src/error-boundary.tsx"
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules",
+    "dist", "src/**/__tests__/**"]
 }

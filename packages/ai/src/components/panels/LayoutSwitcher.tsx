@@ -12,7 +12,7 @@
  */
 
 import React from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { LayoutDashboard, Trash2, RotateCcw, Check, X } from "lucide-react";
 import { useLayoutStore } from "../../stores/layoutStore";
 

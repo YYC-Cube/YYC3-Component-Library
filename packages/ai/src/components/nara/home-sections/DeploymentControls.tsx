@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Laptop, Smartphone, Cloud, Bolt, CheckCircle2, XCircle, Activity } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 const translations = {
   zh: {

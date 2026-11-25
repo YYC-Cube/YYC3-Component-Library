@@ -7,7 +7,7 @@ import {
   Disc3, Sparkles, BarChart3, Crown, Flame,
   CheckCircle, AlertCircle, Loader2
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import dmLogoDi from "figma:asset/1d776e4d931e39ab6811569ef7332bc442b04dee.png";
 
 // ─── 类型引入（对齐 config/dmusic_types.ts）───

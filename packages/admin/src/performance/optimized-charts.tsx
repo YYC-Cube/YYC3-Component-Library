@@ -24,7 +24,7 @@ import { Button } from "@yyc3/ui/button"
 import { Skeleton } from "@yyc3/ui/skeleton"
 import { Download, ZoomIn, ZoomOut, Filter } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@yyc3/ui/dropdown-menu"
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 
 // 数据采样函数 - 用于减少大数据集的点数
 function sampleData<T>(data: T[], maxPoints: number): T[] {

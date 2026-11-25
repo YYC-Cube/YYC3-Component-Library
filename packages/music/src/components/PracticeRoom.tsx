@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, Mic, Headset, Swords, Crown, Star, Flame, Trophy,
   TrendingUp, Users, Zap, Shield, Lock,

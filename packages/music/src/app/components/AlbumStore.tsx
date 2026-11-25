@@ -10,7 +10,7 @@
  *   - Like albums
  */
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, Disc3, ShoppingBag, Heart, Star, Music, Lock, Package,
   ChevronRight, Clock, Tag, Sparkles, Trophy, Play, Check, AlertCircle, ArrowLeft,

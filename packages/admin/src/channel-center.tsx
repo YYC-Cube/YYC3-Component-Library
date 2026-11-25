@@ -38,7 +38,7 @@ import {
   Download,
   Search,
 } from "lucide-react"
-import { useToast } from "@yyc3/hooks/use-toast"
+import { useToast } from "@yyc3/ui"
 import Image from "next/image"
 
 interface Channel {

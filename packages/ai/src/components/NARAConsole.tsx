@@ -4,7 +4,7 @@ import { HomeMode } from './nara/HomeMode';
 import { ChatMode } from './nara/ChatMode';
 import { LoopMode } from './nara/LoopMode';
 import { YYCEnterpriseLayout } from './yyc/navigation/YYCEnterpriseLayout';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 type Mode = 'home' | 'chat' | 'loop' | 'system';
 type Language = 'zh' | 'en';

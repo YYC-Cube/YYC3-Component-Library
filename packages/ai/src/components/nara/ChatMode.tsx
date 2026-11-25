@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Send, Plus, MoreVertical, CheckCircle2, Clock, AlertCircle, Loader2, Menu, X, Folder, ChevronRight, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Message {
   id: string;

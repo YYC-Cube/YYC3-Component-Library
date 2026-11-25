@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@yyc3/lib/utils"
+import { cn } from "@yyc3/lib"
 import Image from "next/image"
 
 interface LogoEnhancedProps {

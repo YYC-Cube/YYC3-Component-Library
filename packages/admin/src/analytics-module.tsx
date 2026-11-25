@@ -289,4 +289,134 @@ export function AnalyticsModule() {
                             </Badge>
                           </div>
                           <p className="text-sm text-muted-foreground mb-2">{report.description}</p>
-                          <span className="text\
+                          <span className="text-sm text-muted-foreground">{report.lastUpdate}</span>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          查看详情
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="insights" className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                  <CardHeader>
+                    <CardTitle>业务洞察</CardTitle>
+                    <CardDescription>基于数据分析的业务建议</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="p-3 bg-blue-50 rounded-lg">
+                        <h3 className="font-medium text-blue-800">销售机会</h3>
+                        <p className="text-sm text-blue-600">产品A在华东地区有15%的增长潜力</p>
+                      </div>
+                      <div className="p-3 bg-green-50 rounded-lg">
+                        <h3 className="font-medium text-green-800">客户留存</h3>
+                        <p className="text-sm text-green-600">企业客户留存率高于行业平均水平12%</p>
+                      </div>
+                      <div className="p-3 bg-purple-50 rounded-lg">
+                        <h3 className="font-medium text-purple-800">市场趋势</h3>
+                        <p className="text-sm text-purple-600">Q3季度预计销售额增长8.5%</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                  <CardHeader>
+                    <CardTitle>竞争分析</CardTitle>
+                    <CardDescription>市场竞争格局和策略建议</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">市场份额</span>
+                        <span className="text-sm font-medium">28%</span>
+                      </div>
+                      <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
+                        <div className="w-2/7 h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full"></div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">竞争对手A</span>
+                        <span className="text-sm font-medium">32%</span>
+                      </div>
+                      <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
+                        <div className="w-1/3 h-full bg-gradient-to-r from-red-400 to-red-500 rounded-full"></div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">竞争对手B</span>
+                        <span className="text-sm font-medium">20%</span>
+                      </div>
+                      <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
+                        <div className="w-1/5 h-full bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"></div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="predictions" className="space-y-4">
+              <Card className="bg-white/80 backdrop-blur-sm border border-sky-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                <CardHeader>
+                  <CardTitle>预测分析</CardTitle>
+                  <CardDescription>基于历史数据的智能预测</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="p-4 bg-gradient-to-br from-blue-50 to-sky-50 rounded-xl border border-blue-100">
+                        <h3 className="font-medium text-blue-800 mb-2">销售预测</h3>
+                        <div className="text-2xl font-bold text-blue-600">¥2.8M</div>
+                        <p className="text-sm text-blue-600">下月预计销售额</p>
+                      </div>
+                      <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-100">
+                        <h3 className="font-medium text-green-800 mb-2">客户增长</h3>
+                        <div className="text-2xl font-bold text-green-600">+12.5%</div>
+                        <p className="text-sm text-green-600">下月预计增长率</p>
+                      </div>
+                      <div className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl border border-purple-100">
+                        <h3 className="font-medium text-purple-800 mb-2">收入预测</h3>
+                        <div className="text-2xl font-bold text-purple-600">¥1.2M</div>
+                        <p className="text-sm text-purple-600">下月预计净利润</p>
+                      </div>
+                    </div>
+                    <div className="p-4 bg-white rounded-xl border border-sky-200">
+                      <h3 className="font-medium mb-3">预测模型准确度</h3>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span>销售预测</span>
+                          <span className="font-medium">92%</span>
+                        </div>
+                        <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
+                          <div className="w-23/25 h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full"></div>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span>客户增长</span>
+                          <span className="font-medium">88%</span>
+                        </div>
+                        <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
+                          <div className="w-11/12 h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full"></div>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span>收入预测</span>
+                          <span className="font-medium">85%</span>
+                        </div>
+                        <div className="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
+                          <div className="w-17/20 h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}

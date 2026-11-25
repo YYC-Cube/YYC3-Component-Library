@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@yyc3/ui/button"
+import { Input } from "@yyc3/ui/input"
+import { Textarea } from "@yyc3/ui/textarea"
 
 const OnlineOfflineCreativeSocial = () => {
   const [popupLocation, setPopupLocation] = useState("")

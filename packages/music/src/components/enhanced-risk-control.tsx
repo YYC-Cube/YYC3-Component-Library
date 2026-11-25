@@ -4,8 +4,8 @@ import type React from "react"
 
 import { useState } from "react"
 import { Shield, AlertTriangle } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@yyc3/ui/button"
+import { Input } from "@yyc3/ui/input"
 
 export default function EnhancedRiskControl() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)

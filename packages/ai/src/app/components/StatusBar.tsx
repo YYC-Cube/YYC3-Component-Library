@@ -13,7 +13,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   GitBranch, Bot, Palette, Bell, Users, Wifi, WifiOff,
   Circle, TriangleAlert, Check, LoaderCircle, ChevronUp,

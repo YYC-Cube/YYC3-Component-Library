@@ -65,7 +65,7 @@ class MessageStorageService {
   }
 
   async initialize(): Promise<void> {
-    return new Promise((resolve, _reject) => {
+    return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.DB_NAME, this.DB_VERSION);
 
       request.onerror = () => reject(new Error('无法打开IndexedDB'));
@@ -99,7 +99,7 @@ class MessageStorageService {
       await this.initialize();
     }
 
-    return new Promise((resolve, _reject) => {
+    return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction([this.STORE_NAME], 'readwrite');
       const store = transaction.objectStore(this.STORE_NAME);
       const request = store.add(message);

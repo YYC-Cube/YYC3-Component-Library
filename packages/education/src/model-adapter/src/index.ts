@@ -91,8 +91,30 @@ import { OpenAIProvider } from './OpenAIProvider.js';
 import { GoogleProvider } from './GoogleProvider.js';
 
 // Import core components
-import { IntelligentCacheLayer, type CacheConfig as IntelligentCacheConfig } from './core/IntelligentCacheLayer.js';
-import { EnhancedStreamingProcessor, type StreamingConfig } from './core/EnhancedStreamingProcessor.js';
+import {
+  IntelligentCacheLayer,
+  CacheLevel,
+  CacheStrategy,
+  type CacheConfig as IntelligentCacheConfig
+} from './core/IntelligentCacheLayer.js';
+import type {
+  CacheMetadata,
+  CacheResult,
+  CacheGetOptions,
+  CacheSetOptions,
+  WarmupPattern,
+  WarmupReport,
+  EvictionResult,
+  ConsistencyCheck,
+  CachePerformanceReport
+} from './core/IntelligentCacheLayer.js';
+import {
+  EnhancedStreamingProcessor,
+  type StreamingConfig,
+  type StreamingMetrics,
+  type StreamBuffer,
+  type PrefetchContext
+} from './core/EnhancedStreamingProcessor.js';
 
 // Re-export all types
 export type {
@@ -179,19 +201,16 @@ export { IntelligentCacheLayer };
 export { EnhancedStreamingProcessor };
 
 // Re-export cache types
+export { CacheLevel, CacheStrategy };
 export type {
-  CacheLevel,
-  CacheStrategy,
   CacheMetadata,
   CacheResult,
   CacheGetOptions,
   CacheSetOptions,
-  CacheStats,
   WarmupPattern,
   WarmupReport,
   EvictionResult,
   ConsistencyCheck,
-  CacheConfig,
   CachePerformanceReport
 };
 
@@ -200,8 +219,7 @@ export type {
   StreamingConfig,
   StreamingMetrics,
   StreamBuffer,
-  PrefetchContext,
-  StreamPerformanceReport
+  PrefetchContext
 };
 
 // Package version

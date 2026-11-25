@@ -11,9 +11,16 @@
  * notes: N2 二次迁移前置——由开发区多数派规范件晋升
  */
 
-import { Badge } from "@yyc3/ui-enterprise/shadcn"
+import { Badge } from "./badge"
 
-import type { TaskStatus } from "@/lib/types/workflow-types"
+/** 任务状态（原 `@/lib/types/workflow-types` 不存在且未配置 `@/` 别名，就地定义以消除幽灵依赖） */
+export type TaskStatus =
+  | "pending"
+  | "in_progress"
+  | "completed"
+  | "escalated"
+  | "overdue"
+  | "warning"
 
 interface StatusBadgeProps {
   status: TaskStatus

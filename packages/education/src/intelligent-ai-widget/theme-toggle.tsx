@@ -11,7 +11,7 @@
 
 import * as React from 'react';
 import { Sun, Moon, Monitor } from 'lucide-react';
-import { useTheme, Theme } from './theme-context';
+import { useTheme, type Theme } from './theme-context';
 
 interface ThemeToggleProps {
   className?: string;

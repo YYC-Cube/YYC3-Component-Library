@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Cloud, Cpu, Database, Lock } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@yyc3/ui/button"
 
 const edgeOperations = [
   { name: "语音转旋律", type: "local", icon: Cpu },

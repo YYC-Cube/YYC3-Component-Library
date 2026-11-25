@@ -13,7 +13,7 @@
 
 import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, Settings, Bot, Palette, Globe, Shield, Key,
   ExternalLink, ToggleRight, ToggleLeft, ChevronRight,

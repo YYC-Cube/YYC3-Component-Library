@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useInView, useMotionValue, useTransform } from 'motion/react';
+import { motion, AnimatePresence, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { Brain, Code, Cpu, Database, Globe, Layers, ChevronRight, ChevronLeft, Clock, Users, Star, ChevronDown } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from './LanguageContext';
