@@ -43,3 +43,8 @@ coverage
 
 # TS incremental
 *.tsbuildinfo
+
+# batch2 临时覆盖率工作目录（不入库）
+coverage-ui/
+coverage-tmp/
+scripts-temp/
