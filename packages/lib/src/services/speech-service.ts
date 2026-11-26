@@ -309,6 +309,11 @@ export class SpeechSynthesisService {
             cancel: () => {},
             pause: () => {},
             resume: () => {},
+            // batch2 缺陷修复：补齐三态属性，非浏览器环境 getStatus() 返回合法默认值
+            // （此前 speaking/paused/pending 为 undefined，stop/pause/resume 判据失真）
+            speaking: false,
+            paused: false,
+            pending: false,
           } as unknown as SpeechSynthesis)
     this.loadVoices()
   }

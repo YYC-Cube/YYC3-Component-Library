@@ -310,12 +310,13 @@ describe('SpeechSynthesisService · 环境不支持（降级桩）', () => {
     expect(() => svc.stop()).not.toThrow();
     expect(() => svc.pause()).not.toThrow();
     expect(() => svc.resume()).not.toThrow();
-    // 真身已知行为：降级桩无 speaking/paused/pending 属性，getStatus 三态为 undefined
+    // batch2 缺陷修复后：降级桩补齐 speaking/paused/pending 三态属性，
+    // getStatus 返回合法默认值 false（不再为 undefined）
     expect(svc.getStatus()).toEqual({
       isSupported: false,
-      speaking: undefined,
-      paused: undefined,
-      pending: undefined,
+      speaking: false,
+      paused: false,
+      pending: false,
       voiceCount: 0,
       currentVoice: '未选择',
     });
