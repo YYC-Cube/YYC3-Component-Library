@@ -49,13 +49,17 @@ const FormField = <
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext)
   const itemContext = React.useContext(FormItemContext)
+
+  // 缺陷修复（batch2 报告项 4）：守卫此前位于 useFormState/getFieldState 之后
+  // 且 context 默认值为 {}（永为真值）→ 守卫是死代码，脱离 FormField 时会先在
+  // 后续调用处炸出无关错误。守卫前置：以 name 是否存在判定是否在 FormField 内。
+  if (!fieldContext || !fieldContext.name) {
+    throw new Error('useFormField should be used within <FormField>')
+  }
+
   const { getFieldState } = useFormContext()
   const formState = useFormState({ name: fieldContext.name })
   const fieldState = getFieldState(fieldContext.name, formState)
-
-  if (!fieldContext) {
-    throw new Error('useFormField should be used within <FormField>')
-  }
 
   const { id } = itemContext
 

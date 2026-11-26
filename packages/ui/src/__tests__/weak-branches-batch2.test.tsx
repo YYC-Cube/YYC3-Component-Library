@@ -181,7 +181,7 @@ describe('floating-nav-buttons · 历史长度回退分支', () => {
 })
 
 describe('form · useFormField 守卫与消息兜底', () => {
-  it('FormControl 脱离 FormField → 抛错（守卫 L56 实为死代码：useFormState 处先炸——batch2 记录）', () => {
+  it('FormControl 脱离 FormField → 抛 useFormField 守卫错（守卫已前置到 useFormState/getFieldState 之前，batch2 缺陷已修复）', () => {
     const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
     expect(() =>
       render(
@@ -189,7 +189,7 @@ describe('form · useFormField 守卫与消息兜底', () => {
           <input />
         </FormControl>,
       ),
-    ).toThrow()
+    ).toThrow(/useFormField should be used within <FormField>/)
     spy.mockRestore()
   })
 

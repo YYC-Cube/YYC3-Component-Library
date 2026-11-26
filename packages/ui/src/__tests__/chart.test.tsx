@@ -128,6 +128,18 @@ describe('ChartTooltipContent', () => {
     expect(screen.getByText('1,890')).toBeInTheDocument()
   })
 
+  it('payload 条目缺 payload 字段 → 防御可选链兜底 item.color（batch2 缺陷已修复，不再 TypeError）', () => {
+    // 非 color prop 时才走 item.payload.fill 分支——修复前此处直接 TypeError
+    renderTooltip({
+      payload: [
+        { dataKey: 'desktop', name: 'desktop', value: 100, color: '#0ea5e9' },
+        { dataKey: 'mobile', name: 'mobile', value: 200, color: '#22c55e' },
+      ] as never,
+    })
+    expect(screen.getByText('100')).toBeInTheDocument()
+    expect(screen.getByText('200')).toBeInTheDocument()
+  })
+
   it('indicator=dashed 分支', () => {
     renderTooltip({ indicator: 'dashed' })
     expect(screen.getByText('1,890')).toBeInTheDocument()
