@@ -32,8 +32,18 @@ beforeAll(() => {
 })
 
 describe('Loading 三件套', () => {
-  it('Loading 默认导出（当前实现恒返回 null——行为固化断言）', () => {
-    const { container } = render(<Loading />)
+  it('Loading 默认渲染居中转圈 +「加载中...」（修复恒返回 null，对齐多数派规范）', () => {
+    render(<Loading />)
+    expect(screen.getByText('加载中...')).toBeInTheDocument()
+    const spinner = document.querySelector('.animate-spin')
+    expect(spinner).toBeInTheDocument()
+    expect(spinner?.className).toContain('rounded-full')
+    // 路由级 loading 占位惯例：满屏居中
+    expect(document.querySelector('.h-screen.items-center.justify-center')).toBeInTheDocument()
+  })
+
+  it('Loading active=false 显式关断 → 返回 null', () => {
+    const { container } = render(<Loading active={false} />)
     expect(container.firstChild).toBeNull()
   })
 
