@@ -22,7 +22,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@yyc3/lib": "workspace:*"
+    "@yyc3/lib": "^0.4.0"
   },
   "devDependencies": {
     "@types/react": "^19",

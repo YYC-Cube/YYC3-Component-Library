@@ -12,9 +12,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@yyc3/lib": "workspace:*",
-    "@yyc3/ui": "workspace:*",
-    "@yyc3/theme": "workspace:*"
+    "@yyc3/lib": "^0.4.0",
+    "@yyc3/ui": "^2.1.2",
+    "@yyc3/theme": "^2.2.0"
   },
   "devDependencies": {
     "@types/react": "^19",
