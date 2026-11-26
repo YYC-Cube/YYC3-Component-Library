@@ -1264,8 +1264,8 @@ importers:
         specifier: ^1.1.8
         version: 1.2.15(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@yyc3/theme':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^2.2.0
+        version: 2.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -4150,9 +4150,11 @@ packages:
   '@webcontainer/env@1.1.1':
     resolution: {integrity: sha512-6aN99yL695Hi9SuIk1oC88l9o0gmxL1nGWWQ/kNy81HigJ0FoaoTXpytCj6ItzgyCEwA9kF1wixsTuv5cjsgng==}
 
-  '@yyc3/theme@1.0.0':
-    resolution: {integrity: sha512-wuLtHGMuLvDEfL1Dw0+eFq6knvl0spAf+qZY8NxSYr8jsh/o5c8ZSRVT84LUTWsM156yNRI00iNrCq9j+hmt0w==}
-    engines: {node: '>=18.0.0', pnpm: '>=8.0.0'}
+  '@yyc3/theme@2.2.0':
+    resolution: {integrity: sha512-KXxhD+fdwQbLTpQ/qF8irE4jEo2c2kTSExju77r7NxdSc4lE5SDCvRC+UdhMruivMxWJTmorp5xYY/p8HzpJ3g==}
+    peerDependencies:
+      react: ^18 || ^19
+      react-dom: 19.3.1
 
   abort-controller@3.0.0:
     resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
@@ -9470,9 +9472,11 @@ snapshots:
 
   '@webcontainer/env@1.1.1': {}
 
-  '@yyc3/theme@1.0.0':
+  '@yyc3/theme@2.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      eventemitter3: 5.0.4
+      next-themes: 0.4.6(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
 
   abort-controller@3.0.0:
     dependencies:

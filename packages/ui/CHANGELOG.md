@@ -1,5 +1,19 @@
 # @yyc3/ui
 
+## 2.1.2
+
+### Patch Changes
+
+- **zod4 兼容修复**：`@hookform/resolvers` ^3.10.0 → **^5.9.2**（resolvers 3.x 不支持 zod4，zodResolver 校验错误路径抛未捕获 ZodError；5.x peer `zod ^3.25.0 || ^4.0.0`，import 路径 `@hookform/resolvers/zod` 不变，消费方零改动）。music/ai 两包同步升级。
+- **loading.tsx 渲染修复**：恒返回 null → 按多数派规范件渲染（`h-screen` 居中转圈环 +「加载中...」）；新增可选 `active` prop（默认 true 渲染，false 显式关断），Next 路由无 props 挂载不受影响。
+- 覆盖率：istanbul 全口径 84.74S / **94.06B** / 96.64F / 97.80L（batch1 54 组件 0% 清零 + batch2 弱分支/claw 域冲刺，883→1032+ 用例）。
+
+## 2.1.1
+
+### Patch Changes
+
+- workspace 依赖泄漏修复：theme → ^1.0.0（2.1.0 发布即发现 dependencies 泄漏 workspace:*，消费者 npm install 崩）。
+
 ## 2.1.0
 
 ### Minor Changes
