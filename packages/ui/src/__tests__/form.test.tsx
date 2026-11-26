@@ -8,6 +8,8 @@ import { describe, it, expect, beforeAll, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 import {
   Form,
@@ -31,8 +33,8 @@ beforeAll(() => {
 type Values = { username: string }
 
 function DemoForm({ onValid }: { onValid: (v: Values) => void }) {
-  // 注：@hookform/resolvers@3.10 的 zodResolver 与 zod@4 不兼容（错误路径抛未捕获
-  // ZodError，见批次报告产品 bug 清单）——本测采用 RHF 内建 rules 驱动同一链路
+  // 注：历史批次的 resolvers@3.10 与 zod@4 不兼容（错误路径抛未捕获 ZodError），
+  // 本链路当时以 RHF 内建 rules 驱动绕开；升级 resolvers@5 后新增 zod4 回归组见文件尾
   const form = useForm<Values>({
     defaultValues: { username: '' },
   })
@@ -98,5 +100,67 @@ describe('Form · RHF 全链', () => {
 
   it('useFormField 导出可用（供外部扩展）', () => {
     expect(typeof useFormField).toBe('function')
+  })
+})
+
+// ============================================================
+// resolvers@5 + zod@4 回归（修复批次 · 2026-11-27）
+// 产品 bug 复现：resolvers@3.10 的 zodResolver 在 zod@4 校验错误路径
+// 抛未捕获 ZodError——升级 ^5.9.2 后同链路必须正常出错/出文案
+// ============================================================
+const zodValuesSchema = z.object({
+  username: z.string().min(2, '用户名至少 2 个字符'),
+})
+
+function ZodDemoForm({ onValid }: { onValid: (v: Values) => void }) {
+  const form = useForm<Values>({
+    resolver: zodResolver(zodValuesSchema),
+    defaultValues: { username: '' },
+  })
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onValid)} noValidate>
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>用户名</FormLabel>
+              <FormControl>
+                <Input placeholder="请输入用户名" {...field} />
+              </FormControl>
+              <FormDescription>这是你的公开昵称</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">提交表单</Button>
+      </form>
+    </Form>
+  )
+}
+
+describe('Form · zod4 + zodResolver（resolvers5 升级回归）', () => {
+  it('非法提交 → zod4 校验错误渲染到 FormMessage（不再抛未捕获 ZodError）', async () => {
+    const user = userEvent.setup()
+    render(<ZodDemoForm onValid={vi.fn()} />)
+    await user.type(screen.getByPlaceholderText('请输入用户名'), 'y')
+    await user.click(screen.getByRole('button', { name: '提交表单' }))
+    await waitFor(() => {
+      expect(screen.getByText('用户名至少 2 个字符')).toBeInTheDocument()
+    })
+    const input = screen.getByPlaceholderText('请输入用户名')
+    expect(input).toBeInvalid()
+    expect(input.getAttribute('aria-describedby')).toContain('form-item-message')
+  })
+
+  it('合法提交 → zodResolver 校验通过 → onValid 回调', async () => {
+    const user = userEvent.setup()
+    const onValid = vi.fn()
+    render(<ZodDemoForm onValid={onValid} />)
+    await user.type(screen.getByPlaceholderText('请输入用户名'), 'yyc3')
+    await user.click(screen.getByRole('button', { name: '提交表单' }))
+    await vi.waitFor(() => expect(onValid).toHaveBeenCalledTimes(1))
+    expect(onValid.mock.calls[0][0]).toMatchObject({ username: 'yyc3' })
   })
 })
