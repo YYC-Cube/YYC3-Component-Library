@@ -1,5 +1,18 @@
 # @yyc3/lib
 
+## 0.4.0
+
+### Minor Changes
+
+- services 真身批次：ai-assistant-service / visualization-service / chart-voice-control / voice-command-engine / speech-service 等服务层完备（regenerateResponse 独立重生成路径、toolCalls 结果回写 metadata、speech 降级桩三态补齐）。
+- 覆盖率：istanbul 全口径 96.23S / **87.52B** / 96.42F / 96.63L（batch1+batch2 共 359 用例，越过 85% 铁律门）。
+
+## 0.3.0
+
+### Minor Changes
+
+- utils ×6 域 / 7 hooks / i18n / error-handling / contexts ×2 / adapters 与 41 条 barrel 导出成型（0.2.0 → 0.3.0 服务层骨架批次，CHANGELOG 补录）。
+
 ## 0.2.0
 
 ### Minor Changes
