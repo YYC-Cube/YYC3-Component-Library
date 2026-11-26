@@ -466,16 +466,49 @@ export class AIAssistantService {
       metadata: { attachments },
     })
 
+    return this.generateReply(conversationId, userMessage)
+  }
+
+  /**
+   * 重新生成助手回复（batch2 缺陷修复：重生成走独立路径，不重复追加用户消息）
+   * 基于对话末条用户消息重新生成；调用方需先删除待重生成的旧助手回复
+   */
+  async regenerateResponse(conversationId: string): Promise<Message> {
+    const conversation = this.conversations.get(conversationId)
+    if (!conversation) {
+      throw new Error("对话不存在")
+    }
+
+    const userMessage = [...conversation.messages].reverse().find((msg) => msg.role === "user")
+    if (!userMessage) {
+      throw new Error("找不到对应的用户消息")
+    }
+
+    return this.generateReply(conversationId, userMessage)
+  }
+
+  /**
+   * 生成并追加助手回复（sendMessage / regenerateResponse 共用后段）
+   */
+  private async generateReply(conversationId: string, userMessage: Message): Promise<Message> {
+    const conversation = this.conversations.get(conversationId)
+    if (!conversation) {
+      throw new Error("对话不存在")
+    }
+
     try {
       // 准备上下文
       const context = this.prepareContext(conversation)
 
       // 调用AI服务
-      const response = await this.callAIService(conversation.settings, context, content)
+      const response = await this.callAIService(conversation.settings, context, userMessage.content)
 
       // 处理工具调用
       if (response.toolCalls && response.toolCalls.length > 0) {
         const toolResults = await this.executeTools(response.toolCalls)
+        // batch2 缺陷修复：执行结果（result/status 派生态）回写 metadata，
+        // 不再恒为检测阶段的 pending 原始 ToolCall
+        response.toolCalls = toolResults
         response.content += "\n\n" + this.formatToolResults(toolResults)
       }
 

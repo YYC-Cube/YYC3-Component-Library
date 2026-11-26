@@ -239,12 +239,50 @@ describe('ai-assistant-service · sendMessage 与工具链', () => {
     const assistant = conv.messages[1];
 
     expect(assistant.metadata!.tools).toHaveLength(3);
-    // 真身已知行为：metadata.tools 记录的是检测阶段的原始 pending ToolCall
-    // （executeTools 产出的是带 result/status 的派生对象，仅进入 content 格式化，不回写 metadata）
-    expect(assistant.metadata!.tools!.map((t) => t.status)).toEqual(['pending', 'pending', 'pending']);
+    // batch2 缺陷修复后：executeTools 产出的 result/status 派生态回写 metadata.tools，
+    // 不再恒为检测阶段的 pending 原始 ToolCall
+    expect(assistant.metadata!.tools!.map((t) => t.status)).toEqual(['success', 'success', 'success']);
+    expect(assistant.metadata!.tools![0].result).toMatchObject({ total: 2 });
+    expect(assistant.metadata!.tools![1].result).toMatchObject({ type: 'bar' });
+    expect(assistant.metadata!.tools![2].result).toHaveProperty('cpu');
     expect(reply.content).toContain('📊 数据查询结果：找到 2 条记录');
     expect(reply.content).toContain('📈 图表已生成：bar 类型，ID: chart_');
     expect(reply.content).toContain('💻 系统状态：CPU');
+  });
+
+  it('regenerateResponse 独立路径：不追加用户消息、末条用户消息驱动重生成', async () => {
+    const svc = new AIAssistantService();
+    const id = svc.createConversation();
+    svc.addMessage(id, { role: 'user', content: '查询数据' });
+    const oldReply = svc.addMessage(id, { role: 'assistant', content: '旧回复' });
+
+    // 调用方（context 层）先删旧回复，再走 regenerateResponse
+    const conv = svc.getConversation(id)!;
+    conv.messages.splice(conv.messages.indexOf(oldReply), 1);
+
+    vi.useFakeTimers();
+    try {
+      const promise = svc.regenerateResponse(id);
+      await vi.advanceTimersByTimeAsync(3001);
+      await promise;
+    } finally {
+      vi.useRealTimers();
+    }
+
+    const messages = svc.getConversation(id)!.messages;
+    expect(messages).toHaveLength(2); // [原user, 新assistant]——无重复用户消息
+    expect(messages[0].content).toBe('查询数据');
+    expect(messages.filter((m) => m.role === 'user')).toHaveLength(1);
+    expect(messages[1].role).toBe('assistant');
+  });
+
+  it('regenerateResponse 错误分支：对话不存在抛错；无用户消息抛错', async () => {
+    const svc = new AIAssistantService();
+    await expect(svc.regenerateResponse('missing')).rejects.toThrow('对话不存在');
+
+    const id = svc.createConversation();
+    svc.addMessage(id, { role: 'assistant', content: '开场白' });
+    await expect(svc.regenerateResponse(id)).rejects.toThrow('找不到对应的用户消息');
   });
 
   it('detectToolCalls 白盒：无关键词返回空数组（sendMessage 不追加工具结果）', async () => {

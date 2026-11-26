@@ -342,7 +342,7 @@ describe('AIAssistantProvider', () => {
     expect(result.current.isLoading).toBe(false);
   });
 
-  it('regenerateResponse：重生成助手回复（先删原回复再重发对应用户消息）', async () => {
+  it('regenerateResponse：重生成助手回复且不复制用户消息（batch2 缺陷修复锁定）', async () => {
     const { result } = mount();
     let id!: string;
     await act(async () => {
@@ -375,14 +375,15 @@ describe('AIAssistantProvider', () => {
     vi.useRealTimers();
 
     const messages = aiAssistantService.getConversation(id)!.messages;
-    // 真身已知行为（产品瑕疵，只记录不改）：regenerateResponse 经 context.sendMessage 重发
-    // 用户消息，而 sendMessage 总是追加一条新 user 消息——原回复删除后变成
-    // [原user, 重复user, 新assistant]，用户消息被复制一条。
-    expect(messages).toHaveLength(3);
+    // batch2 缺陷修复后：重生成走独立路径，不再经 sendMessage 重复追加用户消息——
+    // 对话保持 [原user, 新assistant] 两条，用户消息内容仅出现一次。
+    expect(messages).toHaveLength(2);
+    expect(messages[0].id).toBe(userMsg.id);
     expect(messages[0].content).toBe('查询数据');
-    expect(messages[1].content).toBe('查询数据'); // 重复的用户消息
-    expect(regenerated!.id).toBe(messages[2].id);
-    expect(messages[2].content).not.toBe('旧回复');
+    expect(messages.filter((m) => m.role === 'user')).toHaveLength(1);
+    expect(regenerated!.id).toBe(messages[1].id);
+    expect(messages[1].role).toBe('assistant');
+    expect(messages[1].content).not.toBe('旧回复');
   });
 
   it('regenerateResponse 三种错误分支：消息不存在 / 非助手消息 / 找不到对应用户消息', async () => {

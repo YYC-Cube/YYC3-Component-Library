@@ -220,8 +220,9 @@ export function AIAssistantProvider({ children }: { children: ReactNode }) {
         }
 
         // 删除原回复并重新生成
+        // （batch2 缺陷修复：走独立重生成路径，不再经 sendMessage 重复追加用户消息）
         currentConversation.messages.splice(messageIndex, 1)
-        const newMessage = await aiAssistantService.sendMessage(currentConversation.id, userMessage.content)
+        const newMessage = await aiAssistantService.regenerateResponse(currentConversation.id)
 
         refreshConversations()
         return newMessage
