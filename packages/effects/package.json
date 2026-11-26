@@ -1,31 +1,74 @@
 {
   "name": "@yyc3/effects",
-  "version": "1.0.1",
-  "description": "YYC³ 特效组件库 - 3D、动画、视觉特效",
+  "version": "1.1.0",
+  "private": true,
+  "description": "YYC³ UI 特效组件库 — 赛博朋克 / 液态玻璃 / 3D / 粒子 / 视差 / 微交互",
+  "author": "YanYuCloudCube Team <admin@0379.email>",
+  "license": "MIT",
+  "type": "module",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "lint": "eslint src/",
-    "type-check": "tsc --noEmit"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./webgl": {
+      "types": "./dist/webgl/index.d.ts",
+      "import": "./dist/webgl/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "dependencies": {
-    "@yyc3/ui": "workspace:*",
-    "framer-motion": "^11.0.0",
-    "@react-three/fiber": "^8.17.0",
-    "@react-three/drei": "^9.114.0",
-    "three": "^0.180.0"
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "yyc3",
+    "effects",
+    "cyberpunk",
+    "liquid-glass",
+    "neon",
+    "glitch",
+    "particle",
+    "3d",
+    "parallax",
+    "motion",
+    "react",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YanYuCloudCube/YYC3-FAmily-Pai.git",
+    "directory": "packages/effects"
   },
-  "devDependencies": {
-    "@types/react": "^19",
-    "@types/three": "^0.160.0",
-    "tsup": "^8.3.0",
-    "typescript": "^5.9"
+  "homepage": "https://github.com/YanYuCloudCube/YYC3-FAmily-Pai#readme",
+  "bugs": {
+    "url": "https://github.com/YanYuCloudCube/YYC3-FAmily-Pai/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "react": "^19",
-    "react-dom": "^19"
+    "motion": "^12.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "80 kB"
+    }
+  ],
+  "scripts": {
+    "build": "echo '[effects] dist-only 收编包（对齐 npm @yyc3/effects@1.1.0），已含构建产物，跳过本地构建'"
   }
 }
