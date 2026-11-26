@@ -287,7 +287,7 @@ export {
   useYYC3Theme,
   type YYC3Theme,
 } from "./claw"
-// 设计令牌（真身 @yyc3/theme，经 claw 薄壳转发，方便 Claw 消费者单口进出）
+// 设计令牌（真身 @yyc3/theme 直连——claw/theme-tokens 是 export * 薄壳，星号转发不能再被具名 re-export，TS2305）
 export {
   getThemeTokens,
   injectThemeCSSVars,
@@ -296,4 +296,4 @@ export {
   mergeStyles as clawMergeStyles,
   isCyberpunk,
   type ThemeVariables as ClawThemeVariables,
-} from "./claw/theme-tokens"
+} from "@yyc3/theme"
