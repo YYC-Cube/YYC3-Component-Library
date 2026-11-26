@@ -47,7 +47,7 @@ function useCarousel() {
 }
 
 function Carousel({
-  orientation = 'horizontal',
+  orientation: orientationProp,
   opts,
   setApi,
   plugins,
@@ -55,6 +55,11 @@ function Carousel({
   children,
   ...props
 }: React.ComponentProps<'div'> & CarouselProps) {
+  // 缺陷修复（batch2 报告项 5）：orientation 原形参默认值 'horizontal' 使
+  // context 处 `orientation || (opts?.axis === 'y' ? 'vertical' : …)` 的纵向
+  // 分支不可达（且 opts.axis='y' 会被下方 axis 'x' 覆盖）。改为显式推断：
+  // 未传 orientation 时按 opts.axis === 'y' 推断为 vertical，纵向分支可达。
+  const orientation = orientationProp ?? (opts?.axis === 'y' ? 'vertical' : 'horizontal')
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
@@ -114,8 +119,7 @@ function Carousel({
         carouselRef,
         api: api,
         opts,
-        orientation:
-          orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+        orientation,
         scrollPrev,
         scrollNext,
         canScrollPrev,

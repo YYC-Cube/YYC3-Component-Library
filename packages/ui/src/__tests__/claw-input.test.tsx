@@ -93,21 +93,21 @@ describe('ClawInput · 受控/非受控与事件', () => {
 })
 
 describe('ClawInput · 清除与密码切换', () => {
-  it('allowClear 非受控：派发合成 onChange（已知产品缺陷：inputRef 未挂载，DOM 值不会被真清空/不回焦）', async () => {
+  it('allowClear 非受控：原生清空 DOM 值 + 回焦（inputRef 已挂载，batch2 缺陷已修复）', async () => {
     const user = userEvent.setup()
     const onChange = vi.fn()
     render(<ClawInput allowClear defaultValue="待清除" onChange={onChange} data-testid="clr" />)
     const clearBtn = screen.getByRole('button', { name: '清除内容' })
     await user.click(clearBtn)
-    // 断言当前实际行为：合成 onChange(target.value='') 已派发；
-    // inputRef.current === null → 原生清值与 focus 分支被跳过（产品 bug，batch2 记录不改码）
-    const lastCall = onChange.mock.calls.at(-1)?.[0] as React.ChangeEvent<HTMLInputElement>
-    expect(lastCall.target.value).toBe('')
-    expect((screen.getByTestId('clr') as HTMLInputElement).value).toBe('待清除')
-    expect(screen.getByTestId('clr')).not.toHaveFocus()
+    // 修复后：原生 setter 清 DOM 值 + input 事件 → 真实 React onChange 单次派发（无合成双重派发）
+    expect(onChange).toHaveBeenCalledTimes(1)
+    const evt = onChange.mock.calls[0][0] as React.ChangeEvent<HTMLInputElement>
+    expect(evt.target.value).toBe('')
+    expect((screen.getByTestId('clr') as HTMLInputElement).value).toBe('')
+    expect(screen.getByTestId('clr')).toHaveFocus()
   })
 
-  it('allowClear 受控：合成事件派发受控 onChange', async () => {
+  it('allowClear 受控：原生 input 事件派发受控 onChange', async () => {
     const user = userEvent.setup()
     const onChange = vi.fn()
     function Demo() {
@@ -126,23 +126,25 @@ describe('ClawInput · 清除与密码切换', () => {
     expect(screen.getByTestId('dis')).toBeDisabled()
   })
 
-  it('allowClear + type=textarea：同缺陷——仅合成事件，DOM 值保持', async () => {
+  it('allowClear + type=textarea：DOM 值真清空（textarea 原型 setter 分支，batch2 缺陷已修复）', async () => {
     const user = userEvent.setup()
     const onChange = vi.fn()
     render(<ClawInput allowClear type="textarea" defaultValue="多行内容" onChange={onChange} data-testid="clr-ta" />)
     await user.click(screen.getByRole('button', { name: '清除内容' }))
     const lastCall = onChange.mock.calls.at(-1)?.[0] as React.ChangeEvent<HTMLTextAreaElement>
     expect(lastCall.target.value).toBe('')
-    expect((screen.getByTestId('clr-ta') as HTMLTextAreaElement).value).toBe('多行内容')
+    expect((screen.getByTestId('clr-ta') as HTMLTextAreaElement).value).toBe('')
+    expect(screen.getByTestId('clr-ta')).toHaveFocus()
   })
 
-  it('password + passwordToggle：切换明文/密文', async () => {
+  it('password + passwordToggle：切换明文/密文 + 切换后回焦（inputRef 回焦分支）', async () => {
     const user = userEvent.setup()
     render(<ClawInput type="password" passwordToggle defaultValue="s3cret" data-testid="pwd" />)
     const el = screen.getByTestId('pwd') as HTMLInputElement
     expect(el.getAttribute('type')).toBe('password')
     await user.click(screen.getByRole('button', { name: '显示密码' }))
     expect(el.getAttribute('type')).toBe('text')
+    expect(el).toHaveFocus()
     await user.click(screen.getByRole('button', { name: '隐藏密码' }))
     expect(el.getAttribute('type')).toBe('password')
   })

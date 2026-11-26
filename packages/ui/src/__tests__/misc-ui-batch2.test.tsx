@@ -320,18 +320,15 @@ describe('Chart · Tooltip/Legend 深分支', () => {
     expect(screen.getByText('3')).toBeInTheDocument()
   })
 
-  it('已知产品缺陷：payload 条目缺 payload 字段 → L189 item.payload.fill 直接 TypeError（batch2 记录不改码）', () => {
-    const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
-    expect(() =>
-      render(
-        <ChartContainer config={chartConfig}>
-          <div>
-            <ChartTooltipContent active payload={[{ value: 9, color: '#f00' } as never]} />
-          </div>
-        </ChartContainer>,
-      ),
-    ).toThrow()
-    spy.mockRestore()
+  it('payload 条目缺 payload 字段 → 防御可选链回退 item.color，渲染不炸（batch2 缺陷已修复）', () => {
+    render(
+      <ChartContainer config={chartConfig}>
+        <div>
+          <ChartTooltipContent active payload={[{ value: 9, color: '#f00' } as never]} />
+        </div>
+      </ChartContainer>,
+    )
+    expect(screen.getByText('9')).toBeInTheDocument()
   })
 
   it('getPayloadConfigFromPayload：key 直存 payload / payloadPayload 内键 / 非对象 payload', () => {
@@ -449,16 +446,18 @@ describe('ResponsiveTable · 排序/导出/自定义 cell', () => {
 // 3d-button / 3d-card / enhanced-form / interactive-card / calendar
 // ─────────────────────────────────────────────
 describe('Button3d · asChild/icon/按压分支', () => {
-  it('已知产品缺陷：asChild 时 Slot 收到 2 个子元素（内容层+波纹层）→ 渲染必炸（batch2 记录不改码）', () => {
-    const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
-    expect(() =>
-      render(
-        <Button3d asChild>
-          <a href="/go">链接钮</a>
-        </Button3d>,
-      ),
-    ).toThrow(/Slot failed|single React element/)
-    spy.mockRestore()
+  it('asChild：Slot 收到单一子元素 → 渲染为 a 链接不炸（batch2 缺陷已修复）', () => {
+    render(
+      <Button3d asChild>
+        <a href="/go">链接钮</a>
+      </Button3d>,
+    )
+    const link = screen.getByRole('link', { name: '链接钮' })
+    expect(link).toHaveAttribute('href', '/go')
+    // 立体按钮变体类名透传到子元素（Slot props 合并）
+    expect(link.className).toContain('inline-flex')
+    // 波纹层不再渲染进 Slot（asChild 分支）
+    expect(link.querySelector('.ripple-effect')).toBeNull()
   })
 
   it('icon 左/右位置分支 + 禁用按压早退', () => {

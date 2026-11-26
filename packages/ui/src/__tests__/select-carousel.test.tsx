@@ -126,4 +126,44 @@ describe('Carousel · 轮播', () => {
     )
     spy.mockRestore()
   })
+
+  it('opts.axis=y 未传 orientation → 纵向分支可达（batch2 缺陷已修复：flex-col/-mt-4/pt-4/rotate-90）', () => {
+    render(
+      <Carousel opts={{ axis: 'y' }}>
+        <CarouselContent>
+          <CarouselItem>纵一</CarouselItem>
+          <CarouselItem>纵二</CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>,
+    )
+    // CarouselContent 内层 flex 容器走纵向分支
+    const outer = document.querySelector('[data-slot="carousel-content"]') as HTMLElement
+    const flexInner = outer.firstElementChild as HTMLElement
+    expect(flexInner.className).toContain('flex-col')
+    expect(flexInner.className).toContain('-mt-4')
+    expect(flexInner.className).not.toContain('-ml-4')
+    // CarouselItem 走纵向分支
+    const item = screen.getByText('纵一').closest('[data-slot="carousel-item"]') as HTMLElement
+    expect(item.className).toContain('pt-4')
+    expect(item.className).not.toContain('pl-4')
+    // 前后钮走纵向定位（rotate-90）
+    const prev = screen.getByRole('button', { name: 'Previous slide' })
+    expect(prev.className).toContain('rotate-90')
+    expect(prev.className).toContain('-top-12')
+  })
+
+  it('显式 orientation=vertical 仍优先生效（推断不抢显式传入）', () => {
+    render(
+      <Carousel orientation="vertical">
+        <CarouselContent>
+          <CarouselItem>显式纵一</CarouselItem>
+        </CarouselContent>
+      </Carousel>,
+    )
+    const outer = document.querySelector('[data-slot="carousel-content"]') as HTMLElement
+    const flexInner = outer.firstElementChild as HTMLElement
+    expect(flexInner.className).toContain('flex-col')
+  })
 })

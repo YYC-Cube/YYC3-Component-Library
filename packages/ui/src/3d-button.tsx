@@ -129,26 +129,34 @@ const Button3d = React.forwardRef<HTMLButtonElement, Button3dProps>(
         aria-disabled={disabled || isLoading}
         {...props}
       >
-        <span className={cn("flex items-center justify-center", isPressed ? "transform translate-y-[1px]" : "")}>
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              <span>{children}</span>
-              <span className="sr-only">加载中</span>
-            </>
-          ) : (
-            <>
-              {icon && iconPosition === "left" && <span className="mr-2">{icon}</span>}
-              <span>{children}</span>
-              {icon && iconPosition === "right" && <span className="ml-2">{icon}</span>}
-            </>
-          )}
-        </span>
+        {asChild ? (
+          // 缺陷修复（batch2 报告项 3）：Radix Slot 仅接受单一子元素——
+          // asChild 时直接透传 children，包装层/波纹层不再渲染
+          children
+        ) : (
+          <>
+            <span className={cn("flex items-center justify-center", isPressed ? "transform translate-y-[1px]" : "")}>
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <span>{children}</span>
+                  <span className="sr-only">加载中</span>
+                </>
+              ) : (
+                <>
+                  {icon && iconPosition === "left" && <span className="mr-2">{icon}</span>}
+                  <span>{children}</span>
+                  {icon && iconPosition === "right" && <span className="ml-2">{icon}</span>}
+                </>
+              )}
+            </span>
 
-        {/* 添加按钮点击波纹效果 */}
-        <span className="absolute inset-0 rounded-lg overflow-hidden">
-          <span className="ripple-effect" />
-        </span>
+            {/* 添加按钮点击波纹效果 */}
+            <span className="absolute inset-0 rounded-lg overflow-hidden">
+              <span className="ripple-effect" />
+            </span>
+          </>
+        )}
       </Comp>
     )
   },

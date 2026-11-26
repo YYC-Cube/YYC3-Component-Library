@@ -383,6 +383,17 @@ export const Input = forwardRef<
   const inputId = idProp ?? 'yyc3-input-' + autoId;
   const msgId = 'yyc3-msg-' + autoId;
 
+  // 缺陷修复（batch2 报告项 1）：inputRef 此前从未挂载到元素——清除钮的原生
+  // 清值/回焦与密码切换回焦全部失效。合并转发外部 ref 与内部 inputRef。
+  const setRefs = useCallback(
+    (el: HTMLInputElement | HTMLTextAreaElement | null) => {
+      inputRef.current = el;
+      if (typeof ref === 'function') ref(el);
+      else if (ref) (ref as React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | null>).current = el;
+    },
+    [ref],
+  );
+
   if (typeof window !== 'undefined') ensureInputStyles();
 
   // ── 事件处理 ──
@@ -427,16 +438,18 @@ export const Input = forwardRef<
         isTextarea ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype,
         'value'
       );
+      // 原生 setter 清 DOM 值 + input 事件 → 触发真实 React onChange（单次派发）
       nativeInput?.set?.call(el, '');
       el.dispatchEvent(new Event('input', { bubbles: true }));
       el.focus();
+    } else {
+      // 兜底：ref 未挂载（异常场景）时保留合成事件，避免双重派发 onChange
+      const syntheticEvent = {
+        target: { value: '' },
+        currentTarget: { value: '' },
+      } as unknown as ChangeEvent<HTMLInputElement>;
+      (onChange as ((e: ChangeEvent<HTMLInputElement>) => void))?.(syntheticEvent);
     }
-    // Synthetic change event
-    const syntheticEvent = {
-      target: { value: '' },
-      currentTarget: { value: '' },
-    } as unknown as ChangeEvent<HTMLInputElement>;
-    (onChange as ((e: ChangeEvent<HTMLInputElement>) => void))?.(syntheticEvent);
   }, [isControlled, isTextarea, onChange]);
 
   const togglePassword = useCallback(() => {
@@ -706,7 +719,7 @@ export const Input = forwardRef<
         {/* Input / Textarea */}
         {isTextarea ? (
           <textarea
-            ref={ref as React.Ref<HTMLTextAreaElement>}
+            ref={setRefs}
             id={inputId}
             className={'yyc3-input-el ' + (className ?? '')}
             disabled={disabled}
@@ -734,7 +747,7 @@ export const Input = forwardRef<
           />
         ) : (
           <input
-            ref={ref as React.Ref<HTMLInputElement>}
+            ref={setRefs}
             id={inputId}
             type={resolvedType as string}
             className={'yyc3-input-el ' + (className ?? '')}
