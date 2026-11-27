@@ -190,7 +190,7 @@ describe('DiagnosisClassification 标签增删改', () => {
 
     const addBtn = screen
       .getAllByRole('button')
-      .find((b) => /添加标签|新增/.test(b.textContent ?? ''));
+      .find((b) => /添加标签/.test(b.textContent ?? ''));
     if (addBtn) {
       await user.click(addBtn);
       const inputs = container.querySelectorAll('input');
