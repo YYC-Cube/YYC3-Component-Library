@@ -14,11 +14,18 @@ import {
   InputOTPSeparator,
 } from '../input-otp'
 import { DatePicker, DateRangePicker } from '../date-picker'
-import { stubPointerCapture, stubResizeObserver } from './helpers'
+import {
+  stubPointerCapture,
+  stubResizeObserver,
+  stubElementFromPoint,
+} from './helpers'
 
 beforeAll(() => {
   stubPointerCapture()
   stubResizeObserver()
+  // input-otp 聚焦后经 setTimeout 延迟调 document.elementFromPoint（jsdom 未实现
+  // hit-testing），定时器在测试结束后才触发 → uncaught TypeError 污染退出码
+  stubElementFromPoint()
   vi.spyOn(console, 'error').mockImplementation(() => {})
 })
 
