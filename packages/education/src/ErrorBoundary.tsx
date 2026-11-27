@@ -11,14 +11,15 @@
 
 'use client';
 
+// bug#7 修复（2026-11-27 batch2）：原 import `@/components/ui/*` 指向不存在的
+// 包内目录（education 无 src/components），直接 import 即崩。改为：
+//  - UI 组件 → 正式依赖 `@yyc3/ui`（package.json 已声明 ^2.1.2）
+//  - 错误上报 → 包内真实模块相对路径 `./lib/error-handler.client`
+//  - 移除从未使用的 ToastProvider/Toast/useToast/getUserMessage 导入
 import React, { Component, type ErrorInfo, type ReactNode } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button, Card, CardContent, CardHeader, CardTitle, Toaster } from '@yyc3/ui';
 import { AlertTriangle, RefreshCcw } from 'lucide-react';
-import { logError, getUserMessage } from '@/lib/error-handler.client';
-import { Toaster } from '@/components/ui/toaster';
-import { ToastProvider, Toast } from '@/components/ui/toast';
-import { useToast } from '@/components/ui/use-toast';
+import { logError } from './lib/error-handler.client';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
