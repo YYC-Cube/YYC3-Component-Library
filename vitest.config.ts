@@ -100,6 +100,19 @@ export default defineConfig({
         find: /^@\/components\/ui\/(.*)$/,
         replacement: path.join(dirname, 'packages', 'ui', 'src', '$1'),
       },
+      // admin 批次 1（2026-11-27）：admin 源码 `@/components/…` 自引用
+      // （charts 四件 / logo / theme-provider / error-notification-system /
+      // mobile/gesture-support）。必须排在 education 兜底别名之前，
+      // 否则被吞进 education/src 导致 resolve 断（istanbul 未覆盖文件
+      // transform 阶段直接炸全量 coverage）。
+      {
+        find: /^@\/components\/charts\/(.*)$/,
+        replacement: path.join(dirname, 'packages', 'admin', 'src', 'charts', '$1'),
+      },
+      {
+        find: /^@\/components\/(logo|theme-provider|error-notification-system|mobile\/gesture-support)$/,
+        replacement: path.join(dirname, 'packages', 'admin', 'src', '$1'),
+      },
       {
         find: /^@\/(?!src\/)(.*)$/,
         replacement: path.join(dirname, 'packages', 'education', 'src', '$1'),

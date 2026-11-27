@@ -21,6 +21,8 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "type-check": "tsc --noEmit",
+    "test": "vitest run --root ../.. --config vitest.config.ts packages/admin",
+    "test:coverage": "vitest run --root ../.. --config vitest.config.ts --coverage.enabled --coverage.provider=istanbul --coverage.include='packages/admin/src/**/*.{ts,tsx}' --coverage.thresholds.statements=85 --coverage.thresholds.branches=85 --coverage.thresholds.lines=85 packages/admin",
     "clean": "rm -rf dist"
   },
   "dependencies": {
