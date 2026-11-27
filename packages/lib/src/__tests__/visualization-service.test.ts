@@ -3,11 +3,12 @@
 // 覆盖对象：useDataset Hook / dataTransformers 七件 / chartThemes / chartUtils
 //          （含 exportData 五格式与 image/pdf 双分支）/ optimizeDataset 三方法
 // 方法：纯函数真身直调；useDataset 用 RTL renderHook + 受控 fetch（deferred promise
-//       手动放行）——hook 的 effect 链在 fetch 完成后会反复自触发，deferred 未决时
-//       循环暂停，保证断言窗口与卸载后的零残留。
-//       注：cache-first + 命中缓存会因 setLastUpdated(new Date()) 进入同步自触发
-//       死循环（产品级隐患，batch2 只记录不触发），命中缓存分支统一用
-//       cache-and-network 策略覆盖（该策略命中后仍走网络请求，循环被 fetch 节流）。
+//       手动放行），保证断言窗口与卸载后的零残留。
+//       注（2026-11-28 死循环专项修复）：batch2 时代 hook 的 effect 依赖 fetchData
+//       身份（isFetching 在依赖数组内）形成「effect 自触发链」持续重拉；cache-first
+//       命中路径 setLastUpdated(new Date()) 更是同步自触发死循环（当时只记录不触发）。
+//       本次修复（请求键守卫 + lastUpdated 稳定引用）后 effect 拉取一锤定音，
+//       相关用例已改写为锁定修复后语义（loadMore/refresh 从外部真正可达）。
 // ============================================================
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
@@ -724,7 +725,7 @@ describe('useDataset', () => {
     unmount();
   });
 
-  it('loadMore：hasMore=true 时可调用（在飞守卫内 page 暂不变）', async () => {
+  it('loadMore：hasMore=true 时翻页拉取（死循环守卫修复后从外部真正可达）', async () => {
     const { fetchMock, release } = makeDeferredFetch(makeSeries(1));
     vi.stubGlobal('fetch', fetchMock);
 
@@ -739,19 +740,20 @@ describe('useDataset', () => {
     await release(0); // 第 1 页完成
     await waitFor(() => expect(result.current.hasMore).toBe(true));
 
-    // hook 的 effect 自触发链使任一时刻都有一条在飞请求（isFetching=true），
-    // 外部调用的 loadMore 命中 `!isFetching` 守卫早退——setPage 翻页分支因此
-    // 无法从外部进入（产品级结构限制，与 refresh 同源，batch2 只记录不硬造）。
-    expect(() => result.current.loadMore()).not.toThrow();
+    // 死循环守卫修复后：拉取完成即静止（effect 同键不重触），isFetching=false →
+    // loadMore 的 `!isFetching` 守卫放行，翻页真正生效（batch2 时代因自触发链
+    // 常驻在飞而无法从外部进入——已随死循环修复解除）。
     await act(async () => {
-      await Promise.resolve();
+      await new Promise((r) => setTimeout(r, 20));
     });
-    expect(result.current.page).toBe(1);
+    expect(fetchMock.mock.calls.length).toBe(1);
 
-    // 链路未被破坏
+    act(() => result.current.loadMore());
+    await waitFor(() => expect(fetchMock.mock.calls.length).toBe(2));
+    expect(fetchMock.mock.calls[1][0]).toContain('page=2');
+    expect(result.current.page).toBe(2);
+
     await release(1);
-    await waitFor(() => expect(fetchMock.mock.calls.length).toBeGreaterThanOrEqual(3));
-
     unmount();
   });
 
@@ -776,7 +778,7 @@ describe('useDataset', () => {
     unmount();
   });
 
-  it('refresh：重置页码并触发重新拉取（在飞请求期间调用，守卫后于下一轮生效）', async () => {
+  it('refresh：重置页码并触发重新拉取（死循环守卫修复后 isRefresh 直呼路径真正可达）', async () => {
     const { fetchMock, release } = makeDeferredFetch(makeSeries(2));
     vi.stubGlobal('fetch', fetchMock);
 
@@ -786,17 +788,21 @@ describe('useDataset', () => {
 
     await release(0);
     await waitFor(() => expect(result.current.isLoading).toBe(false));
+    // 守卫修复后静止：同键 effect 不重触
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 20));
+    });
+    expect(fetchMock.mock.calls.length).toBe(1);
 
-    // 调用点覆盖：setPage(1) + fetchData(true)（isFetching 在飞 → 守卫早退）。
-    // isRefresh=true 内部分支因 hook effect 自触发链常驻在飞请求而无法从外部进入
-    // （产品级结构限制，batch2 只记录不硬造）。
-    expect(() => result.current.refresh()).not.toThrow();
+    // refresh = setPage(1) + fetchData(true)——直呼路径绕过 effect 守卫，
+    // isRefresh=true 分支真正进入（batch2 时代因自触发链常驻在飞而早退——已解除）。
+    act(() => result.current.refresh());
     expect(result.current.page).toBe(1);
+    await waitFor(() => expect(fetchMock.mock.calls.length).toBe(2));
+    expect(result.current.isLoading).toBe(true);
 
-    // 链路继续：放行在飞请求后仍有后续请求
     await release(1);
-    await waitFor(() => expect(fetchMock.mock.calls.length).toBeGreaterThanOrEqual(3));
-
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
     unmount();
   });
 
@@ -840,34 +846,51 @@ describe('useDataset', () => {
     unmount();
   });
 
-  it('network-only：跳过缓存读取（第二次 effect 仍走网络）', async () => {
+  it('network-only：跳过缓存读取；同键 effect 重触不再走网络（死循环守卫）', async () => {
     const { fetchMock, release } = makeDeferredFetch(makeSeries(2));
     vi.stubGlobal('fetch', fetchMock);
 
-    const { unmount } = renderHook(() =>
+    const { rerender, unmount } = renderHook(() =>
       useDataset({ endpoint: '/api/nocache', cacheStrategy: 'memory', fetchPolicy: 'network-only' }),
     );
 
     await release(0);
-    await waitFor(() => expect(fetchMock.mock.calls.length).toBeGreaterThanOrEqual(2));
+    // 守卫修复：拉取完成即静止，effect 自触发链（batch2 时代持续重拉的根因）已消除
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 20));
+    });
+    expect(fetchMock.mock.calls.length).toBe(1);
+
+    // 消费方 re-render（新 options 引用）也不重触同键拉取
+    rerender();
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 20));
+    });
+    expect(fetchMock.mock.calls.length).toBe(1);
+
     unmount();
   });
 
-  it('cache-and-network + memory：命中缓存先渲染旧数据再走网络', async () => {
-    const { fetchMock, release } = makeDeferredFetch(makeSeries(2));
+  it('cache-and-network + localStorage：命中缓存先渲染旧数据，同时网络重验证（双阶段）', async () => {
+    const { fetchMock, release } = makeDeferredFetch(makeSeries(2, 100));
     vi.stubGlobal('fetch', fetchMock);
-
-    const { result, unmount } = renderHook(() =>
-      useDataset({ endpoint: '/api/cached', cacheStrategy: 'memory', fetchPolicy: 'cache-and-network' }),
+    localStorage.setItem(
+      'yy_chart_/api/cached_1_1000',
+      JSON.stringify({ data: makeSeries(2), timestamp: Date.now() }),
     );
 
-    // 第一次：网络
-    await release(0);
-    await waitFor(() => expect(result.current.data).toHaveLength(2));
+    const { result, unmount } = renderHook(() =>
+      useDataset({ endpoint: '/api/cached', cacheStrategy: 'localStorage', fetchPolicy: 'cache-and-network' }),
+    );
 
-    // effect 自触发第二次：内存缓存命中 → 先用缓存渲染，同时继续网络请求（挂起）
-    await waitFor(() => expect(fetchMock.mock.calls.length).toBeGreaterThanOrEqual(2));
-    expect(result.current.data.length).toBeGreaterThanOrEqual(2);
+    // 命中阶段：缓存先行渲染（不死循环——lastUpdated 取缓存时间戳稳定引用），同时发起网络重验证
+    await waitFor(() => expect(fetchMock.mock.calls.length).toBe(1));
+    expect(result.current.data).toHaveLength(2);
+
+    // 网络阶段：重验证结果追加合并（cache-and-network 语义）
+    await release(0);
+    await waitFor(() => expect(result.current.data).toHaveLength(4));
+    expect(result.current.lastUpdated).toBeInstanceOf(Date);
 
     unmount();
   });

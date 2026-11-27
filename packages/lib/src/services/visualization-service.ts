@@ -162,18 +162,18 @@ export function useDataset(options: DatasetOptions) {
     return `${endpoint}_${page}_${pageSize}`
   }, [endpoint, page, pageSize])
 
-  // 从缓存获取数据
-  const getFromCache = useCallback(() => {
+  // 从缓存获取数据（返回 { data, timestamp }，timestamp 供 lastUpdated 稳定引用守卫使用）
+  const getFromCache = useCallback((): { data: any; timestamp: number } | null => {
     const key = getCacheKey()
 
     if (cacheStrategy === "localStorage") {
       const cached = localStorage.getItem(`yy_chart_${key}`)
       if (cached) {
         try {
-          const { data, timestamp } = JSON.parse(cached)
+          const parsed = JSON.parse(cached)
           // 缓存有效期为10分钟
-          if (Date.now() - timestamp < 10 * 60 * 1000) {
-            return data
+          if (Date.now() - parsed.timestamp < 10 * 60 * 1000) {
+            return { data: parsed.data, timestamp: parsed.timestamp }
           }
         } catch (e) {
           console.error("缓存解析错误", e)
@@ -182,7 +182,7 @@ export function useDataset(options: DatasetOptions) {
     } else if (cacheStrategy === "memory") {
       const cached = cache.current.get(key)
       if (cached && Date.now() - cached.timestamp < 10 * 60 * 1000) {
-        return cached.data
+        return { data: cached.data, timestamp: cached.timestamp }
       }
     }
 
@@ -221,19 +221,23 @@ export function useDataset(options: DatasetOptions) {
       try {
         // 检查缓存
         if (fetchPolicy !== "network-only" && !isRefresh) {
-          const cachedData = getFromCache()
-          if (cachedData) {
-            const processedData = transformFn ? transformFn(cachedData) : cachedData
+          const cached = getFromCache()
+          if (cached) {
+            const processedData = transformFn ? transformFn(cached.data) : cached.data
+            // 死循环守卫（lib batch2）：lastUpdated = 数据真实入缓存时刻，且引用稳定——
+            // 同一缓存时间戳重复命中返回同一 Date 引用（Object.is 判等 bail-out），
+            // 不再以 `new Date()` 每轮制造新对象强制 re-render。
+            setLastUpdated((prev) =>
+              prev !== null && prev.getTime() === cached.timestamp ? prev : new Date(cached.timestamp),
+            )
             if (fetchPolicy === "cache-first") {
               setData(processedData)
-              setLastUpdated(new Date())
               setIsLoading(false)
               setIsFetching(false)
               onDataReceived?.(processedData)
               return
             } else if (fetchPolicy === "cache-and-network") {
               setData(processedData)
-              setLastUpdated(new Date())
               setIsLoading(false)
               onDataReceived?.(processedData)
             }
@@ -311,9 +315,21 @@ export function useDataset(options: DatasetOptions) {
     fetchData(true)
   }, [fetchData])
 
+  // 死循环守卫（lib batch2）：同一请求键在本次挂载内只由 effect 触发一次拉取。
+  // 根因：effect 依赖 fetchData 身份，消费方以内联对象字面量传 options
+  // （transformFn/onDataReceived 每渲染换引用）→ fetchData 每渲染重建 →
+  // effect 每渲染重触；cache-first 命中路径 `setLastUpdated(new Date())`
+  // 每轮强制 re-render → 紧密死循环（修复前用例实证：worker SIGABRT）。
+  // refresh()/错误重试定时器走直接调用，不受此守卫影响；
+  // endpoint/page/pageSize/fetchPolicy 变化（换键）→ 守卫放行重新拉取。
+  const effectFetchedKey = useRef<string | null>(null)
+
   useEffect(() => {
+    const requestKey = `${endpoint}_${page}_${pageSize}_${fetchPolicy}`
+    if (effectFetchedKey.current === requestKey) return
+    effectFetchedKey.current = requestKey
     fetchData()
-  }, [fetchData, page])
+  }, [fetchData, page, endpoint, pageSize, fetchPolicy])
 
   useEffect(() => {
     // 设置定时刷新

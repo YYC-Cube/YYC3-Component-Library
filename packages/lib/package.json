@@ -1,6 +1,6 @@
 {
   "name": "@yyc3/lib",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "YYC³ 共享功能库 — 核心零依赖工具函数（日期/字符串/验证/数据）+ shadcn 惯例 cn；首批滚动抽取自 UI-8，A3 批次并入 88 区 utils(cn)",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
