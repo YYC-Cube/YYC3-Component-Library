@@ -172,7 +172,7 @@ describe('影像查看与标注（canvas 2d 桩）', () => {
     const { container } = render(
       <InteractiveImageAnnotation
         imageUrl="/images/ct-001.png"
-        onComplete={() => {}}
+        onAnnotationAnnotationComplete={() => {}}
       />,
     );
     expectMounted(container);
@@ -183,7 +183,7 @@ describe('影像查看与标注（canvas 2d 桩）', () => {
       <AIAssistedAnnotation
         imageUrl="/images/ct-001.png"
         modality="CT" as never
-        onComplete={() => {}}
+        onAnnotationAnnotationComplete={() => {}}
       />,
     );
     expectMounted(container);
@@ -262,7 +262,7 @@ describe('多模态 AI 诊断族', () => {
 
   it('OcrService 渲染 OCR 工作流', () => {
     const { container } = render(
-      <OcrService imageUrl="/images/prescription.png" onComplete={() => {}} onCancel={() => {}} />,
+      <OcrService imageUrl="/images/prescription.png" onAnnotationComplete={() => {}} onCancel={() => {}} />,
     );
     expectMounted(container);
   });

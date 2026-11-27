@@ -238,7 +238,7 @@ describe('低覆盖单件扫荡', () => {
 
   it('InteractiveImageAnnotation 全量点火', async () => {
     const user = userEvent.setup();
-    const { container } = render(<InteractiveImageAnnotation imageUrl="/img/1.png" onComplete={() => {}} />);
+    const { container } = render(<InteractiveImageAnnotation selectedImage="/img/1.png" onAnnotationComplete={() => {}} />);
     await ignite(container, user);
     expect(container.textContent.length).toBeGreaterThan(0);
   });
@@ -246,7 +246,7 @@ describe('低覆盖单件扫荡', () => {
   it('AIAssistedAnnotation 全量点火', async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <AIAssistedAnnotation imageUrl="/img/1.png" modality="CT" onComplete={() => {}} /> as never,
+      <AIAssistedAnnotation imageUrl="/img/1.png" modality="CT" onAnnotationComplete={() => {}} /> as never,
     );
     await ignite(container, user);
     expect(container.textContent.length).toBeGreaterThan(0);

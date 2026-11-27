@@ -206,7 +206,7 @@ describe('interactive-image-annotation 画布绘制流', () => {
   it('画布 mousedown/move/up 驱动标记绘制（rectangle 工具）', async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <InteractiveImageAnnotation imageUrl="/img/x.png" onComplete={() => {}} />,
+      <InteractiveImageAnnotation selectedImage="/img/x.png" onAnnotationComplete={() => {}} />,
     );
     // 切到矩形工具
     const rect = screen
@@ -243,7 +243,7 @@ describe('AIAssistedAnnotation 深挖', () => {
   it('AI 建议生成/采纳动作驱动', async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <AIAssistedAnnotation imageUrl="/img/x.png" modality="CT" onComplete={() => {}} /> as never,
+      <AIAssistedAnnotation imageUrl="/img/x.png" modality="CT" onAnnotationComplete={() => {}} /> as never,
     );
     // 组件初始可能处于图片加载/空态——按钮出现才点火
     await waitFor(
