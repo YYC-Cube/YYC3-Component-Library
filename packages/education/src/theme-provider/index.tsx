@@ -7,7 +7,14 @@
 "use client"
 
 import * as React from "react"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
+// bug#4 修复（2026-11-27 batch2）：原 useTheme 内 `require("next-themes")` 在
+// ESM 产物（tsup format esm → dist/index.mjs）下 ReferenceError: require is not
+// defined。改静态 import + 官方 useTheme（next-themes 0.4.x 不导出 ThemeContext，
+// 深挖上下文本就不可行），外包一层 mounted 防水合闪烁，行为等价。
+import {
+  ThemeProvider as NextThemesProvider,
+  useTheme as useNextThemes,
+} from "next-themes"
 import type { ThemeProviderProps } from "next-themes"
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
@@ -17,8 +24,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 // 主题切换Hook
 export function useTheme() {
   const [mounted, setMounted] = React.useState(false)
-  const themeContext = React.useContext(require("next-themes").ThemeContext)
-  const { theme, setTheme, resolvedTheme, systemTheme } = themeContext as any || {}
+  const { theme, setTheme, resolvedTheme, systemTheme } = useNextThemes()
 
   React.useEffect(() => {
     setMounted(true)

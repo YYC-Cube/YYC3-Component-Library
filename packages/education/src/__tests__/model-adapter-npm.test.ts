@@ -1,19 +1,31 @@
+/**
+ * @vitest-environment node
+ */
 // ============================================================
-// YYC³ · @yyc3/education 批次 1 铁律门补测 · 第四层：model-adapter 全量
-// ModelAdapter 生命周期/路由/缓存/流式 + 内联 OpenAIProvider（SDK 桩）
-// + 独立 OpenAIProvider/GoogleProvider（fetch 桩）+ EnhancedStreamingProcessor
-// + IntelligentCacheLayer + index 工具函数
-// 缺陷桥接（已登记）：createHash 'SHA256' 不被 WebCrypto 认——digest 别名桩
+// YYC³ · @yyc3/education 批次 2 · model-adapter npm 正式版契约测试
 // ============================================================
+// 背景（bug#1/#3 结构性治理 · 2026-11-27）：education 内嵌 model-adapter 旧副本
+// 已删除（= LP 仓旧快照、无 education 定制），改依赖 npm 正式版
+// @yyc3/model-adapter@^1.1.0。本件为替换后的契约测试，前身 =
+// 原 src/model-adapter/src/__tests__/model-adapter.test.ts。
+//
+// 与前身差异（依赖形态变化所致）：
+//  1. npm dist 将 openai SDK 打进包内——vi.mock('openai') 拦不到，改全量
+//     globalThis.fetch 桩（1.1.0 SDK client 亦走 globalThis.fetch）；
+//  2. dist 的 SDK 在 jsdom（window 存在）拒绝实例化——本件声明 node 环境；
+//  3. 1.1.0 已内置 WebCrypto 算法名映射（SHA256→SHA-256），前身 digest 别名桩
+//     （缺陷桥接）不再需要，直接用 Node 原生 webcrypto。
+// ============================================================
+
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { webcrypto } from 'node:crypto';
 import { Readable } from 'node:stream';
-import { ModelAdapter } from '../ModelAdapter';
-import { OpenAIProvider } from '../OpenAIProvider';
-import { GoogleProvider } from '../GoogleProvider';
-import { EnhancedStreamingProcessor } from '../core/EnhancedStreamingProcessor';
-import { IntelligentCacheLayer, CacheLevel, CacheStrategy } from '../core/IntelligentCacheLayer';
 import {
+  ModelAdapter,
+  OpenAIProvider,
+  GoogleProvider,
+  EnhancedStreamingProcessor,
+  IntelligentCacheLayer,
   createModelAdapter,
   createModelRequest,
   generateId,
@@ -25,30 +37,9 @@ import {
   DEFAULT_MODEL_ADAPTER_CONFIG,
   MODEL_PRESETS,
   VERSION,
-} from '../index';
-import type { ModelRequest, ModelResponse, ModelConfig } from '../IModelAdapter';
-
-// OpenAI SDK 桩（jsdom 下真实 SDK 拒绝实例化——产品缺陷已登记）
-const { completionsCreate, modelsList } = vi.hoisted(() => ({
-  completionsCreate: vi.fn(),
-  modelsList: vi.fn(),
-}));
-vi.mock('openai', () => ({
-  default: class MockOpenAI {
-    chat = { completions: { create: completionsCreate } };
-    models = { list: modelsList };
-    constructor(_options?: unknown) {}
-  },
-}));
-
-const digestAliasCrypto = () => {
-  const subtle = webcrypto.subtle as any;
-  const origDigest = subtle.digest.bind(subtle);
-  return {
-    getRandomValues: webcrypto.getRandomValues.bind(webcrypto),
-    subtle: { digest: (alg: string, data: BufferSource) => origDigest(alg === 'SHA256' ? 'SHA-256' : alg, data) },
-  };
-};
+} from '@yyc3/model-adapter';
+// 1.1.0 起 CacheLevel/CacheStrategy 自包入口仅作类型再导出（enum 运行时值不再暴露）
+import type { CacheLevel, CacheStrategy, ModelRequest, ModelResponse, ModelConfig } from '@yyc3/model-adapter';
 
 const makeModelConfig = (overrides: Partial<ModelConfig> = {}): ModelConfig =>
   ({
@@ -89,6 +80,8 @@ const COMPLETION_BODY = {
   usage: { prompt_tokens: 10, completion_tokens: 5, total_tokens: 15 },
 };
 
+// headers 用真实 Headers 实例——openai SDK（dist 内联）会把响应 headers 交自研
+// Headers 包装器迭代（entries()），裸 { get } 对象会 TypeError
 const fetchResponse = (body: unknown, ok = true) =>
   ({
     ok,
@@ -96,11 +89,22 @@ const fetchResponse = (body: unknown, ok = true) =>
     statusText: ok ? 'OK' : 'Internal Error',
     json: async () => body,
     text: async () => (typeof body === 'string' ? body : JSON.stringify(body)),
-    headers: { get: () => null },
+    headers: new Headers({ 'content-type': 'application/json' }),
   }) as unknown as Response;
 
+// OpenAI REST 全量 fetch 桩：/models → 健康检查；chat/completions → 会话补全
+const stubOpenAIRest = () => {
+  const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+    const u = String(url);
+    if (u.includes('/models')) return fetchResponse({ data: [{ id: 'gpt-4' }] });
+    return fetchResponse(COMPLETION_BODY);
+  });
+  vi.stubGlobal('fetch', fetchMock);
+  return fetchMock;
+};
+
 beforeEach(() => {
-  vi.stubGlobal('crypto', digestAliasCrypto());
+  vi.stubGlobal('crypto', webcrypto);
   vi.spyOn(console, 'error').mockImplementation(() => {});
   vi.spyOn(console, 'warn').mockImplementation(() => {});
 });
@@ -108,12 +112,10 @@ afterEach(() => {
   vi.useRealTimers();
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
-  completionsCreate.mockReset();
-  modelsList.mockReset();
 });
 
 // ============================================================ index 工具函数
-describe('model-adapter · index 工具', () => {
+describe('model-adapter@npm · index 工具', () => {
   it('createModelRequest：默认字段 + 覆盖合并', () => {
     const req = createModelRequest('analysis', '分析这段话', { maxTokens: 55, temperature: 0.2 });
     expect(req.taskType).toBe('analysis');
@@ -153,17 +155,23 @@ describe('model-adapter · index 工具', () => {
     expect(formatLatency(90000)).toBe('1m 30.00s');
   });
 
-  it('createModelAdapter 工厂 + 常量表', () => {
+  it('createModelAdapter 工厂 + 常量表（npm 正式版 VERSION=1.1.0）', () => {
     expect(createModelAdapter()).toBeInstanceOf(ModelAdapter);
-    expect(VERSION).toBe('1.0.0');
+    expect(VERSION).toBe('1.1.0');
     expect(DEFAULT_MODEL_ADAPTER_CONFIG.routing.type).toBe('smart');
     expect(Object.keys(MODEL_PRESETS).length).toBeGreaterThan(0);
   });
 });
 
 // ============================================================ ModelAdapter 主类
-describe('model-adapter · ModelAdapter', () => {
-  const bootAdapter = async (overrides: Record<string, unknown> = {}) => {
+describe('model-adapter@npm · ModelAdapter', () => {
+  const bootAdapter = async (overrides: Record<string, unknown> = {}, fetchImpl?: typeof fetch) => {
+    // fetch 可注入：openai SDK（dist 内联）在 client 构造期捕获 fetch 实现，
+    // boot 后再 stubGlobal 不生效——需在 bootAdapter 之前注入
+    const fetchMock = fetchImpl
+      ? vi.fn().mockImplementation(fetchImpl)
+      : stubOpenAIRest();
+    vi.stubGlobal('fetch', fetchMock);
     const adapter = new ModelAdapter();
     await adapter.initialize({
       defaultModel: 'm-1',
@@ -178,10 +186,11 @@ describe('model-adapter · ModelAdapter', () => {
     await adapter.addModel(makeModelConfig({ id: 'm-1', name: 'GPT-4', model: 'gpt-4' }));
     await adapter.addModel(makeModelConfig({ id: 'm-2', name: 'Turbo', model: 'gpt-3.5-turbo', provider: 'openai' }));
     await adapter.start();
-    return adapter;
+    return { adapter, fetchMock };
   };
 
   it('生命周期：initialize→active→stop→restart→suspend 状态机 + 配置读写', async () => {
+    stubOpenAIRest();
     const adapter = new ModelAdapter();
     expect(adapter.status).toBe('initializing');
     await adapter.initialize({
@@ -204,7 +213,7 @@ describe('model-adapter · ModelAdapter', () => {
   });
 
   it('模型管理：addModel 校验/重复/删除/更新', async () => {
-    const adapter = await bootAdapter();
+    const { adapter } = await bootAdapter();
     expect(adapter.models.size).toBe(2);
     await expect(adapter.addModel({ id: '', name: '', provider: 'openai', model: '' } as any)).rejects.toThrow('Invalid model configuration');
     await adapter.updateModel('m-1', { name: 'GPT-4-turbo' } as any);
@@ -213,30 +222,31 @@ describe('model-adapter · ModelAdapter', () => {
     expect(adapter.models.size).toBe(1);
   });
 
-  it('processRequest：mock SDK 完整链路 + 缓存命中第二次不发请求', async () => {
-    completionsCreate.mockResolvedValue(COMPLETION_BODY);
-    const adapter = await bootAdapter();
+  it('processRequest：REST fetch 桩完整链路 + 缓存命中第二次不发请求', async () => {
+    const { adapter, fetchMock } = await bootAdapter();
+    const completionsCalls = () => fetchMock.mock.calls.filter(([u]) => !String(u).includes('/models')).length;
     const response = await adapter.processRequest(makeRequest());
     expect(response.content).toBe('好的回复');
     expect(response.requestId).toBe('req-1');
     expect(response.modelId).toBe('m-1');
     expect(response.metadata.latency).toBeGreaterThanOrEqual(0);
-    expect(completionsCreate).toHaveBeenCalledTimes(1);
-    // 同参数第二次 → 缓存命中（sha256 键一致）
+    const afterFirst = completionsCalls();
+    expect(afterFirst).toBeGreaterThanOrEqual(1);
+    // 同参数第二次 → 缓存命中（sha256 键一致；1.1.0 内置 SHA256→SHA-256 映射）
     const second = await adapter.processRequest(makeRequest());
     expect(second.content).toBe('好的回复');
-    expect(completionsCreate).toHaveBeenCalledTimes(1);
+    expect(completionsCalls()).toBe(afterFirst);
   });
 
   it('processRequest：无可用模型抛错', async () => {
+    stubOpenAIRest();
     const adapter = new ModelAdapter();
     await adapter.initialize({} as any);
     await expect(adapter.processRequest(makeRequest())).rejects.toThrow(/No available models/);
   });
 
   it('generateText / generate：文本便捷通道', async () => {
-    completionsCreate.mockResolvedValue(COMPLETION_BODY);
-    const adapter = await bootAdapter();
+    const { adapter } = await bootAdapter();
     const text = await adapter.generateText({ prompt: '你好', taskType: 'conversation' } as any);
     expect(JSON.stringify(text)).toContain('好的回复');
     const gen = await adapter.generate({ prompt: '写代码', maxTokens: 50, temperature: 0.3 } as any);
@@ -244,14 +254,12 @@ describe('model-adapter · ModelAdapter', () => {
   });
 
   it('cancelRequest：未知 id 取消为 no-op 不抛', async () => {
-    completionsCreate.mockResolvedValue(COMPLETION_BODY);
-    const adapter = await bootAdapter();
+    const { adapter } = await bootAdapter();
     await expect(adapter.cancelRequest('no-such-req')).resolves.toBeUndefined();
   });
 
   it('缓存操作：clearCache + getCacheStats', async () => {
-    completionsCreate.mockResolvedValue(COMPLETION_BODY);
-    const adapter = await bootAdapter();
+    const { adapter } = await bootAdapter();
     await adapter.processRequest(makeRequest());
     await adapter.clearCache();
     const stats = await adapter.getCacheStats();
@@ -260,43 +268,48 @@ describe('model-adapter · ModelAdapter', () => {
   });
 
   it('healthCheck：模型健康状态返回', async () => {
-    modelsList.mockResolvedValue({ data: [{ id: 'gpt-4' }] });
-    const adapter = await bootAdapter();
+    const { adapter } = await bootAdapter();
     const health = await adapter.healthCheck();
     expect(health['m-1']).toBeDefined();
     expect(health['m-1'].status).toBe('healthy');
   });
 
   it('路由策略：fastest/least_cost/best_quality/smart 四种选型不抛', async () => {
-    completionsCreate.mockResolvedValue(COMPLETION_BODY);
     for (const type of ['fastest', 'least_cost', 'best_quality', 'smart'] as const) {
-      const adapter = await bootAdapter({ routing: { type, fallback: { enabled: false, maxRetries: 0, retryDelay: 0, exponentialBackoff: false, alternativeModels: [], fallbackOnErrors: [] } } });
+      const { adapter } = await bootAdapter({ routing: { type, fallback: { enabled: false, maxRetries: 0, retryDelay: 0, exponentialBackoff: false, alternativeModels: [], fallbackOnErrors: [] } } });
       const resp = await adapter.processRequest(makeRequest({ id: `r-${type}` }));
       expect(resp.content).toBe('好的回复');
       await adapter.stop();
     }
   });
 
-  it('processStreamingRequest：SDK 流式桩逐块回调', async () => {
-    const chunks = [
-      { id: 's1', object: 'chat.completion.chunk', created: Date.now(), model: 'gpt-4', choices: [{ index: 0, delta: { content: '你' }, finish_reason: null }], usage: { prompt_tokens: 1, completion_tokens: 1, total_tokens: 2 } },
-      { id: 's1', object: 'chat.completion.chunk', created: Date.now(), model: 'gpt-4', choices: [{ index: 0, delta: { content: '好' }, finish_reason: 'stop' }], usage: { prompt_tokens: 1, completion_tokens: 1, total_tokens: 2 } },
-    ];
-    completionsCreate.mockImplementation(async (req: { stream?: boolean }) => {
-      if (!req.stream) return COMPLETION_BODY;
-      return (async function* () {
-        for (const c of chunks) yield c;
-      })();
-    });
-    const adapter = await bootAdapter();
+  it('processStreamingRequest：SSE 流式桩逐块回调', async () => {
+    const encoder = new TextEncoder();
+    const sse =
+      [
+        'data: {"id":"s1","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"content":"你"},"finish_reason":null}]}',
+        'data: {"id":"s1","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"content":"好"},"finish_reason":"stop"}]}',
+        'data: [DONE]',
+      ].join('\n\n') + '\n\n';
+    // SDK 在 client 构造期捕获 fetch 实现——SSE 流式桩必须先于 bootAdapter 注入
+    //（bootAdapter 内部的 JSON 桩会覆盖此后设置）；流式路径要求响应带 body
+    const sseFetch = async (url: string) => {
+      if (String(url).includes('/models')) return fetchResponse({ data: [{ id: 'gpt-4' }] });
+      return {
+        ok: true,
+        status: 200,
+        body: Readable.toWeb(Readable.from([encoder.encode(sse)])),
+        headers: new Headers({ 'content-type': 'text/event-stream' }),
+      } as unknown as Response;
+    };
+    const { adapter } = await bootAdapter({}, sseFetch as typeof fetch);
     const received: ModelResponse[] = [];
     await adapter.processStreamingRequest(makeRequest({ id: 'req-stream' }), (chunk) => received.push(chunk));
-    expect(received.join('') === '' ? received.length : received.length).toBeGreaterThan(0);
+    expect(received.length).toBeGreaterThan(0);
   });
 
   it('updateConfig/resetConfig 后仍可处理请求', async () => {
-    completionsCreate.mockResolvedValue(COMPLETION_BODY);
-    const adapter = await bootAdapter();
+    const { adapter } = await bootAdapter();
     await adapter.updateConfig({ monitoring: { enabled: true, metricsInterval: 1000, detailedLogging: false, alertThresholds: { errorRate: 1, latency: 9999, cost: 99, queueDepth: 99, resourceUsage: 1 }, retentionPeriod: 1000 } } as any);
     const resp = await adapter.processRequest(makeRequest({ id: 'req-after-config' }));
     expect(resp.content).toBe('好的回复');
@@ -304,7 +317,7 @@ describe('model-adapter · ModelAdapter', () => {
 });
 
 // ============================================================ 独立 OpenAIProvider（fetch 桩）
-describe('model-adapter · OpenAIProvider（独立实现，fetch 桩）', () => {
+describe('model-adapter@npm · OpenAIProvider（独立实现，fetch 桩）', () => {
   const boot = async () => {
     const fetchMock = vi.fn().mockImplementation(async (url: string) => {
       if (String(url).includes('/models')) return fetchResponse({ data: [{ id: 'gpt-4' }] });
@@ -358,7 +371,7 @@ describe('model-adapter · OpenAIProvider（独立实现，fetch 桩）', () => 
     ].join('\n\n') + '\n\n';
     const fetchMock = vi.fn().mockImplementation(async (url: string) => {
       if (String(url).includes('/models')) return fetchResponse({ data: [] });
-      return { ok: true, status: 200, body: Readable.toWeb(Readable.from([encoder.encode(sse)])), headers: { get: () => null } } as unknown as Response;
+      return { ok: true, status: 200, body: Readable.toWeb(Readable.from([encoder.encode(sse)])), headers: new Headers({ 'content-type': 'text/event-stream' }) } as unknown as Response;
     });
     vi.stubGlobal('fetch', fetchMock);
     const provider = new OpenAIProvider();
@@ -384,7 +397,7 @@ describe('model-adapter · OpenAIProvider（独立实现，fetch 桩）', () => 
 });
 
 // ============================================================ GoogleProvider（fetch 桩）
-describe('model-adapter · GoogleProvider（fetch 桩）', () => {
+describe('model-adapter@npm · GoogleProvider（fetch 桩）', () => {
   const boot = async () => {
     const fetchMock = vi.fn().mockImplementation(async (url: string) => {
       if (String(url).includes('/models?')) return fetchResponse({ models: [{ name: 'models/gemini-pro' }] });
@@ -429,7 +442,7 @@ describe('model-adapter · GoogleProvider（fetch 桩）', () => {
 });
 
 // ============================================================ EnhancedStreamingProcessor
-describe('model-adapter · EnhancedStreamingProcessor', () => {
+describe('model-adapter@npm · EnhancedStreamingProcessor', () => {
   const chunk = (text: string): ModelResponse =>
     ({
       id: 'c-' + text,
@@ -482,7 +495,7 @@ describe('model-adapter · EnhancedStreamingProcessor', () => {
 });
 
 // ============================================================ IntelligentCacheLayer
-describe('model-adapter · IntelligentCacheLayer', () => {
+describe('model-adapter@npm · IntelligentCacheLayer', () => {
   it('get/set：L1 命中 + miss + loader 回填', async () => {
     const cache = new IntelligentCacheLayer({ l1Size: 10, l1TTL: 60000 } as any);
     const miss = await cache.get<string>('k1');
@@ -539,8 +552,6 @@ describe('model-adapter · IntelligentCacheLayer', () => {
     expect(report).toBeDefined();
     const perf = await cache.analyzePerformance();
     expect(perf).toBeDefined();
-    expect(CacheLevel.L1).toBeDefined();
-    expect(CacheStrategy.LRU).toBeDefined();
   });
 
   it('大对象 size 计算 + 依赖标签元数据', async () => {

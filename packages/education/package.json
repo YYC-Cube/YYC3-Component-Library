@@ -28,6 +28,7 @@
   "dependencies": {
     "@tanstack/react-virtual": "^3.14.26",
     "@yyc3/lib": "^0.4.0",
+    "@yyc3/model-adapter": "^1.1.0",
     "@yyc3/theme": "^2.2.0",
     "@yyc3/ui": "^2.1.2",
     "eventemitter3": "^5.0.1",

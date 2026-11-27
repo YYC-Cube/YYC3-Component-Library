@@ -1,6 +1,6 @@
 // ============================================================
 // YYC³ · @yyc3/education autonomous-engine 真身（真身专项 · 2026-11-07，本件整替 2026-11-07 桩层）
-// 源（D0 权威副本 UI-9）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/yyc3-learning-platform/packages/autonomous-engine/src/core/AgenticCore.ts（逐字迁移；唯一 import 适配：@yyc3/model-adapter → ../../../model-adapter/src）
+// 源（D0 权威副本 UI-9）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/yyc3-learning-platform/packages/autonomous-engine/src/core/AgenticCore.ts（逐字迁移；batch2（2026-11-27）import 适配更新：内嵌副本已删除，改依赖 npm 正式版 @yyc3/model-adapter@^1.1.0）
 // ============================================================
 /**
  * 智能自治核心引擎 - 完整实现
@@ -8,8 +8,8 @@
  * 实现"五高五标五化"设计原则
  */
 import { EventEmitter } from 'events';
-import { ModelAdapter } from '../../../model-adapter/src';
-import type { ModelConfig, ModelRequest, ModelResponse, TaskType } from '../../../model-adapter/src';
+import { ModelAdapter } from '@yyc3/model-adapter';
+import type { ModelConfig, ModelRequest, ModelResponse, TaskType } from '@yyc3/model-adapter';
 import type { TaskStatus } from '../IAutonomousAIEngine';
 
 // ModelAdapter相关配置接口
@@ -143,12 +143,15 @@ export class AgenticCore extends EventEmitter {
   
   constructor(config: Partial<AgentConfig> = {}) {
     super();
+    // bug#5 修复（2026-11-27 batch2）：数值配置 `||` 默认会吞合法 0——
+    // maxQueueSize=0（拒绝排队）/maxConcurrentTasks=0（拒绝并发）被覆盖为默认值。
+    // 改 nullish 合并：仅未传（undefined/null）才落默认。
     this.config = {
-      maxConcurrentTasks: config.maxConcurrentTasks || 5,
-      maxQueueSize: config.maxQueueSize || 100,
-      defaultTimeout: config.defaultTimeout || 300000, // 5分钟
+      maxConcurrentTasks: config.maxConcurrentTasks ?? 5,
+      maxQueueSize: config.maxQueueSize ?? 100,
+      defaultTimeout: config.defaultTimeout ?? 300000, // 5分钟
       enableLearning: config.enableLearning ?? true,
-      logLevel: config.logLevel || 'info',
+      logLevel: config.logLevel ?? 'info',
       modelAdapterConfig: config.modelAdapterConfig
     };
     
@@ -237,7 +240,7 @@ export class AgenticCore extends EventEmitter {
           apiKey: config.openAIKey
         },
         capabilities: {
-          maxTokens: config.maxTokens || 8192,
+          maxTokens: config.maxTokens ?? 8192,
           maxContextLength: 8192,
           supportedModalities: ['text', 'code'],
           streamingSupport: true,

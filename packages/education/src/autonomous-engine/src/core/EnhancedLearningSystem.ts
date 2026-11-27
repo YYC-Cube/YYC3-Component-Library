@@ -1,6 +1,6 @@
 // ============================================================
 // YYC³ · @yyc3/education autonomous-engine 真身（真身专项 · 2026-11-07）
-// 源（D0 权威副本 UI-9）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/yyc3-learning-platform/packages/autonomous-engine/src/core/EnhancedLearningSystem.ts（逐字迁移；唯一 import 适配：@yyc3/model-adapter → ../../../model-adapter/src）
+// 源（D0 权威副本 UI-9）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/yyc3-learning-platform/packages/autonomous-engine/src/core/EnhancedLearningSystem.ts（逐字迁移；batch2（2026-11-27）import 适配更新：内嵌副本已删除，改依赖 npm 正式版 @yyc3/model-adapter@^1.1.0）
 // ============================================================
 /**
  * @fileoverview 增强学习系统实现 - 提供自适应学习和策略优化能力
@@ -12,7 +12,7 @@
  */
 
 import { EventEmitter } from 'eventemitter3';
-import { ModelAdapter } from '../../../model-adapter/src';
+import { ModelAdapter } from '@yyc3/model-adapter';
 import type {
   Insight,
   InsightType,
@@ -363,15 +363,18 @@ export class EnhancedLearningSystem extends EventEmitter {
       'good': 0.75,
       'fair': 0.5,
       'poor': 0.25
-    }[experience.outcomes[0]?.quality || 'fair'] || 0.5;
-    
+    }[experience.outcomes[0]?.quality || 'fair'] ?? 0.5;
+
+    // bug#2 修复（2026-11-27 batch2）：`||` 会吞掉查表合法值 0——
+    // very_negative 权重 0.0 被 `|| 0.5` 覆盖为 0.5，负面反馈反而抬高学习影响。
+    // 改 nullish 合并：仅 undefined/null（未知 sentiment）才落默认 0.5。
     const sentimentWeight = {
       'very_positive': 1.0,
       'positive': 0.75,
       'neutral': 0.5,
       'negative': 0.25,
       'very_negative': 0.0
-    }[experience.feedback.sentiment] || 0.5;
+    }[experience.feedback.sentiment] ?? 0.5;
     
     impact = (successWeight + qualityWeight + sentimentWeight) / 3;
     
@@ -795,6 +798,11 @@ Provide 3-5 actionable insights for improving future performance in similar situ
     this.strategies.clear();
     this.knowledgeDomains.clear();
     this.performanceMetrics.clear();
+    // bug#8 修复（2026-11-27 batch2）：shutdown 只清集合不清计数器——
+    // totalExperiences 等遗留旧值，shutdown 后 getProgress() 仍报历史经验数。
+    this.totalExperiences = 0;
+    this.successfulAdaptations = 0;
+    this.failedAdaptations = 0;
   }
 
   async reconfigure(newConfig: Partial<LearningSystemConfig>): Promise<void> {

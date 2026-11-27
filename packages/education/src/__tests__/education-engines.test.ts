@@ -1,8 +1,10 @@
 // ============================================================
-// YYC³ · @yyc3/education 批次 1 铁律门补测 · 第二层：autonomous-engine 三引擎
+// YYC³ · @yyc3/education 批次 2 · autonomous-engine 三引擎（jsdom 简单路径）
 // AgenticCore（意图分析/计划生成/任务执行/队列/超时清理）
 // EnhancedDecisionEngine（传统评估 + AI 评估失败降级 + 学习闭环）
 // EnhancedLearningSystem（经验学习/策略适应/能力分级/里程碑/清理）
+// —— LLM 路径（modelAdapterConfig）拆至 education-engines-llm.test.ts（node 环境：
+//    bug#1/#3 治理后 SDK 内联于 @yyc3/model-adapter dist，jsdom 拒绝实例化）
 // ============================================================
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { webcrypto } from 'node:crypto';
@@ -16,65 +18,6 @@ import {
   EnhancedLearningSystem,
   type LearningData,
 } from '../autonomous-engine/src/core/EnhancedLearningSystem';
-
-// OpenAI SDK 在 jsdom/浏览器环境拒绝实例化（dangerouslyAllowBrowser 守卫，产品缺陷已登记）
-// —— 以桩 SDK 替代：chat.completions.create 按系统提示词分发意图/计划响应
-const { completionsCreate } = vi.hoisted(() => ({ completionsCreate: vi.fn() }));
-vi.mock('openai', () => ({
-  default: class MockOpenAI {
-    chat = { completions: { create: completionsCreate } };
-    constructor(_options?: unknown) {}
-  },
-}));
-
-const COMPLETION = (content: string) => ({
-  id: 'chatcmpl-test',
-  object: 'chat.completion',
-  created: Date.now(),
-  model: 'gpt-4',
-  choices: [{ index: 0, message: { role: 'assistant', content }, finish_reason: 'stop' }],
-  usage: { prompt_tokens: 10, completion_tokens: 10, total_tokens: 20 },
-});
-const INTENT_JSON = JSON.stringify({
-  primaryIntent: 'search',
-  entities: [{ type: 'topic', value: 'course', confidence: 0.9 }],
-  sentiment: 'neutral',
-  complexity: 'medium',
-  urgency: 'high',
-  confidence: 0.95,
-});
-const PLAN_JSON = JSON.stringify({
-  steps: [
-    { description: '检索知识', tool: 'knowledge_search', parameters: {} },
-    { id: 'step-x', description: '生成响应', tool: 'response_generator', parameters: {}, status: 'pending' },
-  ],
-  estimatedDuration: 8000,
-  requiredResources: ['gpu'],
-  dependencies: [],
-});
-const llmResponse = (intentContent: string, planContent: string) =>
-  completionsCreate.mockImplementation(async (request: { messages?: Array<{ content: string }> }) => {
-    const prompt = (request.messages ?? []).map((m) => m.content).join('\n');
-    if (prompt.includes('计划生成')) return COMPLETION(planContent);
-    return COMPLETION(intentContent);
-  });
-
-// 产品缺陷（已登记，零产品码改动）：ModelAdapter.createHash 以 `algorithm.toUpperCase()`
-// 处理 'sha256' → 'SHA256'，WebCrypto 仅认 'SHA-256' → 缓存键哈希恒抛
-// "Unrecognized algorithm name"，所有 processRequest 必然失败走降级。
-// 测试以别名映射桩桥接（仅测试脚手架，不改产品码）。
-const digestAliasCrypto = () => {
-  const subtle = webcrypto.subtle as any;
-  const origDigest = subtle.digest.bind(subtle);
-  return {
-    getRandomValues: webcrypto.getRandomValues.bind(webcrypto),
-    subtle: {
-      digest: (alg: string, data: BufferSource) =>
-        origDigest(alg === 'SHA256' ? 'SHA-256' : alg, data),
-      importKey: subtle.importKey?.bind(subtle),
-    },
-  };
-};
 
 const makeContext = (): AgentContext => ({
   sessionId: 'sess-1',
@@ -157,12 +100,22 @@ describe('education · AgenticCore（简单意图路径）', () => {
     expect(core.getTaskStatus(r2.taskId)).toBe('completed');
   });
 
-  it('队列满：maxQueueSize=1 时第三个任务拒绝（0 会被 ||100 默认吞掉，产品缺陷已登记）', async () => {
+  it('队列满：maxQueueSize=1 时第三个任务拒绝', async () => {
     vi.useFakeTimers();
     const core = new AgenticCore({ maxConcurrentTasks: 1, maxQueueSize: 1 });
     await core.processInput(makeInput('搜索一'));
     await core.processInput(makeInput('搜索二'));
     await expect(core.processInput(makeInput('搜索三'))).rejects.toThrow('Task queue is full');
+  });
+
+  it('修复锁定（bug#5）：maxQueueSize=0 / maxConcurrentTasks=0 为合法配置——立即拒绝而非落默认值', async () => {
+    // 产品缺陷（已登记已修，2026-11-27 batch2）：`|| 默认值` 吞合法 0——
+    // maxQueueSize=0 会被覆盖为 100、maxConcurrentTasks=0 覆盖为 5。
+    // `??` 后：0 并发 → 不进 activeTasks；0 队列 → 不进 taskQueue → 直接拒绝。
+    vi.useFakeTimers();
+    const core = new AgenticCore({ maxConcurrentTasks: 0, maxQueueSize: 0 });
+    await expect(core.processInput(makeInput('搜索一'))).rejects.toThrow('Task queue is full');
+    expect(core.getSystemStatus().totalTasksProcessed).toBe(0);
   });
 
   it('超时清理：defaultTimeout 内未完成任务被 interval 标记失败', async () => {
@@ -179,7 +132,7 @@ describe('education · AgenticCore（简单意图路径）', () => {
   });
 
   it('getTaskStatus：未知任务抛错；generate 在无模型时拒绝；嵌入/偏好可用', async () => {
-    vi.stubGlobal('crypto', digestAliasCrypto());
+    vi.stubGlobal('crypto', webcrypto);
     vi.useFakeTimers();
     const core = new AgenticCore();
     expect(() => core.getTaskStatus('no-such-task')).toThrow('Task not found');
@@ -190,76 +143,6 @@ describe('education · AgenticCore（简单意图路径）', () => {
     await core.updateUserPreferences('user-1', { theme: 'dark' });
     expect(console.log).toHaveBeenCalled();
   });
-});
-
-// ============================================================ AgenticCore（LLM 路径：SDK 桩 + digest 别名桩）
-describe('education · AgenticCore（modelAdapterConfig + OpenAI SDK 桩 LLM 路径）', () => {
-  beforeEach(() => {
-    vi.stubGlobal('crypto', digestAliasCrypto());
-    vi.spyOn(console, 'error').mockImplementation(() => {});
-  });
-  afterEach(() => {
-    vi.useRealTimers();
-    vi.unstubAllGlobals();
-    vi.restoreAllMocks();
-    completionsCreate.mockReset();
-  });
-
-  const llmCore = () =>
-    new AgenticCore({
-      modelAdapterConfig: { openAIModel: 'gpt-4', openAIKey: 'sk-test' },
-      logLevel: 'error',
-    });
-
-  it('意图+计划双走 LLM：合法 JSON 直达，任务完成闭环', async () => {
-    vi.useFakeTimers(); // 先接管计时器（任务步骤 delay 才能被推进）
-    llmResponse(INTENT_JSON, PLAN_JSON);
-    const core = llmCore();
-    await vi.advanceTimersByTimeAsync(60); // 等 setupModelAdapter 浮动初始化
-    expect(completionsCreate).not.toHaveBeenCalled(); // 尚无请求
-    const resp = await core.processInput(makeInput('帮我找课'));
-    expect(resp.taskId).toBeTruthy();
-    expect(resp.suggestions).toContain('尝试使用更具体的关键词'); // LLM 意图 search → 建议命中
-    await vi.advanceTimersByTimeAsync(6000); // 2 步计划执行完
-    const status = core.getSystemStatus();
-    expect(status.totalTasksProcessed).toBe(1);
-    expect(status.state).toBe('idle');
-    expect(completionsCreate).toHaveBeenCalled(); // 意图+计划两次请求
-  }, 15000);
-
-  it('意图分析降级链：坏 JSON → simple 分析；字段缺失 → 格式校验降级', async () => {
-    llmResponse('这不是 JSON', '坏');
-    const core = llmCore();
-    await new Promise((r) => setTimeout(r, 50));
-    const resp = await core.processInput(makeInput('搜索课程'));
-    expect(resp.suggestions).toContain('尝试使用更具体的关键词'); // 降级后仍按关键词识别 search
-
-    llmResponse(JSON.stringify({ primaryIntent: 'search' }), '坏'); // 缺字段
-    const resp2 = await core.processInput(makeInput('随便聊聊'));
-    expect(resp2.taskId).toBeTruthy();
-  }, 15000);
-
-  it('计划生成降级：LLM steps 为空 → 硬编码三步兜底', async () => {
-    vi.useFakeTimers();
-    llmResponse(INTENT_JSON, JSON.stringify({ steps: [] }));
-    const core = llmCore();
-    await vi.advanceTimersByTimeAsync(60);
-    const resp = await core.processInput(makeInput('搜索资料'));
-    expect(resp.taskId).toBeTruthy();
-    await vi.advanceTimersByTimeAsync(6000);
-    expect(core.getSystemStatus().totalTasksProcessed).toBe(1);
-  }, 15000);
-
-  it('缺陷表征（未修产品码）：digest 别名桩撤除后 processRequest 恒失败 → simple 意图降级', async () => {
-    vi.unstubAllGlobals();
-    vi.stubGlobal('crypto', webcrypto); // 真实 webcrypto：'SHA256' 不被识别
-    llmResponse(INTENT_JSON, PLAN_JSON);
-    const core = llmCore();
-    await new Promise((r) => setTimeout(r, 50));
-    const resp = await core.processInput(makeInput('帮我找课')); // 无关键词 → general_query 无建议
-    expect(resp.taskId).toBeTruthy();
-    expect(resp.suggestions).toEqual([]);
-  }, 15000);
 });
 
 // ============================================================ EnhancedDecisionEngine
@@ -445,10 +328,10 @@ describe('education · EnhancedLearningSystem', () => {
     expect(progress.areasOfImprovement).toEqual(['advanced_optimization', 'cross_domain_integration']);
   });
 
-  it('失败经验（缺陷表征，未修产品码）：能力不降反升 + 未知领域跳过', async () => {
-    // 产品缺陷（已登记）：calculateLearningImpact 的权重查表 `[map][sentiment] || 0.5`
-    // 把 very_negative/negative 的合法权重 0 当 falsy 吞成 0.5 → 失败经验的
-    // 期望冲击 (-0.5+0.25+0.5)/3 = +0.083 恒为正，能力永不下降。
+  it('修复锁定（bug#2）：very_negative 权重 0 生效——失败经验能力真实下降 + 未知领域跳过', async () => {
+    // 产品缺陷（已登记已修，2026-11-27 batch2）：权重查表 `[map][sentiment] || 0.5`
+    // 把 very_negative 的合法权重 0 吞成 0.5 → 失败经验冲击恒为正，能力永不下降。
+    // `??` 后冲击 = (-0.5+0.25+0)/3 ≈ -0.083 → competency 下降。
     const system = new EnhancedLearningSystem({ learningRate: 2 });
     const failure = makeExperience({
       type: 'failure',
@@ -473,10 +356,26 @@ describe('education · EnhancedLearningSystem', () => {
     const before = system.getKnowledgeDomain('general')!.competency;
     await system.learnFromExperience(failure);
     const general = system.getKnowledgeDomain('general')!;
-    expect(general.competency).toBeGreaterThan(before); // 缺陷表征：失败也涨能力
+    expect(general.competency).toBeLessThan(before); // 修复锁定：失败经验能力下降
     expect(system.getProgress().failedAdaptations).toBe(1);
     expect(system.getKnowledgeDomain('no-such-domain')).toBeUndefined();
     expect(system.getAllKnowledgeDomains()).toHaveLength(3);
+  });
+
+  it('修复锁定（bug#2）：negative 权重 0.25 生效——failure+poor 下冲击恰为 0（能力不动）', async () => {
+    // negative=0.25：冲击 = (-0.5+0.25+0.25)/3 = 0 → competency 恒为 0.5；
+    // 缺陷态（吞成 0.5）冲击 = +0.083×learningRate → 必然上升。以「不动」锁权重生效。
+    const system = new EnhancedLearningSystem({ learningRate: 2 });
+    const negative = makeExperience({
+      type: 'failure',
+      outcomes: [{ id: 'o', type: 'error', value: null, quality: 'poor', duration: 10, resourceUsage: {} }],
+      feedback: {
+        source: 'system', type: 'error', content: '不满意',
+        sentiment: 'negative', confidence: 1, actionability: 'immediate',
+      },
+    });
+    await system.learnFromExperience(negative);
+    expect(system.getKnowledgeDomain('general')!.competency).toBeCloseTo(0.5, 10);
   });
 
   it('模式提取：同签名经验归并 frequency 递增', async () => {
@@ -544,12 +443,14 @@ describe('education · EnhancedLearningSystem', () => {
     await system.learnFromExperience(makeExperience());
     await system.shutdown();
     expect(system.getAllKnowledgeDomains()).toHaveLength(0);
-    // 缺陷表征：shutdown 只清 Map，不清 totalExperiences 计数器（已登记，未修产品码）
-    expect(system.getProgress().totalExperiences).toBe(1);
+    // 修复锁定（bug#8，2026-11-27 batch2）：shutdown 同步清零 totalExperiences 等计数器
+    expect(system.getProgress().totalExperiences).toBe(0);
+    expect(system.getProgress().successfulAdaptations).toBe(0);
+    expect(system.getProgress().failedAdaptations).toBe(0);
 
+    // reconfigure 注入 adapterConfig（无 apiKey → 不走 addModel/SDK，jsdom 安全）
     const withAdapter = new EnhancedLearningSystem();
-    await withAdapter.reconfigure({ modelAdapterConfig: { provider: 'openai', apiKey: 'sk-t' } });
-    // initializeModelAdapter 为私有浮动异步 —— 仅验证不崩
+    await withAdapter.reconfigure({ modelAdapterConfig: { provider: 'openai' } });
     await new Promise((r) => setTimeout(r, 20));
   });
 

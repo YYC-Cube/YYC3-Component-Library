@@ -1,6 +1,6 @@
 // ============================================================
 // YYC³ · @yyc3/education autonomous-engine 真身（真身专项 · 2026-11-07）
-// 源（D0 权威副本 UI-9）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/yyc3-learning-platform/packages/autonomous-engine/src/core/EnhancedDecisionEngine.ts（逐字迁移；唯一 import 适配：@yyc3/model-adapter → ../../../model-adapter/src）
+// 源（D0 权威副本 UI-9）：/Users/yanyu/YYC3-Knowledge-Base/YYC3-UI-9/yyc3-learning-platform/packages/autonomous-engine/src/core/EnhancedDecisionEngine.ts（逐字迁移；batch2（2026-11-27）import 适配更新：内嵌副本已删除，改依赖 npm 正式版 @yyc3/model-adapter@^1.1.0）
 // ============================================================
 /**
  * @fileoverview 增强决策引擎 - 高级决策能力实现
@@ -11,7 +11,7 @@
  * @license MIT
  */
 
-import { ModelAdapter, type ModelRequest, type ModelResponse } from '../../../model-adapter/src';
+import { ModelAdapter, type ModelRequest, type ModelResponse } from '@yyc3/model-adapter';
 import { EventEmitter } from 'events';
 
 export interface DecisionContext {
