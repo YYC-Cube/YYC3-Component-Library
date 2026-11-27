@@ -137,6 +137,37 @@ describe('lib/api/client', () => {
     expect(init.revalidate).toBeUndefined();
     expect(init.cache).toBe('no-store');
   });
+
+  it('FormData body 原生 multipart 通道：实例原样透传且不设 Content-Type（batch2 缺陷修复锁）', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse({}));
+    vi.stubGlobal('fetch', fetchMock);
+
+    const form = new FormData();
+    const file = new File(['pixels'], 'mri.dcm', { type: 'application/dicom' });
+    form.append('file', file);
+    form.append('meta', 'x');
+
+    await api.post('/upload', form);
+
+    const [, init] = fetchMock.mock.calls[0];
+    expect(init.body).toBe(form); // 同一实例——未 stringify
+    expect(init.body.get('file')).toBe(file);
+    expect(init.body.get('meta')).toBe('x');
+    expect(init.headers['Content-Type']).toBeUndefined();
+  });
+
+  it('rest.body 直传（无 body 参数）不受 FormData 通道影响', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse({}));
+    vi.stubGlobal('fetch', fetchMock);
+
+    const raw = new FormData();
+    raw.append('k', 'v');
+    await api.post('/upload', undefined, { body: raw as unknown as BodyInit });
+    const [, init] = fetchMock.mock.calls[0];
+    expect(init.body).toBe(raw); // 经 rest.body 原样透传（该路径维持既有语义）
+    // body 参数未给 FormData 通道不介入——默认 JSON 头照旧（既有语义，不在本次修复面）
+    expect(init.headers['Content-Type']).toBe('application/json');
+  });
 });
 
 describe('lib/api/endpoints', () => {
@@ -729,7 +760,7 @@ describe('services/patientService', () => {
     expect(fetchMock.mock.calls[3][1].method).toBe('DELETE');
   });
 
-  it('uploadMedicalImage 走 UPLOAD_IMAGE 端点（产品缺陷登记：FormData 被 client JSON.stringify 成 "{}"，multipart 上传语义破坏）', async () => {
+  it('uploadMedicalImage 走 UPLOAD_IMAGE 端点——FormData 原样到达（batch2 缺陷修复回归锁）', async () => {
     const fetchMock = vi.fn().mockResolvedValue(jsonResponse({ ok: true, data: null }));
     vi.stubGlobal('fetch', fetchMock);
 
@@ -738,10 +769,16 @@ describe('services/patientService', () => {
 
     const [url, init] = fetchMock.mock.calls[0];
     expect(url).toBe('/medical-records/upload-image');
-    // 缺陷：lib/api/client.ts `body: body !== undefined ? JSON.stringify(body) : rest.body`
-    // 把 FormData 序列化成 '{}'——service 组装的 multipart 表单到不了服务端。
-    // 零产品码改动铁律：按现状断言，缺陷留待产品批次修复。
-    expect(init.body).toBe(JSON.stringify(new FormData()));
-    expect(init.headers['Content-Type']).toBe('application/json');
+    // 修复语义：body 是同一个 FormData 实例（不被 stringify），字段齐全
+    expect(init.body).toBeInstanceOf(FormData);
+    expect(init.body).not.toBe(JSON.stringify(new FormData()));
+    expect(init.body.get('file')).toBe(file);
+    expect(JSON.parse(init.body.get('metadata'))).toEqual({
+      patientId: 'p1',
+      imageType: 'CT',
+      description: '胸片',
+    });
+    // 不手设 Content-Type——浏览器自动生成带 boundary 的 multipart/form-data
+    expect(init.headers['Content-Type']).toBeUndefined();
   });
 });

@@ -204,11 +204,17 @@ export function ModelVersionHistory({ model, onClose }: ModelVersionHistoryProps
                 <div className="space-y-2">
                   {version.notes && <p className="text-sm">{version.notes}</p>}
 
+                  {/* 契约漂移修复（batch2 · 2026-11-27）：changes 类型标注 string[]?，
+                      但历史上游可能传字符串（batch1 登记③）——守卫收紧为 Array.isArray，
+                      非数组真值（旧数据/误用）降级为单条展示而非运行时崩溃 */}
                   {version.changes && version.changes.length > 0 && (
                     <div className="mt-2">
                       <h4 className="text-sm font-medium mb-1">变更内容:</h4>
                       <ul className="text-sm list-disc pl-5 space-y-1">
-                        {version.changes.map((change, i) => (
+                        {(Array.isArray(version.changes)
+                          ? version.changes
+                          : [String(version.changes)]
+                        ).map((change, i) => (
                           <li key={i}>{change}</li>
                         ))}
                       </ul>

@@ -358,7 +358,8 @@ describe('ai-model 余量 + 训练大件', () => {
     expectMounted(container);
   });
 
-  it('ModelVersionHistory 渲染版本历史（changes 契约实际要求 string[]，缺省会被 deref）', () => {
+  it('ModelVersionHistory 渲染版本历史——changes 数组/字符串双形态（batch2 缺陷修复③回归锁）', () => {
+    // 标准形态：string[]
     const { container } = render(
       <ModelVersionHistory
         model={{
@@ -366,7 +367,7 @@ describe('ai-model 余量 + 训练大件', () => {
           name: '版本模型',
           version: 'v2.0',
           versions: [
-            { version: 'v2.0', date: '2026-10-01', status: 'active', accuracy: 0.92, changes: ['精度提升'] },
+            { version: 'v2.0', date: '2026-10-01', status: 'active', accuracy: 0.92, changes: ['精度提升', '修复告警'] },
             { version: 'v1.9', date: '2026-08-01', status: 'archived', accuracy: 0.88, changes: ['初始版'] },
           ],
         }}
@@ -374,6 +375,27 @@ describe('ai-model 余量 + 训练大件', () => {
       />,
     );
     expect(container.textContent).toContain('v2.0');
+    expect(container.textContent).toContain('精度提升');
+  });
+
+  it('ModelVersionHistory changes 传字符串（历史漂移形态）降级单条展示不崩溃（batch2 缺陷修复③）', () => {
+    const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { container } = render(
+      <ModelVersionHistory
+        model={{
+          id: 'm-2',
+          name: '漂移模型',
+          version: 'v1.0',
+          versions: [
+            // 类型标注 string[]，但历史上游曾传字符串——修复后降级展示而非 .map 崩溃
+            { version: 'v1.0', date: '2026-01-01', status: 'active', accuracy: 0.8, changes: '初始发布' as never },
+          ],
+        }}
+        onClose={() => {}}
+      />,
+    );
+    expect(container.textContent).toContain('初始发布');
+    errSpy.mockRestore();
   });
 
   it('ModelIntegration 渲染集成页（fetch 数据面）', async () => {
