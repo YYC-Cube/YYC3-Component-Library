@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  zod@<4.6.6: 4.6.6
   esbuild@>=0.27.3 <0.28.1: '>=0.28.1'
   valibot@<=1.4.1: '>=1.4.2'
   brace-expansion@<1.1.17: '>=1.1.17'
@@ -757,7 +758,7 @@ importers:
         version: 0.4.6(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       openai:
         specifier: ^4.104.0
-        version: 4.104.0(ws@8.22.1)(zod@3.25.76)
+        version: 4.104.0(ws@8.22.1)(zod@4.6.6)
       react:
         specifier: ^19.3.1
         version: 19.3.1
@@ -1936,7 +1937,7 @@ packages:
       valibot: '>=1.4.2'
       vest: '>=6.0.0'
       yup: ^1.0.0
-      zod: ^3.25.0 || ^4.0.0
+      zod: 4.6.6
     peerDependenciesMeta:
       '@sinclair/typebox':
         optional: true
@@ -5684,7 +5685,7 @@ packages:
     hasBin: true
     peerDependencies:
       ws: ^8.18.0
-      zod: ^3.23.8
+      zod: 4.6.6
     peerDependenciesMeta:
       ws:
         optional: true
@@ -6892,9 +6893,6 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
   zod@4.6.6:
     resolution: {integrity: sha512-4UmzQUF5fxvfcYHlbjBmejU+w+hbDnWFx4aS8kBx7nPBHcO2SqPbpAG8snbdg+Xse4pRefR98hgjFgIMCI/UhA==}
@@ -10353,8 +10351,8 @@ snapshots:
       '@azure/openai': 1.0.0-beta.13
       '@google/generative-ai': 0.15.0
       eventemitter3: 5.0.4
-      openai: 4.104.0(ws@8.22.1)(zod@3.25.76)
-      zod: 3.25.76
+      openai: 4.104.0(ws@8.22.1)(zod@4.6.6)
+      zod: 4.6.6
     optionalDependencies:
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -11945,7 +11943,7 @@ snapshots:
       is-inside-container: 1.0.0
       wsl-utils: 0.1.0
 
-  openai@4.104.0(ws@8.22.1)(zod@3.25.76):
+  openai@4.104.0(ws@8.22.1)(zod@4.6.6):
     dependencies:
       '@types/node': 18.19.130
       '@types/node-fetch': 2.6.13
@@ -11956,7 +11954,7 @@ snapshots:
       node-fetch: 2.7.0
     optionalDependencies:
       ws: 8.22.1
-      zod: 3.25.76
+      zod: 4.6.6
     transitivePeerDependencies:
       - encoding
 
@@ -13331,8 +13329,6 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@0.1.0: {}
-
-  zod@3.25.76: {}
 
   zod@4.6.6: {}
 
