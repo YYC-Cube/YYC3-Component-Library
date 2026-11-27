@@ -1,5 +1,13 @@
 # @yyc3/lib
 
+## 0.4.1
+
+### Patch Changes
+
+- **useDataset 死循环修复**（batch2 登记项闭环）：effect 依赖 fetchData 身份且 `isFetching` 在依赖数组内，拉取完成翻转身份形成「effect 自触发链」持续重拉；cache-first 命中路径 `setLastUpdated(new Date())` 每轮制造新对象强制 re-render——同步自触发死循环（batch2 只记录不触发的产品级隐患，修复前用例实证 worker SIGABRT）。最小修复双守卫：①请求键守卫（endpoint/page/pageSize/fetchPolicy 同键每挂载只由 effect 触发一次，refresh()/错误重试定时器直呼不受影响，换键放行）；②lastUpdated 稳定引用（缓存命中取缓存时间戳，同刻重复命中返回同一 Date 引用，Object.is bail-out）。副产物：loadMore/refresh 从外部真正可达（batch2 时代因自触发链常驻在飞而早退的结构限制随之解除）。
+- 缓存命中 `lastUpdated` 语义修正：命中缓存的 lastUpdated = 数据真实入缓存时刻（此前恒为渲染时刻 new Date()）。
+- 覆盖率：istanbul 全口径 96.60S / 87.59B / 96.62F / **97.01L**（修复后四项全数不回退：S +0.37 / B +0.07 / F +0.20 / L +0.38；新增 use-dataset 死循环专项 5 用例，2158 测试全绿）。
+
 ## 0.4.0
 
 ### Minor Changes
