@@ -1,5 +1,16 @@
 # @yyc3/ui
 
+## 2.1.3
+
+### Patch Changes
+
+- **ClawInput inputRef 挂载修复**（PR#61 #1）：`inputRef` 声明后从未挂载到 JSX 元素——清除钮的原生清值/回焦与密码切换回焦全部失效（`inputRef.current` 恒 null）。合并转发外部 ref 与 inputRef（`setRefs` 回调）；清除钮走真实原生 setter + input 事件（触发真实 React onChange，单次派发）；合成 onChange 仅保留为 ref 缺失时兜底。
+- **Chart tooltip payload 防御修复**（PR#61 #2）：`item.payload.fill` 在 payload 条目缺 `payload` 字段（手搓 payload/非标准 recharts 条目）时直接 TypeError → 可选链 `item.payload?.fill || item.color` 防御。
+- **3D Button asChild 单子修复**（PR#61 #3）：`asChild` 时 Radix Slot 收到内容层 span + 波纹层 span 两个子元素 → `React.Children.only` 必炸。`asChild` 只透传 `children` 单子；包装层/波纹层仅在非 asChild 渲染。
+- **FormControl 守卫前置修复**（PR#61 #4）：守卫在 `useFormState`/`getFieldState` 之后且 `FormFieldContext` 默认值 `{} as ...` 永为真值 → 守卫死代码。守卫前置到所有解构/调用之前，以 `!fieldContext.name` 判定，抛出正确的守卫错误。
+- **Carousel 纵向分支可达修复**（PR#61 #5）：`orientation` 形参默认值 `'horizontal'` 使纵向分支不可达，且 `{...opts, axis: 'x'}` 覆盖用户 `opts.axis='y'`——纵向轮播完全不可用。形参默认值移除，显式推断 `orientationProp ?? (opts?.axis === 'y' ? 'vertical' : 'horizontal')`，显式传入仍优先。
+- 协议口径：dependencies 全真实 semver（`@yyc3/theme ^2.2.0`），零 `workspace:*` 协议泄漏；发布资格 = istanbul 全口径复核 **97.47S / 94.30B / 97.12F / 98.07L** 四项过门（2.1.2 基线 84.74S/94.06B/96.64F/97.80L，PR#61 缺陷修复后四项全数不回退）。
+
 ## 2.1.2
 
 ### Patch Changes
