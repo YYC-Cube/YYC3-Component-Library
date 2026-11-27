@@ -299,7 +299,7 @@ describe('OcrService 工作流', () => {
     const onComplete = vi.fn();
     const onCancel = vi.fn();
     const { container } = render(
-      <OcrService imageUrl="/images/prescription.png" onComplete={onComplete} onCancel={onCancel} />,
+      <OcrService imageUrl="/images/prescription.png" onAnnotationComplete={onComplete} onCancel={onCancel} />,
     );
     expect(container.textContent.length).toBeGreaterThan(0);
     const cancel = screen

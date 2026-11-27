@@ -115,7 +115,7 @@ describe('Image.onload 解锁：标注组件渲染链路', () => {
   it('InteractiveImageAnnotation 影像加载后标注面 + 画布事件', async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <InteractiveImageAnnotation imageUrl="/img/x.png" onComplete={() => {}} />,
+      <InteractiveImageAnnotation selectedImage="/img/x.png" onAnnotationComplete={() => {}} />,
     );
     await waitFor(
       () => {
@@ -144,7 +144,7 @@ describe('Image.onload 解锁：标注组件渲染链路', () => {
 
   it('AIAssistedAnnotation 加载后生成建议/采纳', async () => {
     const { container } = render(
-      <AIAssistedAnnotation imageUrl="/img/x.png" modality="CT" onComplete={() => {}} /> as never,
+      <AIAssistedAnnotation imageUrl="/img/x.png" modality="CT" onAnnotationComplete={() => {}} /> as never,
     );
     await waitFor(
       () => {

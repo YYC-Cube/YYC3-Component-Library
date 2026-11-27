@@ -129,7 +129,7 @@ describe('DicomViewer 工具链交互', () => {
 describe('InteractiveImageAnnotation 工具栏', () => {
   function setup() {
     return render(
-      <InteractiveImageAnnotation imageUrl="/images/ct-001.png" onComplete={() => {}} />,
+      <InteractiveImageAnnotation selectedImage="/images/ct-001.png" onAnnotationComplete={() => {}} />,
     );
   }
 
@@ -158,7 +158,7 @@ describe('InteractiveImageAnnotation 工具栏', () => {
 describe('AIAssistedAnnotation', () => {
   it('渲染 AI 标注工作台并驱动按钮', () => {
     const { container } = render(
-      <AIAssistedAnnotation imageUrl="/images/ct-001.png" onComplete={() => {}} /> as never,
+      <AIAssistedAnnotation imageUrl="/images/ct-001.png" onAnnotationComplete={() => {}} /> as never,
     );
     expect(container.textContent.length).toBeGreaterThan(0);
     const buttons = screen.getAllByRole('button');
