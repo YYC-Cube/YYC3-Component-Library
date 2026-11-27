@@ -38,14 +38,25 @@ async function request<T>(method: string, url: string, config?: ApiRequestConfig
   const { params, requiresAuth: _requiresAuth, revalidate: _revalidate, ...rest } = config ?? {}
   void _requiresAuth // 悬留：auth store 真身迁入后生效
   void _revalidate
+
+  // 缺陷修复（batch2 · 2026-11-27）：FormData 走原生 multipart 通道——
+  // 不得 JSON.stringify（会序列化成 "{}"），也不得手设 Content-Type
+  //（须由浏览器自动生成带 boundary 的 multipart/form-data 头）。
+  // 其余 body 维持 JSON 序列化语义不变。
+  const isFormData = typeof FormData !== "undefined" && body instanceof FormData
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...(rest.headers ?? {}),
+  }
+  if (isFormData) {
+    delete headers["Content-Type"]
+  }
+
   const response = await fetch(buildUrl(url, config), {
     ...rest,
     method,
-    headers: {
-      "Content-Type": "application/json",
-      ...(rest.headers ?? {}),
-    },
-    body: body !== undefined ? JSON.stringify(body) : rest.body,
+    headers,
+    body: isFormData ? (body as FormData) : body !== undefined ? JSON.stringify(body) : rest.body,
   })
   const payload = (await response.json().catch(() => null)) as T | null
   return {

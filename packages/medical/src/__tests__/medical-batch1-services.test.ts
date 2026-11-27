@@ -16,10 +16,9 @@ import {
   multiCenterResearchService,
   multiModalAIService,
   aiAnnotationService,
+  // 缺口已收口（batch2 缺陷修复②）：pharmacogenomicsService 补入 index.ts 桶
+  pharmacogenomicsService,
 } from '../index';
-// 缺口登记：pharmacogenomicsService 未入桶（index.ts services 段无此导出，
-// 冒烟测试「前置件」清单同样缺位）——直连模块导入，桶缺口留待产品批次收口
-import { pharmacogenomicsService } from '../services/pharmacogenomics-service';
 
 /** setTimeout 模拟延迟的服务：fake timers 快进后 await */
 async function withFakeDelay<T>(p: Promise<T>, ms: number): Promise<T> {

@@ -177,6 +177,9 @@ export { multiModalAIService } from './services/multi-modal-ai-service'
 export { medicationInteractionService } from './services/medication-interaction-service'
 export { multiCenterResearchService } from './services/multi-center-research-service'
 export { patientService } from './services/patientService'
+// 缺口收口（batch2 · 2026-11-27）：pharmacogenomicsService 补入桶（batch1 登记②，
+// 此前 services 段漏出——下游只能深路径导入）
+export { pharmacogenomicsService } from './services/pharmacogenomics-service'
 
 // ── hooks 真身（T2/T3 前置件）──
 export { useToast, toast } from './hooks/use-toast'

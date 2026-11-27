@@ -69,7 +69,7 @@ describe('@yyc3/medical 冒烟（全量）', () => {
       pkg.clinicalDecisionService, pkg.caseLibraryService, pkg.medicalKnowledgeService,
       pkg.imagingFeatureService, pkg.knowledgeGraphService, pkg.aiAnnotationService,
       pkg.multiModalAIService, pkg.medicationInteractionService, pkg.multiCenterResearchService,
-      pkg.patientService,
+      pkg.patientService, pkg.pharmacogenomicsService,
     ]) {
       expect(exp).toBeDefined()
     }
