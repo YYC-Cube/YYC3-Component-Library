@@ -21,6 +21,8 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "type-check": "tsc --noEmit",
+    "test": "vitest run --root ../.. --config vitest.config.ts packages/education",
+    "test:coverage": "vitest run --root ../.. --config vitest.config.ts --coverage.enabled --coverage.provider=istanbul --coverage.include='packages/education/src/**' packages/education",
     "clean": "rm -rf dist"
   },
   "dependencies": {
