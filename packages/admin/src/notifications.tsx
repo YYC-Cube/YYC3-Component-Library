@@ -226,6 +226,9 @@ const formatTimeAgo = (date: Date) => {
 const Notifications: React.FC = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [filteredNotifications, setFilteredNotifications] = useState<Notification[]>([]);
+  // 缺陷修复（T-bug-7 · batch3）：Tabs 此前非受控（defaultValue），当前标签不进状态——
+  // 工具栏"共 N 条通知"与全选框恒按全局清单计数，标签切换不联动。改为受控 + tabVisible 派生。
+  const [activeTab, setActiveTab] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState<string>('all');
   const [selectedPriority, setSelectedPriority] = useState<string>('all');
@@ -462,6 +465,14 @@ const Notifications: React.FC = () => {
     setFilteredNotifications(result);
   }, [searchQuery, selectedType, selectedPriority, sortBy, sortDirection, notifications]);
 
+  // 缺陷修复（T-bug-7 · batch3）：当前标签可见集——工具栏计数/全选/批量操作按标签联动
+  const tabVisible = filteredNotifications.filter(n =>
+    activeTab === 'unread' ? n.status === 'unread'
+      : activeTab === 'read' ? n.status === 'read'
+        : activeTab === 'starred' ? !!n.isStarred
+          : true
+  );
+
   // 标记通知为已读/未读
   const toggleReadStatus = (id: string) => {
     setNotifications(prev => 
@@ -512,10 +523,10 @@ const Notifications: React.FC = () => {
 
   // 全选/取消全选
   const toggleSelectAll = () => {
-    if (selectedNotifications.length === filteredNotifications.length) {
+    if (selectedNotifications.length === tabVisible.length) {
       setSelectedNotifications([]);
     } else {
-      setSelectedNotifications(filteredNotifications.map(item => item.id));
+      setSelectedNotifications(tabVisible.map(item => item.id));
     }
   };
 
@@ -1000,7 +1011,7 @@ const Notifications: React.FC = () => {
       </div>
 
       {/* 通知列表 */}
-      <Tabs defaultValue="all" className="w-full">
+      <Tabs value={activeTab} onValueChange={(v: string) => setActiveTab(v)} className="w-full">
         <TabsList className="mb-4">
           <TabsTrigger value="all">全部</TabsTrigger>
           <TabsTrigger value="unread">未读</TabsTrigger>
@@ -1009,15 +1020,15 @@ const Notifications: React.FC = () => {
         </TabsList>
         
         {/* 全选和通知数量 */}
-        {(filteredNotifications.length > 0) && (
+        {(tabVisible.length > 0) && (
           <div className="flex justify-between items-center mb-3">
             <div className="flex items-center gap-2">
               <Checkbox 
-                checked={filteredNotifications.length > 0 && selectedNotifications.length === filteredNotifications.length}
+                checked={tabVisible.length > 0 && selectedNotifications.length === tabVisible.length}
                 onCheckedChange={toggleSelectAll}
               />
               <span className="text-sm text-gray-500">
-                共 {filteredNotifications.length} 条通知
+                共 {tabVisible.length} 条通知
               </span>
             </div>
             

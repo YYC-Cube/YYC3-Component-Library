@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@yyc3/ui/card"
 import { Button } from "@yyc3/ui/button"
 import { Badge } from "@yyc3/ui/badge"
@@ -51,6 +51,12 @@ interface TestSuite {
 export function SystemTestConsole() {
   const [isOpen, setIsOpen] = useState(false)
   const [testSuites, setTestSuites] = useState<TestSuite[]>([])
+  // 缺陷修复（T-bug-6 · batch3）：generateTestReport 此前闭包捕获渲染期旧 testSuites，
+  // runAllTests 逐套件 setTestSuites 后报告统计恒 0——以 ref 镜像最新值，报告期直读
+  const testSuitesRef = useRef<TestSuite[]>([])
+  useEffect(() => {
+    testSuitesRef.current = testSuites
+  }, [testSuites])
   const [currentSuite, setCurrentSuite] = useState<string | null>(null)
   const [overallProgress, setOverallProgress] = useState(0)
   const [testResults, setTestResults] = useState<any>(null)
@@ -477,7 +483,7 @@ export function SystemTestConsole() {
 
   // 生成测试报告
   const generateTestReport = (totalDuration: number) => {
-    const allTests = testSuites.flatMap((suite) => suite.tests)
+    const allTests = testSuitesRef.current.flatMap((suite) => suite.tests)
     const passedTests = allTests.filter((test) => test.status === "passed")
     const failedTests = allTests.filter((test) => test.status === "failed")
     const skippedTests = allTests.filter((test) => test.status === "skipped")
@@ -490,7 +496,7 @@ export function SystemTestConsole() {
       successRate: (passedTests.length / allTests.length) * 100,
       totalDuration,
       averageTestDuration: allTests.reduce((sum, test) => sum + (test.duration || 0), 0) / allTests.length,
-      suiteResults: testSuites.map((suite) => ({
+      suiteResults: testSuitesRef.current.map((suite) => ({
         name: suite.name,
         passed: suite.tests.filter((t) => t.status === "passed").length,
         failed: suite.tests.filter((t) => t.status === "failed").length,
