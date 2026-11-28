@@ -195,3 +195,79 @@ export function setNavigatorOnline(online: boolean) {
     value: online,
   });
 }
+
+/** canvas 2d 上下文记录桩（批次 2）：jsdom getContext('2d') 返回 null，
+ * SimpleCharts 三件套的绘制函数在此情况下直接 return——挂本桩后绘制分支才可执行。
+ * 返回 ops 记录数组 + fillCalls 便于断言 fillText 参数 */
+export function stubCanvas2d() {
+  const ops: string[] = [];
+  const fillCalls: Array<{ text: string; x: number; y: number }> = [];
+  const record = (name: string) => () => {
+    ops.push(name);
+  };
+  const ctx = {
+    clearRect: record('clearRect'),
+    scale: record('scale'),
+    save: record('save'),
+    restore: record('restore'),
+    fillRect: record('fillRect'),
+    strokeRect: record('strokeRect'),
+    beginPath: record('beginPath'),
+    closePath: record('closePath'),
+    arc: record('arc'),
+    roundRect: record('roundRect'),
+    rect: record('rect'),
+    fill: record('fill'),
+    stroke: record('stroke'),
+    clip: record('clip'),
+    moveTo: record('moveTo'),
+    lineTo: record('lineTo'),
+    quadraticCurveTo: record('quadraticCurveTo'),
+    bezierCurveTo: record('bezierCurveTo'),
+    translate: record('translate'),
+    rotate: record('rotate'),
+    setTransform: record('setTransform'),
+    drawImage: record('drawImage'),
+    setLineDash: record('setLineDash'),
+    ellipse: record('ellipse'),
+    fillText: (text: string, x: number, y: number) => {
+      ops.push('fillText');
+      fillCalls.push({ text, x, y });
+    },
+    strokeText: record('strokeText'),
+    measureText: () => ({ width: 10 }),
+    createLinearGradient: () => ({ addColorStop: vi.fn() }),
+    createRadialGradient: () => ({ addColorStop: vi.fn() }),
+    getImageData: () => ({ data: new Uint8ClampedArray(4) }),
+    putImageData: record('putImageData'),
+    canvas: null,
+  };
+  const spy = vi
+    .spyOn(HTMLCanvasElement.prototype, 'getContext')
+    .mockReturnValue(ctx as unknown as CanvasRenderingContext2D);
+  return {
+    ctx,
+    ops,
+    fillCalls,
+    restore: () => spy.mockRestore(),
+  };
+}
+
+/** URL.createObjectURL/revokeObjectURL 桩（jsdom 未实现；下载/预览链路需要） */
+export function stubObjectURL() {
+  const blobs: Blob[] = [];
+  Object.defineProperty(URL, 'createObjectURL', {
+    writable: true,
+    configurable: true,
+    value: vi.fn((blob: Blob) => {
+      blobs.push(blob);
+      return `blob:mock-${blobs.length}`;
+    }),
+  });
+  Object.defineProperty(URL, 'revokeObjectURL', {
+    writable: true,
+    configurable: true,
+    value: vi.fn(),
+  });
+  return { blobs };
+}
