@@ -580,6 +580,9 @@ export function BatchProcessor() {
                     <TableCell className="font-medium">{file.name}</TableCell>
                     <TableCell>
                       {file.status === "等待处理" && <Badge variant="outline">等待处理</Badge>}
+                      {/* 豁免评审（batch5）：batchFiles 生命周期只有 等待处理→已处理 两态，
+                          "处理中" 徽章为 data-static 死臂（状态机不产生该值），不硬造 */}
+                      {/* istanbul ignore next -- 死臂：状态机不产生"处理中"文件态 */}
                       {file.status === "处理中" && (
                         <Badge variant="secondary">
                           <LoadingSpinner className="h-3 w-3 mr-1" />
@@ -729,6 +732,7 @@ export function BatchProcessor() {
                     </TableCell>
                     <TableCell>
                       {file.status === "等待处理" && <Badge variant="outline">等待处理</Badge>}
+                      {/* istanbul ignore next -- 死臂：状态机不产生"处理中"文件态（同上豁免评审） */}
                       {file.status === "处理中" && <Badge variant="secondary">处理中</Badge>}
                       {file.status === "已处理" && <Badge variant="default">已处理</Badge>}
                     </TableCell>
